@@ -1,0 +1,87 @@
+@import "@material/theme/mdc-theme";
+
+body {
+  a,
+  a:link,
+  a:hover,
+  a:focus,
+  a:active,
+  a:visited {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+#site-body {
+  color: $text-ongrey;
+  font-family: Roboto, sans-serif;
+}
+
+::selection {
+  background: $mdc-theme-secondary;
+}
+
+%material-icon {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+
+.fa {
+  &.fa-remove,
+  &.fa-times {
+    &::before {
+      @extend %material-icon;
+      content: "close" !important;
+    }
+  }
+
+  &.fa-envelope {
+    &::before {
+      @extend %material-icon;
+      content: 'alternate_email' !important;
+    }
+  }
+
+  &.fa-bell {
+    &::before {
+      @extend %material-icon;
+      content: 'notifications' !important;
+    }
+  }
+
+  &.fa-users {
+    &::before {
+      @extend %material-icon;
+      content: 'account_circle' !important;
+    }
+  }
+
+  &.fa-file-text-o {
+    &::before {
+      @extend %material-icon;
+      content: 'description' !important;
+    }
+  }
+
+  &.fa-trash {
+    &::before {
+      @extend %material-icon;
+      content: 'delete' !important;
+    }
+  }
+}
+
+body {
+  background-color: $body-background-color !important;
+}

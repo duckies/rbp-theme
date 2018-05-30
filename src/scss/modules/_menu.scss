@@ -1,0 +1,63 @@
+@import "@material/menu/mdc-menu";
+@import "@material/button/mdc-button";
+
+.mdc-menu {
+  border-radius: 0;
+  background-color: inherit;
+  box-shadow: $module-shadow;
+
+  .mdc-menu__items {
+    padding: 0;
+  }
+
+  .mdc-list-divider {
+    border-bottom: 2px solid tint($mdc-theme-primary, 9%);
+    list-style: none;
+  }
+
+  .mdc-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 48px;
+    background-color: tint($mdc-theme-primary, 3%);
+    list-style: none;
+
+    &:hover {
+      background-color: tint($mdc-theme-primary, 10%);
+    }
+
+    a {
+      width: 100%;
+      height: 100%;
+      padding: 0 16px;
+      line-height: 48px;
+      text-align: left;
+
+      &.join-us {
+        animation: text-glow 1s $mdc-animation-standard-curve-timing-function infinite alternate;
+      }
+    }
+
+    &.list-item-nopad {
+      height: 55px;
+      background-color: tint($mdc-theme-primary, 8%);
+
+      .menu-header {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: 0 15px;
+      }
+    }
+  }
+}
+
+@keyframes text-glow {
+  0% { 
+    text-shadow: 0 0 10px $mdc-theme-secondary;
+   }
+  100% {
+    text-shadow: 0 0 10px $mdc-theme-secondary, 0 0 20px $mdc-theme-secondary, 0 0 35px $mdc-theme-secondary;
+  }
+}

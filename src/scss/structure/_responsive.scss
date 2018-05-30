@@ -1,0 +1,86 @@
+#enjin-bar,
+.container_spacer {
+  display: none;
+}
+
+.body-wrap-3 {
+  min-width: inherit;
+  min-width: inherit !important;
+  overflow-x: initial !important;
+}
+
+#page {
+  max-width: inherit !important;
+  min-width: inherit !important;
+}
+
+#site-body {
+  > div:nth-child(2) {
+    @extend .flex-container;
+    margin-top: -120px;
+
+    #section-main {
+      &.section-holder {
+        padding-left: $content-padding;
+        padding-right: $content-padding;
+      }
+    }
+
+    // Don't add extra padding to sidebar inside.
+    #section-left,
+    #section-right {
+      &.section-holder {
+        padding-left: $content-padding;
+        padding-right: $content-padding;
+        @include media-breakpoint-up(lg) {
+          padding-left: 0;
+        }
+      }
+    }
+  }
+}
+
+.section-width-large {
+  @extend .col;
+}
+.section-width-small {
+  @extend .col-lg-#{$enjin-sidebar-columns};
+  @extend .col-12;
+}
+
+.section-collection {
+  .top {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+  }
+
+  .section-divider,
+  .section-border {
+    display: none;
+  }
+
+  .section {
+    padding: 0;
+  }
+}
+
+.container {
+  width: 100%;
+
+  .container_left,
+  .container_right {
+    display: none;
+  }
+
+  .container_content {
+    background-color: transparent;
+
+    > .container_table {
+      > tr,
+      > td {
+        display: block;
+      }
+    }
+  }
+}

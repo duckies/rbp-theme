@@ -1,0 +1,173 @@
+@mixin page-content-width($padding) {
+  max-width: $content-width + 2 * $padding;
+  padding-left: $padding;
+  padding-right: $padding;
+}
+
+@mixin scrim-gradient($direction: "to bottom", $startColor: "black") {
+  $scrimCoordinates: (
+    0: 1,
+    19: .738,
+    34: .541,
+    47: .382,
+    56.5: .278,
+    65: .194,
+    73: .126,
+    80.2: .075,
+    86.1: .042,
+    91: .021,
+    95.2: .008,
+    98.2: .002,
+    100: 0
+  );
+
+  $hue: hue($startColor);
+  $saturation: saturation($startColor);
+  $lightness: lightness($startColor);
+  $stops: ();
+  @each $colorStop, $alphaValue in $scrimCoordinates {
+    $stop: hsla($hue, $saturation, $lightness, $alphaValue)
+      percentage($colorStop/100);
+    $stops: append($stops, $stop, comma);
+  }
+  background: linear-gradient(unquote($direction), $stops);
+}
+
+@mixin with-count($n) {
+  @if $n == 1 {
+    &:first-child:nth-last-child(1) {
+      @content;
+    }
+  }
+  @else {
+    &:first-child:nth-last-child(#{$n}),
+    &:first-child:nth-last-child(#{$n}) ~ & {
+      @content;
+    }
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@mixin keyframes($animationName) {
+  @keyframes #{$animationName} { @content; }
+}
+
+@include keyframes(fade-to-90) {
+  0% { opacity: 0 }
+  100% { opacity: .9 }
+}
+
+@keyframes fade-in-to-90 {
+  0%   { opacity: 0; }
+  100% { opacity: .9; }
+}
+
+@keyframes fade-in-7 {
+  0%   { opacity: 0; }
+  100% { opacity: .7; }
+}
+
+// @keyframes border-effect {
+//   0% {
+    
+//   }
+// }
+
+@keyframes fade-in-scale-up {
+  0% {
+    transform: scale(.7);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-scale-up-to-90 {
+  0% {
+    transform: scale(.7);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: .9;
+  }
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(15%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleInFromRight {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: 230px;
+  }
+}
+
+@keyframes slide-in-from-left {
+  0% {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(15%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+@mixin loading-fade-in($start: 0, $end: 10) {
+  @for $i from $start through $end {
+    &:nth-child(#{$i}) {
+      animation-delay: $i * (0.07s);
+    }
+  }
+}
+
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}

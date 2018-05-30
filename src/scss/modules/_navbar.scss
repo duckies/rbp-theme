@@ -1,0 +1,127 @@
+@import "@material/top-app-bar/mdc-top-app-bar";
+@import "@material/drawer/mdc-drawer";
+@import "@material/tabs/mdc-tabs";
+
+.header-logo {
+  padding-left: 15px;
+  transition: text-shadow .4s $mdc-animation-standard-curve-timing-function;
+  font-family: Khand, sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 0.9;
+  text-transform: uppercase;
+  animation: slide-in-from-left 450ms $mdc-animation-standard-curve-timing-function;
+
+  &:hover {
+    text-shadow: 6px 4px 3px rgba($mdc-theme-secondary, .5);
+  }
+
+  &__small {
+    animation: slide-in-from-left 450ms $mdc-animation-standard-curve-timing-function;
+    display: none;
+  }
+
+  @include media-breakpoint-down(md) {
+    display: none;
+
+    &__small {
+      display: block;
+    }
+  }
+}
+
+.mdc-top-app-bar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+  z-index: 5;
+
+  &__row {
+    height: $toolbar-height;
+    transition: height .3s cubic-bezier(.4, 0, .2, 1);
+  }
+
+  &.mdc-top-app-bar--fixed-scrolled {
+    .mdc-top-app-bar__row {
+      height: $toolbar-height - 25px;
+    }
+
+    .header-logo {
+      display: none;
+
+      &__small {
+        display: block;
+      }
+    }
+  }
+
+  .mdc-top-app-bar__section {
+    padding: 0;
+  }
+
+  .mdc-top-app-bar__title {
+    display: flex;
+    align-content: center;
+  }
+
+  .mdc-top-app-bar__navigation-icon {
+    @include media-breakpoint-down(md) {
+      display: block;
+    }
+
+    display: none;
+    text-decoration: none;
+  }
+
+  .mdc-tab-bar {
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
+
+    .mdc-tab {
+      @include mdc-theme-prop(color, on-primary);
+
+      min-width: 82px;
+      font-family: Khand, sans-serif;
+      font-size: 16px;
+      font-weight: bold;
+      letter-spacing: .25px;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, .15);
+
+      &--active {
+        color: $mdc-theme-secondary;
+      }
+    }
+
+    .mdc-tab-bar__indicator {
+      background-color: $mdc-theme-secondary;
+    }
+  }
+
+  .user-menu {
+    min-width: 175px;
+    padding: 10px 0;
+    text-align: right;
+
+    &__button {
+      @include mdc-theme-prop(color, on-primary);
+
+      color: #fff !important;
+      font-family: Khand, sans-serif;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    &__avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+    }
+
+    &__img {
+      border-radius: 50%;
+    }
+
+    &__slide {
+      animation: fade-in 250ms $mdc-animation-standard-curve-timing-function;
+    }
+  }
+}

@@ -1,0 +1,54 @@
+.special_container {
+  .m_recruitmentstatus {
+    @extend .flex-row;
+    padding: 0 !important;
+    display: flex;
+    justify-content: space-between;
+  
+    .item {
+      @extend .col-md-4;
+      @extend .col-lg-6;
+      // @extend .col-6;
+      flex-basis: calc(50% - #{$module-margin} / 2);
+      background-color: $mdc-theme-primary;
+      border: $module-border;
+      box-shadow: $module-shadow;
+      padding: 5px;
+      margin-bottom: $module-margin;
+      display: flex;
+
+      @include media-breakpoint-between(sm, md) {
+        flex-basis: calc(33% - #{$module-margin} / 2);
+      }
+  
+      .name {
+        @extend .col;
+        float: none;
+        color: #fff;
+        font-family: 'Khand', sans-serif;
+        text-transform: uppercase;
+        align-items: center;
+        display: flex;
+        font-size: 15px;
+        padding-top: 0;
+        padding-left: 5px;
+      }
+
+      .status {
+        @extend .col;
+        padding: 0;
+        order: 2;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+
+        .element_avatar {
+          border: 1px solid $mdc-theme-secondary;
+          margin: 2px;
+          top: 0;
+        }
+      }
+    }
+  }
+}
+

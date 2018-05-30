@@ -1,0 +1,14 @@
+{
+  "paths": {
+    "scripts": {
+      "watch": "./src/scripts/*.js",
+      "src": "./src/scripts/",
+      "dest": "./dist/"
+    },
+    "styles": {
+      "watch": "./src/scss/**/*.{scss,css,sass}",
+      "build": "./src/scss/*.scss",
+      "dest": "./dist/"
+    }
+  }
+}

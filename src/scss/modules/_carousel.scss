@@ -1,0 +1,90 @@
+$carousel-height: 550px;
+
+.carousel {
+  .flickity-slider {
+    // Prevents flickity transform3D flickering
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  &-item {
+    width: 100%;
+    height: $carousel-height;
+    // TODO: Investigate
+    // animation: fade-in .3s ease-in;
+    background-position: center center;
+    background-size: cover;
+  }
+}
+
+.hero {
+  position: relative;
+
+  &-item {
+    &[data-page="forums"] {
+      background-image: url("https://s3.amazonaws.com/files.enjin.com/1604436/backgrounds/nazmir.jpg");
+    }
+
+    &[data-page="apply"] {
+      background-image: url("https://s3.amazonaws.com/files.enjin.com/1604436/backgrounds/faceless_compressed.jpg");
+    }
+    //background-image: url("https://d1u5p3l4wpay3k.cloudfront.net/wowpedia/thumb/0/0d/Zin-Azshari.jpg/1200px-Zin-Azshari.jpg");
+
+    &[data-page="about"] {
+      background-image: url("https://s3.amazonaws.com/files.enjin.com/1604436/backgrounds/zandalar_compressed.jpg");
+    }
+
+    &[data-page="system"] {
+      background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/matte-theme/images/backgrounds/teldrassil.jpg");
+    }
+  }
+}
+
+.carousel,
+.hero {
+  &-item {
+    height: $carousel-height;
+    background-position: center center;
+    background-size: cover;
+
+    &::before {
+      @include scrim-gradient("to top", $body-background-color);
+
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 100%;
+      content: "";
+    }
+  }
+
+  &-content {
+    position: absolute;
+    right: 0;
+    bottom: $carousel-height / 2.5;
+    left: 0;
+    animation: slideInFromBottom .5s ease-in;
+
+    &__title {
+      padding: 0 15px;
+      color: $color-white;
+      font-family: Khand, sans-serif;
+      font-size: 56px;
+      font-weight: bold;
+      line-height: 1.1;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, .5);
+      text-transform: uppercase;
+    }
+
+    &__caption {
+      margin-bottom: 1rem;
+      padding: 0 15px;
+      color: $color-white;
+      font-family: Roboto, sans-serif;
+      font-size: 18px;
+      line-height: 1.7;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, .5);
+    }
+  }
+}
