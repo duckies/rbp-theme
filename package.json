@@ -1,29 +1,38 @@
 {
+    "name": "enjin-theme",
+    "description": "Responsive Enjin theme for the Really Bad Players community.",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Seikcud/enjin-theme.git"
+    },
     "scripts": {
         "build": "SET NODE_ENV=production&& gulp build --require @babel/register --gulpfile tasks",
         "develop": "SET NODE_ENV=development&& gulp watch --require @babel/register --gulpfile tasks",
         "watch": "SET NODE_ENV=production&& gulp watch --require @babel/register --gulpfile tasks"
     },
     "devDependencies": {
-        "@babel/core": "^7.0.0-beta.46",
-        "@babel/preset-env": "^7.0.0-beta.46",
-        "@babel/register": "^7.0.0-beta.46",
+        "@babel/core": "^7.0.0-beta.49",
+        "@babel/preset-env": "^7.0.0-beta.49",
+        "@babel/register": "^7.0.0-beta.49",
         "@material/line-ripple": "^0.35.0",
+        "@material/snackbar": "^0.35.0",
         "@material/textfield": "^0.35.2",
-        "babel-loader": "^8.0.0-beta.2",
+        "babel-loader": "^8.0.0-beta.3",
         "basiclightbox": "^4.0.3",
-        "browser-sync": "^2.23.7",
+        "browser-sync": "^2.24.4",
         "browser-sync-webpack-plugin": "^2.2.2",
+        "eslint": "^4.19.1",
+        "eslint-config-google": "^0.9.1",
         "flickity": "^2.1.1",
         "flickity-bg-lazyload": "^1.0.0",
         "gulp": "^4.0.0",
         "gulp-autoprefixer": "^5.0.0",
         "gulp-babel": "^8.0.0-beta.2",
         "gulp-better-rollup": "^3.1.0",
-        "gulp-clean-css": "^3.9.3",
+        "gulp-clean-css": "^3.9.4",
         "gulp-concat": "^2.6.1",
         "gulp-if": "^2.0.2",
-        "gulp-rename": "^1.2.2",
+        "gulp-rename": "^1.2.3",
         "gulp-sass": "^4.0.1",
         "gulp-sourcemaps": "^2.6.4",
         "gulp-uglify": "^3.0.0",
@@ -31,7 +40,7 @@
         "stylelint-order": "^0.8.1",
         "stylelint-scss": "^3.1.0",
         "stylelint-selector-bem-pattern": "^2.0.0",
-        "webpack": "^4.6.0"
+        "webpack": "^4.10.2"
     },
     "dependencies": {
         "@material/button": "^0.35.0",
@@ -40,9 +49,9 @@
         "@material/menu": "^0.35.0",
         "@material/tabs": "^0.35.0",
         "@material/theme": "^0.35.0",
-        "@material/top-app-bar": "^0.35.0",
-        "material-components-web": "^0.35.0",
-        "npm": "^6.0.0"
+        "@material/top-app-bar": "^0.35.2",
+        "material-components-web": "^0.35.2",
+        "npm": "^6.1.0"
     },
     "sasslintConfig": "./.stylelintrc.yaml"
 }
