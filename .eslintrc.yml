@@ -10,5 +10,5 @@ parserOptions:
 rules:
   max-len:
     - 1
-    - ignoreTemplateLiterals: true
-    - ignoreURLS: true
+    - ignoreUrls: true
+      ignoreTemplateLiterals: true
