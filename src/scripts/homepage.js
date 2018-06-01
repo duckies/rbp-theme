@@ -1,136 +1,172 @@
-// import { MDCLinearProgress } from "@material/linear-progress";
+// TODO: Extract to some settings file.
+const difficulties = {
+  'M': 'Mythic',
+  'H': 'Heroic',
+  'N': 'Normal',
+};
 
-// TODO: Add logic to determine most relevant ranking.
-export function guildRanking() {
-  if (!$("#guild-progress").length) { return; };
+/**
+ * Creates DOM elements given raiderIO data for the guild.
+ */
+function createRaiderIOElements() {
+  const url = 'https://raider.io/api/v1/guilds/profile?region=us&realm=blackrock&name=Really%20Bad%20Players&fields=raid_rankings,raid_progression';
 
-  const api =
-    "https://raider.io/api/v1/guilds/profile?region=us&realm=blackrock&name=Really%20Bad%20Players&fields=raid_rankings";
+  fetch(url)
+    .then((response) => {
+      if (!response.ok) {
+        throw Error('RaiderIO request network error: ', response.statusText);
+      }
 
-  $.getJSON(api, function (data) {
-    let last_tier = Object.values(data.raid_rankings).pop();
-    console.log(last_tier);
-    for (var key in last_tier.mythic) {
-      $('[data-guild-rank="' + key + '"]').html(last_tier.mythic[key]);
-    }
-  });
-  raidProgressBoxes();
-  setupNewsModule();
-  setupDiscordCount();
-}
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+      const elem = document.getElementById('guild-progress');
+      const loaders = document.getElementById('guild-progress__loaders');
+      const raids = Object.entries(data.raid_progression).slice(-2);
+      const ranks = Object.entries(data.raid_rankings).pop()[1];
 
-function raidProgressBoxes() {
-  const api =
-    "https://raider.io/api/v1/guilds/profile?region=us&realm=blackrock&name=Really%20Bad%20Players&fields=raid_progression";
-  const num_relevant_raids = 2;
-  const difficulty_map = {
-    M: "Mythic",
-    H: "Heroic",
-    N: "Normal"
-  };
+      elem.insertAdjacentHTML('afterbegin', createProgressionElements(raids));
+      loaders.remove();
 
-  $.getJSON(api, function (data) { }).done(data => {
-    const keys = Object.keys(data.raid_progression).slice(-num_relevant_raids);
-    const module = $("#guild-progress");
-    const loaders = $("#guild-progress__loaders");
-    let blocks = "";
+      let key = '';
+      if (ranks.mythic.world !== 0) {
+        key = 'mythic';
+      } else if (ranks.mythic.world !== 0) {
+        key = 'heroic';
+      } else {
+        key = 'normal';
+      }
 
-    for (var key in keys) {
-      const raid_name = keys[key];
-      const raid = data.raid_progression[raid_name];
-      const defeated_text = raid.summary.slice(0, -2);
-      const scale = eval(defeated_text);
-      const difficulty = difficulty_map[raid.summary.slice(-1)];
-      const friendly_name = raid_name.replace(/-/g, " ");
+      Object.entries(ranks[key]).map(([region, score]) => {
+        let elem = document.querySelector('[data-guild-rank=' + region + ']');
 
-      blocks =
-        `<div class="col-12 raid-progress" data-raid="${raid_name}">
-            <div class="flex-row">
-                <div class="col-12 raid-progress__summary">
-                    <span class="raid-progress__summary-text">${defeated_text}</span>
-                </div>
-                <div class="col-12 raid-info">
-                    <span class="raid-difficulty">${difficulty}</span>
-                    <span class="raid-name">${friendly_name}</span>
-                </div>
-                <div role="progressbar" class="col-12 progressbar mdc-linear-progress" data-progress="${defeated_text}">
-                    <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
-                        <span class="mdc-linear-progress__bar-linear"></span>
-                    </div>
-                </div>
-            </div>
-        </div>` + blocks;
-    }
-    module.append(blocks);
-    loaders.remove();
-
-    // This is pretty inelegant, but I couldn't get the
-    // mdc functions to work with generated content.
-    $(window).load(function () {
-      $(".mdc-linear-progress").each(function () {
-        $(this)
-          .find(".mdc-linear-progress__bar")
-          .css("transform", "scaleX(" + eval($(this).data("progress")) + ")");
+        if (elem) {
+          elem.insertAdjacentHTML('afterbegin', score);
+        } else {
+          console.log('Element for given region ' + region + ' was not found.');
+        }
       });
-    });
-  });
+    })
+    .catch((error) => console.log(error));
 }
 
+/**
+ * Turns RaiderIO raid progression data into DOM elements.
+ * @param {Object} raids
+ * @return {String} joined string for DOM insertion.
+ */
+function createProgressionElements(raids) {
+  return raids.map(([instance, progress]) => {
+    return `
+    <div class="col-12 raid-progress" data-raid="${instance}">
+      <div class="flex-row">
+        <div class="col-12 raid-progress__summary">
+            <span class="raid-progress__summary-text">${progress.summary}</span>
+        </div>
+        <div class="col-12 raid-info">
+            <span class="raid-difficulty">${difficulties[progress.summary.slice(-1)]}</span>
+            <span class="raid-name">${instance.replace(/-/g, ' ')}</span>
+        </div>
+        <div role="progressbar" class="col-12 progressbar mdc-linear-progress">
+          <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar" style="transform: scaleX(${eval(progress.summary.slice(0, -2))})">
+              <span class="mdc-linear-progress__bar-linear"></span>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/**
+ * Uses Enjin standard API to create news boxes.
+ */
 function setupNewsModule() {
-  const num_news_items = 5;
-  const module = $("#news-api-wrapper");
+  const newsItems = 5;
+  const module = document.getElementById('news-api-wrapper');
+  // const module = $('#news-api-wrapper');
   const request = {
-    jsonrpc: "2.0",
+    jsonrpc: '2.0',
     id: Math.round(Math.random() * (999999 - 100000) + 100000),
-    method: "News.getNews",
+    method: 'News.getNews',
     params: {
       api_key: '7c6d45f85ff6e3be2836593b793985ca5af6413ef6a1eacd',
-      preset_id: "48872030",
+      preset_id: '48872030',
       page: 1,
-      items: num_news_items
-    }
+      items: newsItems,
+    },
   };
 
-  $.post("/api/v1/api.php", JSON.stringify(request), function (response) {
-    if (response.result) {
-      for (let article of response.result) {
-        let article_as_html = $("<div>").html(article.content);
-        let article_text = article_as_html.text();
-        let article_img = $(article_as_html)
-          .find("img:first")
-          .attr("src");
-
-        module.append(`
-        <div class="article col-12">
-          <div class="article__bg" style="background-image: url(${article_img})"></div>
-          <div class="news-info">
-          <h2 class="news-title">${article.title}</h2>
-          <p class="news-snippet">${article_text}</p>        
-        </div>
-        </div>
-        `);
-      }
-    } else if (response.error) {
-      console.log("[Quack][News API]: " + response.error.message);
+  fetch('/api/v1/api.php', {
+    method: 'POST',
+    body: JSON.stringify(request),
+    headers: {'Content-Type': 'application/json'},
+  })
+  .then((response) => {
+    if (!response.ok) {
+      throw Error('Enjin API request failed: ', response.statusText);
     }
-  });
+    return response.json();
+  }).then((data) => {
+    module.insertAdjacentHTML('beforeend', createNewsElements(data.result));
+  }).catch((error) => console.log(error));
 }
 
-function setupDiscordCount() {
-  $.getJSON(
-    "https://discordapp.com/api/guilds/142372929961721856/widget.json",
-    function (data) {
-      let online_users = 0;
+/**
+ * Takes an array of news objects and returns a DOM string.
+ * @param {Array} newsItems
+ * @return {String} string representation of DOM elements.
+ */
+function createNewsElements(newsItems) {
+  return newsItems.map((article) => {
+    // jQuery is simply much easier to use here.
+    const articleHTML = $('<div>').html(article.content);
+    const articleText = articleHTML.text();
+    const articleIMG = $(articleHTML).find('img:first').attr('src');
 
-      for (var member in data.members) {
-        if (data.members[member]["status"] === "online") {
-          online_users++;
-        }
+    return `
+    <div class='article col-12'>
+      <div class='article__bg' style='background-image: url(${articleIMG})'></div>
+      <div class='news-info'>
+        <h2 class='news-title'>${article.title}</h2>
+        <p class='news-snippet'>${articleText}</p>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/**
+ * Requests Discord online user count.
+ */
+function setupDiscordCount() {
+  fetch('https://discordapp.com/api/guilds/142372929961721856/widget.json')
+    .then((response) => {
+      if (!response.ok) {
+        throw Error('Discord request error: ', response.statusText);
       }
-      const module = $("#discord-box .discord__description");
-      if (module) {
-        module.html(online_users + " Users Currently Online");
-      }
-    }
-  );
+
+      return response.json();
+    })
+    .then((data) => {
+      const online = data.members.filter((usr) => usr.status === 'online');
+      const ele = document.querySelector('#discord-box .discord__description');
+      const description = `${online.length} Users Currently Online`;
+
+      ele.insertAdjacentHTML('afterbegin', description);
+    }).catch((error) => console.log(error));
+}
+
+/**
+ * Initiator function for the homepage.
+ */
+export function initiateHomepage() {
+  const sidebar = document.getElementById('homepage-sidebar');
+
+  if (!sidebar) {
+    return;
+  }
+
+  setupNewsModule();
+  createRaiderIOElements();
+  setupDiscordCount();
 }

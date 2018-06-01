@@ -1,11 +1,14 @@
 import Flickity from 'flickity-bg-lazyload';
 
+/**
+ * Instantiates homepage carousel element.
+ */
 export function flickityCarousel() {
-    var carousel = document.querySelector('.carousel');
+    const carousel = document.querySelector('.carousel');
 
     if (carousel) {
-        var flkty = new Flickity(carousel, {
-            autoPlay: true,
+        new Flickity(carousel, {
+            autoPlay: 5000,
             // cellAlign: 'center',
             wrapAround: true,
             bgLazyLoad: 1,
