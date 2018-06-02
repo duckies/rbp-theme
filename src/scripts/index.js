@@ -3,6 +3,7 @@ import {initDashboard} from './dashboard';
 import {initDrawer, initUserMenu, initAppBar} from './menus';
 import {flickityCarousel} from './flickity';
 import {initiateHomepage} from './homepage';
+import {initForum} from './forum';
 
 
 // import {MDCSnackbar,MDCSnackbarFoundation} from '@material/snackbar';
@@ -17,3 +18,4 @@ flickityCarousel();
 initDrawer();
 initiateHomepage();
 initAppBar();
+initForum();
