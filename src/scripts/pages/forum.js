@@ -1,5 +1,5 @@
 import * as basicLightbox from 'basiclightbox';
-import {wrap} from './helpers';
+import {wrap} from '../helpers/functions';
 
 /**
  * If a YouTube iframe is found, make it responsive.
@@ -78,7 +78,7 @@ function bulkModeration() {
 /**
  * Initializes forum styles.
  */
-export function initForum() {
+export default function initialize() {
     const forumElem = document.querySelector('.m_forum');
 
     if (!forumElem) {

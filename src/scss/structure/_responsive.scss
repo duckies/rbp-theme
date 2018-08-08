@@ -4,25 +4,25 @@
 }
 
 .body-wrap-3 {
-  min-width: inherit;
   min-width: inherit !important;
   overflow-x: initial !important;
 }
 
 #page {
-  max-width: inherit !important;
   min-width: inherit !important;
+  max-width: inherit !important;
 }
 
 #site-body {
   > div:nth-child(2) {
     @extend .flex-container;
-    margin-top: -120px;
+
+    transform: translateY(-120px);
 
     #section-main {
       &.section-holder {
-        padding-left: $content-padding;
         padding-right: $content-padding;
+        padding-left: $content-padding;
       }
     }
 
@@ -30,8 +30,9 @@
     #section-left,
     #section-right {
       &.section-holder {
-        padding-left: $content-padding;
         padding-right: $content-padding;
+        padding-left: $content-padding;
+
         @include media-breakpoint-up(lg) {
           padding-left: 0;
         }
@@ -43,13 +44,21 @@
 .section-width-large {
   @extend .col;
 }
-.section-width-small {
+
+.section-width-small,
+.section-width-medium {
   @extend .col-lg-#{$enjin-sidebar-columns};
   @extend .col-12;
 }
 
 .section-collection {
-  tr.top {
+  display: block;
+
+  > tbody {
+    display: block;
+  }
+
+  .top {
     display: flex;
     flex-wrap: wrap;
     height: auto;
@@ -76,7 +85,12 @@
   .container_content {
     background-color: transparent;
 
-    > .container_table {
+    .container_table {
+      .container_table_row,
+      .container_column {
+        display: block;
+      }
+
       > tr,
       > td {
         display: block;

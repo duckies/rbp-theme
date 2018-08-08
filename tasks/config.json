@@ -1,7 +1,7 @@
 {
   "paths": {
     "scripts": {
-      "watch": "./src/scripts/*.js",
+      "watch": "./src/scripts/**/*.js",
       "src": "./src/scripts/",
       "dest": "./dist/"
     },

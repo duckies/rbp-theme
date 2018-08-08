@@ -1,50 +1,76 @@
+.news {
+  &--loader {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  &--loader__block {
+    height: 200px;
+    margin-bottom: 10px;
+    animation: loader-block($mdc-theme-primary) 1s $mdc-animation-standard-curve-timing-function infinite alternate;
+    border: $module-border;
+    background: $mdc-theme-primary;
+  }
+}
+
 .article {
-  height: 200px;
-  border: $module-border;
-  box-shadow: $module-shadow;
-  background-color: $mdc-theme-primary;
-  overflow: hidden;
   display: flex;
+  height: 200px;
   margin-bottom: 10px;
-  // padding
+  border: $module-border;
+  background-color: $mdc-theme-primary;
+  box-shadow: $module-shadow;
+  overflow: hidden;
+
   &__bg {
     position: absolute;
-    background-size: cover;
-    background-position: center center;
-    height: 100%;
     width: 100%;
-    // z-index: 0;
+    height: 100%;
     transition: transform .3s;
+    background-position: center center;
+    background-size: cover;
+
     &:hover {
       transform: scale(1.2);
     }
+
     &::after {
-      background: linear-gradient(to top, $mdc-theme-primary, transparent);
-      content: "";
       position: absolute;
-      height: 100%;
       width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, #{rgba($mdc-theme-primary, .3)}, $mdc-theme-primary);
+      content: "";
     }
   }
+
   .news-info {
-    align-self: flex-end;
     display: flex;
-    flex-wrap: wrap;
-    padding: 25px;
     position: relative;
-    color: #fff;
-    font-family: "Khand", sans-serif;
-    user-select: none;
+    flex-wrap: wrap;
+    align-self: flex-end;
     width: 100%;
+    padding: 25px;
+    color: #fff;
     pointer-events: none;
+    user-select: none;
+
     h2 {
-      font-size: 36px;
-      font-weight: 700;
-      line-height: 1.1;
+      flex-basis: 100%;
       margin-bottom: 5px;
+      font-family: Khand, sans-serif;
+      font-size: 36px;
+      font-weight: bold;
+      line-height: 1.1;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, .85);
+      text-transform: uppercase;
     }
+
     p {
-      font-size: 20px;
+      opacity: .9;
+      font-size: 15px;
+      line-height: 1.4;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, .5);
     }
   }
 }

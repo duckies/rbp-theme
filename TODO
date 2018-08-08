@@ -1,2 +1,11 @@
+Refactoring:
+    * Create standardized fetch function.
+
+Menus:
+    * Switch from jQuery to standard javascript when appropriate.
+
 Application:
     * Unselected talents should have a generic icon gap to avoid confusion.
+
+Dashboard:
+    * Create better system for removing the trash menu without the performance loss.

@@ -1,0 +1,36 @@
+// This is a global style and should be moved accordingly.
+.container {
+  &.with-header {
+    .container_header {
+      height: 50px;
+
+      .title {
+        background-color: $module-body-background-light;
+      }
+
+      .mask {
+        margin: 0 15px !important;
+      }
+
+      .header_text_text {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding-top: 0 !important;
+        color: $text-ongrey;
+        font-family: Khand, sans-serif;
+        font-size: 19px;
+      }
+    }
+
+    &.first {
+      .container_header {
+        height: 50px;
+      }
+    }
+  }
+}
+
+.m_system-logout {
+  background-color: $module-body-background;
+}

@@ -1,27 +1,27 @@
 @import "@material/top-app-bar/mdc-top-app-bar";
 @import "@material/drawer/mdc-drawer";
-@import "@material/tabs/mdc-tabs";
+// @import "@material/tabs/mdc-tabs";
 
 .header-logo {
-  padding-left: 15px;
+  animation: slide-in-from-left 450ms $mdc-animation-standard-curve-timing-function;
   transition: text-shadow .4s $mdc-animation-standard-curve-timing-function;
+  color: #fff;
   font-family: Khand, sans-serif;
   font-size: 40px;
   font-weight: bold;
-  line-height: 0.9;
+  line-height: .9;
   text-transform: uppercase;
-  animation: slide-in-from-left 450ms $mdc-animation-standard-curve-timing-function;
 
   &:hover {
     text-shadow: 6px 4px 3px rgba($mdc-theme-secondary, .5);
   }
 
   &__small {
-    animation: slide-in-from-left 450ms $mdc-animation-standard-curve-timing-function;
     display: none;
+    animation: slide-in-from-left 450ms $mdc-animation-standard-curve-timing-function;
   }
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down(lg) {
     display: none;
 
     &__small {
@@ -32,37 +32,23 @@
 
 .mdc-top-app-bar {
   box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
-  z-index: 5;
 
   &__row {
     height: $toolbar-height;
-    transition: height .3s cubic-bezier(.4, 0, .2, 1);
+    transition: height 200ms $mdc-animation-standard-curve-timing-function;
+  }
+
+  &__section--align-start {
+    width: 400px;
   }
 
   &.mdc-top-app-bar--fixed-scrolled {
     .mdc-top-app-bar__row {
       height: $toolbar-height - 25px;
     }
-
-    .header-logo {
-      display: none;
-
-      &__small {
-        display: block;
-      }
-    }
   }
 
-  .mdc-top-app-bar__section {
-    padding: 0;
-  }
-
-  .mdc-top-app-bar__title {
-    display: flex;
-    align-content: center;
-  }
-
-  .mdc-top-app-bar__navigation-icon {
+  & &__navigation-icon {
     @include media-breakpoint-down(md) {
       display: block;
     }
@@ -80,19 +66,11 @@
       @include mdc-theme-prop(color, on-primary);
 
       min-width: 82px;
-      font-family: Khand, sans-serif;
-      font-size: 16px;
-      font-weight: bold;
-      letter-spacing: .25px;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, .15);
-
-      &--active {
-        color: $mdc-theme-secondary;
-      }
+      padding: 0 10px;
     }
 
-    .mdc-tab-bar__indicator {
-      background-color: $mdc-theme-secondary;
+    .mdc-tab--active {
+      background-color: darken($mdc-theme-primary, 3%);
     }
   }
 
@@ -111,6 +89,10 @@
     }
 
     &__avatar {
+      @include mdc-ripple-surface;
+      @include mdc-ripple-radius-bounded;
+      @include mdc-states;
+
       width: 36px;
       height: 36px;
       border-radius: 50%;
@@ -121,7 +103,7 @@
     }
 
     &__slide {
-      animation: fade-in 250ms $mdc-animation-standard-curve-timing-function;
+      animation: fade-in 200ms $mdc-animation-standard-curve-timing-function;
     }
   }
 }

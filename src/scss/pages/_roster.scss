@@ -1,0 +1,107 @@
+.roster {
+  display: grid;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+
+  @include media-breakpoint-down(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include media-breakpoint-down(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &--character,
+  &--loader {
+    @include mdc-ripple-surface;
+    @include mdc-ripple-radius-bounded;
+    @include mdc-states;
+
+    padding: 10px;
+    animation: fade-in 250ms linear;
+    border: $module-border;
+    background-color: $module-body-background;
+    box-shadow: $module-shadow;
+    overflow: hidden;
+  }
+
+  &--loader {
+    animation: background-loading-cycle 450ms $mdc-animation-standard-curve-timing-function infinite alternate;
+
+    height: 130px;
+  }
+
+
+
+  &--info {
+    &__armory {
+      margin-top: 10px;
+    }
+
+    &__name {
+      &.class {
+        &-death-knight {
+          color: $class-death-knight;
+        }
+    
+        &-demon-hunter {
+          color: $class-demon-hunter;
+        }
+    
+        &-druid {
+          color: $class-druid;
+        }
+    
+        &-hunter {
+          color: $class-hunter;
+        }
+    
+        &-mage {
+          color: $class-mage;
+        }
+    
+        &-monk {
+          color: $class-monk;
+        }
+    
+        &-paladin {
+          color: $class-paladin;
+        }
+    
+        &-priest {
+          color: $class-priest;
+        }
+    
+        &-rogue {
+          color: $class-rogue;
+        }
+    
+        &-shaman {
+          color: $class-shaman;
+        }
+    
+        &-warlock {
+          color: $class-warlock;
+        }
+    
+        &-warrior {
+          color: $class-warrior;
+        }
+      }
+    }
+  }
+
+  &--avatar {
+    &__img {
+      padding: 10px;
+      background-color: $module-body-background-light;
+    }
+  }
+
+  &--bg {
+    display: grid;
+    grid-template-columns: 3fr 5fr;
+    grid-column-gap: 10px;
+  }
+}

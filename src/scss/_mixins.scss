@@ -1,9 +1,3 @@
-@mixin page-content-width($padding) {
-  max-width: $content-width + 2 * $padding;
-  padding-left: $padding;
-  padding-right: $padding;
-}
-
 @mixin scrim-gradient($direction: "to bottom", $startColor: "black") {
   $scrimCoordinates: (
     0: 1,
@@ -76,17 +70,21 @@
   100% { opacity: .7; }
 }
 
-// @keyframes border-effect {
-//   0% {
-    
-//   }
-// }
+@keyframes height-grow {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
 
 @keyframes fade-in-scale-up {
   0% {
     transform: scale(.7);
     opacity: 0;
   }
+
   100% {
     transform: scale(1);
     opacity: 1;
@@ -164,10 +162,13 @@
   }
 }
 
-@function tint($color, $percentage) {
-  @return mix(white, $color, $percentage);
-}
 
-@function shade($color, $percentage) {
-  @return mix(black, $color, $percentage);
+@keyframes background-loading-cycle {
+  0% {
+    background-color: $mdc-theme-primary;
+  }
+
+  100% {
+    background-color: lighten($mdc-theme-primary, 3%);
+  }
 }

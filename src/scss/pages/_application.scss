@@ -1,0 +1,254 @@
+.input-textarea {
+  padding: 0 !important;
+}
+
+.mdc-text-field,
+.mdc-text-field--box {
+  &:not(.mdc-text-field--disabled) {
+    background-color: lighten($mdc-theme-primary, 10%);
+
+    .mdc-text-field__input {
+      color: $text-ongrey;
+    }
+
+    .mdc-floating-label {
+      color: $text-ongrey;
+    }
+
+    .mdc-line-ripple {
+      background-color: $mdc-theme-secondary;
+    }
+  }
+}
+
+.mdc-text-field--textarea {
+  border-radius: 0;
+
+  &:not(.mdc-text-field--disabled) {
+    .mdc-text-field__input:focus {
+      border-color: $mdc-theme-secondary;
+    }
+
+    .mdc-text-field__input::placeholder {
+      color: $text-ongrey !important;
+    }
+  }
+}
+
+.form-wow-answer {
+  .input-panel {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+}
+
+.m_appform_view {
+  .joinsite-appform {
+    padding: 0;
+  }
+
+  .cannot-submit,
+  .submitted {
+    display: none;
+  }
+
+  .m_appform-register-form {
+    padding: 0;
+  }
+
+  .m_appform {
+    border: 0;
+
+    .section {
+      display: none !important;
+    }
+
+    .form-question {
+      &.first {
+        padding-top: 15px;
+      }
+
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+      padding: 15px 20px;
+      border: 0;
+      background-color: $mdc-theme-primary;
+      box-shadow: $module-shadow;
+    }
+
+    .form-question-title {
+      order: 1;
+      padding: 0;
+      font-size: 17px;
+    }
+
+    .form-question-body {
+      flex-basis: 100%;
+      order: 3;
+      margin-top: 10px;
+    }
+
+    .form-question-help {
+      flex-basis: 100%;
+      order: 2;
+      margin: 10px 0;
+      padding: 0;
+      font-family: "Roboto Mono", sans-serif;
+      font-size: 12px;
+    }
+
+    .form-question-error {
+      flex-basis: 100%;
+      height: auto;
+      margin: 10px 0;
+      padding: 5px 10px;
+      border-left: 2px solid #f44336;
+      border-top-left-radius: 2px;
+      border-bottom-left-radius: 2px;
+      background: linear-gradient(to right, #572d2d, transparent);
+      color: #fff;
+    }
+
+    .ui-autocomplete {
+      background-color: $module-body-background;
+      box-shadow: $module-shadow;
+
+      .ui-menu-item {
+        display: flex;
+        align-items: center;
+        height: 35px;
+
+        &:hover {
+          background-color: $module-body-background-light;
+        }
+
+        a {
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .input-text,
+  .input-textarea {
+    padding: 0;
+
+    input,
+    textarea {
+      min-height: 45px;
+      padding: 10px;
+      resize: vertical;
+      transition: border-color 500ms $mdc-animation-standard-curve-timing-function;
+      font-size: 1rem !important;
+    }
+
+    &:active,
+    &:focus,
+    &:focus-within {
+      border-color: $mdc-theme-secondary;
+    }
+  }
+}
+
+.application-info {
+  margin-bottom: 20px;
+  padding: 20px;
+  border: $module-border;
+  background-color: $mdc-theme-primary;
+  background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/about/app-bg.jpg");
+  background-size: cover;
+  background-position: top;
+  box-shadow: $module-shadow;
+
+  &--grid {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr;
+
+    @include media-breakpoint-down(md) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &--left {
+    padding-right: 15px;
+  }
+
+  &--header {
+    margin-bottom: 20px;
+    font-family: Khand, sans-serif;
+    font-size: 30px;
+    line-height: 1.1;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    &::after {
+      display: block;
+      width: 300px;
+      height: 2px;
+      animation: rainbow-bg 5s ease infinite;
+      background: linear-gradient(270deg, #fffa55, $mdc-theme-secondary);
+      background-size: 400% 400%;
+      content: "";
+    }
+  }
+
+  &--right {
+    @include media-breakpoint-down(md) {
+      h2 {
+        margin-top: 15px;
+      }
+    }
+  }
+}
+
+.m_appform-register {
+  > h2 {
+    display: none;
+  }
+
+  .require-login {
+    display: none;
+  }
+}
+
+.register-warning {
+  &--info,
+  &__loader {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: $module-border;
+    background-color: $module-body-background;
+    box-shadow: $module-shadow;
+  }
+
+  &__loader {
+    @include mdc-ripple-surface;
+    @include mdc-ripple-radius-bounded;
+    @include mdc-states;
+
+    height: 200px;
+    overflow: hidden;
+  }
+
+  &--title {
+    width: 300px;
+    height: 50px;
+    margin-bottom: 15px;
+    background-color: lighten($module-body-background-light, 3%);
+  }
+
+  &--input {
+    height: 100px;
+    background-color: lighten($module-body-background-light, 3%);
+  }
+}
+
+.submission-info {
+  margin-bottom: 20px;
+  padding: 20px;
+  border: $module-border;
+  background-color: $module-body-background;
+  box-shadow: $module-shadow;
+}

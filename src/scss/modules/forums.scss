@@ -449,7 +449,7 @@
   &.posts {
     padding: 0 !important;
 
-    // Aesthetically broguht into question.
+    // Aesthetically brought into question.
     .block-title {
       display: none;
     }
@@ -461,8 +461,10 @@
     .structure {
       display: flex;
     }
+
     tbody {
       display: flex;
+      flex-wrap: wrap;
     }
   }
 
@@ -484,7 +486,7 @@
 .Editor__moreToolbarDropdown {
   border: $module-border !important;
   border-radius: 0 !important;
-  background-color: tint($mdc-theme-primary, 3%) !important;
+  background-color: ligten($mdc-theme-primary, 3%) !important;
 
   hr {
     background-color: $mdc-theme-primary !important;

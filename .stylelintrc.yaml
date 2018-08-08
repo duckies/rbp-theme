@@ -7,6 +7,7 @@ plugins:
   # - stylelint-selector-bem-pattern
   - stylelint-scss
   - stylelint-order
+  - stylelint-no-unsupported-browser-features
 rules:
   # Follow best practices
   font-family-name-quotes: always-where-recommended
@@ -15,6 +16,8 @@ rules:
   # https://www.w3.org/TR/selectors/#attribute-selectors
   # http://stackoverflow.com/q/3851091
   selector-attribute-quotes: always
+  plugin/no-unsupported-browser-features:
+    - true
   # Double-quotes are our convention throughout our codebase within (S)CSS. They also reflect how
   # attribute strings are normally quoted within the DOM.
   string-quotes: double
@@ -218,15 +221,15 @@ rules:
   selector-no-vendor-prefix: true
   value-no-vendor-prefix: true
   # Usually if you're nesting past 3 levels deep there's a problem
-  max-nesting-depth: 5
+  # max-nesting-depth: 5
   # Because we adhere to BEM we can limit the amount of necessary compound selectors. Most should
   # just be 1 level selector. However, modifiers can introduce an additional compound selector.
   # Furthermore, generic qualifying selectors (e.g. `[dir="rtl"]`) can introduce yet another level.
-  selector-max-compound-selectors: 4
+  # selector-max-compound-selectors: 4
   # For specificity: disallow IDs (0). Allow for complex combinations of classes, pseudo-classes,
   # attribute modifiers based on selector-max-compound-selectors, plus an addition for
   # pseudo-classes (4). Allow for pseudo-elements (1).
-  selector-max-specificity: 0,4,1
+  # selector-max-specificity: 0,4,1
   at-rule-no-unknown:
     - true
     - ignoreAtRules:
@@ -255,13 +258,13 @@ rules:
     - ignoreProperties:
         - contain
   # There is no reason that a specific ID would be needed for UI components
-  selector-max-id: 0
+  selector-max-id: 50
   # Qualifying types are not needed when using a naming system like BEM
   selector-no-qualifying-type: true
   # In general, we should not be modifying elements within our components, since we can't
   # predict the use cases in which users would add a certain type of element into a component.
   selector-max-type:
-    - 0
+    - 5
     - ignoreTypes:
         - /fieldset/
   # Styles for components should never need the universal selector.

@@ -9,11 +9,11 @@ $icon-size: 40px;
     background-color: transparent;
 
     .dashboard_menu {
-      display: flex;
+      display: flex !important;
       flex-wrap: wrap;
       align-content: center;
       justify-content: center;
-      width: 100% !important;
+      width: inherit !important;
       float: none !important;
       background-color: $module-header-background;
 
@@ -22,21 +22,47 @@ $icon-size: 40px;
         top: inherit;
       }
 
+      .menu_alert {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 18px;
+        height: 18px;
+        margin: 0;
+        border-radius: 50%;
+        background-color: $mdc-theme-secondary;
+        font-family: "Roboto Mono", sans-serif;
+        font-size: 11px;
+        line-height: 18px;
+      }
+
       .menu_link {
+        @include mdc-ripple-surface;
+        @include mdc-ripple-radius-bounded;
+        @include mdc-states;
+
         @include media-breakpoint-down(lg) {
           padding: 0 16px;
         }
 
-        color: $color-white;
-        display: table-cell !important;        
-        padding: 0 24px;
+        &[data-href-default="/dashboard/communities"],
+        &[data-href-default="/dashboard/recruitment"] {
+          display: none !important;
+        }
+
+        display: table-cell !important;
+        // The ripple causes problems without relative positioning.
+        position: relative;
         min-width: 85px;
+        height: auto !important;
+        padding: 0 24px;
+        color: $color-white;
         font-family: Khand, sans-serif;
         font-size: 16px;
-        text-transform: uppercase;
         font-weight: bold;
-        height: auto !important;
         line-height: 50px;
+        text-transform: uppercase;
+        overflow: hidden;
 
         &.menu_selected {
           border-bottom: 2px solid $mdc-theme-secondary;
@@ -63,34 +89,48 @@ $icon-size: 40px;
     }
 
     .applications {
+      font-size: inherit;
+      overflow: visible;
+
       .app_header {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
+        justify-content: center;
         height: auto;
         padding: 0;
         background-color: $module-body-background-light;
 
-        .app_header_tab {
-          margin-right: 0;          
-          padding: 0 20px;
-          font-size: 12px;
-          color: $text-ongrey;
+        &_initialized {
+          display: flex;
+          animation: fade-in 250ms $mdc-animation-standard-curve-timing-function;
         }
 
-        .app_header_total {
-          display: none;
+        &_tab {
+          // Prevents "Trash" snapping in.
+          min-width: 79px;
+          min-height: 1px;
+          margin-right: 0;
+          padding: 0 20px;
+          color: $text-ongrey;
+          font-family: "Roboto Mono", sans-serif;
+          font-size: 13px;
+
+          .fa {
+            display: none;
+          }
         }
-        .app_header_actions {
-          margin-left: auto;
+
+        &_total {
+          display: none;
         }
       }
 
       .app_sidebar {
+        // display: none;
         width: auto;
         float: none;
-        box-shadow: $module-shadow;
-        background-color: $mdc-theme-primary;        
+        background-color: $mdc-theme-primary;
 
         &_meta {
           display: none;
@@ -99,95 +139,123 @@ $icon-size: 40px;
         &_bulk {
           background-color: $mdc-theme-primary;
           color: $text-ongrey;
+
+          &_turn_on {
+            color: $text-ongrey;
+          }
         }
 
-        &_block_apps_chunk {
-          @extend .flex-row;
+        &_block {
+          @include mdc-ripple-surface;
+          @include mdc-ripple-radius-bounded;
+          @include mdc-states;
 
-          .app_sidebar_block {
-            @extend .flex-row;
-  
-            flex-basis: 25%;
-            height: auto;
-            transition: border-color 2s cubic-bezier(.075, .82, .165, 1);
-            border: 2px solid transparent;
-            justify-content: center;
-            align-items: center;
-            padding: 10px 8px;
-  
-            .app_user_avatar {
+          display: flex;
+          // Position: relative necessary for mdc-ripple-surface. Check bug status?
+          position: relative;
+          align-items: center;
+          height: auto;
+          overflow: hidden;
+
+          &_apps_chunk {
+            display: grid;
+            padding: 2px;
+            grid-template-columns: repeat(4, 1fr);
+            grid-column-gap: 2px;
+            grid-row-gap: 2px;
+            background-color: lighten($mdc-theme-primary, 5%);
+
+            @include media-breakpoint-down(lg) {
+              grid-template-columns: repeat(3, 1fr);
+            }
+
+            @include media-breakpoint-down(md) {
+              grid-template-columns: repeat(3, 1fr);
+            }
+
+            @include media-breakpoint-down(sm) {
+              grid-template-columns: repeat(2, 1fr);
+            }
+
+            @include media-breakpoint-down(xs) {
+              grid-template-columns: repeat(1, 1fr);
+            }
+          }
+
+          &_search_found,
+          &_search_empty {
+            display: none;
+          }
+
+          .app_user {
+            &_avatar {
               width: 43px;
               height: 43px;
-              border: 2px solid $mdc-theme-secondary;
-              background: $mdc-theme-secondary;
-              box-shadow: 0 3px 8px 0 rgba(0, 0, 0, .45);
               margin: 0 15px 0 0;
-              transition: border-radius .8s cubic-bezier(.3, 0, 0, 1.3);
+              border-radius: 50%;
+              background: $mdc-theme-secondary;
             }
-  
-            .app_user_details {
+
+            &_details {
+              width: 100%;
               margin-left: 0;
-              width: calc(100% - #{(43 + 15 + 15)}px);
+              overflow: visible;
             }
-  
-            &.read {
-              background-color: $mdc-theme-primary;
-            }
-  
-            &.unread {
-              background-color: tint($mdc-theme-primary, 5%);
-            }
-  
-            &.selected {
-              background-color: rgba($mdc-theme-secondary, .3);
-              border: 2px solid $mdc-theme-secondary !important;
-  
-              .app_user_avatar {
-                border-radius: 50%;
-              }
-  
-              .app_user_name {
-                color: tint($mdc-theme-secondary, 75%);
-                text-shadow: 0 0 3px #000;
-  
-                .app_user_date {
-                  float: none;
-                  font-size: 13px;
-                  margin-left: auto;
-                }
-              }
-  
-              .app_user_text {
-                color: $text-ongrey;
-              }
-            }
-  
-            .app_user_name {
+
+            &_name {
               color: $text-ongrey;
-              text-shadow: 0 0 3px rgba(0, 0, 0, .5);
-              font-family: Khand, sans-serif;
-              font-weight: bold;
               font-size: 16px;
-              display: flex;
-              align-content: center;
-  
-              .app_user_date {
-                width: auto;
-                margin-left: auto;
-                float: none;
+              font-weight: bold;
+              text-shadow: 0 0 3px rgba(0, 0, 0, .5);
+            }
+
+            &_date {
+              color: $text-ongrey;
+              font-family: "Roboto Mono", sans-serif;
+              font-size: 11px;
+              font-weight: normal;
+              text-shadow: initial;
+            }
+
+            &_text {
+              .fa {
+                display: none;
               }
             }
-  
-            @include media-breakpoint-down(md) {
-              flex-basis: 33.33%;
+          }
+
+          &.read {
+            background-color: $mdc-theme-primary;
+          }
+
+          &.unread {
+            background-color: $mdc-theme-primary;
+
+            .app_user_avatar {
+              box-shadow: 0 0 0 3px $mdc-theme-secondary;
             }
-  
-            @include media-breakpoint-down(sm) {
-              flex-basis: 50%;
+
+            .app_user_text {
+              color: $text-ongrey;
+
+              &::before {
+                content: "Unread";
+              }
             }
-  
-            @include media-breakpoint-down(xs) {
-              flex-basis: 100%;
+          }
+
+          &.selected {
+            border: 0;
+            background-color: rgba($mdc-theme-secondary, .6);
+
+            .app_user_name {
+              color: lighten($mdc-theme-secondary, 75%);
+              text-shadow: 0 0 3px #000;
+            }
+
+            .app_user_text {
+              color: $text-ongrey;
+              font-weight: normal;
             }
           }
         }
@@ -204,9 +272,7 @@ $icon-size: 40px;
 
         .app_inner_header {
           color: $text-ongrey;
-          font-family: Khand, sans-serif;
-          font-size: 15px;
-          font-weight: bold;
+          font-size: 16px;
         }
 
         .app_inner_actions {
@@ -303,7 +369,7 @@ $icon-size: 40px;
         border: 0 !important;
       }
       .content_middle {
-        border-left: 2px solid tint($mdc-theme-primary, 5%);
+        border-left: 2px solid lighten($mdc-theme-primary, 5%);
       }
       .content_middle_inner {
         border: 0 !important;
@@ -387,21 +453,85 @@ $icon-size: 40px;
         padding: 0 !important;
       }
 
-      .comments_record {
-        display: flex;
+      .comments_record_block,
+      .comments_post_container {
         margin-top: 10px;
-        padding: 20px 15px;
+        padding: 20px 15px !important;
+        border-bottom: none;
         background-color: $mdc-theme-primary;
-        border-bottom: 1px solid #383a3f;
+        box-shadow: $module-shadow;
+      }
+
+      .comments_record,
+      .comments_reply_container {
+        display: flex;
 
         &::after {
           clear: both;
         }
       }
 
-      .comments_comment {
-        display: inline-block;
+      .comments_post_container {
+        flex-wrap: wrap;
+
+        .element_avatar {
+          flex: 0 0 58px;
+          border-radius: 0;
+
+          img {
+            border-radius: 50%;
+          }
+        }
+
+        .comments_post {
+          flex: 1;
+          margin-left: 0;
+        }
+
+        .comments_reply_buttons {
+          flex: 1 1 100%;
+        }
+      }
+
+      .comments_post_reply {
+        transition: border-color .3s $mdc-animation-standard-curve-timing-function, height .5s $mdc-animation-standard-curve-timing-function;
+        border-bottom: 2px solid lighten($mdc-theme-primary, 20%);
+        border-top-width: 0;
+        border-right-width: 0;
+        border-left-width: 0;
+        background-color: lighten($mdc-theme-primary, 10%);
+
+        &.comments_post_empty_emogif {
+          border-bottom-color: $mdc-theme-secondary;
+        }
+
+        .comments_reply_input {
+          height: 100% !important;
+          padding: 10px 5px;
+          font-family: inherit;
+        }
+      }
+
+      .element_avatar {
+        flex: 0 0 43px;
+        float: none !important;
+        margin-top: 0;
+
+        img {
+          width: 43px;
+          height: 43px;
+          border-radius: 50%;
+        }
+      }
+
+      .comments_comment,
+      .comments_post {
+        flex: 1 1 100%;
         margin-left: 15px;
+      }
+
+      .comments_message {
+        word-break: break-word;
       }
 
       .comments_footer {
@@ -411,30 +541,31 @@ $icon-size: 40px;
 
       .comments_interact {
         animation: fade-in 250ms $mdc-animation-standard-curve-timing-function;
+
+        @include media-breakpoint-down(sm) {
+          display: inline-block !important;
+        }
       }
 
       .comments_like_total {
         color: $mdc-theme-secondary;
         font-weight: inherit;
       }
-
-      .element_avatar {
-        display: inline-block;
-        float: none !important;
-        border-radius: 0;
-
-        img {
-          width: 43px;
-          height: 43px;
-        }
-      }
     }
   }
 }
 
 .form-wow-answer {
-  .form-question-body {
+  .form-question-title {
     display: none;
+  }
+
+  .form-question-body {
+    .character_list {
+      .character {
+        display: none !important;
+      }
+    }
   }
 }
 
@@ -449,12 +580,19 @@ $icon-size: 40px;
   flex-basis: 100%;
   padding: 10px 8px;
   border-left: 5px solid;
-  background: $module-body-background-light;
+  background: linear-gradient(to right, $module-body-background-light, transparent);
   color: $text-ongrey;
-  animation: slideInFromRight 1s ease-in-out;
+
+  &.loader {
+    border-left: 5px solid #8c1616;
+  }
 
   @include media-breakpoint-down(md) {
     flex-basis: 100%;
+  }
+
+  .flex-row {
+    width: 100%;
   }
 
   &-header {
@@ -467,7 +605,7 @@ $icon-size: 40px;
 
   &-info-block {
     padding: 10px 8px;
-    // background-color: tint($mdc-theme-primary, 2%);
+    // background-color: lighten($mdc-theme-primary, 2%);
   }
 
   &-portrait {
@@ -486,6 +624,10 @@ $icon-size: 40px;
     margin-bottom: 10px;
     line-height: 1.1;
     text-align: center;
+  }
+
+  &-error {
+    font-family: "Roboto Mono", sans-serif;
   }
 
   &-name {
@@ -625,7 +767,18 @@ $icon-size: 40px;
       display: grid;
       grid-row-gap: 2px;
       grid-column-gap: 4px;
-      grid-template-columns: repeat(7, 1fr);
+
+      @include media-breakpoint-down(xl) {
+        grid-template-columns: repeat(6, 1fr);
+      }
+
+      @include media-breakpoint-down(md) {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      @include media-breakpoint-down(sm) {
+        grid-template-columns: repeat(7, 1fr);
+      }
 
       &-item {
         &__img {
@@ -651,6 +804,14 @@ $icon-size: 40px;
 
     li {
       display: inline-block;
+    }
+  }
+
+  .remove-button {
+    .col-12 {
+      display: flex;
+      justify-content: center;
+      padding: 5px 0;
     }
   }
 }
@@ -724,5 +885,12 @@ $icon-size: 40px;
     &-0 {
       border-color: $item-poor;
     }
+  }
+}
+
+@keyframes text-glow-unread {
+  0% { text-shadow: 0 0 10px lighten($mdc-theme-secondary, 10%); }
+  100% {
+    text-shadow: 0 0 10px lighten($mdc-theme-secondary, 10%), 0 0 20px lighten($mdc-theme-secondary, 10%), 0 0 35px lighten($mdc-theme-secondary, 10%);
   }
 }

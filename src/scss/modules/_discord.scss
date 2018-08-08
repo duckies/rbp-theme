@@ -1,0 +1,66 @@
+div::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+div::-webkit-scrollbar-thumb {
+  background: $mdc-theme-secondary;
+}
+
+div::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.discord-parent {
+  height: 250px;
+  overflow-y: scroll;
+}
+
+.discord-title {
+  padding: 20px 20px 0 20px;
+  background-color: $mdc-theme-primary;
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.discord-widget {
+  padding: 10px 20px 20px 20px;
+  background-color: $mdc-theme-primary;
+
+  &__channel {
+    margin-bottom: 10px;
+
+    &__name {
+      font-family: "Roboto Mono", sans-serif;
+      font-size: 12px;
+    }
+  }
+
+  &-member {
+    display: flex;
+    align-items: center;
+    margin: 3px 0;
+
+    &__avatar {
+      display: flex;
+      align-items: center;
+      margin-right: 5px;
+
+      img {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+      }
+    }
+
+    &__name,
+    &__game {
+      color: lighten($mdc-theme-primary, 70%);
+      font-size: 12px;
+    }
+
+    &__game {
+      margin-left: auto;
+    }
+  }
+}

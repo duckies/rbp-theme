@@ -1,20 +1,76 @@
 <header class="mdc-top-app-bar mdc-top-app-bar--fixed">
-    <div class="notification-bar"></div>
     <div class="mdc-top-app-bar__row flex-container">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
             <a href="#" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
-            <a href="/" ><h1 class="header-logo">Really Bad Players</h1></a>
-            <a href="/" ><h1 class="header-logo header-logo__small">RBP</h1></a>
+            <a href="/">
+                <h1 class="header-logo">Really Bad Players</h1>
+            </a>
+            <a href="/">
+                <h1 class="header-logo header-logo__small">RBP</h1>
+            </a>
         </section>
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
-            <nav class="mdc-tab-bar">
-                <a class="mdc-tab" href="/">Home</a>
-                <a class="mdc-tab mdc-tab--active" href="/about">About Us</a>
-                <a class="mdc-tab" href="/apply">Apply</a>
-                <a class="mdc-tab" href="/forum">Forum</a>
-                <a class="mdc-tab" href="/roster">Roster</a>
-                <a class="mdc-tab" href="/logs">Logs</a>
-                <span class="mdc-tab-bar__indicator"></span>
+            <nav class="mdc-tab-bar" role="tablist">
+                <div class="mdc-tab-scroller">
+                    <div class="mdc-tab-scroller__scroll-area mdc-tab-scroller__scroll-area--scroll">
+                        <div class="mdc-tab-scroller__scroll-content">
+                            <a href="/" class="mdc-tab" role="tab" aria-selected="false" tabindex="-1">
+                                <div class="mdc-tab__content">
+                                    <span class="mdc-tab__text-label">Home</span>
+                                </div>
+                                <span class="mdc-tab-indicator">
+                                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                </span>
+                                <div class="mdc-tab__ripple"></div>
+                            </a>
+                            <a href="/about" class="mdc-tab mdc-tab--active" role="tab" aria-selected="false" tabindex="-1">
+                                <div class="mdc-tab__content">
+                                    <span class="mdc-tab__text-label">About Us</span>
+                                </div>
+                                <span class="mdc-tab-indicator mdc-tab-indicator--active">
+                                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                </span>
+                                <div class="mdc-tab__ripple"></div>
+                            </a>
+                            <a href="/apply" class="mdc-tab" role="tab" aria-selected="false" tabindex="-1">
+                                <div class="mdc-tab__content">
+                                    <span class="mdc-tab__text-label">Apply</span>
+                                </div>
+                                <span class="mdc-tab-indicator">
+                                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                </span>
+                                <div class="mdc-tab__ripple"></div>
+                            </a>
+                            <a href="/forum" class="mdc-tab" role="tab" aria-selected="false" tabindex="-1">
+                                <div class="mdc-tab__content">
+                                    <span class="mdc-tab__text-label">Forum</span>
+                                </div>
+                                <span class="mdc-tab-indicator">
+                                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                </span>
+                                <div class="mdc-tab__ripple"></div>
+                            </a>
+                            <a href="/roster" class="mdc-tab" role="tab" aria-selected="false" tabindex="-1">
+                                <div class="mdc-tab__content">
+                                    <span class="mdc-tab__text-label">Roster</span>
+                                </div>
+                                <span class="mdc-tab-indicator">
+                                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                </span>
+                                <div class="mdc-tab__ripple"></div>
+                            </a>
+                            <a href="https://www.warcraftlogs.com/guild/id/5825" class="mdc-tab" role="tab" aria-selected="false" tabindex="-1">
+                                <div class="mdc-tab__content">
+                                    <span class="mdc-tab__text-label">Logs</span>
+                                </div>
+                                <span class="mdc-tab-indicator">
+                                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                </span>
+                                <div class="mdc-tab__ripple"></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </nav>
             <div id="user-menu" class="user-menu mdc-menu-anchor">
                 <button id="user-button" class="user-menu__button mdc-button"></button>
@@ -54,48 +110,27 @@
         </section>
     </div>
 </header>
-<aside class="mdc-drawer mdc-drawer--temporary">
+<aside class="mdc-drawer mdc-drawer--temporary mdc-typography">
     <nav class="mdc-drawer__drawer">
         <header class="mdc-drawer__header">
-            <div class="mdc-drawer__header-content mdc-theme--text-primary-on-primary mdc-theme--primary-bg">
-                Header here
+            <div class="mdc-drawer__header-content">
+                Really Bad Players
             </div>
         </header>
-        <nav class="mdc-drawer__content mdc-list-group">
-            <div class="mdc-list">
-                <a href="/" class="mdc-list-item " data-mdc-tabindex-handled="true" tabindex="-1">
-                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true"></i>Back
-                </a>
-                <a class="mdc-list-item" href="#" data-mdc-tabindex-handled="true" tabindex="-1">
-                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">star</i>Star
-                </a>
-                <a class="mdc-list-item" href="#" data-mdc-tabindex-handled="true" tabindex="-1">
-                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>Sent Mail
-                </a>
-                <a class="mdc-list-item" href="#" data-mdc-tabindex-handled="true" tabindex="-1">
-                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>Drafts
-                </a>
-            </div>
-
-            <hr class="mdc-list-divider">
-
-            <div class="mdc-list">
-                <a class="mdc-list-item" href="#" data-mdc-tabindex-handled="true" tabindex="-1">
-                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">email</i>All Mail
-                </a>
-                <a class="mdc-list-item" href="#" data-mdc-tabindex-handled="true" tabindex="-1">
-                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">delete</i>Trash
-                </a>
-                <a class="mdc-list-item" href="#" data-mdc-tabindex-handled="true" tabindex="-1">
-                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">report</i>Spam
-                </a>
-            </div>
+        <nav class="mdc-drawer__content mdc-list">
+            <a href="/" class="mdc-list-item " tabindex="-1">Home</a>
+            <a class="mdc-list-item" href="/about" tabindex="-1">About Us</a>
+            <a class="mdc-list-item" href="/apply" tabindex="-1">Apply</a>
+            <a class="mdc-list-item" href="/forum" tabindex="-1">Forum</a>
+            <a class="mdc-list-item" href="/roster" tabindex="-1">Roster</a>
+            <a class="mdc-list-item" href="https://www.warcraftlogs.com/guild/id/5825" target="_blank" rel="nofollow" tabindex="-1">Logs</a>
         </nav>
     </nav>
 </aside>
 
 <div class="hero">
-    <div class="hero-item" data-page="about">
+    <div class="hero-bg" data-page="about"></div>
+    <div class="hero-item">
         <div class="hero-content">
             <div class="flex-container">
                 <div class="flex-row">
@@ -109,24 +144,9 @@
     </div>
 </div>
 
-<section class="content">
-    <div class="flex-container">
-        <div class="content-module">
-            <nav id="icon-text-tab-bar" class="mdc-tab-bar mdc-tab-bar--icons-with-text">
-                <a class="mdc-tab mdc-tab--with-icon-and-text mdc-tab--active" href="#recents">
-                  <i class="material-icons mdc-tab__icon" aria-hidden="true">phone</i>
-                  <span class="mdc-tab__icon-text">About the Guild</span>
-                </a>
-                <a class="mdc-tab mdc-tab--with-icon-and-text" href="#favorites">
-                  <i class="material-icons mdc-tab__icon" aria-hidden="true">favorite</i>
-                  <span class="mdc-tab__icon-text">Policies &amp; Practices</span>
-                </a>
-                <a class="mdc-tab mdc-tab--with-icon-and-text" href="#nearby">
-                  <i class="material-icons mdc-tab__icon" aria-hidden="true">person_pin</i>
-                  <span class="mdc-tab__icon-text">Sell Runs</span>
-                </a>
-                <span class="mdc-tab-bar__indicator"></span>
-            </nav>
-        </div>
+<div class="mdc-snackbar mdc-snackbar--align-start" aria-live="assertive" aria-atomic="true" aria-hidden="true">
+    <div class="mdc-snackbar__text"></div>
+    <div class="mdc-snackbar__action-wrapper">
+        <button type="button" class="mdc-snackbar__action-button"></button>
     </div>
-</section>
+</div>

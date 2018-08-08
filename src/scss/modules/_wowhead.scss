@@ -1,32 +1,29 @@
 .wowhead-tooltip[data-visible="yes"] {
-    animation: fade-in 250ms ease-in;
-    p {
-        top: 0;
-        left: -50px;
-        background: 0 0 no-repeat;
-        background-size: cover;
-        width: auto;
-        height: auto;
-        box-shadow: $module-shadow;
+  animation: fade-in 100ms ease-in;
 
-        div {
-            background-image: none !important;
-            border: 1px solid #000;
-        }
-    }
+  p {
+    top: 0;
+    left: -50px;
+    width: auto;
+    height: auto;
+    background: 0 0 no-repeat;
+    background-size: cover;
+    box-shadow: $module-shadow;
 
-    > table {
-        background: rgba($mdc-theme-primary, .9);
-        border: 1px solid #000 !important;
-        box-shadow: $module-shadow;
+    div {
+      border: 1px solid #000;
+      background-image: none !important;
     }
+  }
 
-    td {
-    }
+  > table {
+    border: 1px solid #000 !important;
+    background: rgba($mdc-theme-primary, .9);
+  }
 
-    th,
-    td {
-        font-family: Roboto, sans-serif;
-        background-image: none;
-    }
+  th,
+  td {
+    background-image: none;
+    font-family: Roboto, sans-serif;
+  }
 }

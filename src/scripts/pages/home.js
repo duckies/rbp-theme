@@ -1,4 +1,7 @@
-// TODO: Extract to some settings file.
+import {MDCLinearProgress} from '@material/linear-progress';
+import {getRequest} from '../helpers/network';
+
+// TODO: Extract things like this to a constants file.
 const difficulties = {
   'M': 'Mythic',
   'H': 'Heroic',
@@ -8,47 +11,77 @@ const difficulties = {
 /**
  * Creates DOM elements given raiderIO data for the guild.
  */
-function createRaiderIOElements() {
+async function createRaiderIOElements() {
   const url = 'https://raider.io/api/v1/guilds/profile?region=us&realm=blackrock&name=Really%20Bad%20Players&fields=raid_rankings,raid_progression';
 
-  fetch(url)
-    .then((response) => {
-      if (!response.ok) {
-        throw Error('RaiderIO request network error: ', response.statusText);
-      }
+  try {
+    const json = await getRequest(url);
+    const elem = document.getElementById('guild-progress');
+    const loaders = document.getElementById('guild-progress__loaders');
+    const raids = Object.entries(json.raid_progression).slice(-2);
+    const ranks = Object.entries(json.raid_rankings).pop()[1];
 
-      return response.json();
-    })
-    .then((data) => {
-      console.log(data);
-      const elem = document.getElementById('guild-progress');
-      const loaders = document.getElementById('guild-progress__loaders');
-      const raids = Object.entries(data.raid_progression).slice(-2);
-      const ranks = Object.entries(data.raid_rankings).pop()[1];
+    elem.insertAdjacentHTML('afterbegin', createProgressionElements(raids));
+    loaders.remove();
 
-      elem.insertAdjacentHTML('afterbegin', createProgressionElements(raids));
-      loaders.remove();
+    let key = '';
+    if (ranks.mythic.world !== 0) {
+      key = 'mythic';
+    } else if (ranks.heroic.world !== 0) {
+      key = 'heroic';
+    } else {
+      key = 'normal';
+    }
 
-      let key = '';
-      if (ranks.mythic.world !== 0) {
-        key = 'mythic';
-      } else if (ranks.mythic.world !== 0) {
-        key = 'heroic';
+    Object.entries(ranks[key]).map(([region, score]) => {
+      let elem = document.querySelector('[data-guild-rank=' + region + ']');
+
+      if (elem) {
+        elem.insertAdjacentHTML('afterbegin', score);
       } else {
-        key = 'normal';
+        console.warn('Element for region ' + region + ' was not found.');
       }
+    });
+  } catch (error) {
+    console.error('RaiderIO network error: ', error);
+  }
+}
 
-      Object.entries(ranks[key]).map(([region, score]) => {
-        let elem = document.querySelector('[data-guild-rank=' + region + ']');
+/**
+ * Initializes group payment module.
+ */
+function createGroupPayModule() {
+  const module = document.querySelector('.m_grouppay');
+  const holder = document.querySelector('#grouppay');
 
-        if (elem) {
-          elem.insertAdjacentHTML('afterbegin', score);
-        } else {
-          console.log('Element for given region ' + region + ' was not found.');
-        }
-      });
-    })
-    .catch((error) => console.log(error));
+  if (!module) {
+    if (holder) {
+      holder.remove();
+    }
+    return;
+  }
+
+  const progress = module.querySelector('.element_progressbar .current');
+  const newProgress = holder.querySelector('.mdc-linear-progress');
+  const animatedBar = MDCLinearProgress.attachTo(newProgress);
+  const progressValue = progress.style.width.slice(0, -1) / 100;
+  const history = module.querySelector('.items');
+
+  newProgress
+    .insertAdjacentHTML('beforeend',
+      `<div class="grouppay__days">${document.querySelector('.element_progressbar .clabel').innerHTML}</div>`);
+
+  if (history) {
+    holder.querySelector('.grouppay__recent')
+      .insertAdjacentHTML('beforeend', history.innerHTML);
+  }
+
+  animatedBar.progress = progressValue;
+
+  holder.querySelector('a').addEventListener('click', (e) => {
+    e.preventDefault();
+    module.querySelector('.add_days_button').click();
+  });
 }
 
 /**
@@ -75,7 +108,7 @@ function createProgressionElements(raids) {
         </div>
       </div>
     </div>`;
-  }).join('');
+  }).reverse().join('');
 }
 
 /**
@@ -84,14 +117,15 @@ function createProgressionElements(raids) {
 function setupNewsModule() {
   const newsItems = 5;
   const module = document.getElementById('news-api-wrapper');
-  // const module = $('#news-api-wrapper');
+  const loaders = document.querySelector('.news--loader');
+
   const request = {
     jsonrpc: '2.0',
     id: Math.round(Math.random() * (999999 - 100000) + 100000),
     method: 'News.getNews',
     params: {
-      api_key: '7c6d45f85ff6e3be2836593b793985ca5af6413ef6a1eacd',
-      preset_id: '48872030',
+      api_key: '1cda2ce03bfa7f559e6b083ca73e514325664ad1982a9bf8',
+      preset_id: '47505231',
       page: 1,
       items: newsItems,
     },
@@ -109,6 +143,7 @@ function setupNewsModule() {
     return response.json();
   }).then((data) => {
     module.insertAdjacentHTML('beforeend', createNewsElements(data.result));
+    loaders.remove();
   }).catch((error) => console.log(error));
 }
 
@@ -119,10 +154,10 @@ function setupNewsModule() {
  */
 function createNewsElements(newsItems) {
   return newsItems.map((article) => {
-    // jQuery is simply much easier to use here.
-    const articleHTML = $('<div>').html(article.content);
-    const articleText = articleHTML.text();
-    const articleIMG = $(articleHTML).find('img:first').attr('src');
+    let articleElem = document.createElement('div');
+    articleElem.innerHTML = article.content;
+    const articleText = articleElem.innerText;
+    const articleIMG = articleElem.querySelectorAll('img')[0].src;
 
     return `
     <div class='article col-12'>
@@ -136,30 +171,9 @@ function createNewsElements(newsItems) {
 }
 
 /**
- * Requests Discord online user count.
- */
-function setupDiscordCount() {
-  fetch('https://discordapp.com/api/guilds/142372929961721856/widget.json')
-    .then((response) => {
-      if (!response.ok) {
-        throw Error('Discord request error: ', response.statusText);
-      }
-
-      return response.json();
-    })
-    .then((data) => {
-      const online = data.members.filter((usr) => usr.status === 'online');
-      const ele = document.querySelector('#discord-box .discord__description');
-      const description = `${online.length} Users Currently Online`;
-
-      ele.insertAdjacentHTML('afterbegin', description);
-    }).catch((error) => console.log(error));
-}
-
-/**
  * Initiator function for the homepage.
  */
-export function initiateHomepage() {
+export default function initialize() {
   const sidebar = document.getElementById('homepage-sidebar');
 
   if (!sidebar) {
@@ -168,5 +182,5 @@ export function initiateHomepage() {
 
   setupNewsModule();
   createRaiderIOElements();
-  setupDiscordCount();
+  createGroupPayModule();
 }
