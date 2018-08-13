@@ -1,0 +1,21 @@
+<script>
+    const script = document.getElementById('theme-script');
+    const head = document.querySelector('head');
+
+    if (!script) {
+        const js = document.createElement('script');
+        js.src = "https://s3.amazonaws.com/files.enjin.com/632721/material/bundle.js";
+        js.id = "theme-script";
+        head.appendChild(js);
+
+        const css = document.createElement('link');
+        css.rel = 'stylesheet';
+        css.href = 'https://s3.amazonaws.com/files.enjin.com/632721/material/app.min.css';
+        head.appendChild(css);
+
+        const font = document.createElement('link');
+        font.rel = 'stylesheet';
+        font.href = 'https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,700|Khand:400,700,900|Roboto+Mono';
+        head.appendChild(font);
+    }
+</script>

@@ -4447,63 +4447,16 @@ a.mdc-list-item {
     .footer__bottom--right {
       align-self: flex-end;
       text-align: right; }
+  @media (max-width: 991.98px) {
+    .footer-block--padded {
+      background-color: #854feb; }
+    .footer-nav {
+      display: none; }
+    .footer__top {
+      grid-template-columns: 1fr; } }
 
 .footer-links {
   margin-left: auto; }
-
-.page-footer {
-  position: relative;
-  background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/zeppelin.jpg");
-  background-position: bottom center;
-  background-size: cover; }
-  .page-footer__gradient {
-    background: linear-gradient(to top, rgba(20, 21, 23, 0.7), #141517); }
-  .page-footer__text {
-    display: flex;
-    padding: 0 20px;
-    color: #edeeef;
-    font-family: "Roboto Mono", sans-serif;
-    font-size: 14px;
-    text-align: center; }
-    .page-footer__text--right {
-      justify-content: flex-end; }
-    @media (max-width: 767.98px) {
-      .page-footer__text {
-        justify-content: space-between;
-        margin-bottom: 5px; } }
-  .page-footer__top {
-    margin-top: 80px;
-    margin-bottom: 30px;
-    z-index: 100; }
-    .page-footer__top .page-footer__logo {
-      margin-bottom: 15px;
-      text-align: center; }
-    .page-footer__top .list-unstyled {
-      padding-top: 20px;
-      padding-bottom: 20px;
-      list-style: none;
-      text-align: center; }
-      .page-footer__top .list-unstyled li {
-        display: inline-block; }
-      .page-footer__top .list-unstyled a {
-        padding: 10px;
-        transition: color .3s ease-in-out;
-        color: white;
-        font-size: 14px;
-        font-weight: bold;
-        text-decoration: none;
-        text-transform: uppercase; }
-        .page-footer__top .list-unstyled a:hover {
-          color: #854feb; }
-  .page-footer__bottom {
-    display: flex;
-    align-items: center;
-    height: 75px;
-    background-color: #141517; }
-  .page-footer .creator {
-    margin-right: 25px; }
-  .page-footer .enjin-platform__link {
-    color: #854feb; }
 
 .wowhead-tooltip[data-visible="yes"] {
   animation: fade-in 100ms ease-in; }

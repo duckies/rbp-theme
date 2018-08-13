@@ -2,7 +2,7 @@ import {MDCRipple} from '@material/ripple';
 import {MDCMenu, Corner} from '@material/menu';
 import {MDCTopAppBar} from '@material/top-app-bar';
 import {MDCTemporaryDrawer} from '@material/drawer';
-import {MDCTabBar} from '../../node_modules/@material/tab-bar';
+import {MDCTabBar} from '@material/tab-bar';
 import {postRequest} from './helpers/network';
 
 const drawerEl = document.querySelector('.mdc-drawer--temporary');
@@ -109,7 +109,7 @@ export async function initUserMenu() {
         </div>`;
 
       if (joinLink) {
-        const list = menu.querySelector('.mdc-list');
+        const list = menuElem.querySelector('.mdc-list');
 
         list.insertAdjacentHTML('beforeend',
           `<li class='mdc-list-item' role='menuitem' tabindex='0'>

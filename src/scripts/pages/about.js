@@ -4,12 +4,20 @@ import * as basicLightbox from 'basiclightbox';
 
 const panels = document.querySelector('.panels');
 
+// Disabled the guild history page until I can
+// come up with a good format for it.
 const map = {
-  'guild': 0,
-  'ranks': 1,
-  'loot': 2,
-  'addons': 3,
+  'ranks': 0,
+  'loot': 1,
+  'addons': 2,
 };
+
+// const map = {
+//   'guild': 0,
+//   'ranks': 1,
+//   'loot': 2,
+//   'addons': 3,
+// };
 
 /**
  * Updates the index of the active tab.

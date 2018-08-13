@@ -1,4 +1,4 @@
-// Hide the Enjin footer we can't remove.
+// Hide the Enjin footer since it's ugly.
 #page-footer {
   display: none;
 }
@@ -46,7 +46,6 @@
     grid-template-rows: 250px;
     grid-template-columns: 1.7fr 1fr 1fr 1fr 1.7fr;
     background-color: $module-body-background;
-    // overflow: hidden;
   }
 
   &__description {
@@ -76,90 +75,22 @@
       text-align: right;
     }
   }
+
+  @include media-breakpoint-down(md) {
+    &-block--padded {
+      background-color: $mdc-theme-secondary;
+    }
+
+    &-nav {
+      display: none;
+    }
+
+    &__top {
+      grid-template-columns: 1fr;
+    }
+  }
 }
 
 .footer-links {
   margin-left: auto;
-}
-
-.page-footer {
-  position: relative;
-  background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/zeppelin.jpg");
-  background-position: bottom center;
-  background-size: cover;
-
-  &__gradient {
-    background: linear-gradient(to top, rgba($body-background-color, .7), $body-background-color);
-  }
-
-  &__text {
-    display: flex;
-    padding: 0 20px;
-    color: lighten($body-background-color, 85%);
-    font-family: "Roboto Mono", sans-serif;
-    font-size: 14px;
-    text-align: center;
-
-    &--right {
-      justify-content: flex-end;
-    }
-
-    @include media-breakpoint-down(sm) {
-      justify-content: space-between;
-      margin-bottom: 5px;
-    }
-  }
-
-  &__top {
-    margin-top: 80px;
-    margin-bottom: 30px;
-    z-index: 100;
-
-    .page-footer__logo {
-      margin-bottom: 15px;
-      text-align: center;
-    }
-
-    .list-unstyled {
-      padding-top: 20px;
-      padding-bottom: 20px;
-      list-style: none;
-      text-align: center;
-
-      li {
-        display: inline-block;
-      }
-
-      a {
-        padding: 10px;
-        transition: color .3s ease-in-out;
-        color: lighten($mdc-theme-secondary, 45%);
-        font-size: 14px;
-        font-weight: bold;
-        text-decoration: none;
-        text-transform: uppercase;
-
-        &:hover {
-          color: $mdc-theme-secondary;
-        }
-      }
-    }
-  }
-
-  &__bottom {
-    display: flex;
-    align-items: center;
-    height: 75px;
-    background-color: $body-background-color;
-  }
-
-  .creator {
-    margin-right: 25px;
-  }
-
-  .enjin-platform {
-    &__link {
-      color: $mdc-theme-secondary;
-    }
-  }
 }
