@@ -36,6 +36,27 @@
 }
 
 .form-wow-answer {
+  // Unfortunately Enjin is oddly specific about the loader, so I have to get all important.
+  .loading {
+    display: flex;
+    justify-content: center;
+    width: inherit !important;
+    height: inherit !important;
+    padding: 20px !important;
+    border: $module-border !important;
+    background-color: $mdc-theme-secondary;
+    opacity: 1 !important;
+    animation: fade-in 800ms alternate infinite;
+
+    &::after {
+      content: "Loading Really Bad Characters";
+    }
+
+    img {
+      display: none;
+    }
+  }
+
   .input-panel {
     display: flex;
     flex-wrap: wrap;
@@ -158,8 +179,8 @@
   border: $module-border;
   background-color: $mdc-theme-primary;
   background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/about/app-bg.jpg");
-  background-size: cover;
   background-position: top;
+  background-size: cover;
   box-shadow: $module-shadow;
 
   &--grid {

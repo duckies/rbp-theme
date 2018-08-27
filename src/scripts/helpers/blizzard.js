@@ -22,6 +22,7 @@ const slots = [
   'offHand',
 ];
 const errorMap = {
+  'BlizzardOutage': 'Blizzard reports this character is temporarily unavailable on the API.',
   'NoBoth': 'Character was not found on the armory or RaiderIO.',
   'NoBlizzardYesRaiderIO': 'Character may have transferred. Character is not found on the armory, but is on RaiderIO.',
   'NoRaiderIO': 'Character was not found on RaiderIO.',
@@ -50,6 +51,18 @@ export default class Character {
   }
 
   /**
+   * Short circuitable class.
+   */
+  get characterClass() {
+    if (this.class) {
+      return this.class;
+    } else if (this.raiderIO && this.raiderIO.class) {
+      return this.raiderIO.class;
+    }
+    return 'Unknown';
+  }
+
+  /**
    * Gets Blizzard character API url.
    */
   get blizzardApi() {
@@ -75,7 +88,7 @@ export default class Character {
    * Removes spacing and capitalization of a class for styling.
    */
   get formattedClass() {
-    return (this.class) ? this.class.replace(' ', '-').toLowerCase(): 'Unknown';
+    return this.characterClass.replace(' ', '-').toLowerCase();
   }
 
   /**
@@ -91,7 +104,11 @@ export default class Character {
   get characterElement() {
     if (!this.blizzard || this.blizzard.message || this.blizzard.status) {
       if (this.raiderIO && !this.raiderIO.statusCode) {
-        this.error = 'NoBlizzardYesRaiderIO';
+        if (this.blizzard.reason === 'Character unavailable') {
+          this.error = 'BlizzardOutage';
+        } else {
+          this.error = 'NoBlizzardYesRaiderIO';
+        }
         return this.raiderIOOnlyElement;
       }
       this.error = 'NoBoth';
@@ -118,7 +135,7 @@ export default class Character {
             </div>
             <div class="character-text">
                 <div class="character-name col-12">${this.name}</div>
-                <div class="col-12">${this.race} ${this.class}</div>
+                <div class="col-12">${this.race} ${this.characterClass}</div>
             </div>
             <ul class="character-links">
                 <li><a href="https://www.worldofwarcraft.com/en-${this.region}/character/${this.formattedRealm}/${this.name}" target="_blank"><img class="character-links__img" width="24" height="24" src="https://s3.amazonaws.com/files.enjin.com/632721/material/images/icons/WoW.png"></a></li>
@@ -150,7 +167,7 @@ export default class Character {
             </div>
             <div class="character-text">
                 <div class="character-name col-12">${this.name}</div>
-                <div class="col-12">${this.raiderIO.active_spec_name} ${this.class}</div>
+                <div class="col-12">${this.raiderIO.active_spec_name} ${this.characterClass}</div>
             </div>
             <ul class="character-links">
                 <li><a href="https://www.worldofwarcraft.com/en-${this.region}/character/${this.formattedRealm}/${this.name}" target="_blank"><img class="character-links__img" width="24" height="24" src="https://s3.amazonaws.com/files.enjin.com/632721/material/images/icons/WoW.png"></a></li>
@@ -217,7 +234,7 @@ export default class Character {
           </div>
           <div class="character-text">
               <div class="character-name col-12">${this.name}</div>
-              <div class="col-12">${this.race} ${this.class}</div>
+              <div class="col-12">${this.race} ${this.characterClass}</div>
           </div>
           <ul class="character-links">
               <li><a href="https://www.worldofwarcraft.com/en-${this.region}/character/${this.formattedRealm}/${this.name}" target="_blank"><img class="character-links__img" width="24" height="24" src="https://s3.amazonaws.com/files.enjin.com/632721/material/images/icons/WoW.png"></a></li>
@@ -293,7 +310,7 @@ export default class Character {
             </div>
             <div class="character-text">
                 <div class="character-name col-12">${this.name}</div>
-                <div class="col-12">${this.raiderIO.active_spec_name} ${this.class}</div>
+                <div class="col-12">${this.raiderIO.active_spec_name} ${this.characterClass}</div>
             </div>
             <ul class="character-links">
                 <li><a href="https://www.worldofwarcraft.com/en-${this.region}/character/${this.formattedRealm}/${this.name}" target="_blank"><img class="character-links__img" width="24" height="24" src="https://s3.amazonaws.com/files.enjin.com/632721/material/images/icons/WoW.png"></a></li>
@@ -348,11 +365,12 @@ export default class Character {
             </div>
         </div>
         <div class="character-info-block character-gear col-12 col-md">
-            <div class="character-header">Character Gear <span class="character-gear-header__ilvl">
-                ${this.blizzard.items.averageItemLevelEquipped} eq.</span>
+            <div class="character-header">Character Gear: <span class="character-gear-header__ilvl">
+                ${this.blizzard.items.averageItemLevelEquipped} Equipped</span>
             </div>
+            <div class="character-gear__amulet">${parseAmulet(this.blizzard.items.neck)}</div>
             <div class="character-gear-items">
-                ${getItemTooltips(this.blizzard.items)}
+              ${getItemTooltips(this.blizzard.items)}
             </div>
         </div>
       </div>
@@ -381,10 +399,24 @@ export default class Character {
       fetch(this.raiderIOApi).then((response) => response.json()),
     ].map((p) => p.catch((e) => e)))
       .then((data) => {
+        console.log(data);
         this.blizzard = data[0];
         this.raiderIO = data[1];
       });
   }
+}
+
+/**
+ * Gets the amulet information if possible.
+ * @param {JSON} amulet
+ * @return {HMTL} amulet
+ */
+function parseAmulet(amulet) {
+  if (amulet && amulet.azeriteItem) {
+    return `<p>Heart of Azeroth level ${amulet.azeriteItem.azeriteLevel} and ${Math.floor(amulet.azeriteItem.azeriteExperience / amulet.azeriteItem.azeriteExperienceRemaining * 100)}%.</p>`;
+  }
+
+  return '';
 }
 
 /**
@@ -420,10 +452,10 @@ function parseProgression(raids) {
                 <span class='character-progression__raid-title'>${raid.replace(/-/g, ' ')}</span>
                 <span class='character-progression__raid-summary'>${raids[raid].summary}</span>
             </div>
-            <div role='progressbar' class='mdc-linear-progress col-12'>
+            <div role='progressbar' class='mdc-linear-progress col-12' data-scale="${eval(raids[raid].summary.slice(0, -2))}">
                 <div class='mdc-linear-progress__buffering-dots'></div>
                 <div class='mdc-linear-progress__buffer'></div>
-                <div class='mdc-linear-progress__bar mdc-linear-progress__primary-bar' style='transform: scaleX(${eval(raids[raid].summary.slice(0, -2))})'>
+                <div class='mdc-linear-progress__bar mdc-linear-progress__primary-bar'>
                     <span class='mdc-linear-progress__bar-inner'></span>
                 </div>
             </div>
@@ -459,7 +491,6 @@ function getItemTooltips(items) {
 
       elements +=
         `<a class='character-gear-items-item' href='https://www.wowhead.com/item=${items[slot].id}' data-wowhead='${args}' target='_blank'>
-            <!--<span class='character-gear-items-item__level quality-color-${items[slot].quality}'>${items[slot].itemLevel}</span>-->
             <img class='character-gear-items-item__img quality-border-${items[slot].quality}' src='https://render-us.worldofwarcraft.com/icons/56/${items[slot].icon}.jpg'>
         </a>`;
     }

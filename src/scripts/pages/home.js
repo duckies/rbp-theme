@@ -1,4 +1,4 @@
-import {MDCLinearProgress} from '@material/linear-progress';
+import {animateProgressBars} from '../helpers/material';
 import {getRequest} from '../helpers/network';
 
 // TODO: Extract things like this to a constants file.
@@ -13,16 +13,20 @@ const difficulties = {
  */
 async function createRaiderIOElements() {
   const url = 'https://raider.io/api/v1/guilds/profile?region=us&realm=blackrock&name=Really%20Bad%20Players&fields=raid_rankings,raid_progression';
+  const wanted = ['antorus-the-burning-throne', 'uldir'];
 
   try {
     const json = await getRequest(url);
     const elem = document.getElementById('guild-progress');
     const loaders = document.getElementById('guild-progress__loaders');
-    const raids = Object.entries(json.raid_progression).slice(-2);
+    const raids = Object.entries(json.raid_progression)
+      .filter((raid) => wanted.includes(raid[0]));
     const ranks = Object.entries(json.raid_rankings).pop()[1];
 
     elem.insertAdjacentHTML('afterbegin', createProgressionElements(raids));
     loaders.remove();
+
+    setTimeout(animateProgressBars, 500);
 
     let key = '';
     if (ranks.mythic.world !== 0) {
@@ -101,8 +105,8 @@ function createProgressionElements(raids) {
             <span class="raid-difficulty">${difficulties[progress.summary.slice(-1)]}</span>
             <span class="raid-name">${instance.replace(/-/g, ' ')}</span>
         </div>
-        <div role="progressbar" class="col-12 progressbar mdc-linear-progress">
-          <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar" style="transform: scaleX(${eval(progress.summary.slice(0, -2))})">
+        <div role="progressbar" class="col-12 progressbar mdc-linear-progress" data-scale="${eval(progress.summary.slice(0, -2))}">
+          <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
               <span class="mdc-linear-progress__bar-linear"></span>
           </div>
         </div>

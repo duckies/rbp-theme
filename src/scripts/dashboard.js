@@ -1,5 +1,6 @@
 import {MDCRipple} from '@material/ripple';
 import {MDCSnackbar} from '@material/snackbar';
+import {animateProgressBars} from './helpers/material';
 import * as basicLightbox from 'basiclightbox';
 import Character from './helpers/blizzard';
 
@@ -62,6 +63,8 @@ async function getWoWCharacters() {
     .then(() => {
       answerBody.insertAdjacentHTML('beforeend',
         characters.map((character) => character.characterElement).join(''));
+
+      setTimeout(animateProgressBars, 500);
   });
 }
 

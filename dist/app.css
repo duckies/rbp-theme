@@ -1677,8 +1677,8 @@ html {
   overflow: hidden; }
   .guild-progress .raid-progress[data-raid="antorus-the-burning-throne"]::before {
     background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/banner_antorus.jpg"); }
-  .guild-progress .raid-progress[data-raid="tomb-of-sargeras"]::before {
-    background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/banner_tomb.jpg"); }
+  .guild-progress .raid-progress[data-raid="uldir"]::before {
+    background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/banner_uldir.jpg"); }
   .guild-progress .raid-progress::before {
     position: absolute;
     width: 110%;
@@ -6105,11 +6105,11 @@ a.mdc-list-item {
           bottom: 1px;
           left: 1px;
           border: 1px solid rgba(255, 255, 255, 0.25);
-          content: ''; }
+          content: ""; }
       .module_content_wrap .v2_system_dashboard .applications .app_inner_output_container .appform-item img {
-        border: 1px solid #000;
         max-width: 100%;
-        height: auto; }
+        height: auto;
+        border: 1px solid #000; }
   .module_content_wrap .v2_system_dashboard .activity {
     background-color: #202124; }
     @media (max-width: 991.98px) {
@@ -6119,8 +6119,8 @@ a.mdc-list-item {
         .module_content_wrap .v2_system_dashboard .activity .filter_container {
           flex-basis: 100%; }
         .module_content_wrap .v2_system_dashboard .activity .content_middle {
-          margin-left: 0;
           flex-basis: 100%;
+          margin-left: 0;
           border: 0 !important; } }
     .module_content_wrap .v2_system_dashboard .activity .filter_container {
       border: 0 !important; }
@@ -6130,18 +6130,18 @@ a.mdc-list-item {
       border: 0 !important; }
   .module_content_wrap .v2_system_dashboard .messages .message_header {
     display: flex;
-    padding: 0;
     justify-content: center;
+    padding: 0;
     background-color: #2c2d32; }
     .module_content_wrap .v2_system_dashboard .messages .message_header_tab {
-      padding: 0 10px;
       margin-right: 0;
+      padding: 0 10px;
       font-size: 14px; }
     .module_content_wrap .v2_system_dashboard .messages .message_header_actions {
       margin-left: auto; }
   .module_content_wrap .v2_system_dashboard .messages .message_sidebar {
-    float: none;
     width: auto;
+    float: none;
     background-color: #202124;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.35); }
     .module_content_wrap .v2_system_dashboard .messages .message_sidebar_block {
@@ -6262,18 +6262,12 @@ a.mdc-list-item {
   border-left: 5px solid;
   background: linear-gradient(to right, #2c2d32, transparent);
   color: #fff; }
-  .character.loader {
-    border-left: 5px solid #8c1616; }
-  @media (max-width: 991.98px) {
-    .character {
-      flex-basis: 100%; } }
   .character .flex-row, .character #enjin-tray .button .button_window .window_message_container .box, #enjin-tray .button .button_window .window_message_container .character .box,
   .character #enjin-tray .button .button_window .window_filled_container .box, #enjin-tray .button .button_window .window_filled_container .character .box, .character .special_container .m_recruitmentstatus, .special_container .character .m_recruitmentstatus {
     width: 100%; }
   .character-header {
     margin-bottom: 10px;
     border-bottom: 3px solid #383a3f;
-    font-family: Roboto, sans-serif;
     font-size: 17px;
     font-weight: bold; }
   .character-info-block {
@@ -6285,6 +6279,7 @@ a.mdc-list-item {
       max-width: 100%;
       height: auto;
       image-rendering: pixelated;
+      border: 3px solid #383a3f;
       box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.35); }
   .character-text {
     margin-bottom: 10px;
@@ -6381,11 +6376,6 @@ a.mdc-list-item {
       max-width: 100%;
       height: auto;
       border: 1px solid; }
-    .character-gear-items-item__level {
-      display: flex;
-      justify-content: center;
-      font-weight: bold;
-      text-shadow: 0 0 3px #000; }
   .character-links {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -6474,6 +6464,21 @@ a.mdc-list-item {
     border-color: #854feb; }
   .mdc-text-field--textarea:not(.mdc-text-field--disabled) .mdc-text-field__input::placeholder {
     color: #fff !important; }
+
+.form-wow-answer .loading {
+  display: flex;
+  justify-content: center;
+  width: inherit !important;
+  height: inherit !important;
+  padding: 20px !important;
+  border: 1px solid #27282c !important;
+  background-color: #854feb;
+  opacity: 1 !important;
+  animation: fade-in 800ms alternate infinite; }
+  .form-wow-answer .loading::after {
+    content: "Loading Really Bad Characters"; }
+  .form-wow-answer .loading img {
+    display: none; }
 
 .form-wow-answer .input-panel {
   display: flex;
@@ -6565,8 +6570,8 @@ a.mdc-list-item {
   border: 1px solid #27282c;
   background-color: #202124;
   background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/about/app-bg.jpg");
-  background-size: cover;
   background-position: top;
+  background-size: cover;
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.35); }
   .application-info--grid {
     display: grid;

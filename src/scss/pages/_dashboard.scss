@@ -324,10 +324,12 @@ $icon-size: 40px;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
           }
+
           a {
             display: block;
             position: relative;
             background-color: darken($mdc-theme-primary, 5%);
+
             &::after {
               position: absolute;
               top: 1px;
@@ -335,13 +337,14 @@ $icon-size: 40px;
               bottom: 1px;
               left: 1px;
               border: 1px solid rgba(255, 255, 255, 0.25);
-              content: '';
+              content: "";
             }
           }
+
           img {
-            border: 1px solid #000;
             max-width: 100%;
             height: auto;
+            border: 1px solid #000;
           }
         }
       }
@@ -359,8 +362,8 @@ $icon-size: 40px;
         }
 
         .content_middle {
-          margin-left: 0;
           flex-basis: 100%;
+          margin-left: 0;
           border: 0 !important;
         }
       }
@@ -368,9 +371,11 @@ $icon-size: 40px;
       .filter_container {
         border: 0 !important;
       }
+
       .content_middle {
         border-left: 2px solid lighten($mdc-theme-primary, 5%);
       }
+
       .content_middle_inner {
         border: 0 !important;
       }
@@ -379,13 +384,13 @@ $icon-size: 40px;
     .messages {
       .message_header {
         display: flex;
-        padding: 0;
         justify-content: center;
+        padding: 0;
         background-color: $module-body-background-light;
-        
+
         &_tab {
-          padding: 0 10px;
           margin-right: 0;
+          padding: 0 10px;
           font-size: 14px;
         }
 
@@ -395,8 +400,8 @@ $icon-size: 40px;
       }
 
       .message_sidebar {
-        float: none;
         width: auto;
+        float: none;
         background-color: $mdc-theme-primary;
         box-shadow: $module-shadow;
 
@@ -583,14 +588,6 @@ $icon-size: 40px;
   background: linear-gradient(to right, $module-body-background-light, transparent);
   color: $text-ongrey;
 
-  &.loader {
-    border-left: 5px solid #8c1616;
-  }
-
-  @include media-breakpoint-down(md) {
-    flex-basis: 100%;
-  }
-
   .flex-row {
     width: 100%;
   }
@@ -598,14 +595,12 @@ $icon-size: 40px;
   &-header {
     margin-bottom: 10px;
     border-bottom: 3px solid #383a3f;
-    font-family: Roboto, sans-serif;
     font-size: 17px;
     font-weight: bold;
   }
 
   &-info-block {
     padding: 10px 8px;
-    // background-color: lighten($mdc-theme-primary, 2%);
   }
 
   &-portrait {
@@ -616,6 +611,7 @@ $icon-size: 40px;
       max-width: 100%;
       height: auto;
       image-rendering: pixelated;
+      border: 3px solid #383a3f;
       box-shadow: $module-shadow;
     }
   }
@@ -786,13 +782,6 @@ $icon-size: 40px;
           height: auto;
           border: 1px solid;
         }
-
-        &__level {
-          display: flex;
-          justify-content: center;
-          font-weight: bold;
-          text-shadow: 0 0 3px #000;
-        }
       }
     }
   }
@@ -890,6 +879,7 @@ $icon-size: 40px;
 
 @keyframes text-glow-unread {
   0% { text-shadow: 0 0 10px lighten($mdc-theme-secondary, 10%); }
+
   100% {
     text-shadow: 0 0 10px lighten($mdc-theme-secondary, 10%), 0 0 20px lighten($mdc-theme-secondary, 10%), 0 0 35px lighten($mdc-theme-secondary, 10%);
   }
