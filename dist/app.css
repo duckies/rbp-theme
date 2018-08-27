@@ -6209,6 +6209,7 @@ a.mdc-list-item {
   .app_comments_container .v2_system_social .wall .comments_post_reply.comments_post_empty_emogif {
     border-bottom-color: #854feb; }
   .app_comments_container .v2_system_social .wall .comments_post_reply .comments_reply_input {
+    min-height: 90px;
     padding: 15px;
     font-family: inherit;
     resize: vertical !important; }
