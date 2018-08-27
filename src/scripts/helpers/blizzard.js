@@ -63,6 +63,14 @@ export default class Character {
   }
 
   /**
+   * Removes spacing and capitalization of a class for stylesheets.
+   */
+  get formattedClass() {
+    return this.characterClass.replace(' ', '-').toLowerCase();
+  }
+
+
+  /**
    * Gets Blizzard character API url.
    */
   get blizzardApi() {
@@ -82,13 +90,6 @@ export default class Character {
   get raiderIOProfile() {
     return (this.raiderIO.profile_url) ? this.raiderIO.profile_url :
       `https://raider.io/characters/${this.region}/${this.formattedRealm}/${this.name}`;
-  }
-
-  /**
-   * Removes spacing and capitalization of a class for styling.
-   */
-  get formattedClass() {
-    return this.characterClass.replace(' ', '-').toLowerCase();
   }
 
   /**
