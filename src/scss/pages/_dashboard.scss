@@ -511,9 +511,9 @@ $icon-size: 40px;
         }
 
         .comments_reply_input {
-          height: 100% !important;
-          padding: 10px 5px;
+          padding: 15px;
           font-family: inherit;
+          resize: vertical !important;
         }
       }
 
