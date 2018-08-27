@@ -6376,6 +6376,8 @@ a.mdc-list-item {
       max-width: 100%;
       height: auto;
       border: 1px solid; }
+  .character-gear__amulet {
+    margin-bottom: 10px; }
   .character-links {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
