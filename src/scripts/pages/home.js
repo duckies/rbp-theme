@@ -1,3 +1,4 @@
+import {MDCLinearProgress} from '@material/linear-progress';
 import {animateProgressBars} from '../helpers/material';
 import {getRequest} from '../helpers/network';
 

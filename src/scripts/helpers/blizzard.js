@@ -35,7 +35,7 @@ const errorMap = {
  * */
 export default class Character {
   /**
-   * Constructs Character object.
+   * World of Warcraft character.
    * @param {Object} data
    */
   constructor(data) {
@@ -48,6 +48,7 @@ export default class Character {
     this.level = data.level;
     this.avatar = data.avatar_url.replace(defaultAvatar, genericAvatar);
     this.isRemovable = (document.querySelector('.m_appform')) ? true : false;
+    this.raiderIO = null;
   }
 
   /**
@@ -103,6 +104,8 @@ export default class Character {
    * Creates the character element DOM from object data.
    */
   get characterElement() {
+    console.log(this.characterDisplay);
+
     if (!this.blizzard || this.blizzard.message || this.blizzard.status) {
       if (this.raiderIO && !this.raiderIO.statusCode) {
         if (this.blizzard.reason === 'Character unavailable') {
@@ -121,6 +124,77 @@ export default class Character {
       this.error = 'None';
       return this.apiSuccessElement;
     }
+  }
+
+  /**
+   * Constructs HTML for the World of Warcraft character.
+   * This is pretty terse but structurally pleasing and efficient,
+   * unlike my upbringing and current life situations.
+   * @return {Node} panel
+   */
+  get characterDisplay() {
+    const pane = document.createElement('div');
+    pane.className = 'character class-' + this.formattedClass;
+    pane.setAttribute('data-hash', this.hash);
+    pane.setAttribute('data-access', this.error);
+
+    const flex = document.createElement('div');
+    flex.className = 'flex-row';
+    pane.appendChild(flex);
+
+    const info = document.createElement('div');
+    info.className = 'character-info col-12 col-md-2';
+    flex.appendChild(info);
+
+    const portrait = document.createElement('div');
+    portrait.className = 'character-portrait';
+    info.appendChild(portrait);
+
+    const img = document.createElement('img');
+    img.className = 'character-portrait__img';
+    img.src = this.avatar;
+    portrait.appendChild(img);
+
+    const text = document.createElement('div');
+    text.className = 'character-text';
+    info.appendChild(text);
+
+    const name = document.createElement('div');
+    name.className = 'character-name col-12';
+    name.innerText = this.name;
+    text.appendChild(name);
+
+    const desc = document.createElement('div');
+    desc.className = 'col-12';
+    desc.innerText = this.race + ' ' + this.characterClass;
+    text.appendChild(desc);
+
+    const links = document.createElement('ul');
+    links.className = 'character-links';
+    info.appendChild(links);
+
+    const liFirst = document.createElement('li');
+    const firstHref = document.createElement('a');
+    firstHref.href = 'https://www.worldofwarcraft.com/en-' + this.region + '/character/' + this.formattedRealm + '/' + this.name;
+    firstHref.target = '_blank';
+    const liSecond = document.createElement('li');
+    const liThird = document.createElement('li');
+    links.appendChild(liFirst);
+    links.appendChild(liSecond);
+    links.appendChild(liThird);
+
+    return pane;
+  }
+
+  /**
+   * Short-circuiting mythic+ data.
+   */
+  get previousMythicPlusScores() {
+    if (this.raiderIO && this.raiderIO.previous_mythic_plus_scores) {
+      return Math.round(this.raiderIO.previous_mythic_plus_scores.all);
+    }
+
+    return 0;
   }
 
   /**
@@ -340,7 +414,7 @@ export default class Character {
                         <div class="character-raiderio-score col">
                             <span class="character-raiderio-score__current">
                                 <span class="character-raiderio-score__current-score">
-                                    ${Math.round(this.raiderIO.mythic_plus_scores.all)}
+                                    ${this.previousMythicPlusScores}
                                 </span>
                             </span>
                             <span class="character-raiderio-score__title">Mythic+ Score<br>Current Season</span>
@@ -348,7 +422,7 @@ export default class Character {
                         <div class="character-raiderio-score col">
                             <span class="character-raiderio-score__current">
                                 <span class="character-raiderio-score__current-score">
-                                    ${Math.round(this.raiderIO.previous_mythic_plus_scores.all)}
+                                    ${this.previousMythicPlusScores}
                                 </span>
                             </span>
                             <span class="character-raiderio-score__title">Mythic+ Score<br>Last Season</span>

@@ -11,9 +11,10 @@ const toolbarIconEl =
 
 /**
  * Class toggle depending on Enjin notification bar location.
+ * @param {Node} header
  * @param {int} position
  */
-function scrollEnjinBar(position) {
+function scrollEnjinBar(header, position) {
   if (position > 0) {
     header.classList.add('user_tray__scrolled');
   } else {
@@ -24,8 +25,9 @@ function scrollEnjinBar(position) {
 /**
  * When the header scrolls past a certain point and collapses,
  * we must also do the same with the #enjin-tray.
+ * @param {Node} header
  */
-function appBarScrollingHandler() {
+function appBarScrollingHandler(header) {
   let scrollPos = 0;
   let ticking = false;
 
@@ -34,7 +36,7 @@ function appBarScrollingHandler() {
 
     if (!ticking) {
       window.requestAnimationFrame(() => {
-        scrollEnjinBar(scrollPos);
+        scrollEnjinBar(header, scrollPos);
         ticking = false;
       });
 
@@ -52,7 +54,7 @@ export function initAppBar() {
   MDCTabBar.attachTo(document.querySelector('.mdc-tab-bar'));
 
   if (header) {
-    appBarScrollingHandler();
+    appBarScrollingHandler(header);
   }
 }
 
@@ -122,6 +124,7 @@ export async function initUserMenu() {
       });
 
       MDCRipple.attachTo(document.querySelector('.user-menu__avatar'));
+      handleTrayClosing();
     } else {
       button.innerHTML =
         'Hello, Guest <i class="material-icons">keyboard_arrow_down</i>';
@@ -132,6 +135,4 @@ export async function initUserMenu() {
   } catch (error) {
     console.error('Enjin user request error: ' + error);
   }
-
-  handleTrayClosing();
 }
