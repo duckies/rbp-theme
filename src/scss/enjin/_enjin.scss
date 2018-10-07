@@ -11,6 +11,11 @@
       margin: 0 0 $paragraph-margin-bottom;
       line-height: $paragraph-line-height;
     }
+
+    ul,
+    ol {
+      padding-left: 0;
+    }
   }
 }
 

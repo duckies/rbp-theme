@@ -1,5 +1,6 @@
 import * as basicLightbox from 'basiclightbox';
 import {wrap} from '../helpers/functions';
+import initializePage from '../global/global';
 
 /**
  * If a YouTube iframe is found, make it responsive.
@@ -90,3 +91,7 @@ export default function initialize() {
     createLightboxes();
     createResponsiveEmbeds();
 }
+
+(() => {
+    initializePage();
+})();

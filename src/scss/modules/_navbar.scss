@@ -3,26 +3,30 @@
 // @import "@material/tabs/mdc-tabs";
 
 .header-logo {
+  display: inline-flex;
   animation: slide-in-from-left 450ms $mdc-animation-standard-curve-timing-function;
-  transition: text-shadow .4s $mdc-animation-standard-curve-timing-function;
-  color: #fff;
-  font-family: Khand, sans-serif;
-  font-size: 40px;
-  font-weight: bold;
-  line-height: .9;
-  text-transform: uppercase;
 
-  &:hover {
-    text-shadow: 6px 4px 3px rgba($mdc-theme-secondary, .5);
+  &--text {
+    transition: text-shadow .4s $mdc-animation-standard-curve-timing-function;
+    color: #fff;
+    font-family: Khand, sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    &:hover {
+      text-shadow: 6px 4px 3px rgba($mdc-theme-secondary, .5);
+    }
   }
 
   &__small {
     display: none;
-    animation: slide-in-from-left 450ms $mdc-animation-standard-curve-timing-function;
   }
 
   @include media-breakpoint-down(lg) {
-    display: none;
+    &__large {
+      display: none;
+    }
 
     &__small {
       display: block;
@@ -31,7 +35,8 @@
 }
 
 .mdc-top-app-bar {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+  transition: background-color .2s linear;
+  background-color: rgba($mdc-theme-primary, .9);
 
   &__row {
     height: $toolbar-height;
@@ -43,6 +48,8 @@
   }
 
   &.mdc-top-app-bar--fixed-scrolled {
+    background-color: $mdc-theme-primary;
+
     .mdc-top-app-bar__row {
       height: $toolbar-height - 25px;
     }
@@ -74,9 +81,10 @@
     }
   }
 
+  // A bit of a hack to achieve right-aligned menu.
   .user-menu {
-    min-width: 175px;
-    padding: 10px 0;
+    min-width: 140px;
+    margin-left: 39px;
     text-align: right;
 
     &__button {

@@ -1,8 +1,8 @@
-import {getRequest} from './helpers/network';
+import { getRequest } from '../helpers/network';
 
 /**
  * Injects the footer into the system page since
- * enjin is sensationalist and rmeoves footers here.
+ * Enjin is sensationalist and removes footers here.
  */
 function injectFooter() {
   const element = document.querySelector('#section-footer .section');
@@ -179,14 +179,14 @@ async function setupDiscord() {
 }
 
 /**
- * Initializer
+ * Initializer for footer.
  */
 export default function initialize() {
   // Tampering with the system page could change this number, spooky!
   const SYSTEM_PAGE = 13020514;
 
   if (current_page_id === SYSTEM_PAGE) {
-    injectFooter();
+    // injectFooter();
   }
 
   setupDiscord();

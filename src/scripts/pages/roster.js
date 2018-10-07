@@ -1,6 +1,7 @@
 import {MDCRipple} from '@material/ripple';
 import {getRequest} from '../helpers/network';
 import {BlizzardAPI} from '../config/config';
+import initializePage from '../global/global';
 
 const ignoredRanks = [2, 7, 8];
 const rankMap = {
@@ -65,9 +66,10 @@ function createCharacterElements(JSON) {
 
 /**
  * Uses the Blizzard API to get guild characters.
- * @param {Node} pageElem
  */
-async function pullRosterData(pageElem) {
+async function pullRosterData() {
+  const pageElem = document.querySelector('#page-roster .roster');
+
   try {
     const json = await getRequest(BlizzardAPI.rosterURL());
 
@@ -104,15 +106,7 @@ function filterRanks(data) {
   });
 }
 
-/**
- * Initializes roster functionality.
- */
-export default function initRoster() {
-  const pageElem = document.querySelector('#page-roster .roster');
-
-  if (!pageElem) {
-    return;
-  }
-
-  pullRosterData(pageElem);
-}
+document.addEventListener('DOMContentLoaded', () => {
+  initializePage();
+  pullRosterData();
+});

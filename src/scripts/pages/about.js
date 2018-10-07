@@ -1,8 +1,7 @@
 import {MDCTabBar} from '@material/tab-bar';
 import {MDCRipple} from '@material/ripple';
 import * as basicLightbox from 'basiclightbox';
-
-const panels = document.querySelector('.panels');
+import initializePage from '../global/global';
 
 // Disabled the guild history page until I can
 // come up with a good format for it.
@@ -12,18 +11,12 @@ const map = {
   'addons': 2,
 };
 
-// const map = {
-//   'guild': 0,
-//   'ranks': 1,
-//   'loot': 2,
-//   'addons': 3,
-// };
-
 /**
  * Updates the index of the active tab.
  * @param {int} index
+ * @param {Node} panels
  */
-function updatePanel(index) {
+function updatePanel(index, panels) {
   let activePanel = panels.querySelector('.panel.active');
 
   if (activePanel) {
@@ -39,8 +32,9 @@ function updatePanel(index) {
 
 /**
  * Creates the tab bar.
+ * @param {Node} panels
  */
-function handleTabs() {
+function handleTabs(panels) {
   const panel = map[window.location.hash.substr(1)];
   const toolbar = new MDCTabBar(document.querySelector('.about-tabs'));
   const tabs = document.querySelectorAll('.about-tabs .mdc-tab');
@@ -61,7 +55,7 @@ function handleTabs() {
       e.preventDefault();
       index = 1;
       toolbar.activateTab(index);
-      updatePanel(index);
+      updatePanel(index, panels);
     });
   }
 
@@ -78,22 +72,15 @@ function handleTabs() {
 
   if (panel) {
     toolbar.activateTab(panel);
-    updatePanel(panel);
+    updatePanel(panel, panels);
   }
 
   toolbar.listen('MDCTabBar:activated',
-    ({detail: tabs}) => updatePanel(tabs.index));
+    ({detail: tabs}) => updatePanel(tabs.index, panels));
 }
 
-/**
- * Initializes about page event handlers.
- */
-export default function initialize() {
-  const pageElem = document.querySelector('#page-about .about');
-
-  if (!pageElem) {
-    return;
-  }
-
-  handleTabs();
-}
+document.addEventListener('DOMContentLoaded', () => {
+  const panels = document.querySelector('.panels');
+  initializePage();
+  handleTabs(panels);
+});

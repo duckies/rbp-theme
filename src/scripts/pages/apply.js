@@ -1,4 +1,5 @@
 import {MDCRipple} from '@material/ripple';
+import initializePage from '../global/global';
 
 /**
  * Handles error reporting for non-registered users.
@@ -48,7 +49,13 @@ function styleSubmission(element) {
  * Initializes application form logic.
  */
 export default function initialize() {
+
+
+}
+
+document.addEventListener('DOMContentLoaded', () => {
   const formView = document.querySelector('.m_appform_view');
+  initializePage();
 
   if (formView) {
     handleRegistration(formView);
@@ -59,4 +66,5 @@ export default function initialize() {
       styleSubmission(formView);
     }
   }
-}
+});
+

@@ -4,6 +4,7 @@ const config = {
   proxy: 'https://www.reallybadplayers.com/',
   port: 8080,
   cors: true,
+  files: ['dist/**'],
   serveStatic: ['dist'],
   rewriteRules: [
     {
@@ -12,9 +13,9 @@ const config = {
       replace: '/app.min.css',
     },
     {
-      match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/bundle.js',
+      match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/home.bundle.js',
       once: true,
-      replace: '/bundle.js',
+      replace: '/home.bundle.js',
     },
   ],
 };

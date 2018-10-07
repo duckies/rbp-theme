@@ -1,13 +1,31 @@
+<aside class="mdc-drawer mdc-drawer--modal mdc-typography">
+    <div class="mdc-drawer__content">
+        <nav class="mdc-list">
+            <a class="mdc-list-item" href="/" aria-selected="true">Home</a>
+            <a class="mdc-list-item" href="/about">About Us</a>
+            <a class="mdc-list-item mdc-list-item--activated" href="/apply">Apply</a>
+            <a class="mdc-list-item" href="/roster" >Roster</a>
+            <a class="mdc-list-item" href="https://www.warcraftlogs.com/guild/id/5825" target="_blank" rel="nofollow">Logs</a>
+        </nav>
+    </div>
+</aside>
+
+<!-- Protects App UI from interactions -->
+<div class="mdc-drawer-scrim"></div>
+
 <header class="mdc-top-app-bar mdc-top-app-bar--fixed">
     <div class="mdc-top-app-bar__row flex-container">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
             <a href="#" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
-            <a href="/">
-                <h1 class="header-logo">Really Bad Players</h1>
-            </a>
-            <a href="/">
-                <h1 class="header-logo header-logo__small">RBP</h1>
-            </a>
+            <div class="header-logo">
+                <span class="header-logo--skull skull-logo"></span>
+                <a href="/">
+                    <h1 class="header-logo--text header-logo__large">Really Bad Players</h1>
+                </a>
+                <a href="/">
+                    <h1 class="header-logo--text header-logo__small">RBP</h1>
+                </a>
+            </div>
         </section>
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
             <nav class="mdc-tab-bar" role="tablist">
@@ -41,15 +59,6 @@
                                 </span>
                                 <div class="mdc-tab__ripple"></div>
                             </a>
-                            <a href="/forum" class="mdc-tab" role="tab" aria-selected="false" tabindex="-1">
-                                <div class="mdc-tab__content">
-                                    <span class="mdc-tab__text-label">Forum</span>
-                                </div>
-                                <span class="mdc-tab-indicator">
-                                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                                </span>
-                                <div class="mdc-tab__ripple"></div>
-                            </a>
                             <a href="/roster" class="mdc-tab" role="tab" aria-selected="false" tabindex="-1">
                                 <div class="mdc-tab__content">
                                     <span class="mdc-tab__text-label">Roster</span>
@@ -72,36 +81,36 @@
                     </div>
                 </div>
             </nav>
-            <div id="user-menu" class="user-menu mdc-menu-anchor">
+            <div id="user-menu" class="user-menu mdc-menu-surface--anchor">
                 <button id="user-button" class="user-menu__button mdc-button"></button>
 
-                <div id="guest-menu" class="mdc-menu">
-                    <ul class="mdc-menu__items mdc-list" role="menu">
-                        <li class="mdc-list-item" role="menuitem" tabindex="0">
+                <div id="guest-menu" class="mdc-menu mdc-menu-surface" tabindex="-1">
+                        <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
+                        <li class="mdc-list-item" role="menuitem">
                             <a href="/login">Login</a>
                         </li>
-                        <li class="mdc-list-item" role="menuitem" tabindex="0">
+                        <li class="mdc-list-item" role="menuitem">
                             <a href="/login/do/register">Register</a>
                         </li>
                     </ul>
                 </div>
 
-                <div id="registered-menu" class="mdc-menu">
-                    <ul class="mdc-menu__items mdc-list" role="menu">
-                        <li class="mdc-list-item" role="menuitem" tabindex="0">
+                <div id="registered-menu" class="mdc-menu mdc-menu-surface" tabindex="-1" data-admin="False">
+                    <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
+                        <li class="mdc-list-item" role="menuitem">
                             <a href="/profile">Profile</a>
                         </li>
-                        <li class="mdc-list-item" role="menuitem" tabindex="0">
+                        <li class="mdc-list-item" role="menuitem">
                             <a href="/dashboard">Dashboard</a>
                         </li>
                         <li class="mdc-list-divider" role="seperator"></li>
-                        <li class="mdc-list-item" role="menuitem" tabindex="0">
+                        <li class="mdc-list-item" role="menuitem">
                             <a href="/dashboard/applications">Applications</a>
                         </li>
-                        <li class="mdc-list-item user-button-admin" role="menuitem" tabindex="0">
-                            <a href="/admin">Admin Panel</a>
+                        <li class="mdc-list-item admin-button" role="menuitem">
+                            <a href="/admin">Officer Panel</a>
                         </li>
-                        <li class="mdc-list-item" role="menuitem" tabindex="0">
+                        <li class="mdc-list-item" role="menuitem">
                             <a href="/logout">Logout</a>
                         </li>
                     </ul>
@@ -110,28 +119,6 @@
         </section>
     </div>
 </header>
-<aside class="mdc-drawer mdc-drawer--temporary mdc-typography">
-    <nav class="mdc-drawer__drawer">
-        <header class="mdc-drawer__header">
-            <div class="mdc-drawer__header-content">
-                Really Bad Players
-            </div>
-        </header>
-        <nav class="mdc-drawer__content mdc-list">
-            <a href="/" class="mdc-list-item " tabindex="-1">Home</a>
-            <a class="mdc-list-item" href="/about" tabindex="-1">About Us</a>
-            <a class="mdc-list-item" href="/apply" tabindex="-1">Apply</a>
-            <a class="mdc-list-item" href="/forum" tabindex="-1">Forum</a>
-            <a class="mdc-list-item" href="/roster" tabindex="-1">Roster</a>
-            <a class="mdc-list-item" href="https://www.warcraftlogs.com/guild/id/5825" target="_blank" rel="nofollow" tabindex="-1">Logs</a>
-        </nav>
-        <div class="clinton">
-            <a href="https://i.imgur.com/o51dkjp.gifv" target="blank">
-                <i class="clinton__hillary">🦆</i>
-            </a>
-        </div>
-    </nav>
-</aside>
 
 <div class="hero">
     <div class="hero-bg" data-unloaded data-page="apply"></div>
@@ -155,3 +142,6 @@
         <button type="button" class="mdc-snackbar__action-button"></button>
     </div>
 </div>
+
+<script src="https://s3.amazonaws.com/files.enjin.com/632721/material/vendors~about~apply~dashboard~home~roster.bundle.js"></script>
+<script src="https://s3.amazonaws.com/files.enjin.com/632721/material/apply.bundle.js"></script>

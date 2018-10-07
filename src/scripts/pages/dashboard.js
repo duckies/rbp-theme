@@ -1,8 +1,9 @@
 import {MDCRipple} from '@material/ripple';
 import {MDCSnackbar} from '@material/snackbar';
-import {animateProgressBars} from './helpers/material';
+import {animateProgressBars} from '../helpers/material';
 import * as basicLightbox from 'basiclightbox';
-import Character from './helpers/blizzard';
+import Character from '../helpers/blizzard';
+import initializePage from '../global/global';
 
 let characterHashes = [];
 
@@ -217,3 +218,16 @@ function createLightboxes() {
     };
   });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const dashboard = document.querySelector('.v2_system_dashboard');
+  const application = document.querySelector('.m_appform');
+  initializePage();
+
+  if (dashboard) {
+    mutationCallback();
+    createMutationObserver(dashboard);
+  } else if (application) {
+    createMutationObserver(application);
+  }
+});

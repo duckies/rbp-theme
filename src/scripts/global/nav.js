@@ -1,13 +1,14 @@
 import {MDCRipple} from '@material/ripple';
-import {MDCMenu, Corner} from '@material/menu';
+import {MDCMenu} from '@material/menu';
+import {MDCMenuSurface} from '@material/menu-surface';
+import {MDCDrawer} from '@material/drawer';
 import {MDCTopAppBar} from '@material/top-app-bar';
-import {MDCTemporaryDrawer} from '@material/drawer';
 import {MDCTabBar} from '@material/tab-bar';
-import {postRequest} from './helpers/network';
+import {postRequest} from '../helpers/network';
 
-const drawerEl = document.querySelector('.mdc-drawer--temporary');
-const toolbarIconEl =
-  document.querySelector('.mdc-top-app-bar__navigation-icon');
+const drawerElem = document.querySelector('.mdc-drawer');
+const topAppBarElem = document.querySelector('.mdc-top-app-bar');
+const tabBarElem = document.querySelector('.mdc-tab-bar');
 
 /**
  * Class toggle depending on Enjin notification bar location.
@@ -25,9 +26,9 @@ function scrollEnjinBar(header, position) {
 /**
  * When the header scrolls past a certain point and collapses,
  * we must also do the same with the #enjin-tray.
- * @param {Node} header
  */
-function appBarScrollingHandler(header) {
+function initScrollingHandler() {
+  const enjinTrayElem = document.getElementById('enjin-tray');
   let scrollPos = 0;
   let ticking = false;
 
@@ -36,7 +37,7 @@ function appBarScrollingHandler(header) {
 
     if (!ticking) {
       window.requestAnimationFrame(() => {
-        scrollEnjinBar(header, scrollPos);
+        scrollEnjinBar(enjinTrayElem, scrollPos);
         ticking = false;
       });
 
@@ -48,30 +49,28 @@ function appBarScrollingHandler(header) {
 /**
  * Initiates Material.io navigation bar.
  */
-export function initAppBar() {
-  const header = document.getElementById('enjin-tray');
-  MDCTopAppBar.attachTo(document.querySelector('.mdc-top-app-bar'));
-  MDCTabBar.attachTo(document.querySelector('.mdc-tab-bar'));
+export function appBar() {
+  const drawerObj = MDCDrawer.attachTo(drawerElem);
+  const topBar = MDCTopAppBar.attachTo(topAppBarElem);
+  const tabs = MDCTabBar.attachTo(tabBarElem);
 
-  if (header) {
-    appBarScrollingHandler(header);
-  }
-}
-
-/**
- * Initializes pullout menu drawer.
- */
-export function initDrawer() {
-  const drawer = new MDCTemporaryDrawer(drawerEl);
-  toolbarIconEl.addEventListener('click', () => (drawer.open = true));
+  // bar.setScrollTarget(document.getElementById('page-wrap'));
+  topBar.listen('MDCTopAppBar:nav', () => {
+    drawerObj.open = !drawerObj.open;
+  });
 }
 
 /**
  * Enjin tray closing handler.
  */
 function handleTrayClosing() {
-  document.querySelector('.window_header .window_page')
-    .innerHTML = '<i class="material-icons">settings</i>';
+  const window = document.querySelector('.window_header .window_page');
+
+  if (!window) {
+    return;
+  }
+
+  window.innerHTML = '<i class="material-icons">settings</i>';
 
   document.addEventListener('click', (e) => {
     let active = document.querySelector('.button_click.active');
@@ -86,7 +85,7 @@ function handleTrayClosing() {
 /**
  * Requests Enjin for their profile, and creates the dropdown.
  */
-export async function initUserMenu() {
+export async function userMenu() {
   const button = document.getElementById('user-button');
 
   const request = {
@@ -99,7 +98,8 @@ export async function initUserMenu() {
     const json = await postRequest('/api/v1/api.php', request);
     const menuSelector = json.result.logged_in ? '#registered-menu' : '#guest-menu';
     const menuElem = document.querySelector(menuSelector);
-    const menu = new MDCMenu(menuElem);
+    const menuObj = new MDCMenu(menuElem);
+
     const menuButton = document.getElementById('user-button');
 
     if (json.result.logged_in) {
@@ -111,28 +111,47 @@ export async function initUserMenu() {
         </div>`;
 
       if (joinLink) {
-        const list = menuElem.querySelector('.mdc-list');
+        const listElem = menuElem.querySelector('.mdc-list');
 
-        list.insertAdjacentHTML('beforeend',
+        listElem.insertAdjacentHTML('beforeend',
           `<li class='mdc-list-item' role='menuitem' tabindex='0'>
             <a class='join-us' href='#' onclick='Enjin_Core.joinWebsiteRegular(event);return false;' rel='nofollow'>Join Website</a>
           </li>`);
+
+        const linkObj = new link.MDCLink(listElem);
+        linkObj.singleSelection = true;
+      }
+
+      if (json.result.admin_access.full || json.result.admin_access.limited) {
+        menuElem.setAttribute('data-admin', 'True');
       }
 
       menuElem.querySelectorAll('.mdc-list-item').forEach((item) => {
         MDCRipple.attachTo(item);
       });
 
+      MDCMenuSurface.attachTo(document.querySelector('.mdc-menu-surface'));
+      menuObj.setAnchorMargin({top: 50});
+
       MDCRipple.attachTo(document.querySelector('.user-menu__avatar'));
-      handleTrayClosing();
     } else {
       button.innerHTML =
         'Hello, Guest <i class="material-icons">keyboard_arrow_down</i>';
     }
 
-    menu.setAnchorCorner(Corner.BOTTOM_START);
-    menuButton.addEventListener('click', () => menu.open = !menu.open);
+
+    menuButton.addEventListener('click', () => menuObj.open = !menuObj.open);
   } catch (error) {
-    console.error('Enjin user request error: ' + error);
+    console.error('User menu error: ' + error);
   }
 }
+
+/**
+ * Initializes menu components.
+ */
+export default function initialize() {
+  userMenu();
+  appBar();
+  handleTrayClosing();
+  initScrollingHandler();
+};

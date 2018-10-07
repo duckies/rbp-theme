@@ -1,14 +1,16 @@
 @import "@material/menu/mdc-menu";
+@import "@material/menu-surface/mdc-menu-surface";
 @import "@material/button/mdc-button";
 
-.mdc-menu {
-  border-radius: 0;
-  background-color: inherit;
-  box-shadow: $module-shadow;
-
-  .mdc-menu__items {
-    padding: 0;
+#registered-menu[data-admin="False"] {
+  .admin-button {
+    display: none;
   }
+}
+
+.mdc-menu {
+  min-width: 140px;
+  background-color: lighten($mdc-theme-primary, 3%);
 
   .mdc-list-divider {
     border-bottom: 2px solid lighten($mdc-theme-primary, 9%);
@@ -16,28 +18,23 @@
   }
 
   .mdc-list-item {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    height: 48px;
-    background-color: lighten($mdc-theme-primary, 3%);
-    list-style: none;
+    padding: 0;
 
     &:hover {
-      background-color: lighten($mdc-theme-primary, 10%);
+      background-color: darken($mdc-theme-secondary, 10%);
     }
 
+    // Temporary until lists actually use links?
     a {
       width: 100%;
-      height: 100%;
       padding: 0 16px;
       color: #fff;
       line-height: 48px;
       text-align: left;
+    }
 
-      &.join-us {
-        animation: text-glow 1s $mdc-animation-standard-curve-timing-function infinite alternate;
-      }
+    .join-us {
+      animation: text-glow 1s $mdc-animation-standard-curve-timing-function infinite alternate;
     }
 
     &.list-item-nopad {

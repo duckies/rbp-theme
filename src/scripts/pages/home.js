@@ -1,6 +1,9 @@
 import {MDCLinearProgress} from '@material/linear-progress';
 import {animateProgressBars} from '../helpers/material';
+import Flickity from 'flickity-bg-lazyload';
 import {getRequest} from '../helpers/network';
+import initializePage from '../global/global';
+
 
 // TODO: Extract things like this to a constants file.
 const difficulties = {
@@ -8,6 +11,25 @@ const difficulties = {
   'H': 'Heroic',
   'N': 'Normal',
 };
+
+
+/**
+ * Instantiates homepage carousel.
+ */
+function carousel() {
+  const carousel = document.querySelector('.carousel');
+
+  if (carousel) {
+    new Flickity(carousel, {
+      autoPlay: 5000,
+      wrapAround: true,
+      bgLazyLoad: 1,
+      prevNextButtons: false,
+      pageDots: false,
+    });
+  }
+}
+
 
 /**
  * Creates DOM elements given raiderIO data for the guild.
@@ -48,7 +70,7 @@ async function createRaiderIOElements() {
       }
     });
   } catch (error) {
-    console.error('RaiderIO network error: ', error);
+    console.error('RaiderIO error: ', error);
   }
 }
 
@@ -124,6 +146,11 @@ function setupNewsModule() {
   const module = document.getElementById('news-api-wrapper');
   const loaders = document.querySelector('.news--loader');
 
+  if (!module) {
+    console.log(document.getElementById('news-api-wrapper'));
+    return;
+  }
+
   const request = {
     jsonrpc: '2.0',
     id: Math.round(Math.random() * (999999 - 100000) + 100000),
@@ -146,7 +173,8 @@ function setupNewsModule() {
       throw Error('Enjin API request failed: ', response.statusText);
     }
     return response.json();
-  }).then((data) => {
+    }).then((data) => {
+      console.log(data);
     module.insertAdjacentHTML('beforeend', createNewsElements(data.result));
     loaders.remove();
   }).catch((error) => console.log(error));
@@ -159,11 +187,29 @@ function setupNewsModule() {
  */
 function createNewsElements(newsItems) {
   return newsItems.map((article) => {
-    let articleElem = document.createElement('div');
-    articleElem.innerHTML = article.content;
-    const articleText = articleElem.innerText;
-    const articleIMG = articleElem.querySelectorAll('img')[0].src;
+    const responseElem = document.createElement('div');
+    responseElem.innerHTML = article.content;
+    const articleText = responseElem.innerText;
+    const articleIMG = responseElem.querySelectorAll('img')[0].src;
 
+    const articleElem = document.createElement('div');
+    const articleBGElem = document.createElement('div');
+    const articleInfoElem = document.createElement('div');
+    const articleTitleElem = document.createElement('h1');
+    const articleBodyElem = document.createElement('p');
+
+    articleElem.classList = 'article col-12';
+    articleBGElem.classList = 'article__bg';
+    articleBGElem.style = 'background-image: url(' + articleIMG + ')';
+    articleTitleElem.innerText = article.title;
+    articleBodyElem.innerText = articleText;
+
+    articleInfoElem.appendChild(articleTitleElem);
+    articleInfoElem.appendChild(articleBodyElem);
+    articleElem.appendChild(articleBGElem);
+    articleElem.appendChild(articleInfoElem);
+
+    console.log(articleElem);
     return `
     <div class='article col-12'>
       <div class='article__bg' style='background-image: url(${articleIMG})'></div>
@@ -175,17 +221,10 @@ function createNewsElements(newsItems) {
   }).join('');
 }
 
-/**
- * Initiator function for the homepage.
- */
-export default function initialize() {
-  const sidebar = document.getElementById('homepage-sidebar');
-
-  if (!sidebar) {
-    return;
-  }
-
-  setupNewsModule();
+document.addEventListener('DOMContentLoaded', () => {
+  initializePage();
+  carousel();
   createRaiderIOElements();
   createGroupPayModule();
-}
+  setupNewsModule();
+});
