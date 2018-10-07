@@ -2823,17 +2823,14 @@ div::-webkit-scrollbar-track {
       display: block; } }
 
 .mdc-top-app-bar {
-  transition: background-color .2s linear;
-  background-color: rgba(32, 33, 36, 0.9); }
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }
   .mdc-top-app-bar__row {
     height: 85px;
     transition: height 200ms cubic-bezier(0.4, 0, 0.2, 1); }
   .mdc-top-app-bar__section--align-start {
     width: 400px; }
-  .mdc-top-app-bar.mdc-top-app-bar--fixed-scrolled {
-    background-color: #202124; }
-    .mdc-top-app-bar.mdc-top-app-bar--fixed-scrolled .mdc-top-app-bar__row {
-      height: 60px; }
+  .mdc-top-app-bar.mdc-top-app-bar--fixed-scrolled .mdc-top-app-bar__row {
+    height: 60px; }
   .mdc-top-app-bar .mdc-top-app-bar__navigation-icon {
     display: none;
     text-decoration: none; }
@@ -3603,32 +3600,15 @@ a.mdc-list-item {
   /* @alternate */
   color: var(--mdc-theme-text-primary-on-background, white); }
 
-.mdc-drawer--temporary.mdc-drawer .mdc-drawer__header-content {
-  align-items: center; }
-
-.mdc-drawer--temporary.mdc-drawer .mdc-drawer__header::before {
-  padding-top: 30%; }
-
-.mdc-drawer__content .mdc-list-item {
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border-bottom: 1px solid #27282c;
-  font-family: Khand, sans-serif;
-  font-size: 20px;
-  font-weight: bold;
-  text-transform: uppercase; }
-
-.mdc-drawer__header-content {
-  justify-content: center;
-  transition: text-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  font-family: Khand, sans-serif;
-  font-size: 35px;
-  font-weight: bold;
-  line-height: .9;
-  text-transform: uppercase; }
-  .mdc-drawer__header-content:hover {
-    text-shadow: 6px 4px 3px rgba(133, 79, 235, 0.5); }
+.mdc-drawer {
+  background-color: #202124; }
+  .mdc-drawer__title {
+    font-weight: bold;
+    text-transform: uppercase; }
+  .mdc-drawer .mdc-list-item {
+    font-weight: bold; }
+    .mdc-drawer .mdc-list-item--activated {
+      background-color: rgba(133, 79, 235, 0.5); }
 
 .mdc-menu {
   min-width: 112px; }

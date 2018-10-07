@@ -99,7 +99,7 @@ export async function userMenu() {
     const menuSelector = json.result.logged_in ? '#registered-menu' : '#guest-menu';
     const menuElem = document.querySelector(menuSelector);
     const menuObj = new MDCMenu(menuElem);
-
+    console.log(json.result);
     const menuButton = document.getElementById('user-button');
 
     if (json.result.logged_in) {
@@ -134,6 +134,23 @@ export async function userMenu() {
       menuObj.setAnchorMargin({top: 50});
 
       MDCRipple.attachTo(document.querySelector('.user-menu__avatar'));
+      const greetings = [
+        `Hello ${json.result.username}, you sultry snail.`,
+        `Hello ${json.result.username}, you beautiful, rule-breaking moth.`,
+        `Hello ${json.result.username}, you powerful musk ox.`,
+        `Make way for ${json.result.username}, the worthy sperm.`,
+        `Is it ${json.result.username} or is it just hot in here?`,
+        `Stay safe out there ${json.result.username}.`,
+        `Hello, <${json.result.username} the Irreplaceable>`,
+        `Suffer well, ${json.result.username}.`,
+        `Oh, hello ${json.result.username}. Have you heard the story of the hozen and the buttercream pie?`,
+      ];
+      const drawerSubtElem = document.querySelector('.mdc-drawer__subtitle');
+
+      if (drawerSubtElem) {
+        const randIndex = Math.floor(Math.random() * greetings.length);
+        drawerSubtElem.innerText = greetings[randIndex];
+      }
     } else {
       button.innerHTML =
         'Hello, Guest <i class="material-icons">keyboard_arrow_down</i>';

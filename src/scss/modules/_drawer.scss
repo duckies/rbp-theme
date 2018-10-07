@@ -1,46 +1,19 @@
 @import "@material/drawer/mdc-drawer";
 @import "@material/list/mdc-list";
 
-.mdc-drawer--temporary {
-  &.mdc-drawer {
-    .mdc-drawer__header {
-      &-content {
-        align-items: center;
-      }
-      &::before {
-        padding-top: 30%;
-      }
-    }
-  }
-}
+.mdc-drawer {
+  background-color: $mdc-theme-primary;
 
-.mdc-drawer__content {
-  .mdc-list-item {
-    align-items: center;
-    justify-content: center;
-    transition: background-color .3s $mdc-animation-standard-curve-timing-function;
-    border-bottom: $module-border;
-    font-family: Khand, sans-serif;
-    font-size: 20px;
+  &__title {
     font-weight: bold;
     text-transform: uppercase;
   }
-}
 
-.mdc-drawer {
-  &__header {
-    &-content {
-      justify-content: center;
-      transition: text-shadow .4s $mdc-animation-standard-curve-timing-function;
-      font-family: Khand, sans-serif;
-      font-size: 35px;
-      font-weight: bold;
-      line-height: .9;
-      text-transform: uppercase;
+  .mdc-list-item {
+    font-weight: bold;
 
-      &:hover {
-        text-shadow: 6px 4px 3px rgba($mdc-theme-secondary, .5);
-      }
+    &--activated {
+      background-color: rgba($mdc-theme-secondary, .5);
     }
   }
 }

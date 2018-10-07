@@ -2,7 +2,7 @@
  * Replaces favicon in head tags.
  */
 export default function initialize() {
-  const viewport = document.querySelector('.meta[name="viewport"]');
+  const viewport = document.querySelector('meta[name="viewport"]');
 
   if (!viewport) {
     return;

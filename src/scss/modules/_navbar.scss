@@ -35,8 +35,7 @@
 }
 
 .mdc-top-app-bar {
-  transition: background-color .2s linear;
-  background-color: rgba($mdc-theme-primary, .9);
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, .2), 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12);
 
   &__row {
     height: $toolbar-height;
@@ -48,8 +47,6 @@
   }
 
   &.mdc-top-app-bar--fixed-scrolled {
-    background-color: $mdc-theme-primary;
-
     .mdc-top-app-bar__row {
       height: $toolbar-height - 25px;
     }
