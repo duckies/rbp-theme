@@ -1,5 +1,6 @@
 import {MDCRipple} from '@material/ripple';
 import initializePage from '../global/global';
+import {getWoWCharacters} from '../helpers/character';
 
 /**
  * Handles error reporting for non-registered users.
@@ -46,16 +47,37 @@ function styleSubmission(element) {
 }
 
 /**
- * Initializes application form logic.
+ * Watches for characters added to the application.
+ * @param {Node} application
  */
-export default function initialize() {
+function createCharacterMutationObserver(application) {
+  const observer = new MutationObserver((mutations) => {
+    if (application.classList.contains('m_appform')) {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          if (node.classList && node.classList.value == 'character') {
+            getWoWCharacters();
+          }
+        });
+      });
+    }
+  });
 
-
+  observer.observe(application, {
+    childList: true,
+    subtree: true,
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   const formView = document.querySelector('.m_appform_view');
+  const application = document.querySelector('.m_appform');
+
   initializePage();
+
+  if (application) {
+    createCharacterMutationObserver(application);
+  }
 
   if (formView) {
     handleRegistration(formView);

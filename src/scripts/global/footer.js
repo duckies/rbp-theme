@@ -186,7 +186,7 @@ export default function initialize() {
   const SYSTEM_PAGE = 13020514;
 
   if (current_page_id === SYSTEM_PAGE) {
-    // injectFooter();
+    injectFooter();
   }
 
   setupDiscord();

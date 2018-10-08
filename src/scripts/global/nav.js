@@ -99,7 +99,6 @@ export async function userMenu() {
     const menuSelector = json.result.logged_in ? '#registered-menu' : '#guest-menu';
     const menuElem = document.querySelector(menuSelector);
     const menuObj = new MDCMenu(menuElem);
-    console.log(json.result);
     const menuButton = document.getElementById('user-button');
 
     if (json.result.logged_in) {

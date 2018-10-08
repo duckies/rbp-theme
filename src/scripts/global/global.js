@@ -9,4 +9,5 @@ export default function initialize() {
   head();
   navigation();
   footer();
+  console.info('[RBP]: Global page features constructed.');
 };

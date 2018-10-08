@@ -1,29 +1,12 @@
 <script>
-    const script = document.getElementById('theme-script');
-    const head = document.querySelector('head');
+  const script = document.getElementById('dashboard-script');
+  const styles = document.getElementById('theme-styles');
+  const head = document.querySelector('head');
 
-    if (!script) {
-        const js = document.createElement('script');
-        js.src = "https://s3.amazonaws.com/files.enjin.com/632721/material/dashboard.bundle.js";
-        js.id = "theme-script";
-        head.appendChild(js);
-
-        const jsBundle = document.createElement('script');
-        jsBundle.src = "https://s3.amazonaws.com/files.enjin.com/632721/material/vendors~about~apply~dashboard~home~roster.bundle.js"
-        head.appendChild(jsBundle);
-
-        const jsBundleMinor = document.createElement('script');
-        jsBundleMinor.src = "https://s3.amazonaws.com/files.enjin.com/632721/material/vendors~dashboard.bundle.js"
-        head.appendChild(jsBundleMinor);
-
-        const css = document.createElement('link');
-        css.rel = 'stylesheet';
-        css.href = 'https://s3.amazonaws.com/files.enjin.com/632721/material/app.min.css';
-        head.appendChild(css);
-
-        const font = document.createElement('link');
-        font.rel = 'stylesheet';
-        font.href = 'https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,700|Khand:400,700,900|Roboto+Mono';
-        head.appendChild(font);
-    }
+  if (!styles) {
+    document.head.insertAdjacentHTML('beforeend', `
+      <link rel="stylesheet" href="https://s3.amazonaws.com/files.enjin.com/632721/material/app.min.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,700|Khand:400,700,900|Roboto+Mono">
+    `);
+  }
 </script>

@@ -1,106 +1,8 @@
 import {MDCRipple} from '@material/ripple';
 import {MDCSnackbar} from '@material/snackbar';
-import {animateProgressBars} from '../helpers/material';
 import * as basicLightbox from 'basiclightbox';
-import Character from '../helpers/blizzard';
 import initializePage from '../global/global';
-
-let characterHashes = [];
-
-/**
- * Finds and parses character data.
- * @return {Object} Character Info.
- */
-function getCharacterData() {
-  const question = document.querySelector('.form-wow-answer');
-
-  if (!question) {
-    console.warn('[Application]: Character question not found.');
-    return;
-  }
-
-  const isForm = document.querySelector('.m_appform');
-  const isApp = document.querySelector('.v2_system_dashboard');
-
-  if (isForm) {
-    const dataElem = isForm.querySelector('input[type="hidden"]');
-
-    if (dataElem && dataElem.value) {
-      return JSON.parse(dataElem.value);
-    }
-  } else if (isApp) {
-    const dataElem = isApp.querySelector('.character_list');
-
-    if (dataElem && dataElem.dataset.cfg) {
-      return JSON.parse(JSON.parse(dataElem.dataset.cfg).value);
-    }
-  }
-
-  return null;
-}
-
-/**
- * Uses data found on the application page to create
- * character objects, and gets their data.
- */
-async function getWoWCharacters() {
-  const answerParent = document.querySelector('.form-wow-answer');
-  const answerBody = answerParent.querySelector('.form-question-body');
-  const chars = getCharacterData();
-
-  if (!chars || chars.length === 0) {
-    return;
-  }
-
-  let characters = [];
-  for (const hash in chars) {
-    if (!characterHashes.includes(hash)) {
-      characterHashes.push(hash);
-      characters.push(new Character(chars[hash]));
-    }
-  }
-
-  Promise.all(characters.map((character) => character.getData()))
-    .then(() => {
-      answerBody.insertAdjacentHTML('beforeend',
-        characters.map((character) => character.characterElement).join(''));
-
-      setTimeout(animateProgressBars, 500);
-  });
-}
-
-/**
- * Handler for remove button in application.
- * @param {button} button
- * @return {false}
- */
-function appRemoveCallback(button) {
-  const hash = button.dataset.hash;
-  const elem = document.querySelector('.character[data-char="' + hash + '"]');
-  const mask = document.querySelector('.character[data-hash="' + hash + '"]');
-  const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
-
-  if (elem) {
-    elem.querySelector('.remove a').click();
-  }
-
-  if (mask) {
-    mask.remove();
-    characterHashes = characterHashes.filter((e) => e !== hash);
-  }
-
-  const snackObj = {
-    message: 'Character destroyed, that was mean.',
-    actionText: 'Neat',
-    actionHandler: false,
-  };
-
-  snackbar.show(snackObj);
-
-  return false;
-}
-
-window.appRemoveCallback = appRemoveCallback;
+import {getWoWCharacters, cleanCharacterHashes} from '../helpers/character';
 
 /**
  * Forces bbcode links to open in a new tab.
@@ -130,60 +32,28 @@ function cleanupMenu() {
 }
 
 /**
- * Initializes Dashboard
- */
-export default function init() {
-  const dashboard = document.querySelector('.v2_system_dashboard');
-  const application = document.querySelector('.m_appform');
-
-  if (dashboard) {
-    mutationCallback();
-    createMutationObserver(dashboard);
-  } else if (application) {
-    createMutationObserver(application);
-  }
-}
-
-/**
- * Function called on dashboard mutation events to check for
- * content that needs to be edited.
- */
-function mutationCallback() {
-  getWoWCharacters();
-  imageReplacement();
-  createLightboxes();
-  peskyLinks();
-}
-
-/**
- * Creates a MutationObserver to monitor if Ajax calls are made.
- * Primarily used to see if new applications are selected.
+ * Watches for applications loaded on dashboard.
  * @param {Node} target
  */
-function createMutationObserver(target) {
+function createCharacterMutationObserver(target) {
   const observer = new MutationObserver((mutations) => {
-    if (target.classList.contains('m_appform')) {
-      mutations.forEach((mutation) => {
-        mutation.addedNodes.forEach((node) => {
-          if (node.classList && node.classList.value == 'character') {
-            mutationCallback();
-          }
-        });
-      });
-    } else if (target.classList.contains('v2_system_dashboard')) {
+    if (target.classList.contains('v2_system_dashboard')) {
       cleanupMenu();
       mutations.forEach((mutation) => {
         mutation.removedNodes.forEach((node) => {
           if (node.classList && node.classList.value == 'app_inner_area m_system-dashboard') {
-            characterHashes.length = 0;
-            console.info('[Application]: Application removed: ', characterHashes);
+            cleanCharacterHashes();
+            // console.info('[Application]: Application removed: ', characterHashes);
           }
         });
 
         mutation.addedNodes.forEach((node) => {
           if (node.classList && node.contains(node.querySelector('.character_list'))) {
-            console.info('[Application]: Application added: ', characterHashes);
-            mutationCallback();
+            // console.info('[Application]: Application added: ', characterHashes);
+            getWoWCharacters();
+            imageReplacement();
+            createLightboxes();
+            peskyLinks();
           }
         });
       });
@@ -221,13 +91,11 @@ function createLightboxes() {
 
 document.addEventListener('DOMContentLoaded', () => {
   const dashboard = document.querySelector('.v2_system_dashboard');
-  const application = document.querySelector('.m_appform');
-  initializePage();
 
-  if (dashboard) {
-    mutationCallback();
-    createMutationObserver(dashboard);
-  } else if (application) {
-    createMutationObserver(application);
-  }
+  initializePage();
+  getWoWCharacters();
+  imageReplacement();
+  createLightboxes();
+  peskyLinks();
+  createCharacterMutationObserver(dashboard);
 });

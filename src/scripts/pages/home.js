@@ -222,6 +222,7 @@ function createNewsElements(newsItems) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  console.info('Hello');
   initializePage();
   carousel();
   createRaiderIOElements();
