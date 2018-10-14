@@ -235,7 +235,7 @@ export default class Character {
   get characterTemplate() {
     return `
       <div class="character class-${this.cssCharacterClass}" data-hash="${this.hash}">
-        <div class="character-info">
+        <div class="character-info-block character-info">
           <div class="character-info__wrapper">
             <div class="character-portrait">
               <img class="character-portrait__img" src="${this.characterAvatar}">
@@ -266,7 +266,7 @@ export default class Character {
             ${this.characterRaidProgression}
           </div>
         </div>
-        <div class="character-group character-info-block">
+        <div class="character-info-block character-group">
           <div class="character-dungeons">
             <div class="character-header">RaiderIO Season Score</div>
             <div class="character-dungeons--wrapper">
@@ -287,7 +287,7 @@ export default class Character {
             ${this.characterTalents}
           </div>
         </div>
-        <div class="character-info-block character-gear col-12 col-md">
+        <div class="character-info-block character-gear">
           <div class="character-header">${this.characterEquipped} Equipped Item Level</div>
           <div class="character-gear__amulet">${this.characterAmulet}</div>
           ${this.characterGear}
@@ -411,7 +411,7 @@ export default class Character {
     }
 
 
-    return '<div class="character-error">Character gear is not available.</div>';
+    return '<div class="character-error">Character gear is not available.<br>The character probably transferred.</div>';
   }
 
   /**
@@ -439,38 +439,4 @@ export default class Character {
     this.blizzard = data[0];
     this.raiderIO = data[1];
   }
-}
-
-/**
- * Inject enough Wowhead relevant information for accurate tooltips.
- * @param {Object} items
- * @return {String} tooltip link
- */
-function getItemTooltips(items) {
-  let elements = '';
-
-  for (const slot of slots) {
-    if (items[slot]) {
-      let args = 'ilvl=' + items[slot].itemLevel + '&amp;';
-
-      if (items[slot].tooltipParams.set) {
-        args += 'pcs=' + items[slot].tooltipParams.set.join(':') + '&amp;';
-      }
-
-      if (items[slot].tooltipParams.enchant) {
-        args += 'ench=' + items[slot].tooltipParams.enchant + '&amp;';
-      }
-
-      if (items[slot].tooltipParams.gem0) {
-        args += 'gems=' + items[slot].tooltipParams.gem0 + '&amp;';
-      }
-
-      elements +=
-        `<a class='character-gear-items-item' href='https://www.wowhead.com/item=${items[slot].id}' data-wowhead='${args}' target='_blank'>
-            <img class='character-gear-items-item__img quality-border-${items[slot].quality}' src='https://render-us.worldofwarcraft.com/icons/56/${items[slot].icon}.jpg'>
-        </a>`;
-    }
-  }
-
-  return elements;
 }

@@ -53,6 +53,22 @@
   }
 }
 
+@keyframes spinny-opacity {
+  0% {
+    transform: translateX(-40%) rotate(0deg);
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(40%) rotate(360deg);
+    opacity: 1;
+  }
+}
+
 .m_appform_view {
   .joinsite-appform {
     padding: 0;
