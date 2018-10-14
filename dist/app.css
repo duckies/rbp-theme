@@ -6149,8 +6149,8 @@ a.mdc-list-item {
     transition: height 350ms ease-in-out, opacity 350ms ease-in-out;
     overflow: hidden; }
     .character-loader::after {
-      top: -30px;
-      animation: spinny 9s ease-in-out infinite alternate; }
+      animation: spinny 9s ease-in-out infinite alternate;
+      opacity: 1; }
     .character-loader.leaving {
       height: 0;
       opacity: 0; }

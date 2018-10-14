@@ -611,8 +611,8 @@ $icon-size: 40px;
     overflow: hidden;
 
     &::after {
-      top: -30px;
       animation: spinny 9s ease-in-out infinite alternate;
+      opacity: 1;
     }
 
     &.leaving {

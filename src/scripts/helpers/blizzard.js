@@ -219,6 +219,17 @@ export default class Character {
   }
 
   /**
+   * Short-circuiting current scores.
+   */
+  get characterCurrentScores() {
+    if (this.raiderIO && this.raiderIO.mythic_plus_scores) {
+      return Math.round(this.raiderIO.mythic_plus_scores.all);
+    }
+
+    return 0;
+  }
+
+  /**
    * Short-circuiting mythic+ data.
    */
   get previousMythicPlusScores() {
@@ -272,7 +283,7 @@ export default class Character {
             <div class="character-dungeons--wrapper">
               <div class="character-dungeons--score">
                 <div class="character-dungeons--score__wrapper">
-                  <span class="character-dungeons--score__current-score">${this.previousMythicPlusScores}</span>
+                  <span class="character-dungeons--score__current-score">${this.characterCurrentScores}</span>
                 </div>
                 <div class="character-dungeons--score__wrapper">
                   <span class="character-dungeons--score__current-score">${this.previousMythicPlusScores}</span>
