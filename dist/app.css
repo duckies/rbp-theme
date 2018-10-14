@@ -5764,6 +5764,8 @@ a.mdc-list-item {
   .module_content_wrap .v2_system_dashboard .applications {
     font-size: inherit;
     overflow: visible; }
+    .module_content_wrap .v2_system_dashboard .applications .form-wow-answer .form-question-title {
+      display: none; }
     .module_content_wrap .v2_system_dashboard .applications .app_header {
       display: flex;
       flex-wrap: wrap;
@@ -5958,23 +5960,25 @@ a.mdc-list-item {
         font-size: 17px; }
       .module_content_wrap .v2_system_dashboard .applications .app_inner_output_container .appform-item .images {
         display: grid;
-        grid-template-columns: repeat(3, 1fr); }
-      .module_content_wrap .v2_system_dashboard .applications .app_inner_output_container .appform-item a {
-        display: block;
-        position: relative;
-        background-color: #141517; }
-        .module_content_wrap .v2_system_dashboard .applications .app_inner_output_container .appform-item a::after {
-          position: absolute;
-          top: 1px;
-          right: 1px;
-          bottom: 1px;
-          left: 1px;
-          border: 1px solid rgba(255, 255, 255, 0.25);
-          content: ""; }
-      .module_content_wrap .v2_system_dashboard .applications .app_inner_output_container .appform-item img {
-        max-width: 100%;
-        height: auto;
-        border: 1px solid #000; }
+        grid-gap: 10px;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        grid-template-rows: minmax(150px, auto); }
+        .module_content_wrap .v2_system_dashboard .applications .app_inner_output_container .appform-item .images .item-image {
+          display: flex;
+          align-items: top;
+          justify-content: center;
+          height: 300px;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          border: 3px solid #2c2d32; }
+        .module_content_wrap .v2_system_dashboard .applications .app_inner_output_container .appform-item .images a {
+          width: 100%; }
+        .module_content_wrap .v2_system_dashboard .applications .app_inner_output_container .appform-item .images img {
+          object-fit: cover;
+          display: block;
+          width: 100%;
+          height: 100%; }
   .module_content_wrap .v2_system_dashboard .activity {
     background-color: #202124; }
     @media (max-width: 991.98px) {
@@ -6110,24 +6114,68 @@ a.mdc-list-item {
   color: #854feb;
   font-weight: inherit; }
 
-.form-wow-answer .form-question-body .character_list .character {
-  display: none !important; }
-
-.character-panels {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between; }
-
 .character {
   display: flex;
   flex-basis: 100%;
   padding: 10px 8px;
   border-left: 5px solid;
-  background: linear-gradient(to right, #2c2d32, transparent);
+  border-radius: 3px;
+  background: #2c2d32;
   color: #fff; }
   .character .flex-row, .character #enjin-tray .button .button_window .window_message_container .box, #enjin-tray .button .button_window .window_message_container .character .box,
   .character #enjin-tray .button .button_window .window_filled_container .box, #enjin-tray .button .button_window .window_filled_container .character .box, .character .special_container .m_recruitmentstatus, .special_container .character .m_recruitmentstatus {
     width: 100%; }
+  .character-loader {
+    position: relative;
+    height: 150px;
+    animation: fade-in 350ms ease-in-out;
+    transition: height 350ms ease-in-out, opacity 350ms ease-in-out;
+    overflow: hidden; }
+    .character-loader.leaving {
+      height: 0;
+      opacity: 0; }
+    .character-loader::before {
+      position: absolute;
+      font-size: 20px;
+      font-weight: bold;
+      text-shadow: 0 0 5px #000;
+      text-transform: uppercase;
+      content: "Loading";
+      z-index: 5; }
+    .character-loader::after {
+      position: absolute;
+      top: -30px;
+      width: 100%;
+      height: 200px;
+      animation: spinny 10s ease-in-out infinite alternate;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 200px 200px;
+      content: ""; }
+    .character-loader.class-death-knight::after {
+      background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/death-knight-logo.png"); }
+    .character-loader.class-demon-hunter::after {
+      background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/demon-hunter-logo.png"); }
+    .character-loader.class-druid::after {
+      background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/druid-logo.png"); }
+    .character-loader.class-hunter::after {
+      background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/hunter-logo.png"); }
+    .character-loader.class-mage::after {
+      background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/mage-logo.png"); }
+    .character-loader.class-monk::after {
+      background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/monk-logo.png"); }
+    .character-loader.class-paladin::after {
+      background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/paladin-logo.png"); }
+    .character-loader.class-priest::after {
+      background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/priest-logo.png"); }
+    .character-loader.class-rogue::after {
+      background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/rogue-logo.png"); }
+    .character-loader.class-shaman::after {
+      background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/shaman-logo.png"); }
+    .character-loader.class-warlock::after {
+      background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/warlock-logo.png"); }
+    .character-loader.class-warrior::after {
+      background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/warrior-logo.png"); }
   .character-header {
     margin-bottom: 10px;
     border-bottom: 3px solid #383a3f;
@@ -6142,8 +6190,7 @@ a.mdc-list-item {
       max-width: 100%;
       height: auto;
       image-rendering: pixelated;
-      border: 3px solid #383a3f;
-      box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.35); }
+      border: 3px solid #ffffff56; }
   .character-text {
     margin-bottom: 10px;
     line-height: 1.1;
@@ -6155,29 +6202,65 @@ a.mdc-list-item {
     font-size: 20px;
     font-weight: bold; }
   .character.class-death-knight {
-    border-color: #c41f3b; }
+    border-color: #c41f3b;
+    background-color: rgba(196, 31, 59, 0.2); }
+    .character.class-death-knight .character-portrait__img {
+      border-color: #c41f3b; }
   .character.class-demon-hunter {
-    border-color: #a330c9; }
+    border-color: #a330c9;
+    background-color: rgba(163, 48, 201, 0.2); }
+    .character.class-demon-hunter .character-portrait__img {
+      border-color: #a330c9; }
   .character.class-druid {
-    border-color: #ff7d0a; }
+    border-color: #ff7d0a;
+    background-color: rgba(255, 125, 10, 0.2); }
+    .character.class-druid .character-portrait__img {
+      border-color: #ff7d0a; }
   .character.class-hunter {
-    border-color: #abd473; }
+    border-color: #abd473;
+    background-color: rgba(171, 212, 115, 0.2); }
+    .character.class-hunter .character-portrait__img {
+      border-color: #abd473; }
   .character.class-mage {
-    border-color: #69ccf0; }
+    border-color: #69ccf0;
+    background-color: rgba(105, 204, 240, 0.2); }
+    .character.class-mage .character-portrait__img {
+      border-color: #69ccf0; }
   .character.class-monk {
-    border-color: #00ff96; }
+    border-color: #00ff96;
+    background-color: rgba(0, 255, 150, 0.2); }
+    .character.class-monk .character-portrait__img {
+      border-color: #00ff96; }
   .character.class-paladin {
-    border-color: #f58cba; }
+    border-color: #f58cba;
+    background-color: rgba(245, 140, 186, 0.2); }
+    .character.class-paladin .character-portrait__img {
+      border-color: #f58cba; }
   .character.class-priest {
-    border-color: #fff; }
+    border-color: #fff;
+    background-color: rgba(255, 255, 255, 0.2); }
+    .character.class-priest .character-portrait__img {
+      border-color: #fff; }
   .character.class-rogue {
-    border-color: #fff569; }
+    border-color: #fff569;
+    background-color: rgba(255, 245, 105, 0.2); }
+    .character.class-rogue .character-portrait__img {
+      border-color: #fff569; }
   .character.class-shaman {
-    border-color: #0070de; }
+    border-color: #0070de;
+    background-color: rgba(0, 112, 222, 0.2); }
+    .character.class-shaman .character-portrait__img {
+      border-color: #0070de; }
   .character.class-warlock {
-    border-color: #9482c9; }
+    border-color: #9482c9;
+    background-color: rgba(148, 130, 201, 0.2); }
+    .character.class-warlock .character-portrait__img {
+      border-color: #9482c9; }
   .character.class-warrior {
-    border-color: #c79c6e; }
+    border-color: #c79c6e;
+    background-color: rgba(199, 156, 110, 0.2); }
+    .character.class-warrior .character-portrait__img {
+      border-color: #c79c6e; }
   .character-progression__raid-title {
     margin-right: 10px;
     text-transform: capitalize; }
@@ -6252,6 +6335,14 @@ a.mdc-list-item {
     display: flex;
     justify-content: center;
     padding: 5px 0; }
+
+.form-wow-answer .form-question-body .character_list {
+  display: none; }
+
+.character-panels {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; }
 
 .quality-color-7, .quality-color-8 {
   color: #0cf; }
@@ -6330,25 +6421,16 @@ a.mdc-list-item {
   .mdc-text-field--textarea:not(.mdc-text-field--disabled) .mdc-text-field__input::placeholder {
     color: #fff !important; }
 
-.form-wow-answer .loading {
-  display: flex;
-  justify-content: center;
-  width: inherit !important;
-  height: inherit !important;
-  padding: 20px !important;
-  border: 1px solid #27282c !important;
-  background-color: #854feb;
-  opacity: 1 !important;
-  animation: fade-in 800ms alternate infinite; }
-  .form-wow-answer .loading::after {
-    content: "Loading Really Bad Characters"; }
-  .form-wow-answer .loading img {
-    display: none; }
-
 .form-wow-answer .input-panel {
   display: flex;
   flex-wrap: wrap;
   align-items: center; }
+
+@keyframes spinny {
+  0% {
+    transform: translateX(-40%) rotate(0deg); }
+  100% {
+    transform: translateX(40%) rotate(360deg); } }
 
 .m_appform_view .joinsite-appform {
   padding: 0; }

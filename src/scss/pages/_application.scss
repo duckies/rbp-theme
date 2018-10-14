@@ -36,32 +36,20 @@
 }
 
 .form-wow-answer {
-  // Unfortunately Enjin is oddly specific about the loader, so I have to get all important.
-  // Make this custom so I don't have to do any of this.
-  .loading {
-    display: flex;
-    justify-content: center;
-    width: inherit !important;
-    height: inherit !important;
-    padding: 20px !important;
-    animation: fade-in 800ms alternate infinite;
-    border: $module-border !important;
-    background-color: $mdc-theme-secondary;
-    opacity: 1 !important;
-
-    &::after {
-      content: "Loading Really Bad Characters";
-    }
-
-    img {
-      display: none;
-    }
-  }
-
   .input-panel {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+  }
+}
+
+@keyframes spinny {
+  0% {
+    transform: translateX(-40%) rotate(0deg);
+  }
+
+  100% {
+    transform: translateX(40%) rotate(360deg);
   }
 }
 

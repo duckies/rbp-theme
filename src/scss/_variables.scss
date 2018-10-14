@@ -57,6 +57,21 @@ $class-shaman: #0070de;
 $class-warlock: #9482c9;
 $class-warrior: #c79c6e;
 
+$class-colors: (
+  "death-knight": $class-death-knight,
+  "demon-hunter": $class-demon-hunter,
+  "druid": $class-druid,
+  "hunter": $class-hunter,
+  "mage": $class-mage,
+  "monk": $class-monk,
+  "paladin": $class-paladin,
+  "priest": $class-priest,
+  "rogue": $class-rogue,
+  "shaman": $class-shaman,
+  "warlock": $class-warlock,
+  "warrior": $class-warrior
+);
+
 $item-artifact: #e5cc80;
 $item-legendary: #ff8000;
 $item-epic: #c600ff;

@@ -23,7 +23,7 @@ const slots = [
 ];
 const errorMap = {
   'BlizzardOutage': 'Blizzard reports this character is temporarily unavailable on the API.',
-  'NoBoth': 'Character was not found on the armory or RaiderIO.',
+  'NoBoth': 'Character was not found on the armory or RaiderIO. It\'s likely they transferred.',
   'NoBlizzardYesRaiderIO': 'Character may have transferred. Character is not found on the armory, but is on RaiderIO.',
   'NoRaiderIO': 'Character was not found on RaiderIO.',
   'None': '',

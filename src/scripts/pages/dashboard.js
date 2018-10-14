@@ -4,12 +4,22 @@ import * as basicLightbox from 'basiclightbox';
 import initializePage from '../global/global';
 import {getWoWCharacters, cleanCharacterHashes} from '../helpers/character';
 
+const rejectSound = new Audio('https://s3.amazonaws.com/files.enjin.com/632721/material/audio/dont-blame-you.mp3');
+
 /**
  * Forces bbcode links to open in a new tab.
  */
 function peskyLinks() {
   document.querySelectorAll('.bbcode_url')
     .forEach((url) => url.setAttribute('target', '_blank'));
+}
+
+/**
+ * Play a stupid sound on rejecting an application.
+ */
+function rejectAudio() {
+  const button = document.querySelector('.app_inner_action_approve[data-msg~="reject"]');
+  button.addEventListener('click', () => rejectSound.play());
 }
 
 /**
@@ -50,6 +60,7 @@ function createCharacterMutationObserver(target) {
         mutation.addedNodes.forEach((node) => {
           if (node.classList && node.contains(node.querySelector('.character_list'))) {
             // console.info('[Application]: Application added: ', characterHashes);
+            rejectAudio();
             getWoWCharacters();
             imageReplacement();
             createLightboxes();
@@ -93,6 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const dashboard = document.querySelector('.v2_system_dashboard');
 
   initializePage();
+  rejectAudio();
   getWoWCharacters();
   imageReplacement();
   createLightboxes();

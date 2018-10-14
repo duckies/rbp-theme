@@ -1,3 +1,4 @@
+import {MDCSnackbar} from '@material/snackbar';
 import Character from './blizzard';
 import {animateProgressBars} from '../helpers/material';
 
@@ -42,6 +43,25 @@ function appRemoveCallback(button) {
 }
 
 window.appRemoveCallback = appRemoveCallback;
+
+/**
+ * Adds a loader for the classes found.
+ * @param{string} className
+ */
+function injectCharacterLoader(className) {
+  if (className) {
+    className = className.replace(' ', '-').toLowerCase();
+  } else {
+    className = 'unknown';
+  }
+
+  const characterHolder = document.querySelector('.form-question-body');
+
+  const loader = document.createElement('div');
+  loader.classList = 'character character-loader class-' + className;
+
+  characterHolder.appendChild(loader);
+}
 
 /**
  * Finds and parses character data.
@@ -91,6 +111,7 @@ export async function getWoWCharacters() {
   let characters = [];
   for (const hash in chars) {
     if (!characterHashes.includes(hash)) {
+      injectCharacterLoader(chars[hash].type);
       characterHashes.push(hash);
       characters.push(new Character(chars[hash]));
     }
@@ -98,6 +119,11 @@ export async function getWoWCharacters() {
 
   Promise.all(characters.map((character) => character.getData()))
     .then(() => {
+      document.querySelectorAll('.character-loader').forEach((el) => {
+        el.classList.add('leaving');
+        window.setTimeout(() => el.remove(), 350);
+      });
+
       answerBody.insertAdjacentHTML('beforeend',
         characters.map((character) => character.characterElement).join(''));
 
