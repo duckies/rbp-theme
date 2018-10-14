@@ -19,7 +19,10 @@ function peskyLinks() {
  */
 function rejectAudio() {
   const button = document.querySelector('.app_inner_action_approve[data-msg~="reject"]');
-  button.addEventListener('click', () => rejectSound.play());
+
+  if (button) {
+    button.addEventListener('click', () => rejectSound.play());
+  }
 }
 
 /**

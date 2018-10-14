@@ -6115,16 +6115,13 @@ a.mdc-list-item {
   font-weight: inherit; }
 
 .character {
-  display: flex;
-  flex-basis: 100%;
-  padding: 10px 8px;
+  display: grid;
+  padding: 10px 15px 10px 5px;
+  grid-template-columns: 180px 1fr 1fr 1fr;
   border-left: 5px solid;
   border-radius: 3px;
   background: #2c2d32;
   color: #fff; }
-  .character .flex-row, .character #enjin-tray .button .button_window .window_message_container .box, #enjin-tray .button .button_window .window_message_container .character .box,
-  .character #enjin-tray .button .button_window .window_filled_container .box, #enjin-tray .button .button_window .window_filled_container .character .box, .character .special_container .m_recruitmentstatus, .special_container .character .m_recruitmentstatus {
-    width: 100%; }
   .character-loader {
     position: relative;
     height: 150px;
@@ -6176,11 +6173,24 @@ a.mdc-list-item {
       background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/warlock-logo.png"); }
     .character-loader.class-warrior::after {
       background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/warrior-logo.png"); }
+  .character-info {
+    display: flex; }
+    .character-info__wrapper {
+      align-self: center;
+      width: 100%; }
   .character-header {
     margin-bottom: 10px;
-    border-bottom: 3px solid #383a3f;
     font-size: 17px;
     font-weight: bold; }
+    .character-header::after {
+      display: block;
+      position: relative;
+      top: 5px;
+      width: 100%;
+      height: 5px;
+      margin-bottom: 15px;
+      background-color: #202124;
+      content: ""; }
   .character-info-block {
     padding: 10px 8px; }
   .character-portrait {
@@ -6190,123 +6200,179 @@ a.mdc-list-item {
       max-width: 100%;
       height: auto;
       image-rendering: pixelated;
-      border: 3px solid #ffffff56; }
+      border: 3px solid; }
   .character-text {
     margin-bottom: 10px;
     line-height: 1.1;
     text-align: center; }
   .character-error {
     font-family: "Roboto Mono", sans-serif; }
-  .character-name {
+  .character-text__name {
     color: #fff;
     font-size: 20px;
     font-weight: bold; }
   .character.class-death-knight {
     border-color: #c41f3b;
     background-color: rgba(196, 31, 59, 0.2); }
+    .character.class-death-knight .character-header::after {
+      background-color: #c41f3b; }
     .character.class-death-knight .character-portrait__img {
       border-color: #c41f3b; }
+    .character.class-death-knight .character-dungeons--score__current-score {
+      border-color: #c41f3b;
+      background-color: rgba(196, 31, 59, 0.25); }
   .character.class-demon-hunter {
     border-color: #a330c9;
     background-color: rgba(163, 48, 201, 0.2); }
+    .character.class-demon-hunter .character-header::after {
+      background-color: #a330c9; }
     .character.class-demon-hunter .character-portrait__img {
       border-color: #a330c9; }
+    .character.class-demon-hunter .character-dungeons--score__current-score {
+      border-color: #a330c9;
+      background-color: rgba(163, 48, 201, 0.25); }
   .character.class-druid {
     border-color: #ff7d0a;
     background-color: rgba(255, 125, 10, 0.2); }
+    .character.class-druid .character-header::after {
+      background-color: #ff7d0a; }
     .character.class-druid .character-portrait__img {
       border-color: #ff7d0a; }
+    .character.class-druid .character-dungeons--score__current-score {
+      border-color: #ff7d0a;
+      background-color: rgba(255, 125, 10, 0.25); }
   .character.class-hunter {
     border-color: #abd473;
     background-color: rgba(171, 212, 115, 0.2); }
+    .character.class-hunter .character-header::after {
+      background-color: #abd473; }
     .character.class-hunter .character-portrait__img {
       border-color: #abd473; }
+    .character.class-hunter .character-dungeons--score__current-score {
+      border-color: #abd473;
+      background-color: rgba(171, 212, 115, 0.25); }
   .character.class-mage {
     border-color: #69ccf0;
     background-color: rgba(105, 204, 240, 0.2); }
+    .character.class-mage .character-header::after {
+      background-color: #69ccf0; }
     .character.class-mage .character-portrait__img {
       border-color: #69ccf0; }
+    .character.class-mage .character-dungeons--score__current-score {
+      border-color: #69ccf0;
+      background-color: rgba(105, 204, 240, 0.25); }
   .character.class-monk {
     border-color: #00ff96;
     background-color: rgba(0, 255, 150, 0.2); }
+    .character.class-monk .character-header::after {
+      background-color: #00ff96; }
     .character.class-monk .character-portrait__img {
       border-color: #00ff96; }
+    .character.class-monk .character-dungeons--score__current-score {
+      border-color: #00ff96;
+      background-color: rgba(0, 255, 150, 0.25); }
   .character.class-paladin {
     border-color: #f58cba;
     background-color: rgba(245, 140, 186, 0.2); }
+    .character.class-paladin .character-header::after {
+      background-color: #f58cba; }
     .character.class-paladin .character-portrait__img {
       border-color: #f58cba; }
+    .character.class-paladin .character-dungeons--score__current-score {
+      border-color: #f58cba;
+      background-color: rgba(245, 140, 186, 0.25); }
   .character.class-priest {
     border-color: #fff;
     background-color: rgba(255, 255, 255, 0.2); }
+    .character.class-priest .character-header::after {
+      background-color: #fff; }
     .character.class-priest .character-portrait__img {
       border-color: #fff; }
+    .character.class-priest .character-dungeons--score__current-score {
+      border-color: #fff;
+      background-color: rgba(255, 255, 255, 0.25); }
   .character.class-rogue {
     border-color: #fff569;
     background-color: rgba(255, 245, 105, 0.2); }
+    .character.class-rogue .character-header::after {
+      background-color: #fff569; }
     .character.class-rogue .character-portrait__img {
       border-color: #fff569; }
+    .character.class-rogue .character-dungeons--score__current-score {
+      border-color: #fff569;
+      background-color: rgba(255, 245, 105, 0.25); }
   .character.class-shaman {
     border-color: #0070de;
     background-color: rgba(0, 112, 222, 0.2); }
+    .character.class-shaman .character-header::after {
+      background-color: #0070de; }
     .character.class-shaman .character-portrait__img {
       border-color: #0070de; }
+    .character.class-shaman .character-dungeons--score__current-score {
+      border-color: #0070de;
+      background-color: rgba(0, 112, 222, 0.25); }
   .character.class-warlock {
     border-color: #9482c9;
     background-color: rgba(148, 130, 201, 0.2); }
+    .character.class-warlock .character-header::after {
+      background-color: #9482c9; }
     .character.class-warlock .character-portrait__img {
       border-color: #9482c9; }
+    .character.class-warlock .character-dungeons--score__current-score {
+      border-color: #9482c9;
+      background-color: rgba(148, 130, 201, 0.25); }
   .character.class-warrior {
     border-color: #c79c6e;
     background-color: rgba(199, 156, 110, 0.2); }
+    .character.class-warrior .character-header::after {
+      background-color: #c79c6e; }
     .character.class-warrior .character-portrait__img {
       border-color: #c79c6e; }
+    .character.class-warrior .character-dungeons--score__current-score {
+      border-color: #c79c6e;
+      background-color: rgba(199, 156, 110, 0.25); }
+  .character-progression__raid[data-raid="the-emerald-nightmare"], .character-progression__raid[data-raid="trial-of-valor"] {
+    display: none; }
   .character-progression__raid-title {
     margin-right: 10px;
     text-transform: capitalize; }
-  .character-progression__raid-summary {
-    margin-left: auto; }
   .character-progression .mdc-linear-progress {
-    height: 7px;
+    height: 10px;
     margin-bottom: 10px; }
     .character-progression .mdc-linear-progress .mdc-linear-progress__buffer {
-      background-color: #383a3f; }
+      background-color: #202124; }
     .character-progression .mdc-linear-progress .mdc-linear-progress__bar-inner {
       background-color: #854feb; }
-  .character-raiderio-score {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    margin: 5px 0 8px;
+  .character-dungeons--score {
+    display: grid;
+    padding: 10px 0;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     text-align: center; }
-    .character-raiderio-score__current {
+    .character-dungeons--score__wrapper {
+      display: block;
+      width: 100%; }
+    .character-dungeons--score__current {
       flex-basis: 100%;
       margin: 5px 0 10px; }
-      .character-raiderio-score__current-score {
+      .character-dungeons--score__current-score {
         padding: 3px 5px;
         border: 2px solid #854feb;
-        border-radius: 10px;
-        background-color: #212021;
-        font-family: Roboto, sans-serif;
+        background-color: rgba(133, 79, 235, 0.25);
         font-size: 15px;
         font-weight: bold; }
-    .character-raiderio-score__title {
+    .character-dungeons--score__title {
       width: 100%;
       font-size: 14px; }
-  .character-talents {
+  .character-talents__talents {
     display: grid;
     grid-row-gap: 2px;
-    grid-column-gap: 4px;
+    grid-column-gap: 2px;
     grid-template-columns: repeat(7, 1fr); }
-    .character-talents-img {
-      max-width: 100%;
-      height: auto;
-      border: 1px solid #383a3f; }
-  .character-gear-header {
-    margin: 7px 0 3px 0;
-    font-family: Khand, sans-serif;
-    font-size: 15px;
-    font-weight: bold; }
+  .character-talents-img {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #383a3f; }
   .character-gear-items {
     display: grid;
     grid-row-gap: 2px;
