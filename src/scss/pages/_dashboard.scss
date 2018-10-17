@@ -204,7 +204,7 @@ $icon-size: 40px;
             }
 
             &_details {
-              width: 100%;
+              width: calc(100% - 58px);
               margin-left: 0;
               overflow: visible;
             }

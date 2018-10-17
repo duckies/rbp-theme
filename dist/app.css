@@ -5891,7 +5891,7 @@ a.mdc-list-item {
           border-radius: 50%;
           background: #854feb; }
         .module_content_wrap .v2_system_dashboard .applications .app_sidebar_block .app_user_details {
-          width: 100%;
+          width: calc(100% - 58px);
           margin-left: 0;
           overflow: visible; }
         .module_content_wrap .v2_system_dashboard .applications .app_sidebar_block .app_user_name {
