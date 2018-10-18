@@ -41,7 +41,7 @@
         "stylelint-order": "0.8.1",
         "stylelint-scss": "3.3.1",
         "stylelint-selector-bem-pattern": "2.0.0",
-        "webpack": "4.20.2"
+        "webpack": "4.21.0"
     },
     "dependencies": {
         "material-components-web": "0.40.0",
