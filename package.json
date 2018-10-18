@@ -25,7 +25,7 @@
         "flickity": "2.1.2",
         "flickity-bg-lazyload": "1.0.0",
         "gulp": "4.0.0",
-        "gulp-autoprefixer": "5.0.0",
+        "gulp-autoprefixer": "6.0.0",
         "gulp-babel": "8.0.0",
         "gulp-better-rollup": "3.3.0",
         "gulp-clean-css": "3.10.0",
