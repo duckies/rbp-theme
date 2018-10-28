@@ -340,8 +340,8 @@ $icon-size: 40px;
               height: 300px;
               margin: 0;
               padding: 0;
-              overflow: hidden;
               border: 3px solid $module-body-background-light;
+              overflow: hidden;
             }
 
             a {
@@ -711,6 +711,10 @@ $icon-size: 40px;
         background-color: rgba($color, .25);
       }
 
+      .mdc-linear-progress .mdc-linear-progress__bar-inner {
+        background-color: $color;
+      }
+
       &::after {
         background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/#{$class}-logo.png");
       }
@@ -731,8 +735,8 @@ $icon-size: 40px;
     }
 
     .mdc-linear-progress {
-      height: 10px;
-      margin-bottom: 10px;
+      height: 8px;
+      margin-bottom: 8px;
 
       .mdc-linear-progress__buffer {
         background-color: $mdc-theme-primary;

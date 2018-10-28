@@ -5970,8 +5970,8 @@ a.mdc-list-item {
           height: 300px;
           margin: 0;
           padding: 0;
-          overflow: hidden;
-          border: 3px solid #2c2d32; }
+          border: 3px solid #2c2d32;
+          overflow: hidden; }
         .module_content_wrap .v2_system_dashboard .applications .app_inner_output_container .appform-item .images a {
           width: 100%; }
         .module_content_wrap .v2_system_dashboard .applications .app_inner_output_container .appform-item .images img {
@@ -6212,6 +6212,8 @@ a.mdc-list-item {
     .character.class-death-knight .character-dungeons--score__current-score {
       border-color: #c41f3b;
       background-color: rgba(196, 31, 59, 0.25); }
+    .character.class-death-knight .mdc-linear-progress .mdc-linear-progress__bar-inner {
+      background-color: #c41f3b; }
     .character.class-death-knight::after {
       background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/death-knight-logo.png"); }
   .character.class-demon-hunter {
@@ -6225,6 +6227,8 @@ a.mdc-list-item {
     .character.class-demon-hunter .character-dungeons--score__current-score {
       border-color: #a330c9;
       background-color: rgba(163, 48, 201, 0.25); }
+    .character.class-demon-hunter .mdc-linear-progress .mdc-linear-progress__bar-inner {
+      background-color: #a330c9; }
     .character.class-demon-hunter::after {
       background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/demon-hunter-logo.png"); }
   .character.class-druid {
@@ -6238,6 +6242,8 @@ a.mdc-list-item {
     .character.class-druid .character-dungeons--score__current-score {
       border-color: #ff7d0a;
       background-color: rgba(255, 125, 10, 0.25); }
+    .character.class-druid .mdc-linear-progress .mdc-linear-progress__bar-inner {
+      background-color: #ff7d0a; }
     .character.class-druid::after {
       background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/druid-logo.png"); }
   .character.class-hunter {
@@ -6251,6 +6257,8 @@ a.mdc-list-item {
     .character.class-hunter .character-dungeons--score__current-score {
       border-color: #abd473;
       background-color: rgba(171, 212, 115, 0.25); }
+    .character.class-hunter .mdc-linear-progress .mdc-linear-progress__bar-inner {
+      background-color: #abd473; }
     .character.class-hunter::after {
       background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/hunter-logo.png"); }
   .character.class-mage {
@@ -6264,6 +6272,8 @@ a.mdc-list-item {
     .character.class-mage .character-dungeons--score__current-score {
       border-color: #69ccf0;
       background-color: rgba(105, 204, 240, 0.25); }
+    .character.class-mage .mdc-linear-progress .mdc-linear-progress__bar-inner {
+      background-color: #69ccf0; }
     .character.class-mage::after {
       background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/mage-logo.png"); }
   .character.class-monk {
@@ -6277,6 +6287,8 @@ a.mdc-list-item {
     .character.class-monk .character-dungeons--score__current-score {
       border-color: #00ff96;
       background-color: rgba(0, 255, 150, 0.25); }
+    .character.class-monk .mdc-linear-progress .mdc-linear-progress__bar-inner {
+      background-color: #00ff96; }
     .character.class-monk::after {
       background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/monk-logo.png"); }
   .character.class-paladin {
@@ -6290,6 +6302,8 @@ a.mdc-list-item {
     .character.class-paladin .character-dungeons--score__current-score {
       border-color: #f58cba;
       background-color: rgba(245, 140, 186, 0.25); }
+    .character.class-paladin .mdc-linear-progress .mdc-linear-progress__bar-inner {
+      background-color: #f58cba; }
     .character.class-paladin::after {
       background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/paladin-logo.png"); }
   .character.class-priest {
@@ -6303,6 +6317,8 @@ a.mdc-list-item {
     .character.class-priest .character-dungeons--score__current-score {
       border-color: #fff;
       background-color: rgba(255, 255, 255, 0.25); }
+    .character.class-priest .mdc-linear-progress .mdc-linear-progress__bar-inner {
+      background-color: #fff; }
     .character.class-priest::after {
       background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/priest-logo.png"); }
   .character.class-rogue {
@@ -6316,6 +6332,8 @@ a.mdc-list-item {
     .character.class-rogue .character-dungeons--score__current-score {
       border-color: #fff569;
       background-color: rgba(255, 245, 105, 0.25); }
+    .character.class-rogue .mdc-linear-progress .mdc-linear-progress__bar-inner {
+      background-color: #fff569; }
     .character.class-rogue::after {
       background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/rogue-logo.png"); }
   .character.class-shaman {
@@ -6329,6 +6347,8 @@ a.mdc-list-item {
     .character.class-shaman .character-dungeons--score__current-score {
       border-color: #0070de;
       background-color: rgba(0, 112, 222, 0.25); }
+    .character.class-shaman .mdc-linear-progress .mdc-linear-progress__bar-inner {
+      background-color: #0070de; }
     .character.class-shaman::after {
       background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/shaman-logo.png"); }
   .character.class-warlock {
@@ -6342,6 +6362,8 @@ a.mdc-list-item {
     .character.class-warlock .character-dungeons--score__current-score {
       border-color: #9482c9;
       background-color: rgba(148, 130, 201, 0.25); }
+    .character.class-warlock .mdc-linear-progress .mdc-linear-progress__bar-inner {
+      background-color: #9482c9; }
     .character.class-warlock::after {
       background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/warlock-logo.png"); }
   .character.class-warrior {
@@ -6355,6 +6377,8 @@ a.mdc-list-item {
     .character.class-warrior .character-dungeons--score__current-score {
       border-color: #c79c6e;
       background-color: rgba(199, 156, 110, 0.25); }
+    .character.class-warrior .mdc-linear-progress .mdc-linear-progress__bar-inner {
+      background-color: #c79c6e; }
     .character.class-warrior::after {
       background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/warrior-logo.png"); }
   .character-progression__raid[data-raid="the-emerald-nightmare"], .character-progression__raid[data-raid="trial-of-valor"] {
@@ -6363,8 +6387,8 @@ a.mdc-list-item {
     margin-right: 10px;
     text-transform: capitalize; }
   .character-progression .mdc-linear-progress {
-    height: 10px;
-    margin-bottom: 10px; }
+    height: 8px;
+    margin-bottom: 8px; }
     .character-progression .mdc-linear-progress .mdc-linear-progress__buffer {
       background-color: #202124; }
     .character-progression .mdc-linear-progress .mdc-linear-progress__bar-inner {

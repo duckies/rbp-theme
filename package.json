@@ -48,5 +48,10 @@
         "npm": "6.4.1"
     },
     "sasslintConfig": "./.stylelintrc.yaml",
-    "browserslist": "> 5% in US, not dead"
+    "browserslist": "> 5% in US, not dead",
+    "renovate": {
+        "extends": [
+            "config:base"
+        ]
+    }
 }
