@@ -100,6 +100,11 @@ function getCharacterData() {
  */
 export async function getWoWCharacters() {
   const answerParent = document.querySelector('.form-wow-answer');
+
+  if (!answerParent) {
+    return;
+  }
+
   const answerBody = answerParent.querySelector('.form-question-body');
   const chars = getCharacterData();
 
@@ -107,7 +112,7 @@ export async function getWoWCharacters() {
     return;
   }
 
-  let characters = [];
+  const characters = [];
   for (const hash in chars) {
     if (!characterHashes.includes(hash)) {
       injectCharacterLoader(chars[hash].type);
@@ -117,16 +122,16 @@ export async function getWoWCharacters() {
   }
 
   Promise.all(characters.map((character) => character.getData()))
-    .then(() => {
-      document.querySelectorAll('.character-loader').forEach((el) => {
-        el.classList.add('leaving');
-        window.setTimeout(() => el.remove(), 350);
+      .then(() => {
+        document.querySelectorAll('.character-loader').forEach((el) => {
+          el.classList.add('leaving');
+          window.setTimeout(() => el.remove(), 350);
+        });
+
+        answerBody.insertAdjacentHTML('beforeend',
+            characters.map((character) => character.characterElement).join(''));
+
+        setTimeout(animateProgressBars, 500);
       });
-
-      answerBody.insertAdjacentHTML('beforeend',
-        characters.map((character) => character.characterElement).join(''));
-
-      setTimeout(animateProgressBars, 500);
-    });
 }
 

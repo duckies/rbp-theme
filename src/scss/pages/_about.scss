@@ -3,28 +3,6 @@
 @import "@material/tab-indicator/mdc-tab-indicator";
 @import "@material/tab/mdc-tab";
 
-// This needs to be moved elsewhere.
-.mdc-tab {
-  .mdc-tab__text-label {
-    opacity: 1;
-    font-family: Khand, sans-serif;
-    font-size: 16px;
-    font-weight: bold;
-    letter-spacing: .25px;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, .15);
-  }
-
-  &--active {
-    .mdc-tab__text-label {
-      color: $mdc-theme-secondary;
-    }
-  }
-}
-
-.mdc-tab-indicator__content--underline {
-  background-color: $mdc-theme-secondary !important;
-}
-
 @keyframes rainbow-bg {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }

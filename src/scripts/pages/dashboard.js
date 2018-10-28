@@ -11,7 +11,7 @@ const rejectSound = new Audio('https://s3.amazonaws.com/files.enjin.com/632721/m
  */
 function peskyLinks() {
   document.querySelectorAll('.bbcode_url')
-    .forEach((url) => url.setAttribute('target', '_blank'));
+      .forEach((url) => url.setAttribute('target', '_blank'));
 }
 
 /**
@@ -38,11 +38,11 @@ function cleanupMenu() {
     trash.remove();
 
     document.querySelector('.app_header')
-      .classList.add('app_header_initialized');
+        .classList.add('app_header_initialized');
   }
 
   document.querySelectorAll('.menu_link, .app_sidebar_block')
-  .forEach((menu) => MDCRipple.attachTo(menu));
+      .forEach((menu) => MDCRipple.attachTo(menu));
 }
 
 /**
@@ -53,6 +53,15 @@ function linkNavigationButtons(dashboard) {
   const navbar = document.querySelector('.dashboard-navbar');
   const bar = navbar.querySelector('.mdc-tab-bar');
   const tabs = new MDCTabBar(bar);
+  const location = window.location.pathname.split('/')[2];
+  const locationTab =
+    document.querySelector('.mdc-tab[href*="' + location + '"]');
+
+  if (locationTab) {
+    locationTab.classList.add('mdc-tab--active');
+    const indicator = locationTab.querySelector('.mdc-tab-indicator');
+    indicator.classList.add('mdc-tab-indicator--active');
+  }
 
   if (dashboard) {
     navbar.classList.add('show');
@@ -117,10 +126,10 @@ function createCharacterMutationObserver(target) {
  */
 function imageReplacement() {
   document.querySelectorAll('img[src^="https://assets-cloud.enjin.com/users/"],img[src^="https://resources.enjin.com/profile/images/"],img[src$="site_logo/small.png"]')
-    .forEach((img) => img.src = img.src.replace('small', 'medium'));
+      .forEach((img) => img.src = img.src.replace('small', 'medium'));
 
   document.querySelectorAll('img[src*="/module_appform/thumb"]')
-    .forEach((img) => img.src = img.src.replace('thumb', 'full'));
+      .forEach((img) => img.src = img.src.replace('thumb', 'full'));
 }
 
 /**

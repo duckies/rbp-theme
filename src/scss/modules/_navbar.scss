@@ -51,10 +51,27 @@
 
         min-width: 82px;
         padding: 0 10px;
+
+        .mdc-tab__text-label {
+          opacity: 1;
+          font-family: Khand, sans-serif;
+          font-size: 16px;
+          font-weight: bold;
+          letter-spacing: .25px;
+          text-shadow: 0 1px 3px rgba(0, 0, 0, .15);
+        }
+
+        &--active {
+          background-color: darken($mdc-theme-primary, 3%);
+
+          .mdc-tab__text-label {
+            color: $mdc-theme-secondary;
+          }
+        }
       }
 
-      .mdc-tab--active {
-        background-color: darken($mdc-theme-primary, 3%);
+      .mdc-tab-indicator__content--underline {
+        background-color: $mdc-theme-secondary !important;
       }
     }
   }
