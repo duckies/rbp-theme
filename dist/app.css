@@ -2827,6 +2827,17 @@ div::-webkit-scrollbar-track {
   .mdc-top-app-bar__row {
     height: 85px;
     transition: height 200ms cubic-bezier(0.4, 0, 0.2, 1); }
+    @media (max-width: 991.98px) {
+      .mdc-top-app-bar__row .mdc-tab-bar {
+        display: none; } }
+    .mdc-top-app-bar__row .mdc-tab-bar .mdc-tab {
+      color: #fff;
+      /* @alternate */
+      color: var(--mdc-theme-on-primary, #fff);
+      min-width: 82px;
+      padding: 0 10px; }
+    .mdc-top-app-bar__row .mdc-tab-bar .mdc-tab--active {
+      background-color: #191a1c; }
   .mdc-top-app-bar__section--align-start {
     width: 400px; }
   .mdc-top-app-bar.mdc-top-app-bar--fixed-scrolled .mdc-top-app-bar__row {
@@ -2837,17 +2848,6 @@ div::-webkit-scrollbar-track {
     @media (max-width: 991.98px) {
       .mdc-top-app-bar .mdc-top-app-bar__navigation-icon {
         display: block; } }
-  @media (max-width: 991.98px) {
-    .mdc-top-app-bar .mdc-tab-bar {
-      display: none; } }
-  .mdc-top-app-bar .mdc-tab-bar .mdc-tab {
-    color: #fff;
-    /* @alternate */
-    color: var(--mdc-theme-on-primary, #fff);
-    min-width: 82px;
-    padding: 0 10px; }
-  .mdc-top-app-bar .mdc-tab-bar .mdc-tab--active {
-    background-color: #191a1c; }
   .mdc-top-app-bar .user-menu {
     min-width: 140px;
     margin-left: 39px;
@@ -5648,113 +5648,19 @@ a.mdc-list-item {
   100% {
     transform: translateX(calc(0 - 0%)) translateY(-50%) scale(0.923); } }
 
+.dashboard-navbar {
+  height: 0;
+  transition: height 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: #854feb;
+  overflow: hidden; }
+  .dashboard-navbar.show {
+    height: 48px; }
+
 .module_content_wrap .v2_system_dashboard {
   padding: 0 !important;
   background-color: transparent; }
   .module_content_wrap .v2_system_dashboard .dashboard_menu {
-    display: flex !important;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: center;
-    width: inherit !important;
-    float: none !important;
-    background-color: #191a1c; }
-    .module_content_wrap .v2_system_dashboard .dashboard_menu.v2_sticky {
-      position: inherit;
-      top: inherit; }
-    .module_content_wrap .v2_system_dashboard .dashboard_menu .menu_alert {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 18px;
-      height: 18px;
-      margin: 0;
-      border-radius: 50%;
-      background-color: #854feb;
-      font-family: "Roboto Mono", sans-serif;
-      font-size: 11px;
-      line-height: 18px; }
-    .module_content_wrap .v2_system_dashboard .dashboard_menu .menu_link {
-      --mdc-ripple-fg-size: 0;
-      --mdc-ripple-left: 0;
-      --mdc-ripple-top: 0;
-      --mdc-ripple-fg-scale: 1;
-      --mdc-ripple-fg-translate-end: 0;
-      --mdc-ripple-fg-translate-start: 0;
-      -webkit-tap-highlight-color: transparent;
-      will-change: transform, opacity;
-      display: table-cell !important;
-      position: relative;
-      min-width: 85px;
-      height: auto !important;
-      padding: 0 24px;
-      color: #fff;
-      font-family: Khand, sans-serif;
-      font-size: 16px;
-      font-weight: bold;
-      line-height: 50px;
-      text-transform: uppercase;
-      overflow: hidden; }
-      .module_content_wrap .v2_system_dashboard .dashboard_menu .menu_link::before, .module_content_wrap .v2_system_dashboard .dashboard_menu .menu_link::after {
-        position: absolute;
-        border-radius: 50%;
-        opacity: 0;
-        pointer-events: none;
-        content: ""; }
-      .module_content_wrap .v2_system_dashboard .dashboard_menu .menu_link::before {
-        transition: opacity 15ms linear;
-        z-index: 1; }
-      .module_content_wrap .v2_system_dashboard .dashboard_menu .menu_link.mdc-ripple-upgraded::before {
-        transform: scale(var(--mdc-ripple-fg-scale, 1)); }
-      .module_content_wrap .v2_system_dashboard .dashboard_menu .menu_link.mdc-ripple-upgraded::after {
-        top: 0;
-        /* @noflip */
-        left: 0;
-        transform: scale(0);
-        transform-origin: center center; }
-      .module_content_wrap .v2_system_dashboard .dashboard_menu .menu_link.mdc-ripple-upgraded--unbounded::after {
-        top: var(--mdc-ripple-top, 0);
-        /* @noflip */
-        left: var(--mdc-ripple-left, 0); }
-      .module_content_wrap .v2_system_dashboard .dashboard_menu .menu_link.mdc-ripple-upgraded--foreground-activation::after {
-        animation: 225ms mdc-ripple-fg-radius-in forwards, 75ms mdc-ripple-fg-opacity-in forwards; }
-      .module_content_wrap .v2_system_dashboard .dashboard_menu .menu_link.mdc-ripple-upgraded--foreground-deactivation::after {
-        animation: 150ms mdc-ripple-fg-opacity-out;
-        transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1)); }
-      .module_content_wrap .v2_system_dashboard .dashboard_menu .menu_link::before, .module_content_wrap .v2_system_dashboard .dashboard_menu .menu_link::after {
-        top: calc(50% - 100%);
-        /* @noflip */
-        left: calc(50% - 100%);
-        width: 200%;
-        height: 200%; }
-      .module_content_wrap .v2_system_dashboard .dashboard_menu .menu_link.mdc-ripple-upgraded::after {
-        width: var(--mdc-ripple-fg-size, 100%);
-        height: var(--mdc-ripple-fg-size, 100%); }
-      .module_content_wrap .v2_system_dashboard .dashboard_menu .menu_link::before, .module_content_wrap .v2_system_dashboard .dashboard_menu .menu_link::after {
-        background-color: #fff; }
-      .module_content_wrap .v2_system_dashboard .dashboard_menu .menu_link:hover::before {
-        opacity: 0.08; }
-      .module_content_wrap .v2_system_dashboard .dashboard_menu .menu_link:not(.mdc-ripple-upgraded):focus::before, .module_content_wrap .v2_system_dashboard .dashboard_menu .menu_link.mdc-ripple-upgraded--background-focused::before {
-        transition-duration: 75ms;
-        opacity: 0.24; }
-      .module_content_wrap .v2_system_dashboard .dashboard_menu .menu_link:not(.mdc-ripple-upgraded)::after {
-        transition: opacity 150ms linear; }
-      .module_content_wrap .v2_system_dashboard .dashboard_menu .menu_link:not(.mdc-ripple-upgraded):active::after {
-        transition-duration: 75ms;
-        opacity: 0.32; }
-      .module_content_wrap .v2_system_dashboard .dashboard_menu .menu_link.mdc-ripple-upgraded {
-        --mdc-ripple-fg-opacity: 0.32; }
-      @media (max-width: 1199.98px) {
-        .module_content_wrap .v2_system_dashboard .dashboard_menu .menu_link {
-          padding: 0 16px; } }
-      .module_content_wrap .v2_system_dashboard .dashboard_menu .menu_link[data-href-default="/dashboard/communities"], .module_content_wrap .v2_system_dashboard .dashboard_menu .menu_link[data-href-default="/dashboard/recruitment"] {
-        display: none !important; }
-      .module_content_wrap .v2_system_dashboard .dashboard_menu .menu_link.menu_selected {
-        border-bottom: 2px solid #854feb; }
-      .module_content_wrap .v2_system_dashboard .dashboard_menu .menu_link.hide {
-        display: none !important; }
-    .module_content_wrap .v2_system_dashboard .dashboard_menu .menu_icon {
-      display: none !important; }
+    display: none; }
   .module_content_wrap .v2_system_dashboard .menu_arrow {
     display: none !important; }
   .module_content_wrap .v2_system_dashboard .middle {
@@ -5765,6 +5671,8 @@ a.mdc-list-item {
     font-size: inherit;
     overflow: visible; }
     .module_content_wrap .v2_system_dashboard .applications .form-wow-answer .form-question-title {
+      display: none; }
+    .module_content_wrap .v2_system_dashboard .applications .form-wow-answer .form-question-body .character_list {
       display: none; }
     .module_content_wrap .v2_system_dashboard .applications .app_header {
       display: flex;
@@ -5951,13 +5859,14 @@ a.mdc-list-item {
             background-color: initial;
             line-height: 50px; }
       .module_content_wrap .v2_system_dashboard .applications .app_inner_output_container .form-question {
-        padding: 30px 20px;
+        padding: 20px;
         border-top-color: #202124;
         background-color: #252629;
         word-break: break-word; }
       .module_content_wrap .v2_system_dashboard .applications .app_inner_output_container .form-question-title {
         color: #fff;
-        font-size: 17px; }
+        font-size: 16px;
+        font-weight: bold !important; }
       .module_content_wrap .v2_system_dashboard .applications .app_inner_output_container .appform-item .images {
         display: grid;
         grid-gap: 10px;
@@ -6451,9 +6360,6 @@ a.mdc-list-item {
     display: flex;
     justify-content: center;
     padding: 5px 0; }
-
-.form-wow-answer .form-question-body .character_list {
-  display: none; }
 
 .character-panels {
   display: flex;

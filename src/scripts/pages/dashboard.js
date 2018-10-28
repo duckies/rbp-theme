@@ -1,7 +1,7 @@
 import {MDCRipple} from '@material/ripple';
-import {MDCSnackbar} from '@material/snackbar';
 import * as basicLightbox from 'basiclightbox';
 import initializePage from '../global/global';
+import {MDCTabBar} from '@material/tab-bar';
 import {getWoWCharacters, cleanCharacterHashes} from '../helpers/character';
 
 const rejectSound = new Audio('https://s3.amazonaws.com/files.enjin.com/632721/material/audio/dont-blame-you.mp3');
@@ -18,7 +18,8 @@ function peskyLinks() {
  * Play a stupid sound on rejecting an application.
  */
 function rejectAudio() {
-  const button = document.querySelector('.app_inner_action_approve[data-msg~="reject"]');
+  const button =
+    document.querySelector('.app_inner_action_approve[data-msg~="reject"]');
 
   if (button) {
     button.addEventListener('click', () => rejectSound.play());
@@ -45,6 +46,36 @@ function cleanupMenu() {
 }
 
 /**
+ * Instantiate the navigation bar on the dashboard.
+ * @param {Node} dashboard
+ */
+function linkNavigationButtons(dashboard) {
+  const navbar = document.querySelector('.dashboard-navbar');
+  const bar = navbar.querySelector('.mdc-tab-bar');
+  const tabs = new MDCTabBar(bar);
+
+  if (dashboard) {
+    navbar.classList.add('show');
+    const create =
+      document.querySelector('.menu_link[href="/dashboard/website/create"]');
+
+    if (create) {
+      const tabElem = bar.querySelector('[href="/dashboard/website"]');
+      tabElem.remove();
+    }
+
+    tabs.getTabElements_().forEach((tab) => {
+      const href = tab.getAttribute('href');
+
+      tab.addEventListener('click', (e) => {
+        e.preventDefault();
+        $.fn.systemDashboardLoadPage(href);
+      });
+    });
+  }
+}
+
+/**
  * Watches for applications loaded on dashboard.
  * @param {Node} target
  */
@@ -54,15 +85,16 @@ function createCharacterMutationObserver(target) {
       cleanupMenu();
       mutations.forEach((mutation) => {
         mutation.removedNodes.forEach((node) => {
-          if (node.classList && node.classList.value == 'app_inner_area m_system-dashboard') {
+          if (node.classList &&
+            (node.classList.value == 'app_inner_area m_system-dashboard'
+            || node.classList.value == 'applications')) {
             cleanCharacterHashes();
-            // console.info('[Application]: Application removed: ', characterHashes);
           }
         });
 
         mutation.addedNodes.forEach((node) => {
-          if (node.classList && node.contains(node.querySelector('.character_list'))) {
-            // console.info('[Application]: Application added: ', characterHashes);
+          if (node.classList &&
+            node.contains(node.querySelector('.character_list'))) {
             rejectAudio();
             getWoWCharacters();
             imageReplacement();
@@ -107,6 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const dashboard = document.querySelector('.v2_system_dashboard');
 
   initializePage();
+  linkNavigationButtons(dashboard);
   rejectAudio();
   getWoWCharacters();
   imageReplacement();
