@@ -40,6 +40,23 @@
   &__row {
     height: $toolbar-height;
     transition: height 200ms $mdc-animation-standard-curve-timing-function;
+
+    .mdc-tab-bar {
+      @include media-breakpoint-down(md) {
+        display: none;
+      }
+
+      .mdc-tab {
+        @include mdc-theme-prop(color, on-primary);
+
+        min-width: 82px;
+        padding: 0 10px;
+      }
+
+      .mdc-tab--active {
+        background-color: darken($mdc-theme-primary, 3%);
+      }
+    }
   }
 
   &__section--align-start {
@@ -59,23 +76,6 @@
 
     display: none;
     text-decoration: none;
-  }
-
-  .mdc-tab-bar {
-    @include media-breakpoint-down(md) {
-      display: none;
-    }
-
-    .mdc-tab {
-      @include mdc-theme-prop(color, on-primary);
-
-      min-width: 82px;
-      padding: 0 10px;
-    }
-
-    .mdc-tab--active {
-      background-color: darken($mdc-theme-primary, 3%);
-    }
   }
 
   // A bit of a hack to achieve right-aligned menu.

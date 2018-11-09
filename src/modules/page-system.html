@@ -5,14 +5,14 @@
     </div>
     <div class="mdc-drawer__content">
         <nav class="mdc-list">
-            <a class="mdc-list-item" href="/" aria-selected="true">Home</a>
+            <a class="mdc-list-item" href="/">Home</a>
             <a class="mdc-list-item" href="/about">About Us</a>
             <a class="mdc-list-item" href="/apply">Apply</a>
             <a class="mdc-list-item" href="/roster">Roster</a>
             <a class="mdc-list-item" href="https://www.warcraftlogs.com/guild/id/5825" target="_blank" rel="nofollow">Logs</a>
             <hr class="mdc-list-divider">
             <h6 class="mdc-list-group__subheader">Dashboard</h6>
-            <a class="mdc-list-item" href="/dashboard/applications">Applications</a>
+            <a class="mdc-list-item mdc-list-item--activated" href="/dashboard/applications" aria-selected="true">Applications</a>
             <a class="mdc-list-item" href="/dashboard/messages">Messages</a>
             <a class="mdc-list-item" href="/dashboard/account">Account Settings</a>
         </nav>
@@ -77,7 +77,8 @@
                                 </span>
                                 <div class="mdc-tab__ripple"></div>
                             </a>
-                            <a href="https://www.warcraftlogs.com/guild/id/5825" class="mdc-tab" role="tab" aria-selected="false" tabindex="-1">
+                            <a href="https://www.warcraftlogs.com/guild/id/5825" class="mdc-tab" role="tab"
+                                aria-selected="false" tabindex="-1">
                                 <div class="mdc-tab__content">
                                     <span class="mdc-tab__text-label">Logs</span>
                                 </div>
@@ -94,7 +95,7 @@
                 <button id="user-button" class="user-menu__button mdc-button"></button>
 
                 <div id="guest-menu" class="mdc-menu mdc-menu-surface" tabindex="-1">
-                        <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
+                    <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
                         <li class="mdc-list-item" role="menuitem">
                             <a href="/login">Login</a>
                         </li>
@@ -126,6 +127,81 @@
                 </div>
             </div>
         </section>
+    </div>
+    <div class="dashboard-navbar">
+        <div class="flex-container">
+            <nav class="mdc-tab-bar" role="tablist">
+                <div class="mdc-tab-scroller">
+                    <div class="mdc-tab-scroller__scroll-area mdc-tab-scroller__scroll-area--scroll">
+                        <div class="mdc-tab-scroller__scroll-content">
+                            <a href="/dashboard/activity" class="mdc-tab" role="tab" aria-selected="false" tabindex="-1">
+                                <div class="mdc-tab__content">
+                                    <span class="mdc-tab__text-label">Activity</span>
+                                </div>
+                                <span class="mdc-tab-indicator">
+                                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                </span>
+                                <div class="mdc-tab__ripple"></div>
+                            </a>
+                            <a href="/dashboard/messages" class="mdc-tab" role="tab" aria-selected="false" tabindex="-1">
+                                <div class="mdc-tab__content">
+                                    <span class="mdc-tab__text-label">Messages</span>
+                                </div>
+                                <span class="mdc-tab-indicator">
+                                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                </span>
+                                <div class="mdc-tab__ripple"></div>
+                            </a>
+                            <a href="/dashboard/applications" class="mdc-tab" role="tab" aria-selected="false" tabindex="-1">
+                                <div class="mdc-tab__content">
+                                    <span class="mdc-tab__text-label">Applications</span>
+                                </div>
+                                <span class="mdc-tab-indicator">
+                                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                </span>
+                                <div class="mdc-tab__ripple"></div>
+                            </a>
+                            <a href="/dashboard/friends" class="mdc-tab" role="tab" aria-selected="false" tabindex="-1">
+                                <div class="mdc-tab__content">
+                                    <span class="mdc-tab__text-label">Friends</span>
+                                </div>
+                                <span class="mdc-tab-indicator ">
+                                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                </span>
+                                <div class="mdc-tab__ripple"></div>
+                            </a>
+                            <a href="/dashboard/forum" class="mdc-tab" role="tab" aria-selected="false" tabindex="-1">
+                                <div class="mdc-tab__content">
+                                    <span class="mdc-tab__text-label">Forum Feeds</span>
+                                </div>
+                                <span class="mdc-tab-indicator">
+                                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                </span>
+                                <div class="mdc-tab__ripple"></div>
+                            </a>
+                            <a href="/dashboard/account" class="mdc-tab" role="tab" aria-selected="false" tabindex="-1">
+                                <div class="mdc-tab__content">
+                                    <span class="mdc-tab__text-label">Account</span>
+                                </div>
+                                <span class="mdc-tab-indicator">
+                                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                </span>
+                                <div class="mdc-tab__ripple"></div>
+                            </a>
+                            <a href="/dashboard/website" class="mdc-tab" role="tab" aria-selected="false" tabindex="-1">
+                                <div class="mdc-tab__content">
+                                    <span class="mdc-tab__text-label">Website</span>
+                                </div>
+                                <span class="mdc-tab-indicator">
+                                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                </span>
+                                <div class="mdc-tab__ripple"></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
     </div>
 </header>
 

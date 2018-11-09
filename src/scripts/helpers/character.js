@@ -71,7 +71,6 @@ function getCharacterData() {
   const question = document.querySelector('.form-wow-answer');
 
   if (!question) {
-    console.warn('[Application]: Character question not found.');
     return;
   }
 
