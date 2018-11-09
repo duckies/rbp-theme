@@ -21,7 +21,7 @@
         "eslint": "5.8.0",
         "browserslist": "4.3.4",
         "eslint-config-google": "0.11.0",
-        "eslint-plugin-compat": "2.6.2",
+        "eslint-plugin-compat": "2.6.3",
         "flickity": "2.1.2",
         "flickity-bg-lazyload": "1.0.0",
         "gulp": "4.0.0",
