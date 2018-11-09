@@ -37,6 +37,37 @@ $icon-size: 40px;
   }
 }
 
+.sidebar-meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+
+  .mdc-select {
+    height: 36px;
+    margin-right: 20px;
+    border-radius: 0;
+    text-transform: uppercase;
+
+    &:not(.mdc-select--disabled) {
+      background-color: $mdc-theme-secondary;
+    }
+  }
+
+  .mdc-select__native-control {
+    height: 36px;
+    padding-top: 4px;
+    font-weight: 500px;
+    font-size: 14px;
+    letter-spacing: .08929em;
+  }
+
+  .mdc-button {
+    border-radius: 0;
+    background-color: $mdc-theme-secondary;
+  }
+}
+
 .module_content_wrap {
   .v2_system_dashboard {
     padding: 0 !important;
@@ -124,6 +155,8 @@ $icon-size: 40px;
     }
 
     .applications {
+      display: flex;
+      flex-direction: column;
       font-size: inherit;
       overflow: visible;
 
@@ -141,10 +174,12 @@ $icon-size: 40px;
       }
 
       .app_header {
-        display: flex;
+        display: none !important;
+        // display: flex;
         flex-wrap: wrap;
         align-items: center;
         justify-content: center;
+        order: 2;
         height: auto;
         padding: 0;
         background-color: $module-body-background-light;
@@ -175,22 +210,18 @@ $icon-size: 40px;
       }
 
       .app_sidebar {
-        // display: none;
+        order: 1;
         width: auto;
         float: none;
-        background-color: $mdc-theme-primary;
-
-        &_meta {
+        // background-color: $mdc-theme-primary;
+        &_search,
+        &_folder,
+        &_read {
           display: none;
         }
 
         &_bulk {
-          background-color: $mdc-theme-primary;
-          color: $text-ongrey;
-
-          &_turn_on {
-            color: $text-ongrey;
-          }
+          display: none;
         }
 
         &_block {
@@ -200,18 +231,18 @@ $icon-size: 40px;
 
           display: flex;
           // Position: relative necessary for mdc-ripple-surface. Check bug status?
-          position: relative;
+          // position: relative;
           align-items: center;
-          height: auto;
+          height: 80px;
           overflow: hidden;
 
           &_apps_chunk {
             display: grid;
-            padding: 2px;
+            padding: 5px 0;
             grid-template-columns: repeat(4, 1fr);
-            grid-column-gap: 2px;
-            grid-row-gap: 2px;
-            background-color: lighten($mdc-theme-primary, 5%);
+            grid-column-gap: 5px;
+            grid-row-gap: 5px;
+            // background-color: lighten($mdc-theme-primary, 5%);
 
             @include media-breakpoint-down(lg) {
               grid-template-columns: repeat(3, 1fr);
@@ -277,10 +308,14 @@ $icon-size: 40px;
           }
 
           &.unread {
-            background-color: $mdc-theme-primary;
+            background-color: $mdc-theme-secondary;
+
+            .app_user_name {
+              color: $text-ongrey;
+            }
 
             .app_user_avatar {
-              box-shadow: 0 0 0 3px $mdc-theme-secondary;
+              box-shadow: 0 0 0 3px $mdc-theme-primary;
             }
 
             .app_user_text {
@@ -297,8 +332,7 @@ $icon-size: 40px;
             background-color: rgba($mdc-theme-secondary, .6);
 
             .app_user_name {
-              color: lighten($mdc-theme-secondary, 75%);
-              text-shadow: 0 0 3px #000;
+              color: $text-ongrey;
             }
 
             .app_user_text {
@@ -310,20 +344,19 @@ $icon-size: 40px;
       }
 
       .app_inner {
+        order: 3;
         margin-left: 0;
-      }
 
-      .app_inner_title {
-        margin-top: $module-margin * 1.5;
-        background-color: $module-body-background;
-        box-shadow: $module-shadow;
+        &_title {
+          background-color: $module-body-background;
+        }
 
-        .app_inner_header {
+        &_header {
           color: $text-ongrey;
           font-size: 16px;
         }
 
-        .app_inner_actions {
+        &_actions {
           .app_inner_action_button {
             @extend .mdc-button;
             @extend .mdc-button--raised;

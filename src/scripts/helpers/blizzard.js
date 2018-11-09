@@ -105,7 +105,7 @@ export default class Character {
    * Strips characters which may cause lookup issues with funky realms.
    */
   get formattedRealm() {
-    return this.realm.replace(' ', '-');
+    return this.realm.replace(' ', '-').replace('\'', '');
   }
 
   /**
@@ -134,28 +134,7 @@ export default class Character {
    * Creates the character element DOM from object data.
    */
   get characterElement() {
-    console.log(this);
-    const emptyBlizzard = Object.keys(this.blizzard).length > 0;
-
     return this.characterTemplate;
-
-    if (!this.blizzard || emptyBlizzard || this.blizzard.message || this.blizzard.status) {
-      if (this.raiderIO && !this.raiderIO.statusCode) {
-        if (this.blizzard.reason === 'Character unavailable') {
-          this.error = 'BlizzardOutage';
-        } else {
-          this.error = 'NoBlizzardYesRaiderIO';
-        }
-        return this.raiderIOOnlyElement;
-      }
-      this.error = 'NoBoth';
-      return this.blizzardAPIFailureElement;
-    } else if (!this.raiderIO || this.raiderIO.statusCode) {
-      this.error = 'NoRaiderIO';
-      return this.raiderIOFailureElement;
-    } else {
-      return this.apiSuccessElement;
-    }
   }
 
   /**

@@ -1,19 +1,97 @@
 $carousel-height: 600px;
 $carousel-mobile-height: 350px;
 
+.carousel,
+.hero {
+  &-item {
+    position: relative;
+    width: 100%;
+    height: $carousel-height;
+    transition-duration: 250ms;
+    transition-property: opacity, height;
+    transition-timing-function: $mdc-animation-standard-curve-timing-function;
+    background-position: center center;
+    background-size: cover;
+
+    &::before {
+      @include scrim-gradient("to top", $body-background-color);
+
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 50%;
+      content: "";
+    }
+  }
+
+  &-content {
+    position: absolute;
+    bottom: 370px;
+    width: 100%;
+    color: $color-white;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 1);
+
+    &__title {
+      padding: 0 15px;
+      font-family: Khand, sans-serif;
+      font-size: 70px;
+      font-weight: bold;
+      line-height: 1.1;
+      text-transform: uppercase;
+    }
+
+    &__caption {
+      padding: 0 15px;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    @include media-breakpoint-down(sm) {
+      &__title {
+        font-size: 50px;
+      }
+    }
+  }
+}
+
 .carousel {
   height: $carousel-height;
-  overflow: hidden;
 
   .flickity-slider {
     // Prevents flickity transform3D flickering
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
   }
+
+  &-item {
+    opacity: 0;
+
+    &.flickity-bg-lazyloaded {
+      opacity: 1;
+    }
+  }
+
+  &-content {
+    @include media-breakpoint-down(sm) {
+      bottom: 250px;
+    }
+  }
 }
 
 .hero {
   position: relative;
+  height: 400px;
+
+  &-nudge {
+    height: 448px;
+
+    .hero-item,
+    .hero-bg {
+      height: 648px;
+      transition: height 250ms $mdc-animation-standard-curve-timing-function;
+    }
+  }
 
   &-bg {
     position: absolute;
@@ -21,13 +99,10 @@ $carousel-mobile-height: 350px;
     right: 0;
     bottom: 0;
     left: 0;
+    height: $carousel-height;
     animation: fade-in 200ms linear;
     background-position: center center;
     background-size: cover;
-
-    // &[data-unloaded] {
-    //   display: none;
-    // }
 
     &[data-page="system"] {
       background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/heroes/darkportal-compressor.jpg");
@@ -47,71 +122,6 @@ $carousel-mobile-height: 350px;
 
     &[data-page="roster"] {
       background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/heroes/zuldazar_art-compressor.jpg");
-    }
-  }
-}
-
-.carousel-item {
-  transition: opacity .4s $mdc-animation-standard-curve-timing-function;
-  opacity: 0;
-
-  &.flickity-bg-lazyloaded {
-    opacity: 1;
-  }
-}
-
-.carousel,
-.hero {
-  &-item {
-    width: 100%;
-    height: $carousel-height;
-    background-position: center center;
-    background-size: cover;
-
-    &::before {
-      @include scrim-gradient("to top", $body-background-color);
-
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      height: 50%;
-      content: "";
-    }
-  }
-
-  &-content {
-    display: flex;
-    position: relative;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-
-    &__title {
-      margin-bottom: 10px;
-      padding: 0 15px;
-      color: $color-white;
-      font-family: Khand, sans-serif;
-      font-size: 56px;
-      font-weight: bold;
-      line-height: 1.1;
-      text-shadow: 0 1px 4px rgba(0, 0, 0, .5);
-      text-transform: uppercase;
-    }
-
-    &__caption {
-      display: block;
-      padding: 0 15px;
-      color: $color-white;
-      font-size: 18px;
-      line-height: 1.7;
-      text-shadow: 0 1px 4px rgba(0, 0, 0, .5);
-    }
-
-    @include media-breakpoint-down(sm) {
-      &__title {
-        font-size: 45px;
-      }
     }
   }
 }

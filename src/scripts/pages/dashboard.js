@@ -1,8 +1,11 @@
 import {MDCRipple} from '@material/ripple';
+import {MDCSelect} from '@material/select';
+import {MDCMenu} from '@material/menu';
 import * as basicLightbox from 'basiclightbox';
 import initializePage from '../global/global';
 import {MDCTabBar} from '@material/tab-bar';
 import {getWoWCharacters, cleanCharacterHashes} from '../helpers/character';
+import { MDCMenuSurface } from '@material/menu-surface';
 
 const rejectSound = new Audio('https://s3.amazonaws.com/files.enjin.com/632721/material/audio/dont-blame-you.mp3');
 
@@ -32,6 +35,87 @@ function rejectAudio() {
 function cleanupMenu() {
   const trash = document.querySelector('.fa.fa-trash');
   const header = document.querySelector('.app_header');
+  const metaElem = document.querySelector('.app_sidebar_meta');
+
+  if (metaElem && !metaElem.classList.contains('meta-initialized')) {
+    metaElem.insertAdjacentHTML('afterbegin', `
+<div class="mdc-select demo-width-class">
+    <input type="hidden" name="enhanced-select">
+    <i class="mdc-select__dropdown-icon"></i>
+    <div class="mdc-select__selected-text"></div>
+    <div class="mdc-select__menu mdc-menu mdc-menu-surface demo-width-class">
+        <ul class="mdc-list">
+            <li class="mdc-list-item mdc-list-item--selected" data-value="" aria-selected="true">
+            </li>
+            <li class="mdc-list-item" data-value="grains">
+                Bread, Cereal, Rice, and Pasta
+            </li>
+            <li class="mdc-list-item" data-value="vegetables">
+                Vegetables
+            </li>
+            <li class="mdc-list-item" data-value="fruit">
+                Fruit
+            </li>
+        </ul>
+    </div>
+    <span class="mdc-floating-label">Pick a Food Group</span>
+    <div class="mdc-line-ripple"></div>
+</div>
+    <!--<div class="sidebar-meta">
+      <div class="mdc-select">
+        <i class="mdc-select__dropdown-icon"></i>
+        <select class="mdc-select__native-control">
+          <option value="/dashboard/applications">
+            Open
+          </option>
+          <option value="/dashboard/applications/general">
+            General
+          </option>
+          <option value="/dashboard/applications/approved">
+            Approved
+          </option>
+          <option value="/dashboard/applications/rejected">
+            Rejected
+          </option>
+          <option value="/dashboard/applications/archive">
+            Archived
+          </option>
+          <option value="/dashboard/applications/trash">
+            Trash
+          </option>
+        </select>
+        <div class="mdc-line-ripple"></div>
+      </div>
+      <div class="mdc-button mdc-button--raised">
+        My Application
+      </div>
+    </div>-->
+    `);
+
+    metaElem.classList.add('meta-initialized');
+
+    const selectElem = metaElem.querySelector('.mdc-select');
+    // const menuElem = metaElem.querySelector('.mdc-menu');
+    console.log(selectElem);
+    // const menu = new MDCMenu(menuElem);
+    const select = new MDCSelect(selectElem);
+    // const buttonElem = metaElem.querySelector('.mdc-button');
+    // const activeHeader = metaElem.querySelector('.app_header_tab.active');
+
+    if (activeHeader) {
+      const url = activeHeader.href;
+    }
+
+    select.listen('change', () => {
+      $.fn.systemDashboardLoadPage(select.value);
+    });
+
+    const buttonRipple = new MDCRipple(buttonElem);
+    buttonElem.addEventListener('click', () => {
+      $.fn.systemDashboardLoadPage('/dashboard/applications/mine');
+    });
+
+  }
 
   if (trash && header && !header.classList.contains('app_header_initialized')) {
     trash.parentNode.insertAdjacentText('beforeend', 'Trash');
@@ -56,6 +140,11 @@ function linkNavigationButtons(dashboard) {
   const location = window.location.pathname.split('/')[2];
   const locationTab =
     document.querySelector('.mdc-tab[href*="' + location + '"]');
+  const heroElem = document.querySelector('.hero');
+
+  if (heroElem) {
+    heroElem.classList.add('hero-nudge');
+  }
 
   if (locationTab) {
     locationTab.classList.add('mdc-tab--active');
