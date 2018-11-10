@@ -1,4 +1,4 @@
-import {MDCRipple} from '@material/ripple';
+import {MDCRipple} from '@material/ripple/index';
 import initializePage from '../global/global';
 import {getWoWCharacters} from '../helpers/character';
 

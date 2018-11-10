@@ -1,11 +1,9 @@
-import {MDCRipple} from '@material/ripple';
-import {MDCSelect} from '@material/select';
-import {MDCMenu} from '@material/menu';
+import {MDCRipple} from '@material/ripple/index';
+import {MDCSelect} from '@material/select/index';
+import {MDCTabBar} from '@material/tab-bar/index';
 import * as basicLightbox from 'basiclightbox';
 import initializePage from '../global/global';
-import {MDCTabBar} from '@material/tab-bar';
 import {getWoWCharacters, cleanCharacterHashes} from '../helpers/character';
-import { MDCMenuSurface } from '@material/menu-surface';
 
 const rejectSound = new Audio('https://s3.amazonaws.com/files.enjin.com/632721/material/audio/dont-blame-you.mp3');
 
@@ -25,108 +23,168 @@ function rejectAudio() {
     document.querySelector('.app_inner_action_approve[data-msg~="reject"]');
 
   if (button) {
-    button.addEventListener('click', () => rejectSound.play());
+    button.addEventListener('click', () => {
+      // Only scare Shammamain a third of the time.
+      if (Math.random() >= 0.33) {
+        rejectSound.play();
+      }
+    });
   }
 }
 
 /**
- * Initializes MDCRipple and removes trashcan.
+ * Logic for pagination.
+ */
+function paginationHandler() {
+  const parent = document.querySelector('.sidebar-meta');
+  const zombie = document.querySelector('.app_sidebar_pagination');
+  const wrapper = document.querySelector('.sidebar-pagination');
+
+  if (!zombie) {
+    console.info('Pagination data was not found.');
+
+    parent.classList.add('slide-out');
+    setTimeout(wrapper.remove(), 350);
+    return;
+  }
+
+  const paginators = wrapper.querySelectorAll('.mdc-icon-button');
+  const current = wrapper.querySelector('.sidebar-pagination__text--current');
+  const last = wrapper.querySelector('.sidebar-pagination__text--next');
+  const leftButton = wrapper.querySelector('.sidebar-pagination-icon__current');
+  const rightButton = wrapper.querySelector('.sidebar-pagination-icon__next');
+  const oldLeftButton = zombie.querySelector('.app_sidebar_page_prev');
+  const oldRightButton = zombie.querySelector('.app_sidebar_page_next');
+  const oldCurrent = zombie.querySelector('.app_sidebar_page_current');
+  const oldLast = zombie.querySelector('.app_sidebar_page_last');
+
+  /**
+   * Sets the pagination text.
+   */
+  function setPagination() {
+    current.innerText = oldCurrent.innerText;
+    last.innerText = oldLast.innerText;
+
+    if (current.innerText === '1') {
+      leftButton.setAttribute('disabled', '');
+    } else {
+      leftButton.removeAttribute('disabled');
+    }
+
+    if (current.innerText === oldLast.innerText) {
+      rightButton.setAttribute('disabled', '');
+    } else {
+      rightButton.removeAttribute('disabled');
+    }
+  }
+
+  setPagination();
+
+  leftButton.addEventListener('click', () => {
+    oldLeftButton.click();
+    setPagination();
+  });
+  rightButton.addEventListener('click', () => {
+    oldRightButton.click();
+    setPagination();
+  });
+
+  paginators.forEach((paginator) => {
+    const iconRipple = new MDCRipple(paginator);
+    iconRipple.unbounded = true;
+  });
+}
+
+/**
+ * Initializes the new select menu navigation.
  */
 function cleanupMenu() {
-  const trash = document.querySelector('.fa.fa-trash');
+  const appElem = document.querySelector('.applications');
   const header = document.querySelector('.app_header');
   const metaElem = document.querySelector('.app_sidebar_meta');
 
+  if (!appElem) {
+    return;
+  }
+
   if (metaElem && !metaElem.classList.contains('meta-initialized')) {
     metaElem.insertAdjacentHTML('afterbegin', `
-<div class="mdc-select demo-width-class">
-    <input type="hidden" name="enhanced-select">
-    <i class="mdc-select__dropdown-icon"></i>
-    <div class="mdc-select__selected-text"></div>
-    <div class="mdc-select__menu mdc-menu mdc-menu-surface demo-width-class">
-        <ul class="mdc-list">
-            <li class="mdc-list-item mdc-list-item--selected" data-value="" aria-selected="true">
-            </li>
-            <li class="mdc-list-item" data-value="grains">
-                Bread, Cereal, Rice, and Pasta
-            </li>
-            <li class="mdc-list-item" data-value="vegetables">
-                Vegetables
-            </li>
-            <li class="mdc-list-item" data-value="fruit">
-                Fruit
-            </li>
-        </ul>
-    </div>
-    <span class="mdc-floating-label">Pick a Food Group</span>
-    <div class="mdc-line-ripple"></div>
-</div>
-    <!--<div class="sidebar-meta">
-      <div class="mdc-select">
+    <div class="sidebar-meta">
+      <div class="sidebar-pagination mdc-elevation--z2">
+        <span class="sidebar-pagination__text">Page 
+          <span class="sidebar-pagination__text--current">1</span> of 
+          <span class="sidebar-pagination__text--next">2</span>
+        </span>
+        <button class="mdc-icon-button material-icons sidebar-pagination-icon__current">arrow_back_ios</button>
+        <button class="mdc-icon-button material-icons sidebar-pagination-icon__next">arrow_forward_ios</button>
+      </div>
+      <div class="mdc-select mdc-elevation--z2 sidebar-meta-select">
+        <input type="hidden" name="enhanced-select">
         <i class="mdc-select__dropdown-icon"></i>
-        <select class="mdc-select__native-control">
-          <option value="/dashboard/applications">
-            Open
-          </option>
-          <option value="/dashboard/applications/general">
-            General
-          </option>
-          <option value="/dashboard/applications/approved">
-            Approved
-          </option>
-          <option value="/dashboard/applications/rejected">
-            Rejected
-          </option>
-          <option value="/dashboard/applications/archive">
-            Archived
-          </option>
-          <option value="/dashboard/applications/trash">
-            Trash
-          </option>
-        </select>
+        <div class="mdc-select__selected-text">Open</div>
+        <div class="mdc-select__menu mdc-menu mdc-menu-surface sidebar-meta-select">
+          <ul class="mdc-list">
+            <li class="mdc-list-item mdc-list-item--selected" data-value="/dashboard/applications" aria-selected="true">
+              Open
+            </li>
+            <li class="mdc-list-item" data-value="/dashboard/applications/general">
+              General
+            </li>
+            <li class="mdc-list-item" data-value="/dashboard/applications/approved">
+              Approved
+            </li>
+            <li class="mdc-list-item" data-value="/dashboard/applications/rejected">
+              Rejected
+            </li>
+            <li class="mdc-list-item" data-value="/dashboard/applications/archive">
+              Archived
+            </li>
+            <li class="mdc-list-item" data-value="/dashboard/applications/trash">
+              Trash
+            </li>
+            <li class="mdc-list-item" data-value="/dashboard/applications/mine">
+              My Applications
+            <li>
+          </ul>
+        </div>
+        <span class="mdc-floating-label">Application Category</span>
         <div class="mdc-line-ripple"></div>
       </div>
-      <div class="mdc-button mdc-button--raised">
-        My Application
-      </div>
-    </div>-->
+    </div>
     `);
 
     metaElem.classList.add('meta-initialized');
 
     const selectElem = metaElem.querySelector('.mdc-select');
-    // const menuElem = metaElem.querySelector('.mdc-menu');
-    console.log(selectElem);
-    // const menu = new MDCMenu(menuElem);
+    const menuElem = selectElem.querySelector('.mdc-menu');
     const select = new MDCSelect(selectElem);
-    // const buttonElem = metaElem.querySelector('.mdc-button');
-    // const activeHeader = metaElem.querySelector('.app_header_tab.active');
+    const activeHeader = header.querySelector('.app_header_tab.active');
 
     if (activeHeader) {
-      const url = activeHeader.href;
+      const href = activeHeader.getAttribute('href');
+      const target = menuElem.querySelector('[data-value="' + href + '"]');
+
+      // Switch only if we're not the default value.
+      // Note: Does not set hidden input value!
+      if (target && target.getAttribute('data-value') !== '/dashboard/applications') {
+        const active = menuElem.querySelector('.mdc-list-item--selected');
+        const text = selectElem.querySelector('.mdc-select__selected-text');
+
+        active.classList.remove('mdc-list-item--selected');
+        target.classList.add('mdc-list-item--selected');
+        text.innerText = target.innerText.trim();
+      }
+    } else {
+      console.warn('Active Header was not found.');
+      console.warn(header);
     }
 
-    select.listen('change', () => {
+    paginationHandler();
+
+    select.listen('MDCSelect:change', () => {
       $.fn.systemDashboardLoadPage(select.value);
     });
-
-    const buttonRipple = new MDCRipple(buttonElem);
-    buttonElem.addEventListener('click', () => {
-      $.fn.systemDashboardLoadPage('/dashboard/applications/mine');
-    });
-
   }
-
-  if (trash && header && !header.classList.contains('app_header_initialized')) {
-    trash.parentNode.insertAdjacentText('beforeend', 'Trash');
-    trash.remove();
-
-    document.querySelector('.app_header')
-        .classList.add('app_header_initialized');
-  }
-
-  document.querySelectorAll('.menu_link, .app_sidebar_block')
-      .forEach((menu) => MDCRipple.attachTo(menu));
 }
 
 /**
@@ -237,6 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const dashboard = document.querySelector('.v2_system_dashboard');
 
   initializePage();
+  cleanupMenu();
   linkNavigationButtons(dashboard);
   rejectAudio();
   getWoWCharacters();

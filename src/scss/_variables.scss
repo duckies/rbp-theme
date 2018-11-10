@@ -8,10 +8,11 @@ $media-small-max: 720px;
 $media-medium-min: $media-small-max + 1px;
 $media-medium-max: 1280px;
 
-$mdc-theme-primary: #202124;
-$mdc-theme-secondary: #854feb;
 // $mdc-theme-primary: #202124;
 // $mdc-theme-secondary: #854feb;
+$mdc-theme-primary: #202124;
+$mdc-theme-secondary: #854feb;
+$mdc-theme-surface: lighten($mdc-theme-primary, 3%);
 $mdc-theme-on-primary: #fff;
 $mdc-theme-on-surface: #fff;
 $mdc-theme-on-secondary: red;

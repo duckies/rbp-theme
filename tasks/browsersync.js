@@ -55,6 +55,16 @@ const config = {
       once: true,
       replace: '/vendors~home.js',
     },
+    {
+      match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/vendors~apply~dashboard~home.js',
+      once: true,
+      replace: '/vendors~apply~dashboard~home.js',
+    },
+    {
+      match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/apply~dashboard.js',
+      once: true,
+      replace: '/apply~dashboard.js',
+    },
   ],
 };
 

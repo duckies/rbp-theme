@@ -1,5 +1,6 @@
 @import "@material/textfield/mdc-text-field";
 @import "@material/line-ripple/mdc-line-ripple";
+@import "@material/elevation/mdc-elevation";
 
 $icon-size: 40px;
 
@@ -8,63 +9,161 @@ $icon-size: 40px;
   transition: height 350ms $mdc-animation-standard-curve-timing-function;
   background-color: $mdc-theme-secondary;
   overflow: hidden;
+  will-change: height;
 
   &.show {
     height: 48px;
   }
 
   .mdc-tab {
-    .mdc-tab__text-label {
-      opacity: 1;
-      // font-family: Khand, sans-serif;
-      // font-size: 16px;
-      font-weight: bold;
-      // letter-spacing: .25px;
-      // text-shadow: 0 1px 3px rgba(0, 0, 0, .15);
-    }
-
     &--active {
-      background-color: lighten($mdc-theme-secondary, 5%);
-
       .mdc-tab__text-label {
-        color: #383a3f;
+        color: $text-ongrey;
       }
     }
   }
 
   .mdc-tab-indicator__content--underline {
-    background-color: #383a3f !important;
+    background-color: #fff !important;
+  }
+}
+
+@keyframes slide-out-right {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.sidebar-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  padding: 0 10px 0 20px;
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+  background-color: $mdc-theme-primary;
+  line-height: 56px;
+
+  &__text {
+    min-width: 75px;
+    margin-right: 10px;
+    padding: 0 5px;
+  }
+
+  @include media-breakpoint-down(sm) {
+    padding: 0 10px;
+
+    &__text {
+      margin-right: 5px;
+    }
+  }
+
+  &:hover {
+    box-shadow:
+      rgba(0, 0, 0, .2) 0 2px 4px -1px,
+      rgba(24, 15, 15, .14) 0 4px 5px 0,
+      rgba(0, 0, 0, .12) 0 1px 10px 0;
+  }
+
+  .mdc-icon-button {
+    width: 25px;
+    padding: 0;
+
+    &:disabled {
+      color: darken(#fff, 50%);
+    }
   }
 }
 
 .sidebar-meta {
-  display: flex;
+  display: grid;
   align-items: center;
   justify-content: flex-end;
+  margin-top: -66px;
   margin-bottom: 10px;
+  grid-template-columns: auto auto;
 
-  .mdc-select {
-    height: 36px;
-    margin-right: 20px;
-    border-radius: 0;
-    text-transform: uppercase;
-
-    &:not(.mdc-select--disabled) {
-      background-color: $mdc-theme-secondary;
+  &.slide-out {
+    .sidebar-pagination {
+      animation: slide-out-right 350ms linear;
+      transform: translateX(100%);
+      opacity: 0;
     }
   }
 
-  .mdc-select__native-control {
-    height: 36px;
-    padding-top: 4px;
-    font-weight: 500px;
-    font-size: 14px;
-    letter-spacing: .08929em;
+  .mdc-select {
+    margin-left: 15px;
+    border-radius: 0;
+
+    &:not(.mdc-select--disabled) {
+      background-color: $mdc-theme-primary;
+
+      .mdc-select__selected-text {
+        border-bottom-color: transparent;
+      }
+
+      &.mdc-select--focused {
+        .mdc-floating-label {
+          color: $text-ongrey;
+        }
+
+        .mdc-line-ripple {
+          background-color: $mdc-theme-secondary;
+        }
+      }
+    }
+  }
+
+  &-select {
+    width: 200px;
+    transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+    border: 0;
+
+    &:hover {
+      box-shadow:
+        rgba(0, 0, 0, .2) 0 2px 4px -1px,
+        rgba(24, 15, 15, .14) 0 4px 5px 0,
+        rgba(0, 0, 0, .12) 0 1px 10px 0;
+    }
+
+    .mdc-list-item {
+      padding: 0 0 0 15px;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    margin-top: 0;
+    grid-column-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+
+    .mdc-select {
+      margin-left: 0;
+    }
+
+    &.slide-out {
+      grid-column-gap: 0;
+    }
+
+    &-select {
+      width: auto;
+    }
   }
 
   .mdc-button {
+    height: 56px;
     border-radius: 0;
-    background-color: $mdc-theme-secondary;
+    text-transform: unset;
+    font-size: 16px;
+
+    .material-icons {
+      margin-left: 5px;
+    }
   }
 }
 
@@ -176,44 +275,44 @@ $icon-size: 40px;
       .app_header {
         display: none !important;
         // display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        order: 2;
-        height: auto;
-        padding: 0;
-        background-color: $module-body-background-light;
+        // flex-wrap: wrap;
+        // align-items: center;
+        // justify-content: center;
+        // order: 2;
+        // height: auto;
+        // padding: 0;
+        // background-color: $module-body-background-light;
 
-        &_initialized {
-          display: flex;
-          animation: fade-in 250ms $mdc-animation-standard-curve-timing-function;
-        }
+        // &_initialized {
+        //   display: flex;
+        //   animation: fade-in 250ms $mdc-animation-standard-curve-timing-function;
+        // }
 
-        &_tab {
-          // Prevents "Trash" snapping in.
-          min-width: 79px;
-          min-height: 1px;
-          margin-right: 0;
-          padding: 0 20px;
-          color: $text-ongrey;
-          font-family: "Roboto Mono", sans-serif;
-          font-size: 13px;
+        // &_tab {
+        //   // Prevents "Trash" snapping in.
+        //   min-width: 79px;
+        //   min-height: 1px;
+        //   margin-right: 0;
+        //   padding: 0 20px;
+        //   color: $text-ongrey;
+        //   font-family: "Roboto Mono", sans-serif;
+        //   font-size: 13px;
 
-          .fa {
-            display: none;
-          }
-        }
+        //   .fa {
+        //     display: none;
+        //   }
+        // }
 
-        &_total {
-          display: none;
-        }
+        // &_total {
+        //   display: none;
+        // }
       }
 
       .app_sidebar {
         order: 1;
         width: auto;
         float: none;
-        // background-color: $mdc-theme-primary;
+
         &_search,
         &_folder,
         &_read {
@@ -230,8 +329,7 @@ $icon-size: 40px;
           @include mdc-states;
 
           display: flex;
-          // Position: relative necessary for mdc-ripple-surface. Check bug status?
-          // position: relative;
+          position: relative;
           align-items: center;
           height: 80px;
           overflow: hidden;
@@ -242,7 +340,6 @@ $icon-size: 40px;
             grid-template-columns: repeat(4, 1fr);
             grid-column-gap: 5px;
             grid-row-gap: 5px;
-            // background-color: lighten($mdc-theme-primary, 5%);
 
             @include media-breakpoint-down(lg) {
               grid-template-columns: repeat(3, 1fr);
@@ -329,7 +426,7 @@ $icon-size: 40px;
 
           &.selected {
             border: 0;
-            background-color: rgba($mdc-theme-secondary, .6);
+            background-color: rgba($mdc-theme-secondary, 1);
 
             .app_user_name {
               color: $text-ongrey;
@@ -348,6 +445,7 @@ $icon-size: 40px;
         margin-left: 0;
 
         &_title {
+          margin-top: 20px;
           background-color: $module-body-background;
         }
 

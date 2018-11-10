@@ -1,4 +1,4 @@
-import {MDCLinearProgress} from '@material/linear-progress';
+import {MDCLinearProgress} from '@material/linear-progress/index';
 import {animateProgressBars} from '../helpers/material';
 import Flickity from 'flickity-bg-lazyload';
 import {getRequest} from '../helpers/network';

@@ -1,9 +1,9 @@
-import {MDCRipple} from '@material/ripple';
-import {MDCMenu} from '@material/menu';
-import {MDCMenuSurface} from '@material/menu-surface';
-import {MDCDrawer} from '@material/drawer';
-import {MDCTopAppBar} from '@material/top-app-bar';
-import {MDCTabBar} from '@material/tab-bar';
+import {MDCRipple} from '@material/ripple/index';
+import {MDCMenu} from '@material/menu/index';
+import {MDCMenuSurface} from '@material/menu-surface/index';
+import {MDCDrawer} from '@material/drawer/index';
+import {MDCTopAppBar} from '@material/top-app-bar/index';
+import {MDCTabBar} from '@material/tab-bar/index';
 import {postRequest} from '../helpers/network';
 
 const drawerElem = document.querySelector('.mdc-drawer');

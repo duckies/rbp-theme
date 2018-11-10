@@ -18,7 +18,8 @@ const output = {
 
 const optimization = {
   splitChunks: {
-    chunks: 'initial',
+    chunks: 'all',
+    maxSize: 0,
   },
 };
 
@@ -41,6 +42,7 @@ const config = {
       },
     ],
   },
+  devtool: 'source-map',
 };
 
 /**

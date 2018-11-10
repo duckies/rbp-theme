@@ -48,6 +48,8 @@ $carousel-mobile-height: 350px;
     }
 
     @include media-breakpoint-down(sm) {
+      bottom: 340px;
+
       &__title {
         font-size: 50px;
       }
@@ -103,14 +105,6 @@ $carousel-mobile-height: 350px;
     animation: fade-in 200ms linear;
     background-position: center center;
     background-size: cover;
-
-    &[data-page="system"] {
-      background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/heroes/darkportal-compressor.jpg");
-    }
-
-    &[data-page="about"] {
-      background-image: url("https://s3.amazonaws.com/files.enjin.com/1604436/backgrounds/zandalar_compressed.jpg");
-    }
 
     &[data-page="apply"] {
       background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/heroes/kaldorei.jpg");

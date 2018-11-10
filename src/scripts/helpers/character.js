@@ -1,4 +1,4 @@
-import {MDCSnackbar} from '@material/snackbar';
+import {MDCSnackbar} from '@material/snackbar/index';
 import Character from './blizzard';
 import {animateProgressBars} from '../helpers/material';
 

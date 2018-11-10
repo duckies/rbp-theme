@@ -1,5 +1,5 @@
-import {MDCTabBar} from '@material/tab-bar';
-import {MDCRipple} from '@material/ripple';
+import {MDCTabBar} from '@material/tab-bar/index';
+import {MDCRipple} from '@material/ripple/index';
 import * as basicLightbox from 'basiclightbox';
 import initializePage from '../global/global';
 

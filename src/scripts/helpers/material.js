@@ -1,4 +1,4 @@
-import {MDCLinearProgress} from '@material/linear-progress';
+import {MDCLinearProgress} from '@material/linear-progress/index';
 
 /**
  * Uses timeout to avoid reflow hiding our cute animations.

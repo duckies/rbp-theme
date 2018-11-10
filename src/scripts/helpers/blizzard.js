@@ -48,6 +48,7 @@ export default class Character {
     this.level = data.level;
     this.avatar = data.avatar_url.replace(defaultAvatar, genericAvatar);
     this.isRemovable = (document.querySelector('.m_appform')) ? true : false;
+    this.blizzard = null;
     this.raiderIO = null;
     this.error = null;
   }
@@ -326,7 +327,7 @@ export default class Character {
 
     let elements = '<div class="character-talents__talents">';
     const specialization = this.blizzard.talents
-      .find((id) => id.selected === true);
+        .find((id) => id.selected === true);
     specialization.talents.forEach((talent) => {
       if (talent) {
         elements += `
@@ -370,7 +371,9 @@ export default class Character {
    * Parses character gear.
    */
   get characterGear() {
+    console.log(this);
     if (this.blizzard && this.blizzard.items) {
+      console.log(this.blizzard);
       const items = this.blizzard.items;
       let elements = '<div class="character-gear-items">';
 

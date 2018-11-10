@@ -1,4 +1,4 @@
-import {MDCRipple} from '@material/ripple';
+import {MDCRipple} from '@material/ripple/index';
 import {getRequest} from '../helpers/network';
 import {BlizzardAPI} from '../config/config';
 import initializePage from '../global/global';
