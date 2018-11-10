@@ -21,13 +21,6 @@ const slots = [
   'mainHand',
   'offHand',
 ];
-const errorMap = {
-  'BlizzardOutage': 'Blizzard reports this character is temporarily unavailable on the API.',
-  'NoBoth': 'Character was not found on the armory or RaiderIO. It\'s likely they transferred.',
-  'NoBlizzardYesRaiderIO': 'Character may have transferred. Character is not found on the armory, but is on RaiderIO.',
-  'NoRaiderIO': 'Character was not found on RaiderIO.',
-  'None': '',
-};
 
 /**
  * @class
@@ -86,7 +79,6 @@ export default class Character {
   get cssCharacterClass() {
     return this.characterClass.replace(' ', '-').toLowerCase();
   }
-
 
   /**
    * Gets Blizzard character API url.
@@ -372,8 +364,12 @@ export default class Character {
    */
   get characterGear() {
     console.log(this);
-    if (this.blizzard && this.blizzard.items) {
-      console.log(this.blizzard);
+
+    if (!this.blizzard) {
+      return '<div class="character-error>Blizzard is not responding to our website, talk about rude.</div>';
+    }
+
+    if (this.blizzard.items) {
       const items = this.blizzard.items;
       let elements = '<div class="character-gear-items">';
 
@@ -403,8 +399,17 @@ export default class Character {
       return elements + '</div>';
     }
 
-
-    return '<div class="character-error">Character gear is not available.<br>The character probably transferred.</div>';
+    if (this.blizzard.status) {
+      if (this.blizzard.reason === 'Character not found.') {
+        return '<div class="character-error">This character does not exist.<br>They have likely transferred to a new home.</div>';
+      } else if (this.blizzard.reason === 'Character unavailable') {
+        return '<div class="character-error">The armory is under seige by void lords.<br>Heroes have been dispatched.</div>';
+      } else {
+        return `<div class="character-error">${this.blizzard.reason}</div>`;
+      }
+    } else {
+      return '<div class="character-error">Uknown API error, please contact Duckies.</div>';
+    }
   }
 
   /**

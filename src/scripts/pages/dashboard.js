@@ -4,6 +4,7 @@ import {MDCTabBar} from '@material/tab-bar/index';
 import * as basicLightbox from 'basiclightbox';
 import initializePage from '../global/global';
 import {getWoWCharacters, cleanCharacterHashes} from '../helpers/character';
+import {postRequest} from '../helpers/network';
 
 const rejectSound = new Audio('https://s3.amazonaws.com/files.enjin.com/632721/material/audio/dont-blame-you.mp3');
 
@@ -36,23 +37,22 @@ function rejectAudio() {
  * Logic for pagination.
  */
 function paginationHandler() {
-  const parent = document.querySelector('.sidebar-meta');
+  const parent = document.querySelector('.app-meta');
   const zombie = document.querySelector('.app_sidebar_pagination');
-  const wrapper = document.querySelector('.sidebar-pagination');
+  const wrapper = parent.querySelector('.app-meta-pagination');
 
   if (!zombie) {
-    console.info('Pagination data was not found.');
-
-    parent.classList.add('slide-out');
-    setTimeout(wrapper.remove(), 350);
+    parent.classList.add('mobile-grow');
     return;
+  } else {
+    wrapper.classList.add('active');
   }
 
   const paginators = wrapper.querySelectorAll('.mdc-icon-button');
-  const current = wrapper.querySelector('.sidebar-pagination__text--current');
-  const last = wrapper.querySelector('.sidebar-pagination__text--next');
-  const leftButton = wrapper.querySelector('.sidebar-pagination-icon__current');
-  const rightButton = wrapper.querySelector('.sidebar-pagination-icon__next');
+  const current = wrapper.querySelector('.app-meta-pagination__text--current');
+  const last = wrapper.querySelector('.app-meta-pagination__text--next');
+  const leftButton = wrapper.querySelector('.app-meta-pagination-icon__current');
+  const rightButton = wrapper.querySelector('.app-meta-pagination-icon__next');
   const oldLeftButton = zombie.querySelector('.app_sidebar_page_prev');
   const oldRightButton = zombie.querySelector('.app_sidebar_page_next');
   const oldCurrent = zombie.querySelector('.app_sidebar_page_current');
@@ -109,20 +109,20 @@ function cleanupMenu() {
 
   if (metaElem && !metaElem.classList.contains('meta-initialized')) {
     metaElem.insertAdjacentHTML('afterbegin', `
-    <div class="sidebar-meta">
-      <div class="sidebar-pagination mdc-elevation--z2">
-        <span class="sidebar-pagination__text">Page 
-          <span class="sidebar-pagination__text--current">1</span> of 
-          <span class="sidebar-pagination__text--next">2</span>
+    <div class="app-meta">
+      <div class="app-meta-pagination mdc-elevation--z2">
+        <span class="app-meta-pagination__text">Page 
+          <span class="app-meta-pagination__text--current">1</span> of 
+          <span class="app-meta-pagination__text--next">2</span>
         </span>
-        <button class="mdc-icon-button material-icons sidebar-pagination-icon__current">arrow_back_ios</button>
-        <button class="mdc-icon-button material-icons sidebar-pagination-icon__next">arrow_forward_ios</button>
+        <button class="mdc-icon-button material-icons app-meta-pagination-icon__current">arrow_back_ios</button>
+        <button class="mdc-icon-button material-icons app-meta-pagination-icon__next">arrow_forward_ios</button>
       </div>
-      <div class="mdc-select mdc-elevation--z2 sidebar-meta-select">
+      <div class="mdc-select mdc-elevation--z2 app-meta-select">
         <input type="hidden" name="enhanced-select">
         <i class="mdc-select__dropdown-icon"></i>
         <div class="mdc-select__selected-text">Open</div>
-        <div class="mdc-select__menu mdc-menu mdc-menu-surface sidebar-meta-select">
+        <div class="mdc-select__menu mdc-menu mdc-menu-surface app-meta-select">
           <ul class="mdc-list">
             <li class="mdc-list-item mdc-list-item--selected" data-value="/dashboard/applications" aria-selected="true">
               Open
@@ -232,6 +232,41 @@ function linkNavigationButtons(dashboard) {
 }
 
 /**
+ * Checks how long ago since an applicant
+ * has been seen on the website.
+ */
+async function addLastLogin() {
+  const tooltip = document.querySelector('.app_header_user_avatar');
+
+  if (!tooltip) {
+    return;
+  }
+
+  const response = await postRequest('/api/v1/api.php', {
+    jsonrpc: '2.0',
+    id: Math.round(Math.random() * (999999 - 100000) + 100000),
+    method: 'Stats.get',
+    params: {
+      user_id: tooltip.getAttribute('data-minitooltip-userid'),
+    },
+  });
+
+  if (response.result && response.result.last_seen) {
+    const wrapper = document.querySelector('.app_header_user_details');
+
+    if (!wrapper) {
+      console.warn('User status checked but nowhere to put it.');
+      return;
+    }
+
+    wrapper.insertAdjacentHTML('beforeend',
+        `<div class="app-meta__last-seen">
+            Last seen ${response.result.last_seen}
+         </div>`);
+  }
+}
+
+/**
  * Watches for applications loaded on dashboard.
  * @param {Node} target
  */
@@ -256,6 +291,7 @@ function createCharacterMutationObserver(target) {
             imageReplacement();
             createLightboxes();
             peskyLinks();
+            addLastLogin();
           }
         });
       });
@@ -297,10 +333,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initializePage();
   cleanupMenu();
   linkNavigationButtons(dashboard);
+  addLastLogin();
   rejectAudio();
-  getWoWCharacters();
   imageReplacement();
   createLightboxes();
   peskyLinks();
+  getWoWCharacters();
   createCharacterMutationObserver(dashboard);
 });

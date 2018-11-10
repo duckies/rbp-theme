@@ -91,10 +91,6 @@
     }
 
     .form-question {
-      &.first {
-        padding-top: 15px;
-      }
-
       display: flex;
       flex-wrap: wrap;
       margin-bottom: 10px;
@@ -102,6 +98,10 @@
       border: 0;
       background-color: $mdc-theme-primary;
       box-shadow: $module-shadow;
+
+      &.first {
+        padding-top: 15px;
+      }
 
       &-title {
         order: 1;
@@ -135,6 +135,10 @@
         border-bottom-left-radius: 2px;
         background: linear-gradient(to right, #572d2d, transparent);
         color: #fff;
+      }
+
+      .character_list {
+        display: none;
       }
     }
 

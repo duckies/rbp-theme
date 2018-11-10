@@ -73,7 +73,7 @@ function handleTrayClosing() {
   window.innerHTML = '<i class="material-icons">settings</i>';
 
   document.addEventListener('click', (e) => {
-    let active = document.querySelector('.button_click.active');
+    const active = document.querySelector('.button_click.active');
     if (active &&
       !e.target.closest('.button_window') &&
         !e.target.closest('.button_click.active')) {

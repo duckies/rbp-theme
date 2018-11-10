@@ -1,4 +1,4 @@
-import { getRequest } from '../helpers/network';
+import {getRequest} from '../helpers/network';
 
 /**
  * Injects the footer into the system page since

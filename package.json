@@ -44,6 +44,7 @@
         "webpack": "4.25.1"
     },
     "dependencies": {
+        "@sentry/browser": "^4.3.0",
         "material-components-web": "0.41.0",
         "npm": "6.4.1"
     },
