@@ -1284,12 +1284,9 @@ html {
   border: 0;
   background-color: transparent;
   pointer-events: none; }
-<<<<<<< HEAD
-=======
   @media (max-width: 599px) {
     #enjin-tray {
       height: 56px; } }
->>>>>>> 5816ff0fe1db8d0f09876201f35aae26c4657208
   #enjin-tray .buttons {
     display: flex;
     position: absolute;
@@ -2770,34 +2767,6 @@ div::-webkit-scrollbar-track {
 
 .mdc-top-app-bar {
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }
-<<<<<<< HEAD
-  .mdc-top-app-bar__row {
-    transition: height 200ms cubic-bezier(0.4, 0, 0.2, 1); }
-    @media (max-width: 991.98px) {
-      .mdc-top-app-bar__row .mdc-tab-bar {
-        display: none; } }
-    .mdc-top-app-bar__row .mdc-tab-bar .mdc-tab {
-      color: #fff;
-      /* @alternate */
-      color: var(--mdc-theme-on-primary, #fff);
-      min-width: 82px;
-      padding: 0 10px; }
-      .mdc-top-app-bar__row .mdc-tab-bar .mdc-tab .mdc-tab__text-label {
-        opacity: 1;
-        font-family: Khand, sans-serif;
-        font-size: 16px;
-        font-weight: bold;
-        letter-spacing: .25px;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15); }
-      .mdc-top-app-bar__row .mdc-tab-bar .mdc-tab--active {
-        background-color: #191a1c; }
-        .mdc-top-app-bar__row .mdc-tab-bar .mdc-tab--active .mdc-tab__text-label {
-          color: #854feb; }
-    .mdc-top-app-bar__row .mdc-tab-bar .mdc-tab-indicator__content--underline {
-      background-color: #854feb !important; }
-  .mdc-top-app-bar__section--align-start {
-    width: 400px; }
-=======
   @media (max-width: 991.98px) {
     .mdc-top-app-bar__row .mdc-tab-bar {
       display: none; } }
@@ -2822,9 +2791,6 @@ div::-webkit-scrollbar-track {
     background-color: #854feb !important; }
   .mdc-top-app-bar__section--align-start {
     width: 400px; }
-  .mdc-top-app-bar.mdc-top-app-bar--fixed-scrolled .mdc-top-app-bar__row {
-    height: 39px; }
->>>>>>> 5816ff0fe1db8d0f09876201f35aae26c4657208
   .mdc-top-app-bar .mdc-top-app-bar__navigation-icon {
     display: none;
     text-decoration: none; }
