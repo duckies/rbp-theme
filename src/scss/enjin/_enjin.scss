@@ -50,10 +50,6 @@
   background-color: transparent;
   pointer-events: none;
 
-  &.user_tray__scrolled {
-    height: $toolbar-height - 25px;
-  }
-
   .buttons {
     display: flex;
     position: absolute;

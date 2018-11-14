@@ -14,16 +14,16 @@
     padding: 25px 20px;
     grid-template-columns: 3fr 5fr;
     grid-column-gap: 10px;
-    background-position: 25% 37%;
+    background-position: 20% 50%;
     background-size: 185%;
 
     &__gradient {
       position: absolute;
-      background: linear-gradient(to top, $mdc-theme-primary, transparent);
       top: 0;
       right: 0;
       bottom: 0;
       left: 0;
+      background: linear-gradient(to top, $mdc-theme-primary, transparent);
     }
   }
 
