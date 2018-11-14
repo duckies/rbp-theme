@@ -1279,13 +1279,14 @@ html {
   top: 0;
   right: 0;
   left: 0;
-  height: 85px;
+  height: 64px;
   transition: height 200ms cubic-bezier(0.4, 0, 0.2, 1);
   border: 0;
   background-color: transparent;
   pointer-events: none; }
-  #enjin-tray.user_tray__scrolled {
-    height: 60px; }
+  @media (max-width: 599px) {
+    #enjin-tray {
+      height: 56px; } }
   #enjin-tray .buttons {
     display: flex;
     position: absolute;
@@ -2766,35 +2767,32 @@ div::-webkit-scrollbar-track {
 
 .mdc-top-app-bar {
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }
-  .mdc-top-app-bar__row {
-    height: 85px;
-    transition: height 200ms cubic-bezier(0.4, 0, 0.2, 1); }
-    @media (max-width: 991.98px) {
-      .mdc-top-app-bar__row .mdc-tab-bar {
-        display: none; } }
-    .mdc-top-app-bar__row .mdc-tab-bar .mdc-tab {
-      color: #fff;
-      /* @alternate */
-      color: var(--mdc-theme-on-primary, #fff);
-      min-width: 82px;
-      padding: 0 10px; }
-      .mdc-top-app-bar__row .mdc-tab-bar .mdc-tab .mdc-tab__text-label {
-        opacity: 1;
-        font-family: Khand, sans-serif;
-        font-size: 16px;
-        font-weight: bold;
-        letter-spacing: .25px;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15); }
-      .mdc-top-app-bar__row .mdc-tab-bar .mdc-tab--active {
-        background-color: #191a1c; }
-        .mdc-top-app-bar__row .mdc-tab-bar .mdc-tab--active .mdc-tab__text-label {
-          color: #854feb; }
-    .mdc-top-app-bar__row .mdc-tab-bar .mdc-tab-indicator__content--underline {
-      background-color: #854feb !important; }
+  @media (max-width: 991.98px) {
+    .mdc-top-app-bar__row .mdc-tab-bar {
+      display: none; } }
+  .mdc-top-app-bar__row .mdc-tab-bar .mdc-tab {
+    color: #fff;
+    /* @alternate */
+    color: var(--mdc-theme-on-primary, #fff);
+    min-width: 82px;
+    padding: 0 10px; }
+    .mdc-top-app-bar__row .mdc-tab-bar .mdc-tab .mdc-tab__text-label {
+      opacity: 1;
+      font-family: Khand, sans-serif;
+      font-size: 16px;
+      font-weight: bold;
+      letter-spacing: .25px;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15); }
+    .mdc-top-app-bar__row .mdc-tab-bar .mdc-tab--active {
+      background-color: #191a1c; }
+      .mdc-top-app-bar__row .mdc-tab-bar .mdc-tab--active .mdc-tab__text-label {
+        color: #854feb; }
+  .mdc-top-app-bar__row .mdc-tab-bar .mdc-tab-indicator__content--underline {
+    background-color: #854feb !important; }
   .mdc-top-app-bar__section--align-start {
     width: 400px; }
   .mdc-top-app-bar.mdc-top-app-bar--fixed-scrolled .mdc-top-app-bar__row {
-    height: 60px; }
+    height: 39px; }
   .mdc-top-app-bar .mdc-top-app-bar__navigation-icon {
     display: none;
     text-decoration: none; }
@@ -7507,6 +7505,12 @@ a.mdc-list-item {
   grid-column-gap: 10px;
   grid-row-gap: 10px;
   grid-template-columns: repeat(4, 1fr); }
+  @media (max-width: 991.98px) {
+    .roster {
+      grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 767.98px) {
+    .roster {
+      grid-template-columns: 1fr; } }
   .roster--bg {
     display: grid;
     position: absolute;
@@ -7521,11 +7525,11 @@ a.mdc-list-item {
     background-size: 185%; }
     .roster--bg__gradient {
       position: absolute;
-      background: linear-gradient(to top, #202124, transparent);
       top: 0;
       right: 0;
       bottom: 0;
-      left: 0; }
+      left: 0;
+      background: linear-gradient(to top, #202124, transparent); }
   .roster-grid {
     display: grid;
     position: relative;
@@ -7535,12 +7539,6 @@ a.mdc-list-item {
     grid-template-columns: 1fr;
     text-align: center;
     grid-template-rows: 1fr 1fr; }
-  @media (max-width: 991.98px) {
-    .roster {
-      grid-template-columns: repeat(3, 1fr); } }
-  @media (max-width: 767.98px) {
-    .roster {
-      grid-template-columns: repeat(2, 1fr); } }
   .roster--character, .roster--loader {
     --mdc-ripple-fg-size: 0;
     --mdc-ripple-left: 0;
@@ -7550,6 +7548,7 @@ a.mdc-list-item {
     --mdc-ripple-fg-translate-start: 0;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     will-change: transform, opacity;
+    position: relative;
     animation: fade-in 250ms linear;
     background-color: #252629;
     overflow: hidden; }
@@ -7656,7 +7655,8 @@ a.mdc-list-item {
   .roster--info__armory {
     margin-top: 10px; }
   .roster--info__name {
-    font-weight: bold; }
+    font-weight: bold;
+    text-shadow: #000 2px 2px 5px; }
   .roster--avatar {
     justify-self: center;
     border: 2px solid !important;
