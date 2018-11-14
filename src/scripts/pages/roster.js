@@ -39,13 +39,14 @@ const classMap = {
 function createCharacterElements(JSON) {
   return JSON.members.map((member) => {
     return `
-      <div class="roster--character mdc-ripple-target">
-        <div class="roster--bg">
-          <div class="roster--avatar">
-            <img class="roster--avatar__img" src="${BlizzardAPI.AVATAR_BASE + member.character.thumbnail}">
-          </div>
+      <div class="roster--character mdc-ripple-target class-${classMap[member.character.class]} mdc-elevation--z2">
+        <div class="roster--bg" style="background-image: url(${BlizzardAPI.AVATAR_BASE + member.character.thumbnail.replace('avatar', 'main')})">
+          <div class="roster--bg__gradient"></div>
+        </div>
+        <div class="roster-grid">
+          <img class="roster--avatar" src="${BlizzardAPI.AVATAR_BASE + member.character.thumbnail}">
           <div class="roster--info">
-            <div class="roster--info__name class-${classMap[member.character.class]}">${member.character.name}</div>
+            <div class="roster--info__name">${member.character.name}</div>
             <div class="roster--info__rank">${rankMap[member.rank]}</div>
             <div class="roster--info__armory">
               <a href='https://www.worldofwarcraft.com/en-us/character/blackrock/${member.character.name}' target='_blank'>
@@ -72,6 +73,8 @@ async function pullRosterData() {
 
   try {
     const json = await getRequest(BlizzardAPI.rosterURL());
+
+    console.log(json);
 
     sortRoster(json);
     filterRanks(json);

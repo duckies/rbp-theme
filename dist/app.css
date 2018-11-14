@@ -7507,6 +7507,34 @@ a.mdc-list-item {
   grid-column-gap: 10px;
   grid-row-gap: 10px;
   grid-template-columns: repeat(4, 1fr); }
+  .roster--bg {
+    display: grid;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 25px 20px;
+    grid-template-columns: 3fr 5fr;
+    grid-column-gap: 10px;
+    background-position: 25% 37%;
+    background-size: 185%; }
+    .roster--bg__gradient {
+      position: absolute;
+      background: linear-gradient(to top, #202124, transparent);
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0; }
+  .roster-grid {
+    display: grid;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 10px;
+    grid-template-columns: 1fr;
+    text-align: center;
+    grid-template-rows: 1fr 1fr; }
   @media (max-width: 991.98px) {
     .roster {
       grid-template-columns: repeat(3, 1fr); } }
@@ -7522,11 +7550,8 @@ a.mdc-list-item {
     --mdc-ripple-fg-translate-start: 0;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     will-change: transform, opacity;
-    padding: 10px;
     animation: fade-in 250ms linear;
-    border: 1px solid #191a1c;
     background-color: #252629;
-    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.35);
     overflow: hidden; }
     .roster--character::before, .roster--character::after, .roster--loader::before, .roster--loader::after {
       position: absolute;
@@ -7577,42 +7602,65 @@ a.mdc-list-item {
       opacity: 0.32; }
     .roster--character.mdc-ripple-upgraded, .roster--loader.mdc-ripple-upgraded {
       --mdc-ripple-fg-opacity: 0.32; }
+    .roster--character.class-death-knight .roster--info__name, .roster--loader.class-death-knight .roster--info__name {
+      color: #c41f3b; }
+    .roster--character.class-death-knight .roster--avatar, .roster--loader.class-death-knight .roster--avatar {
+      border-color: #c41f3b !important; }
+    .roster--character.class-demon-hunter .roster--info__name, .roster--loader.class-demon-hunter .roster--info__name {
+      color: #a330c9; }
+    .roster--character.class-demon-hunter .roster--avatar, .roster--loader.class-demon-hunter .roster--avatar {
+      border-color: #a330c9 !important; }
+    .roster--character.class-druid .roster--info__name, .roster--loader.class-druid .roster--info__name {
+      color: #ff7d0a; }
+    .roster--character.class-druid .roster--avatar, .roster--loader.class-druid .roster--avatar {
+      border-color: #ff7d0a !important; }
+    .roster--character.class-hunter .roster--info__name, .roster--loader.class-hunter .roster--info__name {
+      color: #abd473; }
+    .roster--character.class-hunter .roster--avatar, .roster--loader.class-hunter .roster--avatar {
+      border-color: #abd473 !important; }
+    .roster--character.class-mage .roster--info__name, .roster--loader.class-mage .roster--info__name {
+      color: #69ccf0; }
+    .roster--character.class-mage .roster--avatar, .roster--loader.class-mage .roster--avatar {
+      border-color: #69ccf0 !important; }
+    .roster--character.class-monk .roster--info__name, .roster--loader.class-monk .roster--info__name {
+      color: #00ff96; }
+    .roster--character.class-monk .roster--avatar, .roster--loader.class-monk .roster--avatar {
+      border-color: #00ff96 !important; }
+    .roster--character.class-paladin .roster--info__name, .roster--loader.class-paladin .roster--info__name {
+      color: #f58cba; }
+    .roster--character.class-paladin .roster--avatar, .roster--loader.class-paladin .roster--avatar {
+      border-color: #f58cba !important; }
+    .roster--character.class-priest .roster--info__name, .roster--loader.class-priest .roster--info__name {
+      color: #fff; }
+    .roster--character.class-priest .roster--avatar, .roster--loader.class-priest .roster--avatar {
+      border-color: #fff !important; }
+    .roster--character.class-rogue .roster--info__name, .roster--loader.class-rogue .roster--info__name {
+      color: #fff569; }
+    .roster--character.class-rogue .roster--avatar, .roster--loader.class-rogue .roster--avatar {
+      border-color: #fff569 !important; }
+    .roster--character.class-shaman .roster--info__name, .roster--loader.class-shaman .roster--info__name {
+      color: #0070de; }
+    .roster--character.class-shaman .roster--avatar, .roster--loader.class-shaman .roster--avatar {
+      border-color: #0070de !important; }
+    .roster--character.class-warlock .roster--info__name, .roster--loader.class-warlock .roster--info__name {
+      color: #9482c9; }
+    .roster--character.class-warlock .roster--avatar, .roster--loader.class-warlock .roster--avatar {
+      border-color: #9482c9 !important; }
+    .roster--character.class-warrior .roster--info__name, .roster--loader.class-warrior .roster--info__name {
+      color: #c79c6e; }
+    .roster--character.class-warrior .roster--avatar, .roster--loader.class-warrior .roster--avatar {
+      border-color: #c79c6e !important; }
   .roster--loader {
-    animation: background-loading-cycle 450ms cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
-    height: 130px; }
+    height: 216px;
+    animation: background-loading-cycle 450ms cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
   .roster--info__armory {
     margin-top: 10px; }
-  .roster--info__name.class-death-knight {
-    color: #c41f3b; }
-  .roster--info__name.class-demon-hunter {
-    color: #a330c9; }
-  .roster--info__name.class-druid {
-    color: #ff7d0a; }
-  .roster--info__name.class-hunter {
-    color: #abd473; }
-  .roster--info__name.class-mage {
-    color: #69ccf0; }
-  .roster--info__name.class-monk {
-    color: #00ff96; }
-  .roster--info__name.class-paladin {
-    color: #f58cba; }
-  .roster--info__name.class-priest {
-    color: #fff; }
-  .roster--info__name.class-rogue {
-    color: #fff569; }
-  .roster--info__name.class-shaman {
-    color: #0070de; }
-  .roster--info__name.class-warlock {
-    color: #9482c9; }
-  .roster--info__name.class-warrior {
-    color: #c79c6e; }
-  .roster--avatar__img {
-    padding: 10px;
-    background-color: #2c2d32; }
-  .roster--bg {
-    display: grid;
-    grid-template-columns: 3fr 5fr;
-    grid-column-gap: 10px; }
+  .roster--info__name {
+    font-weight: bold; }
+  .roster--avatar {
+    justify-self: center;
+    border: 2px solid !important;
+    border-radius: 50%; }
 
 .container.with-header .container_header {
   height: 50px; }
