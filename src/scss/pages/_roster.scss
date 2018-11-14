@@ -4,6 +4,14 @@
   grid-row-gap: 10px;
   grid-template-columns: repeat(4, 1fr);
 
+  @include media-breakpoint-down(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include media-breakpoint-down(sm) {
+    grid-template-columns: 1fr;
+  }
+
   &--bg {
     display: grid;
     position: absolute;
@@ -38,20 +46,13 @@
     grid-template-rows: 1fr 1fr;
   }
 
-  @include media-breakpoint-down(md) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  @include media-breakpoint-down(sm) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   &--character,
   &--loader {
     @include mdc-ripple-surface;
     @include mdc-ripple-radius-bounded;
     @include mdc-states;
 
+    position: relative;
     animation: fade-in 250ms linear;
     background-color: $module-body-background;
     overflow: hidden;
@@ -81,6 +82,7 @@
 
     &__name {
       font-weight: bold;
+      text-shadow: #000 2px 2px 5px;
     }
   }
 
