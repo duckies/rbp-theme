@@ -50,14 +50,11 @@
   background-color: transparent;
   pointer-events: none;
 
-<<<<<<< HEAD
-=======
   // MDCTopAppBar collapses further on mobile.
   @media (max-width: 599px) {
     height: 56px;
   }
 
->>>>>>> 5816ff0fe1db8d0f09876201f35aae26c4657208
   .buttons {
     display: flex;
     position: absolute;
