@@ -27,7 +27,7 @@ $body-background-color: darken($mdc-theme-primary, 5%);
 $mdc-theme-text-primary-on-background: #fff;
 
 // -- Primary Module Coloring -- //
-$module-border: 1px solid lighten($mdc-theme-primary, 3%);
+$module-border: 1px solid darken($mdc-theme-primary, 3%);
 $module-shadow: 0 0 3px 0 rgba(0, 0, 0, .35);
 $module-margin: 10px;
 $module-header-background: darken($mdc-theme-primary, 3%);

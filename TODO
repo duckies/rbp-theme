@@ -1,6 +1,2 @@
 Application:
     * Unselected talents should have a generic icon gap to avoid confusion.
-    * Create templates for the character boxes to avoid duplicate code everywhere.
-
-Dashboard:
-    * Create better system for removing the trash menu without the performance loss.

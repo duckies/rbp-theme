@@ -1,7 +1,7 @@
 import {MDCLinearProgress} from '@material/linear-progress/index';
 import {animateProgressBars} from '../helpers/material';
 import Flickity from 'flickity-bg-lazyload';
-import {getRequest} from '../helpers/network';
+import {getRequest, postRequest} from '../helpers/network';
 import initializePage from '../global/global';
 
 
@@ -41,9 +41,9 @@ async function createRaiderIOElements() {
   try {
     const json = await getRequest(url);
     const elem = document.getElementById('guild-progress');
-    const loaders = document.getElementById('guild-progress__loaders');
+    const loaders = document.querySelector('.guild-progress__loaders');
     const raids = Object.entries(json.raid_progression)
-      .filter((raid) => wanted.includes(raid[0]));
+        .filter((raid) => wanted.includes(raid[0]));
     const ranks = Object.entries(json.raid_rankings).pop()[1];
 
     elem.insertAdjacentHTML('afterbegin', createProgressionElements(raids));
@@ -61,7 +61,7 @@ async function createRaiderIOElements() {
     }
 
     Object.entries(ranks[key]).map(([region, score]) => {
-      let elem = document.querySelector('[data-guild-rank=' + region + ']');
+      const elem = document.querySelector('[data-guild-rank=' + region + ']');
 
       if (elem) {
         elem.insertAdjacentHTML('afterbegin', score);
@@ -119,7 +119,7 @@ function createGroupPayModule() {
 function createProgressionElements(raids) {
   return raids.map(([instance, progress]) => {
     return `
-    <div class="col-12 raid-progress" data-raid="${instance}">
+    <div class="col-12 raid-progress mdc-elevation--z2" data-raid="${instance}">
       <div class="flex-row">
         <div class="col-12 raid-progress__summary">
             <span class="raid-progress__summary-text">${progress.summary}</span>
@@ -141,17 +141,15 @@ function createProgressionElements(raids) {
 /**
  * Uses Enjin standard API to create news boxes.
  */
-function setupNewsModule() {
-  const newsItems = 5;
+async function setupNewsModule() {
   const module = document.getElementById('news-api-wrapper');
   const loaders = document.querySelector('.news--loader');
 
   if (!module) {
-    console.log(document.getElementById('news-api-wrapper'));
     return;
   }
 
-  const request = {
+  const newsData = await postRequest('/api/v1/api.php', {
     jsonrpc: '2.0',
     id: Math.round(Math.random() * (999999 - 100000) + 100000),
     method: 'News.getNews',
@@ -159,25 +157,12 @@ function setupNewsModule() {
       api_key: '1cda2ce03bfa7f559e6b083ca73e514325664ad1982a9bf8',
       preset_id: '47505231',
       page: 1,
-      items: newsItems,
+      items: 6,
     },
-  };
+  });
 
-  fetch('/api/v1/api.php', {
-    method: 'POST',
-    body: JSON.stringify(request),
-    headers: {'Content-Type': 'application/json'},
-  })
-  .then((response) => {
-    if (!response.ok) {
-      throw Error('Enjin API request failed: ', response.statusText);
-    }
-    return response.json();
-    }).then((data) => {
-      console.log(data);
-    module.insertAdjacentHTML('beforeend', createNewsElements(data.result));
-    loaders.remove();
-  }).catch((error) => console.log(error));
+  module.insertAdjacentHTML('beforeend', createNewsElements(newsData.result));
+  loaders.remove();
 }
 
 /**
@@ -192,26 +177,8 @@ function createNewsElements(newsItems) {
     const articleText = responseElem.innerText;
     const articleIMG = responseElem.querySelectorAll('img')[0].src;
 
-    const articleElem = document.createElement('div');
-    const articleBGElem = document.createElement('div');
-    const articleInfoElem = document.createElement('div');
-    const articleTitleElem = document.createElement('h1');
-    const articleBodyElem = document.createElement('p');
-
-    articleElem.classList = 'article col-12';
-    articleBGElem.classList = 'article__bg';
-    articleBGElem.style = 'background-image: url(' + articleIMG + ')';
-    articleTitleElem.innerText = article.title;
-    articleBodyElem.innerText = articleText;
-
-    articleInfoElem.appendChild(articleTitleElem);
-    articleInfoElem.appendChild(articleBodyElem);
-    articleElem.appendChild(articleBGElem);
-    articleElem.appendChild(articleInfoElem);
-
-    console.log(articleElem);
     return `
-    <div class='article col-12'>
+    <div class='article col-12 mdc-elevation--z2'>
       <div class='article__bg' style='background-image: url(${articleIMG})'></div>
       <div class='news-info'>
         <h2 class='news-title'>${article.title}</h2>
@@ -222,7 +189,6 @@ function createNewsElements(newsItems) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.info('Hello');
   initializePage();
   carousel();
   createRaiderIOElements();

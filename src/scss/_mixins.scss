@@ -1,39 +1,9 @@
-@mixin scrim-gradient($direction: "to bottom", $startColor: "black") {
-  $scrimCoordinates: (
-    0: 1,
-    19: .738,
-    34: .541,
-    47: .382,
-    56.5: .278,
-    65: .194,
-    73: .126,
-    80.2: .075,
-    86.1: .042,
-    91: .021,
-    95.2: .008,
-    98.2: .002,
-    100: 0
-  );
-
-  $hue: hue($startColor);
-  $saturation: saturation($startColor);
-  $lightness: lightness($startColor);
-  $stops: ();
-  @each $colorStop, $alphaValue in $scrimCoordinates {
-    $stop: hsla($hue, $saturation, $lightness, $alphaValue)
-      percentage($colorStop/100);
-    $stops: append($stops, $stop, comma);
-  }
-  background: linear-gradient(unquote($direction), $stops);
-}
-
 @mixin with-count($n) {
   @if $n == 1 {
     &:first-child:nth-last-child(1) {
       @content;
     }
-  }
-  @else {
+  } @else {
     &:first-child:nth-last-child(#{$n}),
     &:first-child:nth-last-child(#{$n}) ~ & {
       @content;
@@ -42,26 +12,12 @@
 }
 
 @keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @mixin keyframes($animationName) {
   @keyframes #{$animationName} { @content; }
-}
-
-@include keyframes(fade-to-90) {
-  0% { opacity: 0 }
-  100% { opacity: .9 }
-}
-
-@keyframes fade-in-to-90 {
-  0%   { opacity: 0; }
-  100% { opacity: .9; }
 }
 
 @keyframes fade-in-7 {
@@ -70,12 +26,8 @@
 }
 
 @keyframes height-grow {
-  0% {
-    transform: scaleY(0);
-  }
-  100% {
-    transform: scaleY(1);
-  }
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
 }
 
 @keyframes fade-in-scale-up {
@@ -113,12 +65,8 @@
 }
 
 @keyframes scaleInFromRight {
-  0% {
-    width: 0px;
-  }
-  100% {
-    width: 230px;
-  }
+  from { width: 0; }
+  to { width: 230px; }
 }
 
 @keyframes slide-in-from-left {
@@ -156,7 +104,7 @@
 @mixin loading-fade-in($start: 0, $end: 10) {
   @for $i from $start through $end {
     &:nth-child(#{$i}) {
-      animation-delay: $i * (0.07s);
+      animation-delay: $i * (.07s);
     }
   }
 }

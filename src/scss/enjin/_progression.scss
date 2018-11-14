@@ -14,7 +14,6 @@
     align-content: center;
     height: 120px;
     animation: .3s ease-in-out both fade-in;
-    border: $module-border;
     background-color: $mdc-theme-primary;
     color: #fff;
     text-align: center;
@@ -70,28 +69,22 @@
   }
 }
 
+@keyframes loader-pulsate {
+  from { background: $mdc-theme-primary; }
+  to { background: lighten($mdc-theme-primary, 5%); }
+}
+
 .guild-progress {
   &__loaders {
     .loading {
-      height: 155px;
+      height: 150px;
       margin-bottom: 10px;
-      animation: shimmer 1s infinite linear;
-      animation-fill-mode: forwards;
-      border: 1px solid lighten($mdc-theme-primary, 5%);
-      background:
-        linear-gradient(
-          to right,
-          rgba($mdc-theme-primary, .8) 8%,
-          $mdc-theme-primary 18%,
-          rgba($mdc-theme-primary, .8) 33%
-        );
-      background-size: 800px 104px;
+      animation: loader-pulsate 500ms infinite $mdc-animation-standard-curve-timing-function alternate;
     }
   }
 
   .raid-progress {
     margin-bottom: $module-margin;
-    border: $module-border;
     background-color: $mdc-theme-primary;
     font-family: Khand, sans-serif;
     overflow: hidden;
@@ -112,7 +105,7 @@
       position: absolute;
       width: 110%;
       height: 110%;
-      margin-left: -10px;
+      margin-left: -15px;
       transition: transform 300ms $mdc-animation-standard-curve-timing-function;
       background-position: center center;
       background-size: cover;
@@ -131,9 +124,9 @@
       &::before {
         position: absolute;
         top: 0;
-        right: 0;
+        right: -5px;
         bottom: 0;
-        left: 0;
+        left: -5px;
         background:
           linear-gradient(
             to top,
@@ -220,7 +213,6 @@
   display: flex;
   min-height: 300px;
   margin-bottom: $module-margin;
-  border: $module-border;
   font-size: 15px;
   box-shadow: $module-shadow;
   overflow: hidden;
@@ -229,7 +221,7 @@
     position: absolute;
     width: 110%;
     height: 110%;
-    margin-left: -10px;
+    margin-left: -15px;
     transition: transform 300ms $mdc-animation-standard-curve-timing-function;
     background-position: center center;
     background-size: cover;

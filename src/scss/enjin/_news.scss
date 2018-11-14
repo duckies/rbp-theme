@@ -8,8 +8,7 @@
   &--loader__block {
     height: 200px;
     margin-bottom: 10px;
-    animation: loader-block($mdc-theme-primary) 1s $mdc-animation-standard-curve-timing-function infinite alternate;
-    border: $module-border;
+    animation: loader-pulsate 500ms infinite $mdc-animation-standard-curve-timing-function alternate;
     background: $mdc-theme-primary;
   }
 }
@@ -18,7 +17,6 @@
   display: flex;
   height: 200px;
   margin-bottom: 10px;
-  border: $module-border;
   background-color: $mdc-theme-primary;
   box-shadow: $module-shadow;
   overflow: hidden;

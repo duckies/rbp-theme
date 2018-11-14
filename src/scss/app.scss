@@ -6,7 +6,7 @@
 @import "enjin/enjin";
 @import "enjin/news";
 @import "enjin/progression";
-@import "enjin/recruitment";
+// @import "enjin/recruitment";
 @import "modules/modules";
 @import "structure/responsive";
 @import "pages/dashboard";
@@ -14,16 +14,12 @@
 @import "pages/about";
 @import "pages/roster";
 @import "pages/system";
-@import "vendor/normalize";
+// I don't believe this is necessary.
+// @import "vendor/normalize";
 @import "vendor/flickity";
 @import "vendor/basicLightbox";
-
 @import "@material/list/mdc-list";
 @import "@material/menu-surface/mdc-menu-surface";
 @import "@material/menu/mdc-menu";
 @import "@material/select/mdc-select";
 @import "@material/icon-button/mdc-icon-button";
-
-.demo-width-class {
-  width: 400px;
-}

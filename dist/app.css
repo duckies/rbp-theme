@@ -1,20 +1,8 @@
 @keyframes fade-in {
-  0% {
+  from {
     opacity: 0; }
-  100% {
+  to {
     opacity: 1; } }
-
-@keyframes fade-to-90 {
-  0% {
-    opacity: 0; }
-  100% {
-    opacity: .9; } }
-
-@keyframes fade-in-to-90 {
-  0% {
-    opacity: 0; }
-  100% {
-    opacity: .9; } }
 
 @keyframes fade-in-7 {
   0% {
@@ -23,9 +11,9 @@
     opacity: .7; } }
 
 @keyframes height-grow {
-  0% {
+  from {
     transform: scaleY(0); }
-  100% {
+  to {
     transform: scaleY(1); } }
 
 @keyframes fade-in-scale-up {
@@ -53,9 +41,9 @@
     opacity: 1; } }
 
 @keyframes scaleInFromRight {
-  0% {
-    width: 0px; }
-  100% {
+  from {
+    width: 0; }
+  to {
     width: 230px; } }
 
 @keyframes slide-in-from-left {
@@ -129,7 +117,7 @@ html {
   margin-left: auto; }
 
 .flex-row, #enjin-tray .button .button_window .window_message_container .box,
-#enjin-tray .button .button_window .window_filled_container .box, .special_container .m_recruitmentstatus {
+#enjin-tray .button .button_window .window_filled_container .box {
   display: flex;
   flex-wrap: wrap;
   margin-right: 0;
@@ -139,7 +127,7 @@ html {
   margin-right: 0;
   margin-left: 0; }
   .no-gutters > .col, #enjin-tray .button .button_window .window_message_container .box .no-gutters > .box_data,
-  #enjin-tray .button .button_window .window_filled_container .box .no-gutters > .box_data, .special_container .m_recruitmentstatus .item .no-gutters > .name, .special_container .m_recruitmentstatus .item .no-gutters > .status, .no-gutters > .section-width-large,
+  #enjin-tray .button .button_window .window_filled_container .box .no-gutters > .box_data, .no-gutters > .section-width-large,
   .no-gutters > [class*="col-"] {
     padding-right: 0;
     padding-left: 0; }
@@ -159,9 +147,9 @@ html {
 .contentbox.posts .row .views, .col-2, .col-3, .contentbox.category .row .latest, .contentbox.threads .row .latest, .contentbox.posts .row .latest, .col-4, #enjin-tray .button .button_window .window_message_container .box .box_avatar,
 #enjin-tray .button .button_window .window_filled_container .box .box_avatar, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .section-width-small,
 .section-width-medium, .col, #enjin-tray .button .button_window .window_message_container .box .box_data,
-#enjin-tray .button .button_window .window_filled_container .box .box_data, .special_container .m_recruitmentstatus .item .name, .special_container .m_recruitmentstatus .item .status, .section-width-large,
+#enjin-tray .button .button_window .window_filled_container .box .box_data, .section-width-large,
 .col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm,
-.col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .special_container .m_recruitmentstatus .item, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md,
+.col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md,
 .col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg,
 .col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl,
 .col-xl-auto {
@@ -172,7 +160,7 @@ html {
   padding-left: 0; }
 
 .col, #enjin-tray .button .button_window .window_message_container .box .box_data,
-#enjin-tray .button .button_window .window_filled_container .box .box_data, .special_container .m_recruitmentstatus .item .name, .special_container .m_recruitmentstatus .item .status, .section-width-large {
+#enjin-tray .button .button_window .window_filled_container .box .box_data, .section-width-large {
   flex-basis: 0;
   flex-grow: 1;
   max-width: 100%; }
@@ -440,7 +428,7 @@ html {
   .col-md-3 {
     flex: 0 0 25%;
     max-width: 25%; }
-  .col-md-4, .special_container .m_recruitmentstatus .item {
+  .col-md-4 {
     flex: 0 0 33.33333%;
     max-width: 33.33333%; }
   .col-md-5 {
@@ -547,7 +535,7 @@ html {
   .col-lg-5 {
     flex: 0 0 41.66667%;
     max-width: 41.66667%; }
-  .col-lg-6, .special_container .m_recruitmentstatus .item {
+  .col-lg-6 {
     flex: 0 0 50%;
     max-width: 50%; }
   .col-lg-7 {
@@ -851,7 +839,7 @@ html {
     display: inline-flex !important; } }
 
 .flex-row, #enjin-tray .button .button_window .window_message_container .box,
-#enjin-tray .button .button_window .window_filled_container .box, .special_container .m_recruitmentstatus {
+#enjin-tray .button .button_window .window_filled_container .box {
   flex-direction: row !important; }
 
 .flex-column {
@@ -1499,7 +1487,7 @@ html {
 
 .element_popup {
   animation: fade-in-scale-up-to-90 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid #27282c;
+  border: 1px solid #191a1c;
   box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }
   .element_popup .inner {
     background-color: #202124 !important;
@@ -1562,15 +1550,13 @@ html {
 .news--loader__block {
   height: 200px;
   margin-bottom: 10px;
-  animation: loader-block(#202124) 1s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
-  border: 1px solid #27282c;
+  animation: loader-pulsate 500ms infinite cubic-bezier(0.4, 0, 0.2, 1) alternate;
   background: #202124; }
 
 .article {
   display: flex;
   height: 200px;
   margin-bottom: 10px;
-  border: 1px solid #27282c;
   background-color: #202124;
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.35);
   overflow: hidden; }
@@ -1629,7 +1615,6 @@ html {
   align-content: center;
   height: 120px;
   animation: .3s ease-in-out both fade-in;
-  border: 1px solid #27282c;
   background-color: #202124;
   color: #fff;
   text-align: center;
@@ -1668,18 +1653,19 @@ html {
   .guild-bg__realm {
     background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/icons/blackrock.jpg"); }
 
+@keyframes loader-pulsate {
+  from {
+    background: #202124; }
+  to {
+    background: #2c2d32; } }
+
 .guild-progress__loaders .loading {
-  height: 155px;
+  height: 150px;
   margin-bottom: 10px;
-  animation: shimmer 1s infinite linear;
-  animation-fill-mode: forwards;
-  border: 1px solid #2c2d32;
-  background: linear-gradient(to right, rgba(32, 33, 36, 0.8) 8%, #202124 18%, rgba(32, 33, 36, 0.8) 33%);
-  background-size: 800px 104px; }
+  animation: loader-pulsate 500ms infinite cubic-bezier(0.4, 0, 0.2, 1) alternate; }
 
 .guild-progress .raid-progress {
   margin-bottom: 10px;
-  border: 1px solid #27282c;
   background-color: #202124;
   font-family: Khand, sans-serif;
   overflow: hidden; }
@@ -1691,7 +1677,7 @@ html {
     position: absolute;
     width: 110%;
     height: 110%;
-    margin-left: -10px;
+    margin-left: -15px;
     transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
     background-position: center center;
     background-size: cover;
@@ -1699,15 +1685,15 @@ html {
   .guild-progress .raid-progress:hover::before {
     transform: translateX(10px); }
   .guild-progress .raid-progress .flex-row, .guild-progress .raid-progress #enjin-tray .button .button_window .window_message_container .box, #enjin-tray .button .button_window .window_message_container .guild-progress .raid-progress .box,
-  .guild-progress .raid-progress #enjin-tray .button .button_window .window_filled_container .box, #enjin-tray .button .button_window .window_filled_container .guild-progress .raid-progress .box, .guild-progress .raid-progress .special_container .m_recruitmentstatus, .special_container .guild-progress .raid-progress .m_recruitmentstatus {
+  .guild-progress .raid-progress #enjin-tray .button .button_window .window_filled_container .box, #enjin-tray .button .button_window .window_filled_container .guild-progress .raid-progress .box {
     align-items: flex-end; }
     .guild-progress .raid-progress .flex-row::before, .guild-progress .raid-progress #enjin-tray .button .button_window .window_message_container .box::before, #enjin-tray .button .button_window .window_message_container .guild-progress .raid-progress .box::before,
-    .guild-progress .raid-progress #enjin-tray .button .button_window .window_filled_container .box::before, #enjin-tray .button .button_window .window_filled_container .guild-progress .raid-progress .box::before, .guild-progress .raid-progress .special_container .m_recruitmentstatus::before, .special_container .guild-progress .raid-progress .m_recruitmentstatus::before {
+    .guild-progress .raid-progress #enjin-tray .button .button_window .window_filled_container .box::before, #enjin-tray .button .button_window .window_filled_container .guild-progress .raid-progress .box::before {
       position: absolute;
       top: 0;
-      right: 0;
+      right: -5px;
       bottom: 0;
-      left: 0;
+      left: -5px;
       background: linear-gradient(to top, #202124 5%, rgba(32, 33, 36, 0));
       content: ""; }
   .guild-progress .raid-progress__summary {
@@ -1768,7 +1754,6 @@ html {
   display: flex;
   min-height: 300px;
   margin-bottom: 10px;
-  border: 1px solid #27282c;
   font-size: 15px;
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.35);
   overflow: hidden; }
@@ -1778,7 +1763,7 @@ html {
     position: absolute;
     width: 110%;
     height: 110%;
-    margin-left: -10px;
+    margin-left: -15px;
     transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
     background-position: center center;
     background-size: cover; }
@@ -1919,42 +1904,6 @@ html {
 
 .grouppay .nameicons {
   display: none; }
-
-.special_container .m_recruitmentstatus {
-  padding: 0 !important;
-  display: flex;
-  justify-content: space-between; }
-  .special_container .m_recruitmentstatus .item {
-    flex-basis: calc(50% - 10px / 2);
-    background-color: #202124;
-    border: 1px solid #27282c;
-    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.35);
-    padding: 5px;
-    margin-bottom: 10px;
-    display: flex; }
-    @media (min-width: 576px) and (max-width: 991.98px) {
-      .special_container .m_recruitmentstatus .item {
-        flex-basis: calc(33% - 10px / 2); } }
-    .special_container .m_recruitmentstatus .item .name {
-      float: none;
-      color: #fff;
-      font-family: 'Khand', sans-serif;
-      text-transform: uppercase;
-      align-items: center;
-      display: flex;
-      font-size: 15px;
-      padding-top: 0;
-      padding-left: 5px; }
-    .special_container .m_recruitmentstatus .item .status {
-      padding: 0;
-      order: 2;
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-end; }
-      .special_container .m_recruitmentstatus .item .status .element_avatar {
-        border: 1px solid #854feb;
-        margin: 2px;
-        top: 0; }
 
 .mdc-snackbar {
   display: flex;
@@ -4333,7 +4282,7 @@ a.mdc-list-item {
     .m_forum .forum-area .forum-stats .inner {
       background-color: #202124; }
     .m_forum .forum-area .forum-stats .totals {
-      border-bottom: 1px solid #27282c; }
+      border-bottom: 1px solid #191a1c; }
   .m_forum .forum-area .tabbox .block-wrap {
     border: 0; }
   .m_forum .forum-area .tabbox .block {
@@ -4353,7 +4302,7 @@ a.mdc-list-item {
   display: flex;
   flex-wrap: wrap;
   height: auto;
-  border-bottom: 1px solid #27282c; }
+  border-bottom: 1px solid #191a1c; }
   @media (max-width: 991.98px) {
     .m_forum.viewforum .block-container .block-filter {
       justify-content: center; } }
@@ -4369,7 +4318,7 @@ a.mdc-list-item {
       color: #fff; }
 
 .m_forum.viewforum .block-container .announcement-separator {
-  border-top: 1px solid #27282c; }
+  border-top: 1px solid #191a1c; }
 
 .contentbox.category, .contentbox.threads, .contentbox.posts {
   margin-bottom: 15px;
@@ -4545,7 +4494,7 @@ a.mdc-list-item {
   background-color: #202124; }
 
 .Editor__moreToolbarDropdown {
-  border: 1px solid #27282c !important;
+  border: 1px solid #191a1c !important;
   border-radius: 0 !important;
   background-color: ligten(#202124, 3%) !important; }
   .Editor__moreToolbarDropdown hr {
@@ -4565,12 +4514,12 @@ a.mdc-list-item {
   background-size: cover; }
   .carousel-item::before,
   .hero-item::before {
-    background: linear-gradient(to top, #141517 0%, rgba(20, 21, 23, 0.738) 19%, rgba(20, 21, 23, 0.541) 34%, rgba(20, 21, 23, 0.382) 47%, rgba(20, 21, 23, 0.278) 56.5%, rgba(20, 21, 23, 0.194) 65%, rgba(20, 21, 23, 0.126) 73%, rgba(20, 21, 23, 0.075) 80.2%, rgba(20, 21, 23, 0.042) 86.1%, rgba(20, 21, 23, 0.021) 91%, rgba(20, 21, 23, 0.008) 95.2%, rgba(20, 21, 23, 0.002) 98.2%, rgba(20, 21, 23, 0) 100%);
     position: absolute;
     right: 0;
     bottom: 0;
     left: 0;
-    height: 50%;
+    height: 100%;
+    background: rgba(20, 21, 23, 0.25) linear-gradient(to top, #141517, transparent 30%);
     content: ""; }
 
 .carousel-content,
@@ -6719,7 +6668,7 @@ a.mdc-list-item {
 .application-info {
   margin-bottom: 20px;
   padding: 20px;
-  border: 1px solid #27282c;
+  border: 1px solid #191a1c;
   background-color: #202124;
   background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/about/app-bg.jpg");
   background-position: top;
@@ -6761,7 +6710,7 @@ a.mdc-list-item {
 .register-warning--info, .register-warning__loader {
   margin-bottom: 20px;
   padding: 20px;
-  border: 1px solid #27282c;
+  border: 1px solid #191a1c;
   background-color: #252629;
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.35); }
 
@@ -6839,7 +6788,7 @@ a.mdc-list-item {
 .submission-info {
   margin-bottom: 20px;
   padding: 20px;
-  border: 1px solid #27282c;
+  border: 1px solid #191a1c;
   background-color: #252629;
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.35); }
 
@@ -7254,12 +7203,12 @@ a.mdc-list-item {
 
 .about {
   background-color: #202124; }
-  .about-tabs {
-    background-color: #222327; }
-    .about-tabs .mdc-tab__ripple::before, .about-tabs .mdc-tab__ripple::after {
-      background-color: #854feb; }
-    .about-tabs .mdc-tab--active {
-      background-color: #191a1c; }
+  .about-tabs .mdc-tab--active {
+    background-color: #2c2d32; }
+    .about-tabs .mdc-tab--active .mdc-tab__text-label {
+      color: #fff; }
+  .about-tabs .mdc-tab-indicator__content--underline {
+    background-color: #854feb; }
   .about .panel {
     display: none;
     padding: 25px 30px; }
@@ -7436,7 +7385,7 @@ a.mdc-list-item {
     padding: 20px;
     display: grid;
     grid-gap: 10px;
-    border: 1px solid #27282c;
+    border: 1px solid #191a1c;
     background-color: #252629;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.35); }
   .addon-block--name {
@@ -7470,7 +7419,7 @@ a.mdc-list-item {
   padding: 15px 20px;
   grid-template-columns: 130px 1fr;
   grid-column-gap: 15px;
-  border: 1px solid #27282c;
+  border: 1px solid #191a1c;
   background-color: #252629;
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.35);
   overflow: hidden; }
@@ -7575,7 +7524,7 @@ a.mdc-list-item {
     will-change: transform, opacity;
     padding: 10px;
     animation: fade-in 250ms linear;
-    border: 1px solid #27282c;
+    border: 1px solid #191a1c;
     background-color: #252629;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.35);
     overflow: hidden; }
@@ -7686,208 +7635,53 @@ a.mdc-list-item {
 .m_system-logout {
   background-color: #252629; }
 
-/*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
-/* Document
-   ========================================================================== */
-/**
- * 1. Correct the line height in all browsers.
- * 2. Prevent adjustments of font size after orientation changes in iOS.
- */
-html {
-  line-height: 1.15;
-  /* 1 */
-  -webkit-text-size-adjust: 100%;
-  /* 2 */ }
-
-/* Forms
-   ========================================================================== */
-/**
- * 1. Change the font styles in all browsers.
- * 2. Remove the margin in Firefox and Safari.
- */
-button,
-input,
-optgroup,
-select,
-textarea {
-  font-family: inherit;
-  /* 1 */
-  font-size: 100%;
-  /* 1 */
-  line-height: 1.15;
-  /* 1 */
-  margin: 0;
-  /* 2 */ }
-
-/**
- * Show the overflow in IE.
- * 1. Show the overflow in Edge.
- */
-button,
-input {
-  /* 1 */
-  overflow: visible; }
-
-/**
- * Remove the inheritance of text transform in Edge, Firefox, and IE.
- * 1. Remove the inheritance of text transform in Firefox.
- */
-button,
-select {
-  /* 1 */
-  text-transform: none; }
-
-/**
- * Correct the inability to style clickable types in iOS and Safari.
- */
-button,
-[type="button"],
-[type="reset"],
-[type="submit"] {
-  -webkit-appearance: button; }
-
-/**
- * Remove the inner border and padding in Firefox.
- */
-button::-moz-focus-inner,
-[type="button"]::-moz-focus-inner,
-[type="reset"]::-moz-focus-inner,
-[type="submit"]::-moz-focus-inner {
-  padding: 0;
-  border-style: none; }
-
-/**
- * Restore the focus styles unset by the previous rule.
- */
-button:-moz-focusring,
-[type="button"]:-moz-focusring,
-[type="reset"]:-moz-focusring,
-[type="submit"]:-moz-focusring {
-  outline: 1px dotted ButtonText; }
-
-/**
- * Remove the default vertical scrollbar in IE 10+.
- */
-textarea {
-  overflow: auto; }
-
-/**
- * Correct the cursor style of increment and decrement buttons in Chrome.
- */
-[type="number"]::-webkit-inner-spin-button,
-[type="number"]::-webkit-outer-spin-button {
-  height: auto; }
-
-/**
- * 1. Correct the odd appearance in Chrome and Safari.
- * 2. Correct the outline style in Safari.
- */
-[type="search"] {
-  -webkit-appearance: textfield;
-  /* 1 */
-  outline-offset: -2px;
-  /* 2 */ }
-
-/**
- * Remove the inner padding in Chrome and Safari on macOS.
- */
-[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none; }
-
-/**
- * 1. Correct the inability to style clickable types in iOS and Safari.
- * 2. Change font properties to `inherit` in Safari.
- */
-::-webkit-file-upload-button {
-  font: inherit;
-  /* 2 */
-  -webkit-appearance: button;
-  /* 1 */ }
-
-/* Interactive
-   ========================================================================== */
-/*
- * Add the correct display in Edge, IE 10+, and Firefox.
- */
-details {
-  display: block; }
-
-/*
- * Add the correct display in all browsers.
- */
-summary {
-  display: list-item; }
-
-/* Misc
-   ========================================================================== */
-/**
- * Add the correct display in IE 10+.
- */
-template {
-  display: none; }
-
-/**
- * Add the correct display in IE 10.
- */
-[hidden] {
-  display: none; }
-
 /*! Flickity v2.1.1
 https://flickity.metafizzy.co
 ---------------------------------------------- */
+.flickity-viewport {
+  position: relative;
+  height: 100%;
+  overflow: hidden; }
+
 .flickity-enabled {
   position: relative; }
-
-.flickity-enabled:focus {
-  outline: none; }
-
-.flickity-viewport {
-  overflow: hidden;
-  position: relative;
-  height: 100%; }
+  .flickity-enabled:focus {
+    outline: none; }
+  .flickity-enabled.is-draggable {
+    -webkit-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+    -webkit-user-select: none;
+            user-select: none; }
+    .flickity-enabled.is-draggable .flickity-viewport {
+      cursor: move;
+      cursor: grab; }
+      .flickity-enabled.is-draggable .flickity-viewport.is-pointer-down {
+        cursor: grabbing; }
 
 .flickity-slider {
   position: absolute;
   width: 100%;
   height: 100%; }
 
-/* draggable */
-.flickity-enabled.is-draggable {
-  -webkit-tap-highlight-color: transparent;
-  tap-highlight-color: transparent;
-  -webkit-user-select: none;
-  user-select: none; }
-
-.flickity-enabled.is-draggable .flickity-viewport {
-  cursor: move;
-  cursor: grab; }
-
-.flickity-enabled.is-draggable .flickity-viewport.is-pointer-down {
-  cursor: grabbing; }
-
 /* ---- flickity-button ---- */
 .flickity-button {
   position: absolute;
-  background: rgba(255, 255, 255, 0.75);
   border: none;
+  background: rgba(255, 255, 255, 0.75);
   color: #333; }
-
-.flickity-button:hover {
-  background: white;
-  cursor: pointer; }
-
-.flickity-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 5px #19F; }
-
-.flickity-button:active {
-  opacity: 0.6; }
-
-.flickity-button:disabled {
-  opacity: 0.3;
-  cursor: auto;
-  /* prevent disabled button from capturing pointer up event. #716 */
-  pointer-events: none; }
+  .flickity-button:hover {
+    background: white;
+    cursor: pointer; }
+  .flickity-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 5px #19f; }
+  .flickity-button:active {
+    opacity: .6; }
+  .flickity-button:disabled {
+    opacity: .3;
+    cursor: auto;
+    /* prevent disabled button from capturing pointer up event. #716 */
+    pointer-events: none; }
 
 .flickity-button-icon {
   fill: #333; }
@@ -7897,58 +7691,41 @@ https://flickity.metafizzy.co
   top: 50%;
   width: 44px;
   height: 44px;
-  border-radius: 50%;
-  /* vertically center */
-  transform: translateY(-50%); }
-
-.flickity-prev-next-button.previous {
-  left: 10px; }
-
-.flickity-prev-next-button.next {
-  right: 10px; }
-
-/* right to left */
-.flickity-rtl .flickity-prev-next-button.previous {
-  left: auto;
-  right: 10px; }
-
-.flickity-rtl .flickity-prev-next-button.next {
-  right: auto;
-  left: 10px; }
+  transform: translateY(-50%);
+  border-radius: 50%; }
+  .flickity-prev-next-button.previous {
+    left: 10px; }
+  .flickity-prev-next-button.next {
+    right: 10px; }
 
 .flickity-prev-next-button .flickity-button-icon {
   position: absolute;
-  left: 20%;
   top: 20%;
+  left: 20%;
   width: 60%;
   height: 60%; }
 
 /* ---- page dots ---- */
 .flickity-page-dots {
   position: absolute;
-  width: 100%;
   bottom: -25px;
-  padding: 0;
+  width: 100%;
   margin: 0;
+  padding: 0;
+  line-height: 1;
   list-style: none;
-  text-align: center;
-  line-height: 1; }
-
-.flickity-rtl .flickity-page-dots {
-  direction: rtl; }
-
-.flickity-page-dots .dot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin: 0 8px;
-  background: #333;
-  border-radius: 50%;
-  opacity: 0.25;
-  cursor: pointer; }
-
-.flickity-page-dots .dot.is-selected {
-  opacity: 1; }
+  text-align: center; }
+  .flickity-page-dots.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 8px;
+    border-radius: 50%;
+    background: #333;
+    opacity: .25;
+    cursor: pointer; }
+    .flickity-page-dots.dot.is-selected {
+      opacity: 1; }
 
 .basicLightbox {
   position: fixed;
@@ -7991,8 +7768,6 @@ https://flickity.metafizzy.co
     .basicLightbox__placeholder > video:first-child:last-child {
       width: auto;
       height: auto; }
-    .basicLightbox__placeholder > [data-basicLightbox] {
-      display: block !important; }
   .basicLightbox--img .basicLightbox__placeholder,
   .basicLightbox--video .basicLightbox__placeholder,
   .basicLightbox--iframe .basicLightbox__placeholder {
@@ -8001,9 +7776,6 @@ https://flickity.metafizzy.co
     pointer-events: none; }
   .basicLightbox--visible .basicLightbox__placeholder {
     transform: scale(1); }
-
-[data-basicLightbox] {
-  display: none !important; }
 
 .mdc-list {
   font-family: Roboto, sans-serif;
@@ -9141,6 +8913,3 @@ a.mdc-list-item {
   display: none; }
   .mdc-icon-button--on .mdc-icon-button__icon.mdc-icon-button__icon--on {
     display: inline-block; }
-
-.demo-width-class {
-  width: 400px; }

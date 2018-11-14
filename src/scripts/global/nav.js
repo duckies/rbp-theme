@@ -10,54 +10,26 @@ const drawerElem = document.querySelector('.mdc-drawer');
 const topAppBarElem = document.querySelector('.mdc-top-app-bar');
 const tabBarElem = document.querySelector('.mdc-tab-bar');
 
-/**
- * Class toggle depending on Enjin notification bar location.
- * @param {Node} header
- * @param {int} position
- */
-function scrollEnjinBar(header, position) {
-  if (position > 0) {
-    header.classList.add('user_tray__scrolled');
-  } else {
-    header.classList.remove('user_tray__scrolled');
-  }
-}
 
 /**
- * When the header scrolls past a certain point and collapses,
- * we must also do the same with the #enjin-tray.
+ * Initiates the navigation bar.
  */
-function initScrollingHandler() {
-  const enjinTrayElem = document.getElementById('enjin-tray');
-  let scrollPos = 0;
-  let ticking = false;
-
-  window.addEventListener('scroll', function() {
-    scrollPos = window.scrollY;
-
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        scrollEnjinBar(enjinTrayElem, scrollPos);
-        ticking = false;
-      });
-
-      ticking = true;
-    }
-  });
-}
-
-/**
- * Initiates Material.io navigation bar.
- */
-export function appBar() {
+function initAppBar() {
   const drawerObj = MDCDrawer.attachTo(drawerElem);
   const topBar = MDCTopAppBar.attachTo(topAppBarElem);
-  const tabs = MDCTabBar.attachTo(tabBarElem);
+  const enjinTray = document.querySelector('#enjin-tray');
+  MDCTabBar.attachTo(tabBarElem);
 
-  // bar.setScrollTarget(document.getElementById('page-wrap'));
   topBar.listen('MDCTopAppBar:nav', () => {
     drawerObj.open = !drawerObj.open;
   });
+
+  // Hacky way of applying default scrolling to the tray.
+  // NOTE: Must change MAX_TOP_APP_BAR_HEIGHT to 133
+  // in mdc-top-app-bar constants.js.
+  if (enjinTray) {
+    MDCTopAppBar.attachTo(enjinTray);
+  }
 }
 
 /**
@@ -85,23 +57,32 @@ function handleTrayClosing() {
 /**
  * Requests Enjin for their profile, and creates the dropdown.
  */
-export async function userMenu() {
+async function userMenu() {
   const button = document.getElementById('user-button');
 
-  const request = {
-    jsonrpc: '2.0',
-    id: Math.round(Math.random() * (999999 - 100000) + 100000),
-    method: 'User.get',
-  };
-
   try {
-    const json = await postRequest('/api/v1/api.php', request);
-    const menuSelector = json.result.logged_in ? '#registered-menu' : '#guest-menu';
+    const json = await postRequest('/api/v1/api.php', {
+      jsonrpc: '2.0',
+      id: Math.round(Math.random() * (999999 - 100000) + 100000),
+      method: 'User.get',
+    });
+
+    const menuSelector = json.result.logged_in
+      ? '#registered-menu' : '#guest-menu';
     const menuElem = document.querySelector(menuSelector);
     const menuObj = new MDCMenu(menuElem);
     const menuButton = document.getElementById('user-button');
 
     if (json.result.logged_in) {
+      if (Sentry) {
+        Sentry.configureScope((scope) => {
+          scope.setUser({
+            'username': json.result.username,
+            'raw': json.result,
+          });
+        });
+      }
+
       const joinLink = document.querySelector('.join-site');
 
       button.innerHTML =
@@ -113,9 +94,9 @@ export async function userMenu() {
         const listElem = menuElem.querySelector('.mdc-list');
 
         listElem.insertAdjacentHTML('beforeend',
-          `<li class='mdc-list-item' role='menuitem' tabindex='0'>
-            <a class='join-us' href='#' onclick='Enjin_Core.joinWebsiteRegular(event);return false;' rel='nofollow'>Join Website</a>
-          </li>`);
+            `<li class='mdc-list-item' role='menuitem' tabindex='0'>
+              <a class='join-us' href='#' onclick='Enjin_Core.joinWebsiteRegular(event);return false;' rel='nofollow'>Join Website</a>
+            </li>`);
 
         const linkObj = new link.MDCLink(listElem);
         linkObj.singleSelection = true;
@@ -167,7 +148,6 @@ export async function userMenu() {
  */
 export default function initialize() {
   userMenu();
-  appBar();
+  initAppBar();
   handleTrayClosing();
-  initScrollingHandler();
 };

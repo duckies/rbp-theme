@@ -13,14 +13,20 @@
   background-color: $mdc-theme-primary;
 
   &-tabs {
-    background-color: lighten($mdc-theme-primary, 1%);
+    .mdc-tab {
+      &--active {
+        background-color: lighten($mdc-theme-primary, 5%);
 
-    .mdc-tab__ripple {
-      @include mdc-states-base-color($mdc-theme-secondary);
-    }
+        .mdc-tab__text-label {
+          color: #fff;
+        }
+      }
 
-    .mdc-tab--active {
-      background-color: darken($mdc-theme-primary, 3%);
+      &-indicator {
+        &__content--underline {
+          background-color: $mdc-theme-secondary;
+        }
+      }
     }
   }
 

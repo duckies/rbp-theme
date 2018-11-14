@@ -224,7 +224,163 @@ const i={ROOT:"mdc-list",LIST_ITEM_CLASS:"mdc-list-item",LIST_ITEM_SELECTED_CLAS
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-const i={ROOT:"mdc-menu",MENU_SELECTED_LIST_ITEM:"mdc-menu-item--selected",MENU_SELECTION_GROUP:"mdc-menu__selection-group"},n={SELECTED_EVENT:"MDCMenu:selected",ARIA_SELECTED_ATTR:"aria-selected",LIST_SELECTOR:".mdc-list",CHECKBOX_SELECTOR:'input[type="checkbox"]'}},,,function(t,e,s){"use strict";var i=s(4),n=s(2);var a=s(1);
+const i={ROOT:"mdc-menu",MENU_SELECTED_LIST_ITEM:"mdc-menu-item--selected",MENU_SELECTION_GROUP:"mdc-menu__selection-group"},n={SELECTED_EVENT:"MDCMenu:selected",ARIA_SELECTED_ATTR:"aria-selected",LIST_SELECTOR:".mdc-list",CHECKBOX_SELECTOR:'input[type="checkbox"]'}},function(t,e,s){"use strict";
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */var i=s(4),n=s(2);
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+const a={FIXED_CLASS:"mdc-top-app-bar--fixed",FIXED_SCROLLED_CLASS:"mdc-top-app-bar--fixed-scrolled",SHORT_CLASS:"mdc-top-app-bar--short",SHORT_HAS_ACTION_ITEM_CLASS:"mdc-top-app-bar--short-has-action-item",SHORT_COLLAPSED_CLASS:"mdc-top-app-bar--short-collapsed"},r={DEBOUNCE_THROTTLE_RESIZE_TIME_MS:100,MAX_TOP_APP_BAR_HEIGHT:133},o={ACTION_ITEM_SELECTOR:".mdc-top-app-bar__action-item",NAVIGATION_EVENT:"MDCTopAppBar:nav",NAVIGATION_ICON_SELECTOR:".mdc-top-app-bar__navigation-icon",ROOT_SELECTOR:".mdc-top-app-bar",TITLE_SELECTOR:".mdc-top-app-bar__title"};var c=s(1);
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */class l extends c.a{static get strings(){return o}static get cssClasses(){return a}static get numbers(){return r}static get defaultAdapter(){return{hasClass:()=>{},addClass:()=>{},removeClass:()=>{},setStyle:()=>{},getTopAppBarHeight:()=>{},registerNavigationIconInteractionHandler:()=>{},deregisterNavigationIconInteractionHandler:()=>{},notifyNavigationIconClicked:()=>{},registerScrollHandler:()=>{},deregisterScrollHandler:()=>{},registerResizeHandler:()=>{},deregisterResizeHandler:()=>{},getViewportScrollY:()=>0,getTotalActionItems:()=>0}}constructor(t){super(Object.assign(l.defaultAdapter,t)),this.navClickHandler_=(()=>this.adapter_.notifyNavigationIconClicked()),this.scrollHandler_=(()=>{})}init(){this.adapter_.registerNavigationIconInteractionHandler("click",this.navClickHandler_)}destroy(){this.adapter_.deregisterNavigationIconInteractionHandler("click",this.navClickHandler_)}initScrollHandler(){this.adapter_.registerScrollHandler(this.scrollHandler_)}destroyScrollHandler(){this.adapter_.deregisterScrollHandler(this.scrollHandler_)}}var d=l;
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */var h=class extends d{constructor(t){super(t),this.wasScrolled_=!1,this.scrollHandler_=(()=>this.fixedScrollHandler_())}init(){super.init(),this.adapter_.registerScrollHandler(this.scrollHandler_)}destroy(){super.destroy(),this.adapter_.deregisterScrollHandler(this.scrollHandler_)}fixedScrollHandler_(){this.adapter_.getViewportScrollY()<=0?this.wasScrolled_&&(this.adapter_.removeClass(a.FIXED_SCROLLED_CLASS),this.wasScrolled_=!1):this.wasScrolled_||(this.adapter_.addClass(a.FIXED_SCROLLED_CLASS),this.wasScrolled_=!0)}};
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */var _=class extends d{constructor(t){super(t),this.isCollapsed=!1,this.scrollHandler_=(()=>this.shortAppBarScrollHandler_())}init(){super.init();const t=this.adapter_.hasClass(a.SHORT_COLLAPSED_CLASS);this.adapter_.getTotalActionItems()>0&&this.adapter_.addClass(a.SHORT_HAS_ACTION_ITEM_CLASS),t||(this.adapter_.registerScrollHandler(this.scrollHandler_),this.shortAppBarScrollHandler_())}destroy(){super.destroy(),this.adapter_.deregisterScrollHandler(this.scrollHandler_)}shortAppBarScrollHandler_(){this.adapter_.getViewportScrollY()<=0?this.isCollapsed&&(this.adapter_.removeClass(a.SHORT_COLLAPSED_CLASS),this.isCollapsed=!1):this.isCollapsed||(this.adapter_.addClass(a.SHORT_COLLAPSED_CLASS),this.isCollapsed=!0)}};
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */const u=0;var p=class extends d{constructor(t){super(t),this.lastScrollPosition_=this.adapter_.getViewportScrollY(),this.topAppBarHeight_=this.adapter_.getTopAppBarHeight(),this.wasDocked_=!0,this.isDockedShowing_=!0,this.currentAppBarOffsetTop_=0,this.isCurrentlyBeingResized_=!1,this.resizeThrottleId_=u,this.resizeDebounceId_=u,this.scrollHandler_=(()=>this.topAppBarScrollHandler_()),this.resizeHandler_=(()=>this.topAppBarResizeHandler_())}init(){super.init(),this.adapter_.registerScrollHandler(this.scrollHandler_),this.adapter_.registerResizeHandler(this.resizeHandler_)}destroy(){super.destroy(),this.adapter_.deregisterScrollHandler(this.scrollHandler_),this.adapter_.deregisterResizeHandler(this.resizeHandler_),this.adapter_.setStyle("top","")}checkForUpdate_(){const t=-this.topAppBarHeight_,e=this.currentAppBarOffsetTop_<0,s=this.currentAppBarOffsetTop_>t,i=e&&s;if(i)this.wasDocked_=!1;else{if(!this.wasDocked_)return this.wasDocked_=!0,!0;if(this.isDockedShowing_!==s)return this.isDockedShowing_=s,!0}return i}moveTopAppBar_(){if(this.checkForUpdate_()){let t=this.currentAppBarOffsetTop_;Math.abs(t)>=this.topAppBarHeight_&&(t=-r.MAX_TOP_APP_BAR_HEIGHT),this.adapter_.setStyle("top",t+"px")}}topAppBarScrollHandler_(){const t=Math.max(this.adapter_.getViewportScrollY(),0),e=t-this.lastScrollPosition_;this.lastScrollPosition_=t,this.isCurrentlyBeingResized_||(this.currentAppBarOffsetTop_-=e,this.currentAppBarOffsetTop_>0?this.currentAppBarOffsetTop_=0:Math.abs(this.currentAppBarOffsetTop_)>this.topAppBarHeight_&&(this.currentAppBarOffsetTop_=-this.topAppBarHeight_),this.moveTopAppBar_())}topAppBarResizeHandler_(){this.resizeThrottleId_||(this.resizeThrottleId_=setTimeout(()=>{this.resizeThrottleId_=u,this.throttledResizeHandler_()},r.DEBOUNCE_THROTTLE_RESIZE_TIME_MS)),this.isCurrentlyBeingResized_=!0,this.resizeDebounceId_&&clearTimeout(this.resizeDebounceId_),this.resizeDebounceId_=setTimeout(()=>{this.topAppBarScrollHandler_(),this.isCurrentlyBeingResized_=!1,this.resizeDebounceId_=u},r.DEBOUNCE_THROTTLE_RESIZE_TIME_MS)}throttledResizeHandler_(){const t=this.adapter_.getTopAppBarHeight();this.topAppBarHeight_!==t&&(this.wasDocked_=!1,this.currentAppBarOffsetTop_-=this.topAppBarHeight_-t,this.topAppBarHeight_=t),this.topAppBarScrollHandler_()}};s.d(e,"a",function(){return m});
+/**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+class m extends i.a{constructor(...t){super(...t),this.navIcon_,this.iconRipples_,this.scrollTarget_}initialize(t=(t=>n.a.attachTo(t))){this.navIcon_=this.root_.querySelector(o.NAVIGATION_ICON_SELECTOR);const e=[].slice.call(this.root_.querySelectorAll(o.ACTION_ITEM_SELECTOR));this.navIcon_&&e.push(this.navIcon_),this.iconRipples_=e.map(e=>{const s=t(e);return s.unbounded=!0,s})}destroy(){this.iconRipples_.forEach(t=>t.destroy()),super.destroy()}setScrollTarget(t){this.foundation_.destroyScrollHandler(),this.scrollTarget_=t,this.foundation_.initScrollHandler()}static attachTo(t){return new m(t)}getDefaultFoundation(){const t=Object.assign({hasClass:t=>this.root_.classList.contains(t),addClass:t=>this.root_.classList.add(t),removeClass:t=>this.root_.classList.remove(t),setStyle:(t,e)=>this.root_.style.setProperty(t,e),getTopAppBarHeight:()=>this.root_.clientHeight,registerNavigationIconInteractionHandler:(t,e)=>{this.navIcon_&&this.navIcon_.addEventListener(t,e)},deregisterNavigationIconInteractionHandler:(t,e)=>{this.navIcon_&&this.navIcon_.removeEventListener(t,e)},notifyNavigationIconClicked:()=>{this.emit(o.NAVIGATION_EVENT,{})},registerScrollHandler:t=>this.scrollTarget_.addEventListener("scroll",t),deregisterScrollHandler:t=>this.scrollTarget_.removeEventListener("scroll",t),registerResizeHandler:t=>window.addEventListener("resize",t),deregisterResizeHandler:t=>window.removeEventListener("resize",t),getViewportScrollY:()=>this.scrollTarget_[this.scrollTarget_===window?"pageYOffset":"scrollTop"],getTotalActionItems:()=>this.root_.querySelectorAll(o.ACTION_ITEM_SELECTOR).length});let e;return this.scrollTarget_=window,e=this.root_.classList.contains(a.SHORT_CLASS)?new _(t):this.root_.classList.contains(a.FIXED_CLASS)?new h(t):new p(t)}}},,,function(t,e,s){"use strict";var i=s(4),n=s(2);var a=s(1);
 /**
  * @license
  * Copyright 2018 Google Inc.
@@ -717,7 +873,7 @@ class x extends i.a{constructor(...t){super(...t),this.tabList_,this.tabFactory_
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */let n;var a=s(12),r=(s(31),s(0));s.d(e,"a",function(){return o});
+ */let n;var a=s(13),r=(s(31),s(0));s.d(e,"a",function(){return o});
 /**
  * @license
  * Copyright 2018 Google Inc.
@@ -740,7 +896,7 @@ class x extends i.a{constructor(...t){super(...t),this.tabList_,this.tabFactory_
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-class o extends i.a{constructor(...t){super(...t),this.previousFocus_,this.anchorElement,this.firstFocusableElement_,this.lastFocusableElement_,this.handleKeydown_,this.handleBodyClick_,this.registerBodyClickListener_,this.deregisterBodyClickListener_}static attachTo(t){return new o(t)}initialSyncWithDOM(){this.root_.parentElement&&this.root_.parentElement.classList.contains(r.c.ANCHOR)&&(this.anchorElement=this.root_.parentElement),this.root_.classList.contains(r.c.FIXED)&&this.setFixedPosition(!0),this.handleKeydown_=(t=>this.foundation_.handleKeydown(t)),this.handleBodyClick_=(t=>this.foundation_.handleBodyClick(t)),this.registerBodyClickListener_=(()=>document.body.addEventListener("click",this.handleBodyClick_)),this.deregisterBodyClickListener_=(()=>document.body.removeEventListener("click",this.handleBodyClick_)),this.root_.addEventListener("keydown",this.handleKeydown_),this.root_.addEventListener(r.e.OPENED_EVENT,this.registerBodyClickListener_),this.root_.addEventListener(r.e.CLOSED_EVENT,this.deregisterBodyClickListener_)}destroy(){this.root_.removeEventListener("keydown",this.handleKeydown_),this.root_.removeEventListener(r.e.OPENED_EVENT,this.registerBodyClickListener_),this.root_.removeEventListener(r.e.CLOSED_EVENT,this.deregisterBodyClickListener_),super.destroy()}get open(){return this.foundation_.isOpen()}set open(t){if(t){const t=this.root_.querySelectorAll(r.e.FOCUSABLE_ELEMENTS);this.firstFocusableElement_=t.length>0?t[0]:null,this.lastFocusableElement_=t.length>0?t[t.length-1]:null,this.foundation_.open()}else this.foundation_.close()}hoistMenuToBody(){document.body.appendChild(this.root_.parentElement.removeChild(this.root_)),this.setIsHoisted(!0)}setIsHoisted(t){this.foundation_.setIsHoisted(t)}setMenuSurfaceAnchorElement(t){this.anchorElement=t}setFixedPosition(t){t?this.root_.classList.add(r.c.FIXED):this.root_.classList.remove(r.c.FIXED),this.foundation_.setFixedPosition(t)}setAbsolutePosition(t,e){this.foundation_.setAbsolutePosition(t,e),this.setIsHoisted(!0)}setAnchorCorner(t){this.foundation_.setAnchorCorner(t)}setAnchorMargin(t){this.foundation_.setAnchorMargin(t)}set quickOpen(t){this.foundation_.setQuickOpen(t)}getDefaultFoundation(){return new a.a(Object.assign({addClass:t=>this.root_.classList.add(t),removeClass:t=>this.root_.classList.remove(t),hasClass:t=>this.root_.classList.contains(t),hasAnchor:()=>!!this.anchorElement,notifyClose:()=>this.emit(a.a.strings.CLOSED_EVENT,{}),notifyOpen:()=>this.emit(a.a.strings.OPENED_EVENT,{}),isElementInContainer:t=>this.root_===t||this.root_.contains(t),isRtl:()=>"rtl"===getComputedStyle(this.root_).getPropertyValue("direction"),setTransformOrigin:t=>{this.root_.style[`${function(t,e=!1){if(void 0===n||e){const e="transform"in t.document.createElement("div").style?"transform":"webkitTransform";n=e}return n}(window)}-origin`]=t}},this.getFocusAdapterMethods_(),this.getDimensionAdapterMethods_()))}getFocusAdapterMethods_(){return{isFocused:()=>document.activeElement===this.root_,saveFocus:()=>{this.previousFocus_=document.activeElement},restoreFocus:()=>{this.root_.contains(document.activeElement)&&this.previousFocus_&&this.previousFocus_.focus&&this.previousFocus_.focus()},isFirstElementFocused:()=>this.firstFocusableElement_&&this.firstFocusableElement_===document.activeElement,isLastElementFocused:()=>this.lastFocusableElement_&&this.lastFocusableElement_===document.activeElement,focusFirstElement:()=>this.firstFocusableElement_&&this.firstFocusableElement_.focus&&this.firstFocusableElement_.focus(),focusLastElement:()=>this.lastFocusableElement_&&this.lastFocusableElement_.focus&&this.lastFocusableElement_.focus()}}getDimensionAdapterMethods_(){return{getInnerDimensions:()=>({width:this.root_.offsetWidth,height:this.root_.offsetHeight}),getAnchorDimensions:()=>this.anchorElement&&this.anchorElement.getBoundingClientRect(),getWindowDimensions:()=>({width:window.innerWidth,height:window.innerHeight}),getBodyDimensions:()=>({width:document.body.clientWidth,height:document.body.clientHeight}),getWindowScroll:()=>({x:window.pageXOffset,y:window.pageYOffset}),setPosition:t=>{this.root_.style.left="left"in t?t.left:null,this.root_.style.right="right"in t?t.right:null,this.root_.style.top="top"in t?t.top:null,this.root_.style.bottom="bottom"in t?t.bottom:null},setMaxHeight:t=>{this.root_.style.maxHeight=t}}}}},function(t,e,s){"use strict";s.d(e,"a",function(){return a});var i=s(1),n=(s(31),s(0));class a extends i.a{static get cssClasses(){return n.c}static get strings(){return n.e}static get numbers(){return n.d}static get Corner(){return n.a}static get defaultAdapter(){return{addClass:()=>{},removeClass:()=>{},hasClass:()=>!1,hasAnchor:()=>!1,notifyClose:()=>{},notifyOpen:()=>{},isElementInContainer:()=>!1,isRtl:()=>!1,setTransformOrigin:()=>{},isFocused:()=>!1,saveFocus:()=>{},restoreFocus:()=>{},isFirstElementFocused:()=>{},isLastElementFocused:()=>{},focusFirstElement:()=>{},focusLastElement:()=>{},getInnerDimensions:()=>({}),getAnchorDimensions:()=>({}),getWindowDimensions:()=>({}),getBodyDimensions:()=>({}),getWindowScroll:()=>({}),setPosition:()=>{},setMaxHeight:()=>{}}}constructor(t){super(Object.assign(a.defaultAdapter,t)),this.isOpen_=!1,this.openAnimationEndTimerId_=0,this.closeAnimationEndTimerId_=0,this.animationRequestId_=0,this.dimensions_,this.anchorCorner_=n.a.TOP_START,this.anchorMargin_={top:0,right:0,bottom:0,left:0},this.measures_=null,this.quickOpen_=!1,this.hoistedElement_=!1,this.isFixedPosition_=!1,this.position_={x:0,y:0}}init(){const{ROOT:t,OPEN:e}=a.cssClasses;if(!this.adapter_.hasClass(t))throw new Error(`${t} class required in root element.`);this.adapter_.hasClass(e)&&(this.isOpen_=!0)}destroy(){clearTimeout(this.openAnimationEndTimerId_),clearTimeout(this.closeAnimationEndTimerId_),cancelAnimationFrame(this.animationRequestId_)}setAnchorCorner(t){this.anchorCorner_=t}setAnchorMargin(t){this.anchorMargin_.top="number"==typeof t.top?t.top:0,this.anchorMargin_.right="number"==typeof t.right?t.right:0,this.anchorMargin_.bottom="number"==typeof t.bottom?t.bottom:0,this.anchorMargin_.left="number"==typeof t.left?t.left:0}setIsHoisted(t){this.hoistedElement_=t}setFixedPosition(t){this.isFixedPosition_=t}setAbsolutePosition(t,e){this.position_.x=this.typeCheckisFinite_(t)?t:0,this.position_.y=this.typeCheckisFinite_(e)?e:0}setQuickOpen(t){this.quickOpen_=t}handleBodyClick(t){const e=t.target;this.adapter_.isElementInContainer(e)||this.close()}handleKeydown(t){const{keyCode:e,key:s,shiftKey:i}=t,n="Tab"===s||9===e;"Escape"===s||27===e?this.close():n&&(this.adapter_.isLastElementFocused()&&!i?(this.adapter_.focusFirstElement(),t.preventDefault()):this.adapter_.isFirstElementFocused()&&i&&(this.adapter_.focusLastElement(),t.preventDefault()))}getAutoLayoutMeasurements_(){let t=this.adapter_.getAnchorDimensions();const e=this.adapter_.getWindowDimensions(),s=this.adapter_.getBodyDimensions(),i=this.adapter_.getWindowScroll();return t||(t={x:this.position_.x,y:this.position_.y,top:this.position_.y,bottom:this.position_.y,left:this.position_.x,right:this.position_.x,height:0,width:0}),{viewport:e,bodyDimensions:s,windowScroll:i,viewportDistance:{top:t.top,right:e.width-t.right,left:t.left,bottom:e.height-t.bottom},anchorHeight:t.height,anchorWidth:t.width,surfaceHeight:this.dimensions_.height,surfaceWidth:this.dimensions_.width}}getOriginCorner_(){let t=n.a.TOP_LEFT;const{viewportDistance:e,anchorHeight:s,anchorWidth:i,surfaceHeight:a,surfaceWidth:r}=this.measures_,o=Boolean(this.anchorCorner_&n.b.BOTTOM),c=o?e.top+s+this.anchorMargin_.bottom:e.top+this.anchorMargin_.top,l=a-(o?e.bottom-this.anchorMargin_.bottom:e.bottom+s-this.anchorMargin_.top);l>0&&a-c<l&&(t|=n.b.BOTTOM);const d=this.adapter_.isRtl(),h=Boolean(this.anchorCorner_&n.b.FLIP_RTL),_=Boolean(this.anchorCorner_&n.b.RIGHT),u=_&&!d||!_&&h&&d,p=r-(u?e.left+i+this.anchorMargin_.right:e.left+this.anchorMargin_.left),m=r-(u?e.right-this.anchorMargin_.right:e.right+i-this.anchorMargin_.left);return(p<0&&u&&d||_&&!u&&p<0||m>0&&p<m)&&(t|=n.b.RIGHT),t}getHorizontalOriginOffset_(t){const{anchorWidth:e}=this.measures_,s=Boolean(t&n.b.RIGHT),i=Boolean(this.anchorCorner_&n.b.RIGHT);if(s){const t=i?e-this.anchorMargin_.left:this.anchorMargin_.right;return this.hoistedElement_||this.isFixedPosition_?t-(this.measures_.viewport.width-this.measures_.bodyDimensions.width):t}return i?e-this.anchorMargin_.right:this.anchorMargin_.left}getVerticalOriginOffset_(t){const{anchorHeight:e}=this.measures_,s=Boolean(t&n.b.BOTTOM),i=Boolean(this.anchorCorner_&n.b.BOTTOM);let a=0;return a=s?i?e-this.anchorMargin_.top:-this.anchorMargin_.bottom:i?e+this.anchorMargin_.bottom:this.anchorMargin_.top}getMenuSurfaceMaxHeight_(t){let e=0;const{viewportDistance:s}=this.measures_,i=Boolean(t&n.b.BOTTOM),{MARGIN_TO_EDGE:r}=a.numbers;return i?(e=s.top+this.anchorMargin_.top-r,this.anchorCorner_&n.b.BOTTOM||(e+=this.measures_.anchorHeight)):(e=s.bottom-this.anchorMargin_.bottom+this.measures_.anchorHeight-r,this.anchorCorner_&n.b.BOTTOM&&(e-=this.measures_.anchorHeight)),e}autoPosition_(){this.measures_=this.getAutoLayoutMeasurements_();const t=this.getOriginCorner_(),e=this.getMenuSurfaceMaxHeight_(t),s=t&n.b.BOTTOM?"bottom":"top";let i=t&n.b.RIGHT?"right":"left";const a=this.getHorizontalOriginOffset_(t),r=this.getVerticalOriginOffset_(t);let o={[i]:a||"0",[s]:r||"0"};const{anchorWidth:c,surfaceWidth:l}=this.measures_;c/l>n.d.ANCHOR_TO_MENU_SURFACE_WIDTH_RATIO&&(i="center"),(this.hoistedElement_||this.isFixedPosition_)&&(o=this.adjustPositionForHoistedElement_(o));for(const t in o)o.hasOwnProperty(t)&&"0"!==o[t]&&(o[t]=`${parseInt(o[t],10)}px`);this.adapter_.setTransformOrigin(`${i} ${s}`),this.adapter_.setPosition(o),this.adapter_.setMaxHeight(e?e+"px":""),this.measures_=null}adjustPositionForHoistedElement_(t){const{windowScroll:e,viewportDistance:s}=this.measures_;for(const i in t)t.hasOwnProperty(i)&&(s.hasOwnProperty(i)&&(t[i]=parseInt(t[i],10)+s[i]),this.isFixedPosition_||("top"===i?t[i]=parseInt(t[i],10)+e.y:"bottom"===i?t[i]=parseInt(t[i],10)-e.y:"left"===i?t[i]=parseInt(t[i],10)+e.x:"right"===i&&(t[i]=parseInt(t[i],10)-e.x)));return t}open(){this.adapter_.saveFocus(),this.quickOpen_||this.adapter_.addClass(a.cssClasses.ANIMATING_OPEN),this.animationRequestId_=requestAnimationFrame(()=>{this.adapter_.addClass(a.cssClasses.OPEN),this.dimensions_=this.adapter_.getInnerDimensions(),this.autoPosition_(),this.quickOpen_?this.adapter_.notifyOpen():this.openAnimationEndTimerId_=setTimeout(()=>{this.openAnimationEndTimerId_=0,this.adapter_.removeClass(a.cssClasses.ANIMATING_OPEN),this.adapter_.notifyOpen()},n.d.TRANSITION_OPEN_DURATION)}),this.isOpen_=!0}close(){this.quickOpen_||this.adapter_.addClass(a.cssClasses.ANIMATING_CLOSED),requestAnimationFrame(()=>{this.adapter_.removeClass(a.cssClasses.OPEN),this.quickOpen_?this.adapter_.notifyClose():this.closeAnimationEndTimerId_=setTimeout(()=>{this.closeAnimationEndTimerId_=0,this.adapter_.removeClass(a.cssClasses.ANIMATING_CLOSED),this.adapter_.notifyClose()},n.d.TRANSITION_CLOSE_DURATION)}),this.isOpen_=!1,this.maybeRestoreFocus_()}maybeRestoreFocus_(){(this.adapter_.isFocused()||this.adapter_.isElementInContainer(document.activeElement))&&this.adapter_.restoreFocus()}isOpen(){return this.isOpen_}typeCheckisFinite_(t){return"number"==typeof t&&isFinite(t)}}},function(t,e,s){"use strict";var i=s(4),n=s(1);var a=s(7),r=s(12),o=s(17);
+class o extends i.a{constructor(...t){super(...t),this.previousFocus_,this.anchorElement,this.firstFocusableElement_,this.lastFocusableElement_,this.handleKeydown_,this.handleBodyClick_,this.registerBodyClickListener_,this.deregisterBodyClickListener_}static attachTo(t){return new o(t)}initialSyncWithDOM(){this.root_.parentElement&&this.root_.parentElement.classList.contains(r.c.ANCHOR)&&(this.anchorElement=this.root_.parentElement),this.root_.classList.contains(r.c.FIXED)&&this.setFixedPosition(!0),this.handleKeydown_=(t=>this.foundation_.handleKeydown(t)),this.handleBodyClick_=(t=>this.foundation_.handleBodyClick(t)),this.registerBodyClickListener_=(()=>document.body.addEventListener("click",this.handleBodyClick_)),this.deregisterBodyClickListener_=(()=>document.body.removeEventListener("click",this.handleBodyClick_)),this.root_.addEventListener("keydown",this.handleKeydown_),this.root_.addEventListener(r.e.OPENED_EVENT,this.registerBodyClickListener_),this.root_.addEventListener(r.e.CLOSED_EVENT,this.deregisterBodyClickListener_)}destroy(){this.root_.removeEventListener("keydown",this.handleKeydown_),this.root_.removeEventListener(r.e.OPENED_EVENT,this.registerBodyClickListener_),this.root_.removeEventListener(r.e.CLOSED_EVENT,this.deregisterBodyClickListener_),super.destroy()}get open(){return this.foundation_.isOpen()}set open(t){if(t){const t=this.root_.querySelectorAll(r.e.FOCUSABLE_ELEMENTS);this.firstFocusableElement_=t.length>0?t[0]:null,this.lastFocusableElement_=t.length>0?t[t.length-1]:null,this.foundation_.open()}else this.foundation_.close()}hoistMenuToBody(){document.body.appendChild(this.root_.parentElement.removeChild(this.root_)),this.setIsHoisted(!0)}setIsHoisted(t){this.foundation_.setIsHoisted(t)}setMenuSurfaceAnchorElement(t){this.anchorElement=t}setFixedPosition(t){t?this.root_.classList.add(r.c.FIXED):this.root_.classList.remove(r.c.FIXED),this.foundation_.setFixedPosition(t)}setAbsolutePosition(t,e){this.foundation_.setAbsolutePosition(t,e),this.setIsHoisted(!0)}setAnchorCorner(t){this.foundation_.setAnchorCorner(t)}setAnchorMargin(t){this.foundation_.setAnchorMargin(t)}set quickOpen(t){this.foundation_.setQuickOpen(t)}getDefaultFoundation(){return new a.a(Object.assign({addClass:t=>this.root_.classList.add(t),removeClass:t=>this.root_.classList.remove(t),hasClass:t=>this.root_.classList.contains(t),hasAnchor:()=>!!this.anchorElement,notifyClose:()=>this.emit(a.a.strings.CLOSED_EVENT,{}),notifyOpen:()=>this.emit(a.a.strings.OPENED_EVENT,{}),isElementInContainer:t=>this.root_===t||this.root_.contains(t),isRtl:()=>"rtl"===getComputedStyle(this.root_).getPropertyValue("direction"),setTransformOrigin:t=>{this.root_.style[`${function(t,e=!1){if(void 0===n||e){const e="transform"in t.document.createElement("div").style?"transform":"webkitTransform";n=e}return n}(window)}-origin`]=t}},this.getFocusAdapterMethods_(),this.getDimensionAdapterMethods_()))}getFocusAdapterMethods_(){return{isFocused:()=>document.activeElement===this.root_,saveFocus:()=>{this.previousFocus_=document.activeElement},restoreFocus:()=>{this.root_.contains(document.activeElement)&&this.previousFocus_&&this.previousFocus_.focus&&this.previousFocus_.focus()},isFirstElementFocused:()=>this.firstFocusableElement_&&this.firstFocusableElement_===document.activeElement,isLastElementFocused:()=>this.lastFocusableElement_&&this.lastFocusableElement_===document.activeElement,focusFirstElement:()=>this.firstFocusableElement_&&this.firstFocusableElement_.focus&&this.firstFocusableElement_.focus(),focusLastElement:()=>this.lastFocusableElement_&&this.lastFocusableElement_.focus&&this.lastFocusableElement_.focus()}}getDimensionAdapterMethods_(){return{getInnerDimensions:()=>({width:this.root_.offsetWidth,height:this.root_.offsetHeight}),getAnchorDimensions:()=>this.anchorElement&&this.anchorElement.getBoundingClientRect(),getWindowDimensions:()=>({width:window.innerWidth,height:window.innerHeight}),getBodyDimensions:()=>({width:document.body.clientWidth,height:document.body.clientHeight}),getWindowScroll:()=>({x:window.pageXOffset,y:window.pageYOffset}),setPosition:t=>{this.root_.style.left="left"in t?t.left:null,this.root_.style.right="right"in t?t.right:null,this.root_.style.top="top"in t?t.top:null,this.root_.style.bottom="bottom"in t?t.bottom:null},setMaxHeight:t=>{this.root_.style.maxHeight=t}}}}},function(t,e,s){"use strict";s.d(e,"a",function(){return a});var i=s(1),n=(s(31),s(0));class a extends i.a{static get cssClasses(){return n.c}static get strings(){return n.e}static get numbers(){return n.d}static get Corner(){return n.a}static get defaultAdapter(){return{addClass:()=>{},removeClass:()=>{},hasClass:()=>!1,hasAnchor:()=>!1,notifyClose:()=>{},notifyOpen:()=>{},isElementInContainer:()=>!1,isRtl:()=>!1,setTransformOrigin:()=>{},isFocused:()=>!1,saveFocus:()=>{},restoreFocus:()=>{},isFirstElementFocused:()=>{},isLastElementFocused:()=>{},focusFirstElement:()=>{},focusLastElement:()=>{},getInnerDimensions:()=>({}),getAnchorDimensions:()=>({}),getWindowDimensions:()=>({}),getBodyDimensions:()=>({}),getWindowScroll:()=>({}),setPosition:()=>{},setMaxHeight:()=>{}}}constructor(t){super(Object.assign(a.defaultAdapter,t)),this.isOpen_=!1,this.openAnimationEndTimerId_=0,this.closeAnimationEndTimerId_=0,this.animationRequestId_=0,this.dimensions_,this.anchorCorner_=n.a.TOP_START,this.anchorMargin_={top:0,right:0,bottom:0,left:0},this.measures_=null,this.quickOpen_=!1,this.hoistedElement_=!1,this.isFixedPosition_=!1,this.position_={x:0,y:0}}init(){const{ROOT:t,OPEN:e}=a.cssClasses;if(!this.adapter_.hasClass(t))throw new Error(`${t} class required in root element.`);this.adapter_.hasClass(e)&&(this.isOpen_=!0)}destroy(){clearTimeout(this.openAnimationEndTimerId_),clearTimeout(this.closeAnimationEndTimerId_),cancelAnimationFrame(this.animationRequestId_)}setAnchorCorner(t){this.anchorCorner_=t}setAnchorMargin(t){this.anchorMargin_.top="number"==typeof t.top?t.top:0,this.anchorMargin_.right="number"==typeof t.right?t.right:0,this.anchorMargin_.bottom="number"==typeof t.bottom?t.bottom:0,this.anchorMargin_.left="number"==typeof t.left?t.left:0}setIsHoisted(t){this.hoistedElement_=t}setFixedPosition(t){this.isFixedPosition_=t}setAbsolutePosition(t,e){this.position_.x=this.typeCheckisFinite_(t)?t:0,this.position_.y=this.typeCheckisFinite_(e)?e:0}setQuickOpen(t){this.quickOpen_=t}handleBodyClick(t){const e=t.target;this.adapter_.isElementInContainer(e)||this.close()}handleKeydown(t){const{keyCode:e,key:s,shiftKey:i}=t,n="Tab"===s||9===e;"Escape"===s||27===e?this.close():n&&(this.adapter_.isLastElementFocused()&&!i?(this.adapter_.focusFirstElement(),t.preventDefault()):this.adapter_.isFirstElementFocused()&&i&&(this.adapter_.focusLastElement(),t.preventDefault()))}getAutoLayoutMeasurements_(){let t=this.adapter_.getAnchorDimensions();const e=this.adapter_.getWindowDimensions(),s=this.adapter_.getBodyDimensions(),i=this.adapter_.getWindowScroll();return t||(t={x:this.position_.x,y:this.position_.y,top:this.position_.y,bottom:this.position_.y,left:this.position_.x,right:this.position_.x,height:0,width:0}),{viewport:e,bodyDimensions:s,windowScroll:i,viewportDistance:{top:t.top,right:e.width-t.right,left:t.left,bottom:e.height-t.bottom},anchorHeight:t.height,anchorWidth:t.width,surfaceHeight:this.dimensions_.height,surfaceWidth:this.dimensions_.width}}getOriginCorner_(){let t=n.a.TOP_LEFT;const{viewportDistance:e,anchorHeight:s,anchorWidth:i,surfaceHeight:a,surfaceWidth:r}=this.measures_,o=Boolean(this.anchorCorner_&n.b.BOTTOM),c=o?e.top+s+this.anchorMargin_.bottom:e.top+this.anchorMargin_.top,l=a-(o?e.bottom-this.anchorMargin_.bottom:e.bottom+s-this.anchorMargin_.top);l>0&&a-c<l&&(t|=n.b.BOTTOM);const d=this.adapter_.isRtl(),h=Boolean(this.anchorCorner_&n.b.FLIP_RTL),_=Boolean(this.anchorCorner_&n.b.RIGHT),u=_&&!d||!_&&h&&d,p=r-(u?e.left+i+this.anchorMargin_.right:e.left+this.anchorMargin_.left),m=r-(u?e.right-this.anchorMargin_.right:e.right+i-this.anchorMargin_.left);return(p<0&&u&&d||_&&!u&&p<0||m>0&&p<m)&&(t|=n.b.RIGHT),t}getHorizontalOriginOffset_(t){const{anchorWidth:e}=this.measures_,s=Boolean(t&n.b.RIGHT),i=Boolean(this.anchorCorner_&n.b.RIGHT);if(s){const t=i?e-this.anchorMargin_.left:this.anchorMargin_.right;return this.hoistedElement_||this.isFixedPosition_?t-(this.measures_.viewport.width-this.measures_.bodyDimensions.width):t}return i?e-this.anchorMargin_.right:this.anchorMargin_.left}getVerticalOriginOffset_(t){const{anchorHeight:e}=this.measures_,s=Boolean(t&n.b.BOTTOM),i=Boolean(this.anchorCorner_&n.b.BOTTOM);let a=0;return a=s?i?e-this.anchorMargin_.top:-this.anchorMargin_.bottom:i?e+this.anchorMargin_.bottom:this.anchorMargin_.top}getMenuSurfaceMaxHeight_(t){let e=0;const{viewportDistance:s}=this.measures_,i=Boolean(t&n.b.BOTTOM),{MARGIN_TO_EDGE:r}=a.numbers;return i?(e=s.top+this.anchorMargin_.top-r,this.anchorCorner_&n.b.BOTTOM||(e+=this.measures_.anchorHeight)):(e=s.bottom-this.anchorMargin_.bottom+this.measures_.anchorHeight-r,this.anchorCorner_&n.b.BOTTOM&&(e-=this.measures_.anchorHeight)),e}autoPosition_(){this.measures_=this.getAutoLayoutMeasurements_();const t=this.getOriginCorner_(),e=this.getMenuSurfaceMaxHeight_(t),s=t&n.b.BOTTOM?"bottom":"top";let i=t&n.b.RIGHT?"right":"left";const a=this.getHorizontalOriginOffset_(t),r=this.getVerticalOriginOffset_(t);let o={[i]:a||"0",[s]:r||"0"};const{anchorWidth:c,surfaceWidth:l}=this.measures_;c/l>n.d.ANCHOR_TO_MENU_SURFACE_WIDTH_RATIO&&(i="center"),(this.hoistedElement_||this.isFixedPosition_)&&(o=this.adjustPositionForHoistedElement_(o));for(const t in o)o.hasOwnProperty(t)&&"0"!==o[t]&&(o[t]=`${parseInt(o[t],10)}px`);this.adapter_.setTransformOrigin(`${i} ${s}`),this.adapter_.setPosition(o),this.adapter_.setMaxHeight(e?e+"px":""),this.measures_=null}adjustPositionForHoistedElement_(t){const{windowScroll:e,viewportDistance:s}=this.measures_;for(const i in t)t.hasOwnProperty(i)&&(s.hasOwnProperty(i)&&(t[i]=parseInt(t[i],10)+s[i]),this.isFixedPosition_||("top"===i?t[i]=parseInt(t[i],10)+e.y:"bottom"===i?t[i]=parseInt(t[i],10)-e.y:"left"===i?t[i]=parseInt(t[i],10)+e.x:"right"===i&&(t[i]=parseInt(t[i],10)-e.x)));return t}open(){this.adapter_.saveFocus(),this.quickOpen_||this.adapter_.addClass(a.cssClasses.ANIMATING_OPEN),this.animationRequestId_=requestAnimationFrame(()=>{this.adapter_.addClass(a.cssClasses.OPEN),this.dimensions_=this.adapter_.getInnerDimensions(),this.autoPosition_(),this.quickOpen_?this.adapter_.notifyOpen():this.openAnimationEndTimerId_=setTimeout(()=>{this.openAnimationEndTimerId_=0,this.adapter_.removeClass(a.cssClasses.ANIMATING_OPEN),this.adapter_.notifyOpen()},n.d.TRANSITION_OPEN_DURATION)}),this.isOpen_=!0}close(){this.quickOpen_||this.adapter_.addClass(a.cssClasses.ANIMATING_CLOSED),requestAnimationFrame(()=>{this.adapter_.removeClass(a.cssClasses.OPEN),this.quickOpen_?this.adapter_.notifyClose():this.closeAnimationEndTimerId_=setTimeout(()=>{this.closeAnimationEndTimerId_=0,this.adapter_.removeClass(a.cssClasses.ANIMATING_CLOSED),this.adapter_.notifyClose()},n.d.TRANSITION_CLOSE_DURATION)}),this.isOpen_=!1,this.maybeRestoreFocus_()}maybeRestoreFocus_(){(this.adapter_.isFocused()||this.adapter_.isElementInContainer(document.activeElement))&&this.adapter_.restoreFocus()}isOpen(){return this.isOpen_}typeCheckisFinite_(t){return"number"==typeof t&&isFinite(t)}}},function(t,e,s){"use strict";var i=s(4),n=s(1);var a=s(7),r=s(13),o=s(17);
 /**
  * @license
  * Copyright 2018 Google Inc.
@@ -763,7 +919,7 @@ class o extends i.a{constructor(...t){super(...t),this.previousFocus_,this.ancho
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-const c=["input","button","textarea","select","a"];class l extends n.a{static get cssClasses(){return a.a}static get strings(){return a.b}static get defaultAdapter(){return{addClassToElementAtIndex:()=>{},removeClassFromElementAtIndex:()=>{},addAttributeToElementAtIndex:()=>{},removeAttributeFromElementAtIndex:()=>{},elementContainsClass:()=>{},closeSurface:()=>{},getElementIndex:()=>{},getParentElement:()=>{},getSelectedElementIndex:()=>{},notifySelected:()=>{}}}constructor(t){super(Object.assign(l.defaultAdapter,t)),this.closeAnimationEndTimerId_=0}destroy(){this.closeAnimationEndTimerId_&&clearTimeout(this.closeAnimationEndTimerId_),this.adapter_.closeSurface()}handleKeydown(t){const{key:e,keyCode:s}=t,i="Tab"===e||9===s;"Space"===e||32===s||("Enter"===e||13===s)?this.handleAction_(t):i&&this.adapter_.closeSurface()}handleClick(t){this.handleAction_(t)}handleAction_(t){const e=this.getListItem_(t.target);e&&(this.handleSelection(e),this.preventDefaultEvent_(t))}handleSelection(t){const e=this.adapter_.getElementIndex(t);e<0||(this.adapter_.notifySelected({index:e}),this.adapter_.closeSurface(),this.closeAnimationEndTimerId_=setTimeout(()=>{const s=this.getSelectionGroup_(t);null!==s&&this.handleSelectionGroup_(s,e)},r.a.numbers.TRANSITION_CLOSE_DURATION))}handleSelectionGroup_(t,e){const s=this.adapter_.getSelectedElementIndex(t);s>=0&&(this.adapter_.removeAttributeFromElementAtIndex(s,a.b.ARIA_SELECTED_ATTR),this.adapter_.removeClassFromElementAtIndex(s,a.a.MENU_SELECTED_LIST_ITEM)),this.adapter_.addClassToElementAtIndex(e,a.a.MENU_SELECTED_LIST_ITEM),this.adapter_.addAttributeToElementAtIndex(e,a.b.ARIA_SELECTED_ATTR,"true")}getSelectionGroup_(t){let e=this.adapter_.getParentElement(t),s=this.adapter_.elementContainsClass(e,a.a.MENU_SELECTION_GROUP);for(;!s&&!this.adapter_.elementContainsClass(e,o.a.cssClasses.ROOT);)e=this.adapter_.getParentElement(e),s=this.adapter_.elementContainsClass(e,a.a.MENU_SELECTION_GROUP);return s?e:null}getListItem_(t){let e=this.adapter_.elementContainsClass(t,o.a.cssClasses.LIST_ITEM_CLASS);for(;!e;){if(!(t=this.adapter_.getParentElement(t)))return null;e=this.adapter_.elementContainsClass(t,o.a.cssClasses.LIST_ITEM_CLASS)}return t}preventDefaultEvent_(t){const e=`${t.target.tagName}`.toLowerCase();-1===c.indexOf(e)&&t.preventDefault()}}var d=s(11),h=s(26);s.d(e,"a",function(){return _});
+const c=["input","button","textarea","select","a"];class l extends n.a{static get cssClasses(){return a.a}static get strings(){return a.b}static get defaultAdapter(){return{addClassToElementAtIndex:()=>{},removeClassFromElementAtIndex:()=>{},addAttributeToElementAtIndex:()=>{},removeAttributeFromElementAtIndex:()=>{},elementContainsClass:()=>{},closeSurface:()=>{},getElementIndex:()=>{},getParentElement:()=>{},getSelectedElementIndex:()=>{},notifySelected:()=>{}}}constructor(t){super(Object.assign(l.defaultAdapter,t)),this.closeAnimationEndTimerId_=0}destroy(){this.closeAnimationEndTimerId_&&clearTimeout(this.closeAnimationEndTimerId_),this.adapter_.closeSurface()}handleKeydown(t){const{key:e,keyCode:s}=t,i="Tab"===e||9===s;"Space"===e||32===s||("Enter"===e||13===s)?this.handleAction_(t):i&&this.adapter_.closeSurface()}handleClick(t){this.handleAction_(t)}handleAction_(t){const e=this.getListItem_(t.target);e&&(this.handleSelection(e),this.preventDefaultEvent_(t))}handleSelection(t){const e=this.adapter_.getElementIndex(t);e<0||(this.adapter_.notifySelected({index:e}),this.adapter_.closeSurface(),this.closeAnimationEndTimerId_=setTimeout(()=>{const s=this.getSelectionGroup_(t);null!==s&&this.handleSelectionGroup_(s,e)},r.a.numbers.TRANSITION_CLOSE_DURATION))}handleSelectionGroup_(t,e){const s=this.adapter_.getSelectedElementIndex(t);s>=0&&(this.adapter_.removeAttributeFromElementAtIndex(s,a.b.ARIA_SELECTED_ATTR),this.adapter_.removeClassFromElementAtIndex(s,a.a.MENU_SELECTED_LIST_ITEM)),this.adapter_.addClassToElementAtIndex(e,a.a.MENU_SELECTED_LIST_ITEM),this.adapter_.addAttributeToElementAtIndex(e,a.b.ARIA_SELECTED_ATTR,"true")}getSelectionGroup_(t){let e=this.adapter_.getParentElement(t),s=this.adapter_.elementContainsClass(e,a.a.MENU_SELECTION_GROUP);for(;!s&&!this.adapter_.elementContainsClass(e,o.a.cssClasses.ROOT);)e=this.adapter_.getParentElement(e),s=this.adapter_.elementContainsClass(e,a.a.MENU_SELECTION_GROUP);return s?e:null}getListItem_(t){let e=this.adapter_.elementContainsClass(t,o.a.cssClasses.LIST_ITEM_CLASS);for(;!e;){if(!(t=this.adapter_.getParentElement(t)))return null;e=this.adapter_.elementContainsClass(t,o.a.cssClasses.LIST_ITEM_CLASS)}return t}preventDefaultEvent_(t){const e=`${t.target.tagName}`.toLowerCase();-1===c.indexOf(e)&&t.preventDefault()}}var d=s(12),h=s(26);s.d(e,"a",function(){return _});
 /**
  * @license
  * Copyright 2018 Google Inc.
@@ -786,163 +942,7 @@ const c=["input","button","textarea","select","a"];class l extends n.a{static ge
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-class _ extends i.a{constructor(...t){super(...t),this.menuSurface_,this.list_,this.handleKeydown_,this.handleClick_,this.afterOpenedCallback_}static attachTo(t){return new _(t)}initialize(t=(t=>new d.a(t)),e=(t=>new h.a(t))){this.menuSurface_=t(this.root_);const s=this.root_.querySelector(a.b.LIST_SELECTOR);s&&(this.list_=e(s),this.list_.wrapFocus=!0)}initialSyncWithDOM(){this.afterOpenedCallback_=(()=>this.handleAfterOpened_()),this.handleKeydown_=(t=>this.foundation_.handleKeydown(t)),this.handleClick_=(t=>this.foundation_.handleClick(t)),this.menuSurface_.listen(r.a.strings.OPENED_EVENT,this.afterOpenedCallback_),this.listen("keydown",this.handleKeydown_),this.listen("click",this.handleClick_)}destroy(){this.list_&&this.list_.destroy(),this.menuSurface_.destroy(),this.menuSurface_.unlisten(r.a.strings.OPENED_EVENT,this.afterOpenedCallback_),this.unlisten("keydown",this.handleKeydown_),this.unlisten("click",this.handleClick_),super.destroy()}get open(){return this.menuSurface_.open}set open(t){this.menuSurface_.open=t}setAnchorCorner(t){this.menuSurface_.setAnchorCorner(t)}setAnchorMargin(t){this.menuSurface_.setAnchorMargin(t)}get items(){return this.list_.listElements}getOptionByIndex(t){return t<this.items.length?this.items[t]:null}set quickOpen(t){this.menuSurface_.quickOpen=t}setFixedPosition(t){this.menuSurface_.setFixedPosition(t)}hoistMenuToBody(){this.menuSurface_.hoistMenuToBody()}setIsHoisted(t){this.menuSurface_.setIsHoisted(t)}setAbsolutePosition(t,e){this.menuSurface_.setAbsolutePosition(t,e)}setAnchorElement(t){this.menuSurface_.anchorElement=t}handleAfterOpened_(){const t=this.items;t.length>0&&t[0].focus()}getDefaultFoundation(){return new l({addClassToElementAtIndex:(t,e)=>{this.items[t].classList.add(e)},removeClassFromElementAtIndex:(t,e)=>{this.items[t].classList.remove(e)},addAttributeToElementAtIndex:(t,e,s)=>{this.items[t].setAttribute(e,s)},removeAttributeFromElementAtIndex:(t,e)=>{this.items[t].removeAttribute(e)},elementContainsClass:(t,e)=>t.classList.contains(e),closeSurface:()=>this.open=!1,getElementIndex:t=>this.items.indexOf(t),getParentElement:t=>t.parentElement,getSelectedElementIndex:t=>this.items.indexOf(t.querySelector(`.${a.a.MENU_SELECTED_LIST_ITEM}`)),notifySelected:t=>this.emit(a.b.SELECTED_EVENT,{index:t.index,item:this.items[t.index]})})}}},,function(t,e,s){"use strict";
-/**
- * @license
- * Copyright 2018 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */var i=s(4),n=s(2);
-/**
- * @license
- * Copyright 2018 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-const a={FIXED_CLASS:"mdc-top-app-bar--fixed",FIXED_SCROLLED_CLASS:"mdc-top-app-bar--fixed-scrolled",SHORT_CLASS:"mdc-top-app-bar--short",SHORT_HAS_ACTION_ITEM_CLASS:"mdc-top-app-bar--short-has-action-item",SHORT_COLLAPSED_CLASS:"mdc-top-app-bar--short-collapsed"},r={DEBOUNCE_THROTTLE_RESIZE_TIME_MS:100,MAX_TOP_APP_BAR_HEIGHT:128},o={ACTION_ITEM_SELECTOR:".mdc-top-app-bar__action-item",NAVIGATION_EVENT:"MDCTopAppBar:nav",NAVIGATION_ICON_SELECTOR:".mdc-top-app-bar__navigation-icon",ROOT_SELECTOR:".mdc-top-app-bar",TITLE_SELECTOR:".mdc-top-app-bar__title"};var c=s(1);
-/**
- * @license
- * Copyright 2018 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */class l extends c.a{static get strings(){return o}static get cssClasses(){return a}static get numbers(){return r}static get defaultAdapter(){return{hasClass:()=>{},addClass:()=>{},removeClass:()=>{},setStyle:()=>{},getTopAppBarHeight:()=>{},registerNavigationIconInteractionHandler:()=>{},deregisterNavigationIconInteractionHandler:()=>{},notifyNavigationIconClicked:()=>{},registerScrollHandler:()=>{},deregisterScrollHandler:()=>{},registerResizeHandler:()=>{},deregisterResizeHandler:()=>{},getViewportScrollY:()=>0,getTotalActionItems:()=>0}}constructor(t){super(Object.assign(l.defaultAdapter,t)),this.navClickHandler_=(()=>this.adapter_.notifyNavigationIconClicked()),this.scrollHandler_=(()=>{})}init(){this.adapter_.registerNavigationIconInteractionHandler("click",this.navClickHandler_)}destroy(){this.adapter_.deregisterNavigationIconInteractionHandler("click",this.navClickHandler_)}initScrollHandler(){this.adapter_.registerScrollHandler(this.scrollHandler_)}destroyScrollHandler(){this.adapter_.deregisterScrollHandler(this.scrollHandler_)}}var d=l;
-/**
- * @license
- * Copyright 2018 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */var h=class extends d{constructor(t){super(t),this.wasScrolled_=!1,this.scrollHandler_=(()=>this.fixedScrollHandler_())}init(){super.init(),this.adapter_.registerScrollHandler(this.scrollHandler_)}destroy(){super.destroy(),this.adapter_.deregisterScrollHandler(this.scrollHandler_)}fixedScrollHandler_(){this.adapter_.getViewportScrollY()<=0?this.wasScrolled_&&(this.adapter_.removeClass(a.FIXED_SCROLLED_CLASS),this.wasScrolled_=!1):this.wasScrolled_||(this.adapter_.addClass(a.FIXED_SCROLLED_CLASS),this.wasScrolled_=!0)}};
-/**
- * @license
- * Copyright 2018 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */var _=class extends d{constructor(t){super(t),this.isCollapsed=!1,this.scrollHandler_=(()=>this.shortAppBarScrollHandler_())}init(){super.init();const t=this.adapter_.hasClass(a.SHORT_COLLAPSED_CLASS);this.adapter_.getTotalActionItems()>0&&this.adapter_.addClass(a.SHORT_HAS_ACTION_ITEM_CLASS),t||(this.adapter_.registerScrollHandler(this.scrollHandler_),this.shortAppBarScrollHandler_())}destroy(){super.destroy(),this.adapter_.deregisterScrollHandler(this.scrollHandler_)}shortAppBarScrollHandler_(){this.adapter_.getViewportScrollY()<=0?this.isCollapsed&&(this.adapter_.removeClass(a.SHORT_COLLAPSED_CLASS),this.isCollapsed=!1):this.isCollapsed||(this.adapter_.addClass(a.SHORT_COLLAPSED_CLASS),this.isCollapsed=!0)}};
-/**
- * @license
- * Copyright 2018 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */const u=0;var p=class extends d{constructor(t){super(t),this.lastScrollPosition_=this.adapter_.getViewportScrollY(),this.topAppBarHeight_=this.adapter_.getTopAppBarHeight(),this.wasDocked_=!0,this.isDockedShowing_=!0,this.currentAppBarOffsetTop_=0,this.isCurrentlyBeingResized_=!1,this.resizeThrottleId_=u,this.resizeDebounceId_=u,this.scrollHandler_=(()=>this.topAppBarScrollHandler_()),this.resizeHandler_=(()=>this.topAppBarResizeHandler_())}init(){super.init(),this.adapter_.registerScrollHandler(this.scrollHandler_),this.adapter_.registerResizeHandler(this.resizeHandler_)}destroy(){super.destroy(),this.adapter_.deregisterScrollHandler(this.scrollHandler_),this.adapter_.deregisterResizeHandler(this.resizeHandler_),this.adapter_.setStyle("top","")}checkForUpdate_(){const t=-this.topAppBarHeight_,e=this.currentAppBarOffsetTop_<0,s=this.currentAppBarOffsetTop_>t,i=e&&s;if(i)this.wasDocked_=!1;else{if(!this.wasDocked_)return this.wasDocked_=!0,!0;if(this.isDockedShowing_!==s)return this.isDockedShowing_=s,!0}return i}moveTopAppBar_(){if(this.checkForUpdate_()){let t=this.currentAppBarOffsetTop_;Math.abs(t)>=this.topAppBarHeight_&&(t=-r.MAX_TOP_APP_BAR_HEIGHT),this.adapter_.setStyle("top",t+"px")}}topAppBarScrollHandler_(){const t=Math.max(this.adapter_.getViewportScrollY(),0),e=t-this.lastScrollPosition_;this.lastScrollPosition_=t,this.isCurrentlyBeingResized_||(this.currentAppBarOffsetTop_-=e,this.currentAppBarOffsetTop_>0?this.currentAppBarOffsetTop_=0:Math.abs(this.currentAppBarOffsetTop_)>this.topAppBarHeight_&&(this.currentAppBarOffsetTop_=-this.topAppBarHeight_),this.moveTopAppBar_())}topAppBarResizeHandler_(){this.resizeThrottleId_||(this.resizeThrottleId_=setTimeout(()=>{this.resizeThrottleId_=u,this.throttledResizeHandler_()},r.DEBOUNCE_THROTTLE_RESIZE_TIME_MS)),this.isCurrentlyBeingResized_=!0,this.resizeDebounceId_&&clearTimeout(this.resizeDebounceId_),this.resizeDebounceId_=setTimeout(()=>{this.topAppBarScrollHandler_(),this.isCurrentlyBeingResized_=!1,this.resizeDebounceId_=u},r.DEBOUNCE_THROTTLE_RESIZE_TIME_MS)}throttledResizeHandler_(){const t=this.adapter_.getTopAppBarHeight();this.topAppBarHeight_!==t&&(this.wasDocked_=!1,this.currentAppBarOffsetTop_-=this.topAppBarHeight_-t,this.topAppBarHeight_=t),this.topAppBarScrollHandler_()}};s.d(e,"a",function(){return m});
-/**
- * @license
- * Copyright 2018 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-class m extends i.a{constructor(...t){super(...t),this.navIcon_,this.iconRipples_,this.scrollTarget_}initialize(t=(t=>n.a.attachTo(t))){this.navIcon_=this.root_.querySelector(o.NAVIGATION_ICON_SELECTOR);const e=[].slice.call(this.root_.querySelectorAll(o.ACTION_ITEM_SELECTOR));this.navIcon_&&e.push(this.navIcon_),this.iconRipples_=e.map(e=>{const s=t(e);return s.unbounded=!0,s})}destroy(){this.iconRipples_.forEach(t=>t.destroy()),super.destroy()}setScrollTarget(t){this.foundation_.destroyScrollHandler(),this.scrollTarget_=t,this.foundation_.initScrollHandler()}static attachTo(t){return new m(t)}getDefaultFoundation(){const t=Object.assign({hasClass:t=>this.root_.classList.contains(t),addClass:t=>this.root_.classList.add(t),removeClass:t=>this.root_.classList.remove(t),setStyle:(t,e)=>this.root_.style.setProperty(t,e),getTopAppBarHeight:()=>this.root_.clientHeight,registerNavigationIconInteractionHandler:(t,e)=>{this.navIcon_&&this.navIcon_.addEventListener(t,e)},deregisterNavigationIconInteractionHandler:(t,e)=>{this.navIcon_&&this.navIcon_.removeEventListener(t,e)},notifyNavigationIconClicked:()=>{this.emit(o.NAVIGATION_EVENT,{})},registerScrollHandler:t=>this.scrollTarget_.addEventListener("scroll",t),deregisterScrollHandler:t=>this.scrollTarget_.removeEventListener("scroll",t),registerResizeHandler:t=>window.addEventListener("resize",t),deregisterResizeHandler:t=>window.removeEventListener("resize",t),getViewportScrollY:()=>this.scrollTarget_[this.scrollTarget_===window?"pageYOffset":"scrollTop"],getTotalActionItems:()=>this.root_.querySelectorAll(o.ACTION_ITEM_SELECTOR).length});let e;return this.scrollTarget_=window,e=this.root_.classList.contains(a.SHORT_CLASS)?new _(t):this.root_.classList.contains(a.FIXED_CLASS)?new h(t):new p(t)}}},function(t,e,s){"use strict";var i=s(5);
+class _ extends i.a{constructor(...t){super(...t),this.menuSurface_,this.list_,this.handleKeydown_,this.handleClick_,this.afterOpenedCallback_}static attachTo(t){return new _(t)}initialize(t=(t=>new d.a(t)),e=(t=>new h.a(t))){this.menuSurface_=t(this.root_);const s=this.root_.querySelector(a.b.LIST_SELECTOR);s&&(this.list_=e(s),this.list_.wrapFocus=!0)}initialSyncWithDOM(){this.afterOpenedCallback_=(()=>this.handleAfterOpened_()),this.handleKeydown_=(t=>this.foundation_.handleKeydown(t)),this.handleClick_=(t=>this.foundation_.handleClick(t)),this.menuSurface_.listen(r.a.strings.OPENED_EVENT,this.afterOpenedCallback_),this.listen("keydown",this.handleKeydown_),this.listen("click",this.handleClick_)}destroy(){this.list_&&this.list_.destroy(),this.menuSurface_.destroy(),this.menuSurface_.unlisten(r.a.strings.OPENED_EVENT,this.afterOpenedCallback_),this.unlisten("keydown",this.handleKeydown_),this.unlisten("click",this.handleClick_),super.destroy()}get open(){return this.menuSurface_.open}set open(t){this.menuSurface_.open=t}setAnchorCorner(t){this.menuSurface_.setAnchorCorner(t)}setAnchorMargin(t){this.menuSurface_.setAnchorMargin(t)}get items(){return this.list_.listElements}getOptionByIndex(t){return t<this.items.length?this.items[t]:null}set quickOpen(t){this.menuSurface_.quickOpen=t}setFixedPosition(t){this.menuSurface_.setFixedPosition(t)}hoistMenuToBody(){this.menuSurface_.hoistMenuToBody()}setIsHoisted(t){this.menuSurface_.setIsHoisted(t)}setAbsolutePosition(t,e){this.menuSurface_.setAbsolutePosition(t,e)}setAnchorElement(t){this.menuSurface_.anchorElement=t}handleAfterOpened_(){const t=this.items;t.length>0&&t[0].focus()}getDefaultFoundation(){return new l({addClassToElementAtIndex:(t,e)=>{this.items[t].classList.add(e)},removeClassFromElementAtIndex:(t,e)=>{this.items[t].classList.remove(e)},addAttributeToElementAtIndex:(t,e,s)=>{this.items[t].setAttribute(e,s)},removeAttributeFromElementAtIndex:(t,e)=>{this.items[t].removeAttribute(e)},elementContainsClass:(t,e)=>t.classList.contains(e),closeSurface:()=>this.open=!1,getElementIndex:t=>this.items.indexOf(t),getParentElement:t=>t.parentElement,getSelectedElementIndex:t=>this.items.indexOf(t.querySelector(`.${a.a.MENU_SELECTED_LIST_ITEM}`)),notifySelected:t=>this.emit(a.b.SELECTED_EVENT,{index:t.index,item:this.items[t.index]})})}}},,function(t,e,s){"use strict";var i=s(5);
 /**
  * @license
  * Copyright 2018 Google Inc.
