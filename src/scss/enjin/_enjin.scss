@@ -50,8 +50,9 @@
   background-color: transparent;
   pointer-events: none;
 
-  &.user_tray__scrolled {
-    height: $toolbar-height - 25px;
+  // MDCTopAppBar collapses further on mobile.
+  @media (max-width: 599px) {
+    height: 56px;
   }
 
   .buttons {
