@@ -25,8 +25,8 @@ const webpackConfig = {
       new TerserPlugin({
         cache: true,
         // Memory issues in WSL
-        // sourceMap: true,
-        parallel: true,
+        sourceMap: true,
+        parallel: 4,
         extractComments: true,
       }),
     ],
@@ -42,7 +42,7 @@ const webpackConfig = {
     ],
   },
   // Memory issues in WSL
-  // devtool: 'source-map',
+  devtool: 'source-map',
 };
 
 /**
