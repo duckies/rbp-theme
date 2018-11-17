@@ -19,17 +19,18 @@ const difficulties = {
 function carousel() {
   const carousel = document.querySelector('.carousel');
 
-  if (carousel) {
-    new Flickity(carousel, {
-      autoPlay: 5000,
-      wrapAround: true,
-      bgLazyLoad: 1,
-      prevNextButtons: false,
-      pageDots: false,
-    });
+  if (!carousel) {
+    return;
   }
-}
 
+  new Flickity(carousel, {
+    autoPlay: 5000,
+    wrapAround: true,
+    bgLazyLoad: 1,
+    prevNextButtons: false,
+    pageDots: false,
+  });
+}
 
 /**
  * Creates DOM elements given raiderIO data for the guild.
@@ -43,7 +44,7 @@ async function createRaiderIOElements() {
     const elem = document.getElementById('guild-progress');
     const loaders = document.querySelector('.guild-progress__loaders');
     const raids = Object.entries(json.raid_progression)
-        .filter((raid) => wanted.includes(raid[0]));
+      .filter((raid) => wanted.includes(raid[0]));
     const ranks = Object.entries(json.raid_rankings).pop()[1];
 
     elem.insertAdjacentHTML('afterbegin', createProgressionElements(raids));

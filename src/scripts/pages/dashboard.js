@@ -13,7 +13,7 @@ const rejectSound = new Audio('https://s3.amazonaws.com/files.enjin.com/632721/m
  */
 function peskyLinks() {
   document.querySelectorAll('.bbcode_url')
-      .forEach((url) => url.setAttribute('target', '_blank'));
+    .forEach((url) => url.setAttribute('target', '_blank'));
 }
 
 /**
@@ -175,9 +175,8 @@ function cleanupMenu() {
         target.classList.add('mdc-list-item--selected');
         text.innerText = target.innerText.trim();
       }
-    } else {
-      console.warn('Active Header was not found.');
-      console.warn(header);
+    } else if (Sentry) {
+      Sentry.captureMessage('Active nav. button not found in Dashboard.');
     }
 
     paginationHandler();
@@ -261,9 +260,7 @@ async function addLastLogin() {
     }
 
     wrapper.insertAdjacentHTML('beforeend',
-        `<div class="app-meta__last-seen">
-            Last seen ${response.result.last_seen}
-         </div>`);
+      `<div class="app-meta__last-seen">Last seen ${response.result.last_seen}</div>`);
   }
 }
 
@@ -309,11 +306,14 @@ function createCharacterMutationObserver(target) {
  * Replaces smaller enjin images and thumbnails with their larger counterparts.
  */
 function imageReplacement() {
-  document.querySelectorAll('img[src^="https://assets-cloud.enjin.com/users/"],img[src^="https://resources.enjin.com/profile/images/"],img[src$="site_logo/small.png"]')
-      .forEach((img) => img.src = img.src.replace('small', 'medium'));
+  document.querySelectorAll(
+    'img[src^="https://assets-cloud.enjin.com/users/"]' +
+    ',img[src^="https://resources.enjin.com/profile/images/"]' +
+    ',img[src$="site_logo/small.png"]')
+    .forEach((img) => img.src = img.src.replace('small', 'medium'));
 
   document.querySelectorAll('img[src*="/module_appform/thumb"]')
-      .forEach((img) => img.src = img.src.replace('thumb', 'full'));
+    .forEach((img) => img.src = img.src.replace('thumb', 'full'));
 }
 
 /**
