@@ -9,6 +9,33 @@
         "develop": "gulp default --require @babel/register --gulpfile tasks",
         "build": "gulp build --require @babel/register --gulpfile tasks"
     },
+    "babel": {
+        "presets": ["@babel/preset-env"]
+    },
+    "stylelint": {
+        "extends": "stylelint-config-standard"
+    },
+    "eslintConfig": {
+        "extends": [
+            "google"
+        ],
+        "plugins": [
+            "compat"
+        ],
+        "parserOptions": {
+            "sourceType": "module",
+            "ecmaVersion": 6
+        },
+        "rules": {
+            "max-len": [
+                1,
+                {
+                    "ignoreUrls": true,
+                    "ignoreTemplateLiterals": true
+                }
+            ]
+        }
+    },
     "devDependencies": {
         "@babel/core": "7.1.6",
         "@babel/preset-env": "7.1.6",
