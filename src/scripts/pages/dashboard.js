@@ -154,6 +154,7 @@ function cleanupMenu() {
     `);
 
     metaElem.classList.add('meta-initialized');
+    document.querySelector('header').classList.add('pushed');
 
     const selectElem = metaElem.querySelector('.mdc-select');
     const menuElem = selectElem.querySelector('.mdc-menu');
