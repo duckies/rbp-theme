@@ -31,6 +31,11 @@ const config = {
       replace: '/dashboard.js',
     },
     {
+      match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/forum.js',
+      once: true,
+      replace: '/forum.js',
+    },
+    {
       match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/home.js',
       once: true,
       replace: '/home.js',
@@ -41,9 +46,9 @@ const config = {
       replace: '/roster.js',
     },
     {
-      match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/vendors~about~apply~dashboard~home~roster.js',
+      match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/vendors~about~apply~dashboard~forum~home~roster.js',
       once: true,
-      replace: '/vendors~about~apply~dashboard~home~roster.js',
+      replace: '/vendors~about~apply~dashboard~forum~home~roster.js',
     },
     {
       match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/vendors~dashboard.js',

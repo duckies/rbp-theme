@@ -9,6 +9,7 @@ const webpackConfig = {
     home: './scripts/pages/home.js',
     about: './scripts/pages/about.js',
     apply: './scripts/pages/apply.js',
+    forum: './scripts/pages/forum.js',
     roster: './scripts/pages/roster.js',
     dashboard: './scripts/pages/dashboard.js',
   },
@@ -24,9 +25,9 @@ const webpackConfig = {
     minimizer: [
       new TerserPlugin({
         cache: true,
-        // Memory issues in WSL
         sourceMap: true,
-        parallel: 4,
+        // Memory issues in WSL
+        // parallel: 4,
         extractComments: true,
       }),
     ],

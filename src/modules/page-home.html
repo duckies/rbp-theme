@@ -8,7 +8,7 @@
             <a class="mdc-list-item mdc-list-item--activated" href="/" aria-selected="true">Home</a>
             <a class="mdc-list-item" href="/about">About Us</a>
             <a class="mdc-list-item" href="/apply">Apply</a>
-            <a class="mdc-list-item" href="/roster" >Roster</a>
+            <a class="mdc-list-item" href="/roster">Roster</a>
             <a class="mdc-list-item" href="https://www.warcraftlogs.com/guild/id/5825" target="_blank" rel="nofollow">Logs</a>
             <hr class="mdc-list-divider">
             <h6 class="mdc-list-group__subheader">Dashboard</h6>
@@ -52,7 +52,7 @@
                             </a>
                             <a href="/about" class="mdc-tab" role="tab" aria-selected="false" tabindex="-1">
                                 <div class="mdc-tab__content">
-                                    <span class="mdc-tab__text-label">About Us</span>
+                                    <span class="mdc-tab__text-label">Info</span>
                                 </div>
                                 <span class="mdc-tab-indicator">
                                     <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
@@ -77,7 +77,8 @@
                                 </span>
                                 <div class="mdc-tab__ripple"></div>
                             </a>
-                            <a href="https://www.warcraftlogs.com/guild/id/5825" class="mdc-tab" role="tab" aria-selected="false" tabindex="-1">
+                            <a href="https://www.warcraftlogs.com/guild/id/5825" class="mdc-tab" role="tab"
+                                aria-selected="false" tabindex="-1">
                                 <div class="mdc-tab__content">
                                     <span class="mdc-tab__text-label">Logs</span>
                                 </div>
@@ -94,7 +95,7 @@
                 <button id="user-button" class="user-menu__button mdc-button"></button>
 
                 <div id="guest-menu" class="mdc-menu mdc-menu-surface" tabindex="-1">
-                        <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
+                    <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
                         <li class="mdc-list-item" role="menuitem">
                             <a href="/login">Login</a>
                         </li>
@@ -174,7 +175,14 @@
 </header>
 
 <div class="carousel">
-    
+    <div class="carousel-item" data-flickity-bg-lazyload="https://s3.amazonaws.com/files.enjin.com/632721/killshots/Uldir-2018/mythrax-kill.jpg">
+        <div class="carousel-content">
+            <div class="flex-container">
+                <h1 class="carousel-content__title">Mythic Mythrax Defeated</h1>
+                <span class="carousel-content__caption">Good job melee nerf.</span>
+            </div>
+        </div>
+    </div>
     <div class="carousel-item" data-flickity-bg-lazyload="https://s3.amazonaws.com/files.enjin.com/632721/killshots/Uldir-2018/Zull_Kill_Compressed.jpg">
         <div class="carousel-content">
             <div class="flex-container">
@@ -183,7 +191,6 @@
             </div>
         </div>
     </div>
-    
     <div class="carousel-item" data-flickity-bg-lazyload="https://s3.amazonaws.com/files.enjin.com/632721/killshots/Uldir-2018/fetid_kill.jpg">
         <div class="carousel-content">
             <div class="flex-container">
@@ -226,6 +233,6 @@
 </div>
 
 <script src="https://browser.sentry-cdn.com/4.3.0/bundle.min.js" crossorigin="anonymous"></script>
-<script src="https://s3.amazonaws.com/files.enjin.com/632721/material/vendors~about~apply~dashboard~home~roster.js"></script>
+<script src="https://s3.amazonaws.com/files.enjin.com/632721/material/vendors~about~apply~dashboard~forum~home~roster.js"></script>
 <script src="https://s3.amazonaws.com/files.enjin.com/632721/material/vendors~home.js"></script>
 <script src="https://s3.amazonaws.com/files.enjin.com/632721/material/home.js"></script>

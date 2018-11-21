@@ -4660,10 +4660,10 @@ a.mdc-list-item {
     animation: fade-in 200ms linear;
     background-position: center center;
     background-size: cover; }
+    .hero-bg__forums {
+      background-image: url("https://s3.amazonaws.com/files.enjin.com/1604436/backgrounds/nazmir.jpg"); }
     .hero-bg[data-page="apply"] {
       background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/heroes/kaldorei.jpg"); }
-    .hero-bg[data-page="forums"] {
-      background-image: url("https://s3.amazonaws.com/files.enjin.com/1604436/backgrounds/nazmir.jpg"); }
     .hero-bg[data-page="roster"] {
       background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/heroes/zuldazar_art-compressor.jpg"); }
 

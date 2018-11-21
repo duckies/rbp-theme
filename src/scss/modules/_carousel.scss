@@ -105,12 +105,12 @@ $carousel-mobile-height: 350px;
     background-position: center center;
     background-size: cover;
 
-    &[data-page="apply"] {
-      background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/heroes/kaldorei.jpg");
+    &__forums {
+      background-image: url("https://s3.amazonaws.com/files.enjin.com/1604436/backgrounds/nazmir.jpg");
     }
 
-    &[data-page="forums"] {
-      background-image: url("https://s3.amazonaws.com/files.enjin.com/1604436/backgrounds/nazmir.jpg");
+    &[data-page="apply"] {
+      background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/heroes/kaldorei.jpg");
     }
 
     &[data-page="roster"] {
