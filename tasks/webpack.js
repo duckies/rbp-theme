@@ -1,5 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
+import TerserPlugin from 'terser-webpack-plugin';
 
 const webpackConfig = {
   mode: 'production',
@@ -26,7 +27,13 @@ const webpackConfig = {
         sourceMap: true,
         // Memory issues in WSL
         // parallel: 4,
-        extractComments: true,
+        // If I want to include comments but in separated files.
+        // extractComments: true,
+        terserOptions: {
+          output: {
+            comments: false,
+          },
+        },
       }),
     ],
   },
