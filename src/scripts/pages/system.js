@@ -26,7 +26,7 @@ function rejectAudio() {
   if (button) {
     button.addEventListener('click', () => {
       // Only scare Shammamain a third of the time.
-      if (Math.random() >= 0.33) {
+      if (Math.random() < 0.333) {
         rejectSound.play();
       }
     });
@@ -98,14 +98,9 @@ function paginationHandler() {
 /**
  * Initializes the new select menu navigation.
  */
-function cleanupMenu() {
-  const appElem = document.querySelector('.applications');
+function appCategorySelector() {
   const header = document.querySelector('.app_header');
   const metaElem = document.querySelector('.app_sidebar_meta');
-
-  if (!appElem) {
-    return;
-  }
 
   if (metaElem && !metaElem.classList.contains('meta-initialized')) {
     metaElem.insertAdjacentHTML('afterbegin', `
@@ -271,7 +266,7 @@ async function addLastLogin() {
 function createCharacterMutationObserver(target) {
   const observer = new MutationObserver((mutations) => {
     if (target.classList.contains('v2_system_dashboard')) {
-      cleanupMenu();
+      appCategorySelector();
       mutations.forEach((mutation) => {
         mutation.removedNodes.forEach((node) => {
           if (node.classList &&
@@ -284,12 +279,7 @@ function createCharacterMutationObserver(target) {
         mutation.addedNodes.forEach((node) => {
           if (node.classList &&
             node.contains(node.querySelector('.character_list'))) {
-            rejectAudio();
-            getWoWCharacters();
-            imageReplacement();
-            createLightboxes();
-            peskyLinks();
-            addLastLogin();
+            appCategoryInitializer();
           }
         });
       });
@@ -328,17 +318,104 @@ function createLightboxes() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const dashboard = document.querySelector('.v2_system_dashboard');
+/**
+ * Injects the footer into the system page since
+ * Enjin is sensationalist and removes footers here.
+ */
+function injectSystemFooter() {
+  console.info('[RBP]: Injecting system footer');
+  const footer = document.querySelector('#section-footer .section');
 
-  initializePage();
-  cleanupMenu();
-  linkNavigationButtons(dashboard);
+  footer.insertAdjacentHTML('beforeend', `
+    <footer class="footer">
+        <div class="flex-container">
+            <div class="footer__background">
+                <div class="footer__top">
+                    <div class="footer-block footer-block--padded">
+                        <div class="footer__logo">
+                            <img src="https://s3.amazonaws.com/files.enjin.com/632721/material/images/logo_medium.png">
+                        </div>
+                        <div class="footer__description">
+                            <span class="footer__description--guild">Really Bad Players</span>
+                            <span class="footer__description--info">US / Blackrock / Horde</span>
+                        </div>
+                    </div>
+                    <div class="footer-block footer-block--padded">
+                        <div class="footer-block--title">Navigation</div>
+                        <ul class="footer-list">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/about">About Us</a></li>
+                            <li><a href="/apply">Application</a></li>
+                            <li><a href="/forum">Forum</a></li>
+                            <li><a href="/roster">Roster</a></li>
+                            <li><a href="https://www.warcraftlogs.com/guild/id/5825">Logs</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-block footer-block--padded">
+                        <div class="footer-block--title">About</div>
+                        <ul class="footer-list">
+                            <li><a href="/about#guild">Guild History</a></li>
+                            <li><a href="/about#ranks">Ranking Structure</a></li>
+                            <li><a href="/about#loot">Loot Distribution</a></li>
+                            <li><a href="/about#addons">Required Addons</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-block footer-block--padded">
+                        <div class="footer-block--title">Resources</div>
+                        <ul class="footer-list">
+                            <li><a href="https://www.warcraftlogs.com/guild/id/5825">WarcraftLogs</a></li>
+                            <li><a href="https://www.wowprogress.com/guild/us/blackrock/Really+Bad+Players">Wowprogress</a></li>
+                            <li><a href="https://raider.io/guilds/us/blackrock/Really%20Bad%20Players">Raider.IO</a></li>
+                            <li><a href="https://www.raidbots.com/simbot">Raidbots</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-block">
+                        <div class="discord-parent">
+                            <div class="discord-title">Discord</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer__bottom">
+                    <div class="footer__bottom--left">
+                        <span class="copyright-info">Copyright © Really Bad Players. All rights reserved.</span>
+                    </div>
+                    <div class="footer__bottom--right">
+                        <span class="footer-links">Designed by <a href="https://worldofwarcraft.com/en-us/character/blackrock/duckie">Duckie</a> Powered by <a href="https://www.enjin.com/">Enjin</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>`);
+}
+
+/**
+ * Calls the functions necessary to handle every
+ * new application, or application category, selected.
+ */
+function appCategoryInitializer() {
+  getWoWCharacters();
+  imageReplacement();
   addLastLogin();
   rejectAudio();
-  imageReplacement();
   createLightboxes();
   peskyLinks();
-  getWoWCharacters();
-  createCharacterMutationObserver(dashboard);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const dashboard = document.querySelector('.v2_system_dashboard');
+  const applications = dashboard.querySelector('.applications');
+
+  injectSystemFooter();
+  initializePage();
+
+  // NOTE: Profile and Logout pages are not dashboard.
+  if (dashboard) {
+    linkNavigationButtons(dashboard);
+    createCharacterMutationObserver(dashboard);
+
+    if (applications) {
+      appCategorySelector();
+      appCategoryInitializer();
+    }
+  }
 });

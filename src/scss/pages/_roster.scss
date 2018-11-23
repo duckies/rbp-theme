@@ -22,6 +22,7 @@
     padding: 25px 20px;
     grid-template-columns: 3fr 5fr;
     grid-column-gap: 10px;
+    animation: fade-in 500ms $mdc-animation-standard-curve-timing-function;
     background-position: 20% 50%;
     background-size: 185%;
 

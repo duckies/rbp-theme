@@ -2882,7 +2882,7 @@ div::-webkit-scrollbar-track {
   white-space: nowrap;
   pointer-events: none;
   overflow: hidden;
-  z-index: 1; }
+  z-index: 0; }
   .lightrope li {
     position: relative;
     animation-fill-mode: both;
@@ -4657,7 +4657,7 @@ a.mdc-list-item {
     bottom: 0;
     left: 0;
     height: 600px;
-    animation: fade-in 200ms linear;
+    animation: fade-in 500ms cubic-bezier(0.4, 0, 0.2, 1);
     background-position: center center;
     background-size: cover; }
     .hero-bg__forums {
@@ -7601,6 +7601,7 @@ a.mdc-list-item {
     padding: 25px 20px;
     grid-template-columns: 3fr 5fr;
     grid-column-gap: 10px;
+    animation: fade-in 500ms cubic-bezier(0.4, 0, 0.2, 1);
     background-position: 20% 50%;
     background-size: 185%; }
     .roster--bg__gradient {

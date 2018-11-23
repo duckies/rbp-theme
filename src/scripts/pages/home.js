@@ -43,7 +43,7 @@ async function createRaiderIOElements() {
     loaders.remove();
 
     setTimeout(animateProgressBars, 500);
-    console.log(ranks);
+
     const key = ((ranks) => {
       switch (ranks) {
       case ranks.mythic.world !== 0:
@@ -54,17 +54,6 @@ async function createRaiderIOElements() {
         return 'normal';
       }
     })(ranks);
-
-    console.log(key);
-
-    // let key = '';
-    // if (ranks.mythic.world !== 0) {
-    //   key = 'mythic';
-    // } else if (ranks.heroic.world !== 0) {
-    //   key = 'heroic';
-    // } else {
-    //   key = 'normal';
-    // }
 
     Object.entries(ranks[key]).map(([region, score]) => {
       const elem = document.querySelector('[data-guild-rank=' + region + ']');
@@ -124,7 +113,6 @@ function createGroupPayModule() {
  * @return {String} joined string for DOM insertion.
  */
 function createProgressionElements(raids) {
-  console.log(raids);
   return raids.map(([instance, progress]) => {
     return `
     <div class="col-12 raid-progress mdc-elevation--z2" data-raid="${instance}">

@@ -11,13 +11,13 @@ import config from './config';
  */
 export default function styles() {
   return gulp
-      .src(config.paths.styles.build)
-      .pipe(sass({
-        includePaths: ['node_modules'],
-      }))
-      .pipe(prefixer())
-      .pipe(gulp.dest(config.paths.styles.dest))
-      .pipe(rename({suffix: '.min'}))
-      .pipe(clean())
-      .pipe(gulp.dest(config.paths.styles.dest));
+    .src(config.paths.styles.build)
+    .pipe(sass({
+      includePaths: ['node_modules'],
+    }))
+    .pipe(prefixer())
+    .pipe(gulp.dest(config.paths.styles.dest))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(clean())
+    .pipe(gulp.dest(config.paths.styles.dest));
 }

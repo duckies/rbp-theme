@@ -94,9 +94,9 @@ async function userMenu() {
         const listElem = menuElem.querySelector('.mdc-list');
 
         listElem.insertAdjacentHTML('beforeend',
-            `<li class='mdc-list-item' role='menuitem' tabindex='0'>
-              <a class='join-us' href='#' onclick='Enjin_Core.joinWebsiteRegular(event);return false;' rel='nofollow'>Join Website</a>
-            </li>`);
+          `<li class='mdc-list-item' role='menuitem' tabindex='0'>
+            <a class='join-us' href='#' onclick='Enjin_Core.joinWebsiteRegular(event);return false;' rel='nofollow'>Join Website</a>
+          </li>`);
 
         const linkObj = new link.MDCLink(listElem);
         linkObj.singleSelection = true;
@@ -150,4 +150,5 @@ export default function initialize() {
   userMenu();
   initAppBar();
   handleTrayClosing();
+  console.log('Reached this far.');
 };

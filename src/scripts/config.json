@@ -4,7 +4,8 @@
     "guild": "Really Bad Players",
     "realm": "Blackrock",
     "avatar_base": "https://render-us.worldofwarcraft.com/character/",
-    "avatar_generic": "https://s3.amazonaws.com/files.enjin.com/632721/material/images/avatar/generic_bloodelf.jpg"
+    "avatar_generic": "https://s3.amazonaws.com/files.enjin.com/632721/material/images/avatar/generic_bloodelf.jpg",
+    "enjin_generic_avatar": "themes/core/images/game/generic/avatar/default.jpg"
   },
   "character": {
     "slots": [

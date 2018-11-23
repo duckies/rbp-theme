@@ -1,7 +1,5 @@
 import config from '../config';
 
-const defaultAvatar = 'themes/core/images/game/generic/avatar/default.jpg';
-
 /**
  * @class
  * @classdesc World of Warcraft character.
@@ -19,7 +17,7 @@ export default class Character {
     this.class = data.type;
     this.race = data.race;
     this.level = data.level;
-    this.avatar = data.avatar_url.replace(defaultAvatar, config.blizzard.avatar_generic);
+    this.avatar = data.avatar_url;
     this.isRemovable = (document.querySelector('.m_appform')) ? true : false;
     this.blizzard = null;
     this.raiderIO = null;
@@ -47,7 +45,7 @@ export default class Character {
     } else if (this.raiderIO && this.raiderIO.thumbnail_url) {
       return this.raiderIO.thumbnail_url;
     } else if (this.avatar) {
-      return this.avatar.replace(defaultAvatar, genericAvatar);
+      return this.avatar.replace(config.blizzard.enjin_generic_avatar, config.blizzard.avatar_generic);
     } else {
       return config.blizzard.avatar_generic;
     }

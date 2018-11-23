@@ -26,11 +26,6 @@ const config = {
       replace: '/apply.js',
     },
     {
-      match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/dashboard.js',
-      once: true,
-      replace: '/dashboard.js',
-    },
-    {
       match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/forum.js',
       once: true,
       replace: '/forum.js',
@@ -46,14 +41,14 @@ const config = {
       replace: '/roster.js',
     },
     {
-      match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/vendors~about~apply~dashboard~forum~home~roster.js',
+      match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/system.js',
       once: true,
-      replace: '/vendors~about~apply~dashboard~forum~home~roster.js',
+      replace: '/system.js',
     },
     {
-      match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/vendors~dashboard.js',
+      match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/vendors~about~apply~forum~home~roster~system.js',
       once: true,
-      replace: '/vendors~dashboard.js',
+      replace: '/vendors~about~apply~forum~home~roster~system.js',
     },
     {
       match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/vendors~home.js',
@@ -61,14 +56,9 @@ const config = {
       replace: '/vendors~home.js',
     },
     {
-      match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/vendors~apply~dashboard~home.js',
+      match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/vendors~system.js',
       once: true,
-      replace: '/vendors~apply~dashboard~home.js',
-    },
-    {
-      match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/apply~dashboard.js',
-      once: true,
-      replace: '/apply~dashboard.js',
+      replace: '/vendors~system.js',
     },
   ],
 };

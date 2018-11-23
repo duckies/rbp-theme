@@ -101,7 +101,7 @@ $carousel-mobile-height: 350px;
     bottom: 0;
     left: 0;
     height: $carousel-height;
-    animation: fade-in 200ms linear;
+    animation: fade-in 500ms $mdc-animation-standard-curve-timing-function;
     background-position: center center;
     background-size: cover;
 

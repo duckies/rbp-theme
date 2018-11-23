@@ -10,7 +10,7 @@ const webpackConfig = {
     apply: './scripts/pages/apply.js',
     forum: './scripts/pages/forum.js',
     roster: './scripts/pages/roster.js',
-    dashboard: './scripts/pages/dashboard.js',
+    system: './scripts/pages/system.js',
   },
   output: {
     filename: '[name].js',
@@ -24,7 +24,7 @@ const webpackConfig = {
     minimizer: [
       new TerserPlugin({
         cache: true,
-        sourceMap: true,
+        sourceMap: false,
         // Memory issues in WSL
         // parallel: 4,
         // If I want to include comments but in separated files.
