@@ -1,0 +1,35 @@
+{
+  "blizzard": {
+    "key": "e82qmvhf6egvsqdmpemmps2dskp62teu",
+    "guild": "Really Bad Players",
+    "realm": "Blackrock",
+    "avatar_base": "https://render-us.worldofwarcraft.com/character/",
+    "avatar_generic": "https://s3.amazonaws.com/files.enjin.com/632721/material/images/avatar/generic_bloodelf.jpg"
+  },
+  "character": {
+    "slots": [
+      "head",
+      "neck",
+      "shoulder",
+      "back",
+      "chest",
+      "shirt",
+      "wrist",
+      "hands",
+      "waist",
+      "legs",
+      "feet",
+      "finger1",
+      "finger2",
+      "trinket1",
+      "trinket2",
+      "mainHand",
+      "offHand"
+    ]
+  },
+  "raid_difficulties": {
+    "M": "Mythic",
+    "H": "Heroic",
+    "N": "Normal"
+  }
+}

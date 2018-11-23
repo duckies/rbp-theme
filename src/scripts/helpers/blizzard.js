@@ -1,26 +1,6 @@
-const apiKey = 'e82qmvhf6egvsqdmpemmps2dskp62teu';
-const thumbnail = 'https://render-us.worldofwarcraft.com/character/';
+import config from '../config';
+
 const defaultAvatar = 'themes/core/images/game/generic/avatar/default.jpg';
-const genericAvatar = 'https://s3.amazonaws.com/files.enjin.com/1604436/images/unknown.jpg';
-const slots = [
-  'head',
-  'neck',
-  'shoulder',
-  'back',
-  'chest',
-  'shirt',
-  'wrist',
-  'hands',
-  'waist',
-  'legs',
-  'feet',
-  'finger1',
-  'finger2',
-  'trinket1',
-  'trinket2',
-  'mainHand',
-  'offHand',
-];
 
 /**
  * @class
@@ -39,7 +19,7 @@ export default class Character {
     this.class = data.type;
     this.race = data.race;
     this.level = data.level;
-    this.avatar = data.avatar_url.replace(defaultAvatar, genericAvatar);
+    this.avatar = data.avatar_url.replace(defaultAvatar, config.blizzard.avatar_generic);
     this.isRemovable = (document.querySelector('.m_appform')) ? true : false;
     this.blizzard = null;
     this.raiderIO = null;
@@ -63,13 +43,13 @@ export default class Character {
    */
   get characterAvatar() {
     if (this.blizzard && this.blizzard.thumbnail) {
-      return thumbnail + this.blizzard.thumbnail;
+      return config.blizzard.avatar_base + this.blizzard.thumbnail;
     } else if (this.raiderIO && this.raiderIO.thumbnail_url) {
       return this.raiderIO.thumbnail_url;
     } else if (this.avatar) {
       return this.avatar.replace(defaultAvatar, genericAvatar);
     } else {
-      return genericAvatar;
+      return config.blizzard.avatar_generic;
     }
   }
 
@@ -84,7 +64,8 @@ export default class Character {
    * Gets Blizzard character API url.
    */
   get blizzardApi() {
-    return 'https://' + this.region + '.api.battle.net/wow/character/' + this.realm + '/' + this.name + '?fields=items,talents&locale=en_US&apikey=' + apiKey;
+    return 'https://' + this.region + '.api.battle.net/wow/character/' + this.realm + '/' +
+      this.name + '?fields=items,talents&locale=en_US&apikey=' + config.blizzard.key;
   }
 
   /**
@@ -373,7 +354,7 @@ export default class Character {
       const items = this.blizzard.items;
       let elements = '<div class="character-gear-items">';
 
-      for (const slot of slots) {
+      for (const slot of config.character.slots) {
         if (items[slot]) {
           let args = 'ilvl=' + items[slot].itemLevel + '&amp;';
 

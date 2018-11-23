@@ -1,17 +1,9 @@
 import {MDCLinearProgress} from '@material/linear-progress/index';
 import {animateProgressBars} from '../helpers/material';
-import Flickity from 'flickity-bg-lazyload';
 import {getRequest, postRequest} from '../helpers/network';
+import config from '../config';
+import Flickity from 'flickity-bg-lazyload';
 import initializePage from '../global/global';
-
-
-// TODO: Extract things like this to a constants file.
-const difficulties = {
-  'M': 'Mythic',
-  'H': 'Heroic',
-  'N': 'Normal',
-};
-
 
 /**
  * Instantiates homepage carousel.
@@ -51,15 +43,28 @@ async function createRaiderIOElements() {
     loaders.remove();
 
     setTimeout(animateProgressBars, 500);
+    console.log(ranks);
+    const key = ((ranks) => {
+      switch (ranks) {
+      case ranks.mythic.world !== 0:
+        return 'mythic';
+      case ranks.heroic.world !== 0:
+        return 'heroic';
+      default:
+        return 'normal';
+      }
+    })(ranks);
 
-    let key = '';
-    if (ranks.mythic.world !== 0) {
-      key = 'mythic';
-    } else if (ranks.heroic.world !== 0) {
-      key = 'heroic';
-    } else {
-      key = 'normal';
-    }
+    console.log(key);
+
+    // let key = '';
+    // if (ranks.mythic.world !== 0) {
+    //   key = 'mythic';
+    // } else if (ranks.heroic.world !== 0) {
+    //   key = 'heroic';
+    // } else {
+    //   key = 'normal';
+    // }
 
     Object.entries(ranks[key]).map(([region, score]) => {
       const elem = document.querySelector('[data-guild-rank=' + region + ']');
@@ -83,6 +88,7 @@ function createGroupPayModule() {
   const holder = document.querySelector('#grouppay');
 
   if (!module) {
+    console.warn('GroupPay module was not found.');
     if (holder) {
       holder.remove();
     }
@@ -118,6 +124,7 @@ function createGroupPayModule() {
  * @return {String} joined string for DOM insertion.
  */
 function createProgressionElements(raids) {
+  console.log(raids);
   return raids.map(([instance, progress]) => {
     return `
     <div class="col-12 raid-progress mdc-elevation--z2" data-raid="${instance}">
@@ -126,7 +133,7 @@ function createProgressionElements(raids) {
             <span class="raid-progress__summary-text">${progress.summary}</span>
         </div>
         <div class="col-12 raid-info">
-            <span class="raid-difficulty">${difficulties[progress.summary.slice(-1)]}</span>
+            <span class="raid-difficulty">${config.raid_difficulties[progress.summary.slice(-1)]}</span>
             <span class="raid-name">${instance.replace(/-/g, ' ')}</span>
         </div>
         <div role="progressbar" class="col-12 progressbar mdc-linear-progress" data-scale="${eval(progress.summary.slice(0, -2))}">

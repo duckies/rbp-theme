@@ -1,6 +1,6 @@
 import {MDCRipple} from '@material/ripple/index';
 import {getRequest} from '../helpers/network';
-import {BlizzardAPI} from '../config/config';
+import config from '../config';
 import initializePage from '../global/global';
 
 const ignoredRanks = [2, 7, 8];
@@ -40,11 +40,11 @@ function createCharacterElements(JSON) {
   return JSON.members.map((member) => {
     return `
       <div class="roster--character mdc-ripple-target class-${classMap[member.character.class]} mdc-elevation--z2">
-        <div class="roster--bg" style="background-image: url(${BlizzardAPI.AVATAR_BASE + member.character.thumbnail.replace('avatar', 'main')})">
+        <div class="roster--bg" style="background-image: url(${config.blizzard.avatar_base + member.character.thumbnail.replace('avatar', 'main')})">
           <div class="roster--bg__gradient"></div>
         </div>
         <div class="roster-grid">
-          <img class="roster--avatar" src="${BlizzardAPI.AVATAR_BASE + member.character.thumbnail}">
+          <img class="roster--avatar" src="${config.blizzard.avatar_base + member.character.thumbnail}" onerror="window.avatarError(this);">
           <div class="roster--info">
             <div class="roster--info__name">${member.character.name}</div>
             <div class="roster--info__rank">${rankMap[member.rank]}</div>
@@ -65,6 +65,11 @@ function createCharacterElements(JSON) {
   }).join('');
 }
 
+window.avatarError = (avatar) => {
+  avatar.src = config.blizzard.avatar_generic;
+  avatar.onerror = '';
+};
+
 /**
  * Uses the Blizzard API to get guild characters.
  */
@@ -72,12 +77,14 @@ async function pullRosterData() {
   const pageElem = document.querySelector('#page-roster .roster');
 
   try {
-    const json = await getRequest(BlizzardAPI.rosterURL());
-
-    console.log(json);
+    const json = await getRequest(
+      `https://us.api.battle.net/wow/guild/${config.blizzard.realm}/` +
+      `${encodeURIComponent(config.blizzard.guild)}?fields=members&locale=en_US&apikey=${config.blizzard.key}`
+    );
 
     sortRoster(json);
     filterRanks(json);
+
     pageElem.innerHTML = '';
     pageElem.insertAdjacentHTML('beforeend', createCharacterElements(json));
 
