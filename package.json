@@ -332,7 +332,7 @@
         "eslint-config-google": "0.11.0",
         "eslint-plugin-compat": "2.6.3",
         "flickity": "2.1.2",
-        "flickity-bg-lazyload": "1.0.0",
+        "flickity-bg-lazyload": "1.0.1",
         "gulp": "github:gulpjs/gulp",
         "gulp-autoprefixer": "6.0.0",
         "gulp-babel": "8.0.0",
