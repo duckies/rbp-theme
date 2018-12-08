@@ -327,7 +327,7 @@
         "basiclightbox": "5.0.1",
         "browser-sync": "2.26.3",
         "browser-sync-webpack-plugin": "2.2.2",
-        "browserslist": "4.3.4",
+        "browserslist": "4.3.5",
         "eslint": "5.10.0",
         "eslint-config-google": "0.11.0",
         "eslint-plugin-compat": "2.6.3",
