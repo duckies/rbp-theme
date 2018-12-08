@@ -355,7 +355,7 @@
     "dependencies": {
         "acorn": "^6.0.4",
         "gulp-cli": "2.0.1",
-        "material-components-web": "0.41.1",
+        "material-components-web": "0.42.0",
         "node-sass": "4.10.0",
         "npm": "6.4.1",
         "stylelint": "^9.8.0"
