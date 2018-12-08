@@ -6031,6 +6031,11 @@ a.mdc-list-item {
       .module_content_wrap .v2_system_dashboard .applications .app_inner_title {
         margin-top: 20px;
         background-color: #252629; }
+      .module_content_wrap .v2_system_dashboard .applications .app_inner_user {
+        display: grid;
+        grid-template-columns: auto 1fr 1fr; }
+        .module_content_wrap .v2_system_dashboard .applications .app_inner_user .app_header_user_meta {
+          order: 2; }
       .module_content_wrap .v2_system_dashboard .applications .app_inner_header {
         color: #fff;
         font-size: 16px; }
@@ -6302,7 +6307,8 @@ a.mdc-list-item {
     line-height: 1.1;
     text-align: center; }
   .character-error {
-    font-family: "Roboto Mono", sans-serif; }
+    font-family: "Roboto Mono", sans-serif;
+    font-size: 13px; }
   .character-text__name {
     color: #fff;
     font-size: 20px;

@@ -15,6 +15,8 @@ function carousel() {
     return;
   }
 
+  // Flickity needs to be instantiated to a variable.
+  // eslint-disable-next-line no-new
   new Flickity(carousel, {
     autoPlay: 5000,
     wrapAround: true,
