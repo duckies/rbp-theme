@@ -7,24 +7,11 @@ $icon-size: 40px;
 .dashboard-navbar {
   height: 0;
   transition: height 350ms $mdc-animation-standard-curve-timing-function;
-  background-color: $mdc-theme-secondary;
   overflow: hidden;
   will-change: height;
 
   &.show {
     height: 48px;
-  }
-
-  .mdc-tab {
-    &--active {
-      .mdc-tab__text-label {
-        color: $text-ongrey;
-      }
-    }
-  }
-
-  .mdc-tab-indicator__content--underline {
-    background-color: #fff !important;
   }
 }
 

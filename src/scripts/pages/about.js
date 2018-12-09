@@ -36,8 +36,10 @@ function updatePanel(index, panels) {
  */
 function handleTabs(panels) {
   const panel = map[window.location.hash.substr(1)];
-  const toolbar = new MDCTabBar(document.querySelector('.about-tabs'));
-  const tabs = document.querySelectorAll('.about-tabs .mdc-tab');
+  const navbar = document.querySelector('.secondary-navbar');
+  const toolbarElem = navbar.querySelector('.mdc-tab-bar');
+  const toolbar = new MDCTabBar(toolbarElem);
+  const tabs = toolbarElem.querySelectorAll('.mdc-tab');
   const ranksButton = document.querySelector('.ranks-button');
   const buttons = document.querySelectorAll('.addon-block--btn');
   let index = 0;
@@ -60,13 +62,15 @@ function handleTabs(panels) {
   }
 
   tabs.forEach((tab) => {
+    console.log(tab);
     tab.addEventListener('click', (e) => {
+      e.preventDefault();
+
       if (history.pushState) {
         history.pushState(null, null, tab.getAttribute('href'));
       } else {
         location.hash = tab.getAttribute('href');
       }
-      e.preventDefault();
     });
   });
 

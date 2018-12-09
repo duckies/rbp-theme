@@ -22,7 +22,7 @@
 <!-- Protects App UI from interactions -->
 <div class="mdc-drawer-scrim"></div>
 
-<header class="mdc-top-app-bar">
+<header class="mdc-top-app-bar pushed">
     <div class="mdc-top-app-bar__row flex-container">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
             <a href="#" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
@@ -127,6 +127,45 @@
             </div>
         </section>
     </div>
+    <div class="about-navbar secondary-navbar">
+        <div class="flex-container">
+            <nav class="mdc-tab-bar" role="tablist">
+                <div class="mdc-tab-scroller">
+                    <div class="mdc-tab-scroller__scroll-area mdc-tab-scroller__scroll-area--scroll">
+                        <div class="mdc-tab-scroller__scroll-content">
+                            <a href="#ranks" class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
+                                <div class="mdc-tab__content">
+                                    <span class="mdc-tab__text-label">Ranks</span>
+                                </div>
+                                <span class="mdc-tab-indicator mdc-tab-indicator--active">
+                                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                </span>
+                                <div class="mdc-tab__ripple"></div>
+                            </a>
+                            <a href="#loot" class="mdc-tab" role="tab" aria-selected="false" tabindex="-1">
+                                <div class="mdc-tab__content">
+                                    <span class="mdc-tab__text-label">Loot Distribution</span>
+                                </div>
+                                <span class="mdc-tab-indicator">
+                                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                </span>
+                                <div class="mdc-tab__ripple"></div>
+                            </a>
+                            <a href="#addons" class="mdc-tab" role="tab" aria-selected="false" tabindex="-1">
+                                <div class="mdc-tab__content">
+                                    <span class="mdc-tab__text-label">Required Addons</span>
+                                </div>
+                                <span class="mdc-tab-indicator">
+                                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                </span>
+                                <div class="mdc-tab__ripple"></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
     <ul class="lightrope">
         <li></li>
         <li></li>
@@ -173,7 +212,7 @@
     </ul>
 </header>
 
-<div class="hero">
+<div class="hero hero-nudge">
     <div class="hero-bg" data-page="about" style="background-image: url(https://s3.amazonaws.com/files.enjin.com/632721/material/images/heroes/page_about.jpg);"></div>
     <div class="hero-item">
         <div class="hero-content">

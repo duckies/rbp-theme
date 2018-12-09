@@ -403,13 +403,14 @@ function appCategoryInitializer() {
 
 document.addEventListener('DOMContentLoaded', () => {
   const dashboard = document.querySelector('.v2_system_dashboard');
-  const applications = dashboard.querySelector('.applications');
 
   injectSystemFooter();
   initializePage();
 
   // NOTE: Profile and Logout pages are not dashboard.
   if (dashboard) {
+    const applications = dashboard.querySelector('.applications');
+
     linkNavigationButtons(dashboard);
     createCharacterMutationObserver(dashboard);
 
