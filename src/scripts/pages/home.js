@@ -46,16 +46,12 @@ async function createRaiderIOElements() {
 
     setTimeout(animateProgressBars, 500);
 
-    const key = ((ranks) => {
-      switch (ranks) {
-      case ranks.mythic.world !== 0:
-        return 'mythic';
-      case ranks.heroic.world !== 0:
-        return 'heroic';
-      default:
-        return 'normal';
-      }
-    })(ranks);
+    let key = 'normal';
+    if (ranks.mythic.world !== 0) {
+      key = 'mythic';
+    } else if (ranks.heroic.world !== 0) {
+      key = 'heroic';
+    }
 
     Object.entries(ranks[key]).map(([region, score]) => {
       const elem = document.querySelector('[data-guild-rank=' + region + ']');

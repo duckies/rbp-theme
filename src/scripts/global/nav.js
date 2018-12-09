@@ -150,5 +150,4 @@ export default function initialize() {
   userMenu();
   initAppBar();
   handleTrayClosing();
-  console.log('Reached this far.');
 };
