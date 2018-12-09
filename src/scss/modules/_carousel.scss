@@ -1,6 +1,22 @@
 $carousel-height: 600px;
 $carousel-mobile-height: 350px;
 
+.carousel {
+  &-item {
+    &::before {
+      background: rgba($body-background-color, .25) linear-gradient(to top, $body-background-color, transparent 30%);
+    }
+  }
+}
+
+.hero {
+  &-item {
+    &::before {
+      background: rgba($body-background-color, .05) linear-gradient(to top, $body-background-color, transparent 30%);
+    }
+  }
+}
+
 .carousel,
 .hero {
   &-item {
@@ -19,7 +35,7 @@ $carousel-mobile-height: 350px;
       bottom: 0;
       left: 0;
       height: 100%;
-      background: rgba($body-background-color, .25) linear-gradient(to top, $body-background-color, transparent 30%);
+      // background: rgba($body-background-color, .25) linear-gradient(to top, $body-background-color, transparent 30%);
       content: "";
     }
   }

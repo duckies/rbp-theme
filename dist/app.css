@@ -2777,7 +2777,7 @@ div::-webkit-scrollbar-track {
   background-color: #27282c; }
   .secondary-navbar .mdc-tab__text-label {
     font-family: "Roboto Condensed", sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 900;
     letter-spacing: .3px;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15); }
@@ -2802,7 +2802,7 @@ div::-webkit-scrollbar-track {
     .mdc-top-app-bar__row .mdc-tab-bar .mdc-tab .mdc-tab__text-label {
       opacity: 1;
       font-family: "Roboto Condensed", sans-serif;
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 900;
       letter-spacing: .3px;
       text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15); }
@@ -4612,6 +4612,12 @@ a.mdc-list-item {
   .Editor__moreToolbarDropdown button div div div {
     background-color: #202124 !important; }
 
+.carousel-item::before {
+  background: rgba(20, 21, 23, 0.25) linear-gradient(to top, #141517, transparent 30%); }
+
+.hero-item::before {
+  background: rgba(20, 21, 23, 0.05) linear-gradient(to top, #141517, transparent 30%); }
+
 .carousel-item,
 .hero-item {
   position: relative;
@@ -4629,7 +4635,6 @@ a.mdc-list-item {
     bottom: 0;
     left: 0;
     height: 100%;
-    background: rgba(20, 21, 23, 0.25) linear-gradient(to top, #141517, transparent 30%);
     content: ""; }
 
 .carousel-content,

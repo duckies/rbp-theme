@@ -4,6 +4,7 @@ import {getRequest, postRequest} from '../helpers/network';
 import config from '../config';
 import Flickity from 'flickity-bg-lazyload';
 import initializePage from '../global/global';
+import snow from '../global/snow';
 
 /**
  * Instantiates homepage carousel.
@@ -185,6 +186,7 @@ function createNewsElements(newsItems) {
 document.addEventListener('DOMContentLoaded', () => {
   initializePage();
   carousel();
+  snow();
   createRaiderIOElements();
   createGroupPayModule();
   setupNewsModule();

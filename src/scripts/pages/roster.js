@@ -2,6 +2,7 @@ import {MDCRipple} from '@material/ripple/index';
 import {getRequest} from '../helpers/network';
 import config from '../config';
 import initializePage from '../global/global';
+import snow from '../global/snow';
 
 const ignoredRanks = [2, 7, 8];
 const rankMap = {
@@ -119,4 +120,5 @@ function filterRanks(data) {
 document.addEventListener('DOMContentLoaded', () => {
   initializePage();
   pullRosterData();
+  snow();
 });
