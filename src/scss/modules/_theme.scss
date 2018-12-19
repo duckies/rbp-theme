@@ -66,6 +66,19 @@ p {
       content: "check_circle" !important;
     }
   }
+
+  &.fa-cog {
+    &::before {
+      content: "\e8b8" !important;
+    }
+  }
+
+  &.fa-caret-down {
+    &::before {
+      content: "\e313" !important;
+    }
+  }
+
   &.fa-user,
   &.fa-globe {
     &::before {
@@ -91,6 +104,12 @@ p {
   &.fa-times {
     &::before {
       content: "close" !important;
+    }
+  }
+
+  &.fa-folder {
+    &::before {
+      content: "\e2c7" !important;
     }
   }
 

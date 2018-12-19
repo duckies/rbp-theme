@@ -62,8 +62,7 @@ export default class Character {
    * Gets Blizzard character API url.
    */
   get blizzardApi() {
-    return 'https://' + this.region + '.api.battle.net/wow/character/' + this.realm + '/' +
-      this.name + '?fields=items,talents&locale=en_US&apikey=' + config.blizzard.key;
+    return `https://api.duckie.cc/character/${this.realm}/${this.name}?fields=items,talents`;
   }
 
   /**

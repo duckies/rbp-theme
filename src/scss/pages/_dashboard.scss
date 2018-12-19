@@ -566,20 +566,57 @@ $icon-size: 40px;
     }
 
     .messages {
+      font-size: inherit;
+
       .message_header {
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
+        height: 50px;
         padding: 0;
         background-color: $module-body-background-light;
 
+        @include media-breakpoint-down(sm) {
+          height: 100px;
+        }
+
         &_tab {
+          display: flex;
+          align-items: center;
           margin-right: 0;
           padding: 0 10px;
-          font-size: 14px;
+          font-family: "Roboto Condensed", sans-serif;
+          font-size: 16px;
+          font-weight: bold;
+  
+          &.active {
+            border-bottom: 2px solid $mdc-theme-secondary;
+            background-color: darken($module-body-background-light, 3%);
+          }
+
+          .fa {
+            font-size: inherit;
+            line-height: initial;
+          }
+        }
+        
+        &_text {
+          margin-left: 21px;
+        }
+
+        &_total {
+          width: 16px;
+          margin: 0 0 0 5px;
+          background-color: $mdc-theme-secondary;
         }
 
         &_actions {
+          display: flex;
           margin-left: auto;
+        }
+
+        .fa-caret-down {
+          display: none;
         }
       }
 
@@ -617,9 +654,22 @@ $icon-size: 40px;
           background-color: $mdc-theme-primary;
           // box-shadow: $module-shadow;
           // margin-top: $module-margin * 2.5;
+          margin-bottom: 15px;
         }
 
-        &_list {
+        &_user_block {
+          margin: 0 0 10px 0;
+          padding: 20px 15px;
+          border: 0;
+          background-color: $mdc-theme-primary;
+
+          &:last-child {
+            margin-bottom: 15px;
+          }
+        }
+
+        &_write {
+          padding: 0;
           background-color: $mdc-theme-primary;
         }
       }

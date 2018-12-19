@@ -36,16 +36,19 @@ const classMap = {
  * Uses sorted JSON data to create character elements.
  * @param {JSON} JSON
  * @return {String}
+ * style="background-image: url(${config.blizzard.avatar_base + member.character.thumbnail.replace('avatar', 'main')})"
  */
 function createCharacterElements(JSON) {
   return JSON.members.map((member) => {
     return `
       <div class="roster--character mdc-ripple-target class-${classMap[member.character.class]} mdc-elevation--z2">
-        <div class="roster--bg" style="background-image: url(${config.blizzard.avatar_base + member.character.thumbnail.replace('avatar', 'main')})">
+        <div class="roster--bg">
+          <img class="roster--bg__img" src="${config.blizzard.avatar_base + member.character.thumbnail.replace('avatar', 'main')}">
           <div class="roster--bg__gradient"></div>
         </div>
         <div class="roster-grid">
           <img class="roster--avatar" src="${config.blizzard.avatar_base + member.character.thumbnail}" onerror="window.avatarError(this);">
+          <img class="roster--spec" src="https://render-us.worldofwarcraft.com/icons/56/${member.character.spec.icon}.jpg">
           <div class="roster--info">
             <div class="roster--info__name">${member.character.name}</div>
             <div class="roster--info__rank">${rankMap[member.rank]}</div>
@@ -74,20 +77,21 @@ window.avatarError = (avatar) => {
 /**
  * Uses the Blizzard API to get guild characters.
  */
-async function pullRosterData() {
+async function getRosterData() {
   const pageElem = document.querySelector('#page-roster .roster');
 
   try {
-    const json = await getRequest(
-      `https://us.api.battle.net/wow/guild/${config.blizzard.realm}/` +
-      `${encodeURIComponent(config.blizzard.guild)}?fields=members&locale=en_US&apikey=${config.blizzard.key}`
-    );
+    const json = await getRequest(`https://api.duckie.cc/guild/${config.blizzard.realm}/${config.blizzard.guild}?fields=members`);
 
     sortRoster(json);
     filterRanks(json);
 
     pageElem.innerHTML = '';
     pageElem.insertAdjacentHTML('beforeend', createCharacterElements(json));
+
+    document.querySelectorAll('.roster--bg__img').forEach((img) => {
+      img.addEventListener('load', img.classList.add('roster--bg__img--loaded'));
+    });
 
     pageElem.querySelectorAll('.mdc-ripple-target').forEach((ripple) => {
       MDCRipple.attachTo(ripple);
@@ -119,6 +123,6 @@ function filterRanks(data) {
 
 document.addEventListener('DOMContentLoaded', () => {
   initializePage();
-  pullRosterData();
+  getRosterData();
   snow();
 });
