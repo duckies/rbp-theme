@@ -26,7 +26,10 @@
       "trinket2",
       "mainHand",
       "offHand"
-    ]
+    ],
+    "races": {
+      "36": "Mag'har Orc"
+    }
   },
   "raid_difficulties": {
     "M": "Mythic",

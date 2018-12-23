@@ -52,6 +52,21 @@ export default class Character {
   }
 
   /**
+   * Short circuitable race.
+   */
+  get characterRace() {
+    if (this.race) {
+      return this.race;
+    } else if (this.raiderIO && this.raiderIO.race) {
+      return this.raiderIO.race;
+    } else if (this.blizzard && this.blizzard.race) {
+      return 'NYI_RACE_TABLE';
+    } else {
+      return 'Unknown';
+    }
+  }
+
+  /**
    * Removes spacing and capitalization of a class for stylesheets.
    */
   get cssCharacterClass() {
@@ -148,7 +163,7 @@ export default class Character {
 
     const desc = document.createElement('div');
     desc.className = 'col-12';
-    desc.innerText = this.race + ' ' + this.characterClass;
+    desc.innerText = this.characterRace + ' ' + this.characterClass;
     text.appendChild(desc);
 
     const links = document.createElement('ul');
@@ -203,7 +218,7 @@ export default class Character {
             </div>
             <div class="character-text">
               <div class="character-text__name">${this.name}</div>
-              <div class="character-text__info">${this.race} ${this.characterClass}</div>
+              <div class="character-text__info">${this.characterRace} ${this.characterClass}</div>
             </div>
             <ul class="character-links">
               <li>
