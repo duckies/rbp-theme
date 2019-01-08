@@ -69,7 +69,7 @@ async function setupDiscord() {
       const discord = document.createElement('div');
       discord.classList.add('discord-widget');
 
-      for (let channel of channels) {
+      for (const channel of channels) {
         discord.appendChild(createChannel(channel.name, channel.id));
       }
 

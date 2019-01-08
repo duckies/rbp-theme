@@ -847,12 +847,14 @@ $icon-size: 40px;
 
     &::before {
       position: absolute;
+      padding: 20px;
       font-size: 20px;
       font-weight: bold;
       text-shadow: 0 0 5px #000;
       text-transform: uppercase;
-      content: "Loading";
+      content: "Loading Character";
       z-index: 5;
+      animation: fade-in 1.5s infinite alternate;
     }
   }
 

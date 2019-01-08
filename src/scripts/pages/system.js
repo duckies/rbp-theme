@@ -5,7 +5,6 @@ import * as basicLightbox from 'basiclightbox';
 import initializePage from '../global/global';
 import {getWoWCharacters, cleanCharacterHashes} from '../helpers/character';
 import {postRequest} from '../helpers/network';
-import snow from '../global/snow';
 
 const rejectSound = new Audio('https://s3.amazonaws.com/files.enjin.com/632721/material/audio/dont-blame-you.mp3');
 
@@ -420,6 +419,4 @@ document.addEventListener('DOMContentLoaded', () => {
       appCategoryInitializer();
     }
   }
-
-  snow();
 });

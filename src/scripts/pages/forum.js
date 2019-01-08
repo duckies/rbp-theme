@@ -1,6 +1,5 @@
 import * as basicLightbox from 'basiclightbox';
 import initializePage from '../global/global';
-import snow from '../global/snow';
 
 /**
  * If a YouTube iframe is found, make it responsive.
@@ -78,11 +77,9 @@ function bulkModeration() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('Testing');
   initializePage();
   bulkModeration();
   cuteifyBreadcrumbs();
   createLightboxes();
   createResponsiveEmbeds();
-  snow();
 });

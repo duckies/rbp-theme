@@ -24,7 +24,7 @@ const webpackConfig = {
     minimizer: [
       new TerserPlugin({
         cache: true,
-        sourceMap: false,
+        sourceMap: true,
         // Memory issues in WSL
         // parallel: 4,
         // If I want to include comments but in separated files.

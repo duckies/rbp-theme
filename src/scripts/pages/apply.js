@@ -1,7 +1,6 @@
 import {MDCRipple} from '@material/ripple/index';
 import initializePage from '../global/global';
 import {getWoWCharacters} from '../helpers/character';
-import snow from '../global/snow';
 
 /**
  * Handles error reporting for non-registered users.
@@ -89,6 +88,5 @@ document.addEventListener('DOMContentLoaded', () => {
       styleSubmission(formView);
     }
   }
-  snow();
 });
 

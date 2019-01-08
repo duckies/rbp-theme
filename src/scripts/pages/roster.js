@@ -2,7 +2,6 @@ import {MDCRipple} from '@material/ripple/index';
 import {getRequest} from '../helpers/network';
 import config from '../config';
 import initializePage from '../global/global';
-import snow from '../global/snow';
 
 const ignoredRanks = [2, 7, 8];
 const rankMap = {
@@ -40,6 +39,9 @@ const classMap = {
  */
 function createCharacterElements(JSON) {
   return JSON.members.map((member) => {
+    const specIcon = member.character.spec ?
+      'https://render-us.worldofwarcraft.com/icons/56/' + member.character.spec.icon + '.jpg' :
+      'https://s3.amazonaws.com/files.enjin.com/632721/material/images/icons/questionmark.jpg';
     return `
       <div class="roster--character mdc-ripple-target class-${classMap[member.character.class]} mdc-elevation--z2">
         <div class="roster--bg">
@@ -48,7 +50,7 @@ function createCharacterElements(JSON) {
         </div>
         <div class="roster-grid">
           <img class="roster--avatar" src="${config.blizzard.avatar_base + member.character.thumbnail}" onerror="window.avatarError(this);">
-          <img class="roster--spec" src="https://render-us.worldofwarcraft.com/icons/56/${member.character.spec.icon}.jpg">
+          <img class="roster--spec" src="${specIcon}">
           <div class="roster--info">
             <div class="roster--info__name">${member.character.name}</div>
             <div class="roster--info__rank">${rankMap[member.rank]}</div>
@@ -124,5 +126,4 @@ function filterRanks(data) {
 document.addEventListener('DOMContentLoaded', () => {
   initializePage();
   getRosterData();
-  snow();
 });

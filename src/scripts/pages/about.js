@@ -2,7 +2,6 @@ import {MDCTabBar} from '@material/tab-bar/index';
 import {MDCRipple} from '@material/ripple/index';
 import * as basicLightbox from 'basiclightbox';
 import initializePage from '../global/global';
-import snow from '../global/snow';
 
 // Disabled the guild history page until I can
 // come up with a good format for it.
@@ -88,5 +87,4 @@ document.addEventListener('DOMContentLoaded', () => {
   const panels = document.querySelector('.panels');
   initializePage();
   handleTabs(panels);
-  snow();
 });
