@@ -237,10 +237,7 @@ export default class Character {
           </div>
         </div>
         <div class="character-info-block character-progression">
-          <div class="character-header">Recent Progression</div>
-          <div class="character-progression-raids" data-region="${this.region}" data-realm="${this.realm}" data-name="${this.name}">
-            ${this.characterRaidProgression}
-          </div>
+          ${this.characterRaidProgression}
         </div>
         <div class="character-info-block character-group">
           <div class="character-dungeons">
@@ -277,27 +274,37 @@ export default class Character {
    */
   get characterRaidProgression() {
     if (!this.raiderIO || !this.raiderIO.raid_progression) {
-      return `<span class="character-error">Character progression not found.</span>`;
+      return '<span class="character-error">Character progression data missing.</span>';
     }
 
     let elements = '';
+    window.config = config;
+    window.raids = this.raiderIO.raid_progression;
 
-    Object.keys(this.raiderIO.raid_progression).forEach((raid) => {
-      elements += `
-      <div class="character-progression__raid" data-raid="${raid}">
-        <div class="character-progression__title">
-          <span class='character-progression__raid-title'>${raid.replace(/-/g, ' ')}</span>
-          <span class='character-progression__raid-summary'>${this.raiderIO.raid_progression[raid].summary}</span>
-        </div>
-        <div role='progressbar' class='mdc-linear-progress' data-scale="${eval(this.raiderIO.raid_progression[raid].summary.slice(0, -2))}">
-          <div class='mdc-linear-progress__buffering-dots'></div>
-          <div class='mdc-linear-progress__buffer'></div>
-          <div class='mdc-linear-progress__bar mdc-linear-progress__primary-bar'>
-            <span class='mdc-linear-progress__bar-inner'></span>
+    // eslint-disable-next-line guard-for-in
+    for (const expansion in config.raids) {
+      elements += `<div class="character-header">${expansion} Progression</div>
+      <div class="character-progression-raids">`;
+      // eslint-disable-next-line guard-for-in
+      for (const raid in config.raids[expansion]) {
+        console.log(expansion, config.raids[expansion][raid]);
+        elements += `<div class="character-progression__raid" data-raid="${raid}">
+          <div class="character-progression__title">
+            <span class='character-progression__raid-title'>${config.raids[expansion][raid]}</span>
+            <span class='character-progression__raid-summary'>${this.raiderIO.raid_progression[raid].summary}</span>
           </div>
-        </div>
-      </div>`;
-    });
+          <div role='progressbar' class='mdc-linear-progress' data-scale="${eval(this.raiderIO.raid_progression[raid].summary.slice(0, -2))}">
+            <div class='mdc-linear-progress__buffering-dots'></div>
+            <div class='mdc-linear-progress__buffer'></div>
+            <div class='mdc-linear-progress__bar mdc-linear-progress__primary-bar'>
+              <span class='mdc-linear-progress__bar-inner'></span>
+            </div>
+          </div>
+        </div>`;
+      };
+
+      elements += '</div>';
+    }
 
     return elements;
   }
@@ -312,7 +319,8 @@ export default class Character {
 
     let elements = '<div class="character-talents__talents">';
     const specialization = this.blizzard.talents
-        .find((id) => id.selected === true);
+      .find((id) => id.selected === true);
+
     specialization.talents.forEach((talent) => {
       if (talent) {
         elements += `
@@ -359,7 +367,7 @@ export default class Character {
     console.log(this);
 
     if (!this.blizzard) {
-      return '<div class="character-error>Blizzard is not responding to our website, talk about rude.</div>';
+      return '<div class="character-error">Blizzard is not responding to our website, talk about rude.</div>';
     }
 
     if (this.blizzard.items) {
@@ -401,7 +409,7 @@ export default class Character {
         return `<div class="character-error">${this.blizzard.reason}</div>`;
       }
     } else {
-      return '<div class="character-error">Uknown API error, please contact Duckies.</div>';
+      return '<div class="character-error">Unknown API error, please contact Duckies.</div>';
     }
   }
 

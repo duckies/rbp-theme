@@ -101,6 +101,12 @@
       }
     }
 
+    &[data-raid="battle-of-dazaralor"] {
+      &::before {
+        background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/banner_dazaralor.jpg");
+      }
+    }
+
     &::before {
       position: absolute;
       width: 110%;

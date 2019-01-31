@@ -1674,6 +1674,8 @@ html {
     background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/banner_antorus.jpg"); }
   .guild-progress .raid-progress[data-raid="uldir"]::before {
     background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/banner_uldir.jpg"); }
+  .guild-progress .raid-progress[data-raid="battle-of-dazaralor"]::before {
+    background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/banner_dazaralor.jpg"); }
   .guild-progress .raid-progress::before {
     position: absolute;
     width: 110%;
@@ -6389,19 +6391,16 @@ a.mdc-list-item {
     .character-loader::after {
       animation: spinny 9s ease-in-out infinite alternate;
       opacity: 1; }
-    .character-loader.leaving {
-      height: 0;
-      opacity: 0; }
     .character-loader::before {
       position: absolute;
       padding: 20px;
+      animation: fade-in 1.5s infinite alternate;
       font-size: 20px;
       font-weight: bold;
       text-shadow: 0 0 5px #000;
       text-transform: uppercase;
       content: "Loading Character";
-      z-index: 5;
-      animation: fade-in 1.5s infinite alternate; }
+      z-index: 5; }
   .character-info {
     display: flex; }
     .character-info__wrapper {
@@ -6622,13 +6621,11 @@ a.mdc-list-item {
       background-color: #c79c6e; }
     .character.class-warrior::after {
       background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/classes/warrior-logo.png"); }
-  .character-progression__raid[data-raid="the-emerald-nightmare"], .character-progression__raid[data-raid="trial-of-valor"] {
-    display: none; }
   .character-progression__raid-title {
     margin-right: 10px;
     text-transform: capitalize; }
   .character-progression .mdc-linear-progress {
-    height: 8px;
+    height: 5px;
     margin-bottom: 8px; }
     .character-progression .mdc-linear-progress .mdc-linear-progress__buffer {
       background-color: #202124; }
