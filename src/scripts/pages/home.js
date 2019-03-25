@@ -30,18 +30,20 @@ function carousel() {
  * Creates DOM elements given raiderIO data for the guild.
  */
 async function createRaiderIOElements() {
-  const url = 'https://raider.io/api/v1/guilds/profile?region=us&realm=blackrock&name=Really%20Bad%20Players&fields=raid_rankings,raid_progression';
-  const wanted = ['antorus-the-burning-throne', 'uldir'];
-
   try {
-    const json = await getRequest(url);
+    const response = await getRequest(config.raiderIO.api);
+    const raids = response.raid_progression;
+    const ranks = response.raid_rankings[config.progress.slice(-1)[0]];
     const elem = document.getElementById('guild-progress');
     const loaders = document.querySelector('.guild-progress__loaders');
-    const raids = Object.entries(json.raid_progression)
-      .filter((raid) => wanted.includes(raid[0]));
-    const ranks = Object.entries(json.raid_rankings).pop()[1];
 
-    elem.insertAdjacentHTML('afterbegin', createProgressionElements(raids));
+    // eslint-disable-next-line guard-for-in
+    for (const id in config.progress) {
+      const raidName = config.progress[id];
+      const raidData = raids[config.progress[id]];
+      elem.insertAdjacentHTML('afterbegin', createProgressionElement(raidName, raidData));
+    }
+
     loaders.remove();
 
     setTimeout(animateProgressBars, 500);
@@ -88,13 +90,13 @@ function createGroupPayModule() {
   const progressValue = progress.style.width.slice(0, -1) / 100;
   const history = module.querySelector('.items');
 
-  newProgress
-    .insertAdjacentHTML('beforeend',
-      `<div class="grouppay__days">${document.querySelector('.element_progressbar .clabel').innerHTML}</div>`);
+  newProgress.insertAdjacentHTML(
+    'beforeend',
+    `<div class="grouppay__days">${document.querySelector('.element_progressbar .clabel').innerHTML}</div>`
+  );
 
   if (history) {
-    holder.querySelector('.grouppay__recent')
-      .insertAdjacentHTML('beforeend', history.innerHTML);
+    holder.querySelector('.grouppay__recent').insertAdjacentHTML('beforeend', history.innerHTML);
   }
 
   animatedBar.progress = progressValue;
@@ -107,29 +109,29 @@ function createGroupPayModule() {
 
 /**
  * Turns RaiderIO raid progression data into DOM elements.
- * @param {Object} raids
+ * @param {String} instance
+ * @param {JSON} data
  * @return {String} joined string for DOM insertion.
  */
-function createProgressionElements(raids) {
-  return raids.map(([instance, progress]) => {
-    return `
+function createProgressionElement(instance, data) {
+  const scale = eval(data.summary.slice(0, -2));
+  return `
     <div class="col-12 raid-progress mdc-elevation--z2" data-raid="${instance}">
       <div class="flex-row">
         <div class="col-12 raid-progress__summary">
-            <span class="raid-progress__summary-text">${progress.summary}</span>
+            <span class="raid-progress__summary-text">${data.summary}</span>
         </div>
         <div class="col-12 raid-info">
-            <span class="raid-difficulty">${config.raid_difficulties[progress.summary.slice(-1)]}</span>
+            <span class="raid-difficulty">${config.raid_difficulties[data.summary.slice(-1)]}</span>
             <span class="raid-name">${instance.replace(/-/g, ' ')}</span>
         </div>
-        <div role="progressbar" class="col-12 progressbar mdc-linear-progress" data-scale="${eval(progress.summary.slice(0, -2))}">
+        <div role="progressbar" class="col-12 progressbar mdc-linear-progress" data-scale="${scale}">
           <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
               <span class="mdc-linear-progress__bar-linear"></span>
           </div>
         </div>
       </div>
     </div>`;
-  }).reverse().join('');
 }
 
 /**
@@ -165,13 +167,14 @@ async function setupNewsModule() {
  * @return {String} string representation of DOM elements.
  */
 function createNewsElements(newsItems) {
-  return newsItems.map((article) => {
-    const responseElem = document.createElement('div');
-    responseElem.innerHTML = article.content;
-    const articleText = responseElem.innerText;
-    const articleIMG = responseElem.querySelectorAll('img')[0].src;
+  return newsItems
+    .map((article) => {
+      const responseElem = document.createElement('div');
+      responseElem.innerHTML = article.content;
+      const articleText = responseElem.innerText;
+      const articleIMG = responseElem.querySelectorAll('img')[0].src;
 
-    return `
+      return `
     <div class='article col-12 mdc-elevation--z2'>
       <div class='article__bg' style='background-image: url(${articleIMG})'></div>
       <div class='news-info'>
@@ -179,7 +182,8 @@ function createNewsElements(newsItems) {
         <p class='news-snippet'>${articleText}</p>
       </div>
     </div>`;
-  }).join('');
+    })
+    .join('');
 }
 
 document.addEventListener('DOMContentLoaded', () => {

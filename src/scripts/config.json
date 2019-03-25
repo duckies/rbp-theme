@@ -7,6 +7,9 @@
     "avatar_generic": "https://s3.amazonaws.com/files.enjin.com/632721/material/images/avatar/generic_bloodelf.jpg",
     "enjin_generic_avatar": "themes/core/images/game/generic/avatar/default.jpg"
   },
+  "raiderIO": {
+    "api": "https://raider.io/api/v1/guilds/profile?region=us&realm=blackrock&name=Really%20Bad%20Players&fields=raid_rankings,raid_progression"
+  },
   "character": {
     "slots": [
       "head",
@@ -35,5 +38,19 @@
     "M": "Mythic",
     "H": "Heroic",
     "N": "Normal"
-  }
+  },
+  "raids": {
+    "Battle for Azeroth": {
+      "battle-of-dazaralor": "Battle of Dazar'Alor",
+      "uldir": "Uldir"
+    },
+    "Legion": {
+      "antorus-the-burning-throne": "Antorus, the Burning Throne",
+      "tomb-of-sargeras": "Tomb of Sargeras",
+      "the-nighthold": "The Nighthold",
+      "trial-of-valor": "Trial of Valor",
+      "the-emerald-nightmare": "The Emerald Nightmare"
+    }
+  },
+  "progress": ["antorus-the-burning-throne", "uldir", "battle-of-dazaralor"]
 }

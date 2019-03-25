@@ -41,6 +41,11 @@ const config = {
       replace: '/roster.js',
     },
     {
+      match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/statistics.js',
+      once: true,
+      replace: '/statistics.js',
+    },
+    {
       match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/system.js',
       once: true,
       replace: '/system.js',

@@ -10,6 +10,7 @@ const webpackConfig = {
     apply: './scripts/pages/apply.js',
     forum: './scripts/pages/forum.js',
     roster: './scripts/pages/roster.js',
+    statistics: './scripts/pages/statistics.js',
     system: './scripts/pages/system.js',
   },
   output: {

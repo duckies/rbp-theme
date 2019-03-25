@@ -123,10 +123,7 @@ export async function getWoWCharacters() {
 
   Promise.all(characters.map((character) => character.getData()))
     .then(() => {
-      document.querySelectorAll('.character-loader').forEach((el) => {
-        // el.classList.add('leaving');
-        // window.setTimeout(() => el.remove(), 350);
-      });
+      document.querySelectorAll('.character-loader').forEach((el) => el.remove());
 
       answerBody.insertAdjacentHTML('beforeend',
         characters.map((character) => character.characterElement).join(''));

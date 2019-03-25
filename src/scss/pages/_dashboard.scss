@@ -840,21 +840,16 @@ $icon-size: 40px;
       opacity: 1;
     }
 
-    &.leaving {
-      height: 0;
-      opacity: 0;
-    }
-
     &::before {
       position: absolute;
       padding: 20px;
+      animation: fade-in 1.5s infinite alternate;
       font-size: 20px;
       font-weight: bold;
       text-shadow: 0 0 5px #000;
       text-transform: uppercase;
       content: "Loading Character";
       z-index: 5;
-      animation: fade-in 1.5s infinite alternate;
     }
   }
 
@@ -951,11 +946,6 @@ $icon-size: 40px;
 
   &-progression {
     &__raid {
-      &[data-raid="the-emerald-nightmare"],
-      &[data-raid="trial-of-valor"] {
-        display: none;
-      }
-
       &-title {
         margin-right: 10px;
         text-transform: capitalize;
@@ -963,7 +953,7 @@ $icon-size: 40px;
     }
 
     .mdc-linear-progress {
-      height: 8px;
+      height: 5px;
       margin-bottom: 8px;
 
       .mdc-linear-progress__buffer {
