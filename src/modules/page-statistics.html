@@ -1,0 +1,157 @@
+<aside class="mdc-drawer mdc-drawer--modal mdc-typography">
+  <div class="mdc-drawer__header">
+    <div class="mdc-drawer__title">Really Bad Players</div>
+    <div class="mdc-drawer__subtitle">Hello, Guest. <a href="/login/do/register">Want to join?</a></div>
+  </div>
+  <div class="mdc-drawer__content">
+    <nav class="mdc-list">
+      <a class="mdc-list-item" href="/" aria-selected="true">Home</a>
+      <a class="mdc-list-item" href="/about">About Us</a>
+      <a class="mdc-list-item" href="/apply">Apply</a>
+      <a class="mdc-list-item" href="/roster">Roster</a>
+      <a class="mdc-list-item mdc-list-item--activated" href="https://www.warcraftlogs.com/guild/id/5825" target="_blank" rel="nofollow">Logs</a>
+      <hr class="mdc-list-divider">
+      <h6 class="mdc-list-group__subheader">Dashboard</h6>
+      <a class="mdc-list-item" href="/dashboard/applications">Applications</a>
+      <a class="mdc-list-item" href="/dashboard/messages">Messages</a>
+      <a class="mdc-list-item" href="/dashboard/account">Account Settings</a>
+    </nav>
+  </div>
+</aside>
+
+<!-- Protects App UI from interactions -->
+<div class="mdc-drawer-scrim"></div>
+
+<header class="mdc-top-app-bar">
+  <div class="mdc-top-app-bar__row flex-container">
+    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+      <a href="#" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
+      <div class="header-logo">
+        <span class="header-logo--skull skull-logo"></span>
+        <a href="/">
+          <h1 class="header-logo--text header-logo__large">Really Bad Players</h1>
+        </a>
+        <a href="/">
+          <h1 class="header-logo--text header-logo__small">RBP</h1>
+        </a>
+      </div>
+    </section>
+    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
+      <nav class="mdc-tab-bar" role="tablist">
+        <div class="mdc-tab-scroller">
+          <div class="mdc-tab-scroller__scroll-area mdc-tab-scroller__scroll-area--scroll">
+            <div class="mdc-tab-scroller__scroll-content">
+              <a href="/" class="mdc-tab" role="tab" aria-selected="false" tabindex="-1">
+                <div class="mdc-tab__content">
+                  <span class="mdc-tab__text-label">Home</span>
+                </div>
+                <span class="mdc-tab-indicator">
+                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                </span>
+                <div class="mdc-tab__ripple"></div>
+              </a>
+              <a href="/about" class="mdc-tab" role="tab" aria-selected="false" tabindex="-1">
+                <div class="mdc-tab__content">
+                  <span class="mdc-tab__text-label">Info</span>
+                </div>
+                <span class="mdc-tab-indicator">
+                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                </span>
+                <div class="mdc-tab__ripple"></div>
+              </a>
+              <a href="/apply" class="mdc-tab" role="tab" aria-selected="false" tabindex="-1">
+                <div class="mdc-tab__content">
+                  <span class="mdc-tab__text-label">Apply</span>
+                </div>
+                <span class="mdc-tab-indicator">
+                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                </span>
+                <div class="mdc-tab__ripple"></div>
+              </a>
+              <a href="/roster" class="mdc-tab" role="tab" aria-selected="false" tabindex="-1">
+                <div class="mdc-tab__content">
+                  <span class="mdc-tab__text-label">Roster</span>
+                </div>
+                <span class="mdc-tab-indicator">
+                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                </span>
+                <div class="mdc-tab__ripple"></div>
+              </a>
+              <a href="https://www.warcraftlogs.com/guild/id/5825" class="mdc-tab mdc-tab--active" role="tab" aria-selected="false"
+                tabindex="-1">
+                <div class="mdc-tab__content">
+                  <span class="mdc-tab__text-label">Logs</span>
+                </div>
+                <span class="mdc-tab-indicator mdc-tab-indicator--active">
+                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                </span>
+                <div class="mdc-tab__ripple"></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="user-menu" class="user-menu mdc-menu-surface--anchor">
+        <button id="user-button" class="user-menu__button mdc-button"></button>
+
+        <div id="guest-menu" class="mdc-menu mdc-menu-surface" tabindex="-1">
+          <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
+            <li class="mdc-list-item" role="menuitem">
+              <a href="/login">Login</a>
+            </li>
+            <li class="mdc-list-item" role="menuitem">
+              <a href="/login/do/register">Register</a>
+            </li>
+          </ul>
+        </div>
+
+        <div id="registered-menu" class="mdc-menu mdc-menu-surface" tabindex="-1" data-admin="False">
+          <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
+            <li class="mdc-list-item" role="menuitem">
+              <a href="/profile">Profile</a>
+            </li>
+            <li class="mdc-list-item" role="menuitem">
+              <a href="/dashboard">Dashboard</a>
+            </li>
+            <li class="mdc-list-divider" role="seperator"></li>
+            <li class="mdc-list-item" role="menuitem">
+              <a href="/dashboard/applications">Applications</a>
+            </li>
+            <li class="mdc-list-item admin-button" role="menuitem">
+              <a href="/admin">Officer Panel</a>
+            </li>
+            <li class="mdc-list-item" role="menuitem">
+              <a href="/logout">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-bg" data-unloaded data-page="apply"></div>
+  <div class="hero-item">
+    <div class="hero-content">
+      <div class="flex-container">
+        <div class="flex-row">
+          <div class="col">
+            <h1 class="hero-content__title">Really Bad Mechanics</h1>
+            <span class="hero-content__caption">Standing in fire, illustrated.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mdc-snackbar mdc-snackbar--align-start" aria-live="assertive" aria-atomic="true" aria-hidden="true">
+  <div class="mdc-snackbar__text"></div>
+  <div class="mdc-snackbar__action-wrapper">
+    <button type="button" class="mdc-snackbar__action-button"></button>
+  </div>
+</div>
+
+<script src="https://browser.sentry-cdn.com/4.3.4/bundle.min.js" crossorigin="anonymous"></script>
+<script src="https://s3.amazonaws.com/files.enjin.com/632721/material/statistics.js"></script>
