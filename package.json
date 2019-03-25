@@ -358,7 +358,7 @@
         "material-components-web": "0.42.0",
         "node-sass": "4.10.0",
         "npm": "6.4.1",
-        "stylelint": "9.9.0"
+        "stylelint": "9.10.1"
     },
     "sasslintConfig": "./.stylelintrc.yaml",
     "browserslist": "> 5% in US, not dead",
