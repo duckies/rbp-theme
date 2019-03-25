@@ -357,7 +357,7 @@
         "gulp-cli": "2.0.1",
         "material-components-web": "1.0.1",
         "node-sass": "4.10.0",
-        "npm": "6.4.1",
+        "npm": "6.9.0",
         "stylelint": "9.10.1"
     },
     "sasslintConfig": "./.stylelintrc.yaml",
