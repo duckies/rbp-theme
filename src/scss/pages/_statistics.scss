@@ -1,0 +1,25 @@
+.raids {
+  display: grid;
+  grid-row-gap: 10px;
+  grid-template-columns: repeat(1fr);
+
+  &--raid {
+    padding: 15px 20px;
+    background-color: $mdc-theme-primary;
+  }
+}
+
+.raid {
+  &--reports {
+    &-report {
+      display: grid;
+      padding: 10px 5px;
+      grid-template-columns: repeat(4, auto);
+      background-color: $mdc-theme-secondary;
+
+      &:nth-child(even) {
+        background-color: darken($mdc-theme-secondary, 3%);
+      }
+    }
+  }
+}

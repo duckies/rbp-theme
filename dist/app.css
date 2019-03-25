@@ -7906,6 +7906,22 @@ a.mdc-list-item {
     height: 30px;
     border: 2px solid !important; }
 
+.raids {
+  display: grid;
+  grid-row-gap: 10px;
+  grid-template-columns: repeat(1fr); }
+  .raids--raid {
+    padding: 15px 20px;
+    background-color: #202124; }
+
+.raid--reports-report {
+  display: grid;
+  padding: 10px 5px;
+  grid-template-columns: repeat(4, auto);
+  background-color: #854feb; }
+  .raid--reports-report:nth-child(even) {
+    background-color: #7b41e9; }
+
 .container.with-header .container_header {
   height: 50px; }
   .container.with-header .container_header .title {

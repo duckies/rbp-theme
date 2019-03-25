@@ -320,42 +320,42 @@
         "/dist/*"
     ],
     "devDependencies": {
-        "@babel/core": "7.2.0",
-        "@babel/preset-env": "7.2.0",
-        "@babel/register": "7.0.0",
+        "@babel/core": "7.4.0",
+        "@babel/preset-env": "7.4.2",
+        "@babel/register": "7.4.0",
         "babel-loader": "8.0.4",
-        "basiclightbox": "5.0.1",
+        "basiclightbox": "5.0.2",
         "browser-sync": "2.26.3",
         "browser-sync-webpack-plugin": "2.2.2",
-        "browserslist": "4.3.5",
+        "browserslist": "4.5.2",
         "eslint": "5.10.0",
         "eslint-config-google": "0.11.0",
-        "eslint-plugin-compat": "2.6.3",
-        "flickity": "2.1.2",
+        "flickity": "2.2.0",
+        "eslint-plugin-compat": "3.0.1",
         "flickity-bg-lazyload": "1.0.1",
         "gulp": "github:gulpjs/gulp",
         "gulp-autoprefixer": "6.0.0",
         "gulp-babel": "8.0.0",
-        "gulp-better-rollup": "3.4.0",
+        "gulp-better-rollup": "4.0.1",
         "gulp-clean-css": "4.0.0",
         "gulp-concat": "2.6.1",
         "gulp-if": "2.0.2",
         "gulp-rename": "1.4.0",
         "gulp-sass": "4.0.2",
-        "gulp-sourcemaps": "2.6.4",
-        "gulp-uglify": "3.0.1",
+        "gulp-sourcemaps": "2.6.5",
+        "gulp-uglify": "3.0.2",
         "stylelint-config-standard": "18.2.0",
         "stylelint-no-unsupported-browser-features": "3.0.2",
-        "stylelint-order": "2.0.0",
+        "stylelint-order": "2.1.0",
         "stylelint-scss": "3.4.1",
         "stylelint-selector-bem-pattern": "2.0.0",
         "webpack": "4.29.6",
-        "webpack-cli": "3.1.2"
+        "webpack-cli": "3.3.0"
     },
     "dependencies": {
         "acorn": "6.0.4",
         "gulp-cli": "2.0.1",
-        "material-components-web": "0.42.0",
+        "material-components-web": "1.0.1",
         "node-sass": "4.10.0",
         "npm": "6.4.1",
         "stylelint": "9.9.0"
@@ -365,6 +365,10 @@
     "renovate": {
         "extends": [
             "config:base"
-        ]
+        ],
+        "automerge": true,
+        "major": {
+            "automerge": false
+        }
     }
 }
