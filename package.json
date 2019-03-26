@@ -328,10 +328,15 @@
         "browser-sync": "2.26.3",
         "browser-sync-webpack-plugin": "2.2.2",
         "browserslist": "4.5.2",
-        "eslint": "5.10.0",
+        "eslint": "5.15.3",
         "eslint-config-google": "0.11.0",
+<<<<<<< HEAD
         "eslint-plugin-compat": "3.0.1",
         "flickity": "2.2.0",
+=======
+        "flickity": "2.2.0",
+        "eslint-plugin-compat": "3.1.0",
+>>>>>>> 1422646a82742217c458dd8251b6537fde5db40d
         "flickity-bg-lazyload": "1.0.1",
         "gulp": "github:gulpjs/gulp",
         "gulp-autoprefixer": "6.0.0",
@@ -347,17 +352,17 @@
         "stylelint-config-standard": "18.2.0",
         "stylelint-no-unsupported-browser-features": "3.0.2",
         "stylelint-order": "2.1.0",
-        "stylelint-scss": "3.4.1",
+        "stylelint-scss": "3.5.4",
         "stylelint-selector-bem-pattern": "2.0.0",
         "webpack": "4.29.6",
         "webpack-cli": "3.3.0"
     },
     "dependencies": {
         "acorn": "6.0.4",
-        "gulp-cli": "2.0.1",
+        "gulp-cli": "2.1.0",
         "material-components-web": "1.0.1",
-        "node-sass": "4.10.0",
-        "npm": "6.4.1",
+        "node-sass": "4.11.0",
+        "npm": "6.9.0",
         "stylelint": "9.10.1"
     },
     "sasslintConfig": "./.stylelintrc.yaml",
