@@ -4,7 +4,6 @@ const config = {
   proxy: 'https://www.reallybadplayers.com/',
   port: 8080,
   cors: true,
-  files: ['dist/**'],
   serveStatic: ['dist'],
   routes: {
     'https://s3.amazonaws.com/files.enjin.com/632721/material/': '/',
@@ -21,9 +20,19 @@ const config = {
       replace: '/about.js',
     },
     {
+      match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/about.js.map',
+      once: true,
+      replace: '/about.js.map',
+    },
+    {
       match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/apply.js',
       once: true,
       replace: '/apply.js',
+    },
+    {
+      match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/apply.js.map',
+      once: true,
+      replace: '/apply.js.map',
     },
     {
       match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/forum.js',
@@ -51,6 +60,11 @@ const config = {
       replace: '/system.js',
     },
     {
+      match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/system.js.map',
+      once: true,
+      replace: '/system.js.map',
+    },
+    {
       match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/vendors~about~apply~forum~home~roster~system.js',
       once: true,
       replace: '/vendors~about~apply~forum~home~roster~system.js',
@@ -64,6 +78,11 @@ const config = {
       match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/vendors~system.js',
       once: true,
       replace: '/vendors~system.js',
+    },
+    {
+      match: 'https://s3.amazonaws.com/files.enjin.com/632721/material/vendors~system.js.map',
+      once: true,
+      replace: '/vendors~system.js.map',
     },
   ],
 };

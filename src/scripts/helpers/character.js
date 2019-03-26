@@ -1,4 +1,4 @@
-import {MDCSnackbar} from '@material/snackbar/index';
+import {MDCSnackbar} from '@material/snackbar';
 import Character from './blizzard';
 import {animateProgressBars} from '../helpers/material';
 
@@ -31,13 +31,8 @@ function appRemoveCallback(button) {
     characterHashes = characterHashes.filter((e) => e !== hash);
   }
 
-  const snackObj = {
-    message: 'Character destroyed, that was mean.',
-    actionText: 'Neat',
-    actionHandler: false,
-  };
-
-  snackbar.show(snackObj);
+  console.log('Opening Snackbar');
+  snackbar.open();
 
   return false;
 }

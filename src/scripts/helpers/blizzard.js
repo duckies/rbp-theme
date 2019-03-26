@@ -287,7 +287,6 @@ export default class Character {
       <div class="character-progression-raids">`;
       // eslint-disable-next-line guard-for-in
       for (const raid in config.raids[expansion]) {
-        console.log(expansion, config.raids[expansion][raid]);
         elements += `<div class="character-progression__raid" data-raid="${raid}">
           <div class="character-progression__title">
             <span class='character-progression__raid-title'>${config.raids[expansion][raid]}</span>
@@ -364,8 +363,6 @@ export default class Character {
    * Parses character gear.
    */
   get characterGear() {
-    console.log(this);
-
     if (!this.blizzard) {
       return '<div class="character-error">Blizzard is not responding to our website, talk about rude.</div>';
     }

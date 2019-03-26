@@ -2100,9 +2100,6 @@ html {
 .mdc-line-ripple {
   background-color: #854feb; }
 
-.mdc-snackbar {
-  z-index: 500; }
-
 body a,
 body a:link,
 body a:hover,
