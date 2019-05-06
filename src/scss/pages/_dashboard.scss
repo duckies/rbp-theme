@@ -694,11 +694,8 @@ $icon-size: 40px;
 
       .comments_record_block,
       .comments_post_container {
-        margin-top: 10px;
-        padding: 20px 15px !important;
+        margin-top: 15px;
         border-bottom: none;
-        background-color: $mdc-theme-primary;
-        box-shadow: $module-shadow;
       }
 
       .comments_record,
@@ -710,8 +707,48 @@ $icon-size: 40px;
         }
       }
 
+      .comments_record_block {
+        padding: 0;
+
+        .comments_reply_extra {
+          .comments_comment {
+            background-color: $module-body-background-light;
+          }
+        }
+
+        .comments_user {
+          display: block;
+          margin-bottom: 5px;
+          font-size: 17px;
+          font-weight: bold;
+        }
+
+        .comments_message {
+          line-height: 1.5;
+        }
+
+        .comments_comment {
+          padding: 15px;
+          border-radius: 5px;
+          box-shadow: 0 4px 5px rgba(0, 0, 0, .2);
+          transition: border-color .3s $mdc-animation-standard-curve-timing-function, height .5s $mdc-animation-standard-curve-timing-function;
+          border-bottom: 2px solid $mdc-theme-secondary;
+          border-top-width: 0;
+          border-right-width: 0;
+          border-left-width: 0;
+          background-color: darken($mdc-theme-primary, 1%);
+        }
+
+        .comments_footer {
+          margin-top: 10px;
+          font-size: 14px;
+        }
+      }
+
       .comments_post_container {
         flex-wrap: wrap;
+        background-color: transparent;
+        padding: 0 !important;
 
         .element_avatar {
           flex: 0 0 58px;
@@ -725,6 +762,7 @@ $icon-size: 40px;
         .comments_post {
           flex: 1;
           margin-left: 0;
+          border-radius: 5px;
         }
 
         .comments_reply_buttons {
@@ -738,7 +776,7 @@ $icon-size: 40px;
         border-top-width: 0;
         border-right-width: 0;
         border-left-width: 0;
-        background-color: lighten($mdc-theme-primary, 10%);
+        background-color: $module-body-background-light;
 
         &.comments_post_empty_emogif {
           border-bottom-color: $mdc-theme-secondary;

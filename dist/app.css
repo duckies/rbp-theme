@@ -6376,11 +6376,8 @@ svg.mdc-button__icon {
 
 .app_comments_container .v2_system_social .wall .comments_record_block,
 .app_comments_container .v2_system_social .wall .comments_post_container {
-  margin-top: 10px;
-  padding: 20px 15px !important;
-  border-bottom: none;
-  background-color: #202124;
-  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.35); }
+  margin-top: 15px;
+  border-bottom: none; }
 
 .app_comments_container .v2_system_social .wall .comments_record,
 .app_comments_container .v2_system_social .wall .comments_reply_container {
@@ -6389,8 +6386,35 @@ svg.mdc-button__icon {
   .app_comments_container .v2_system_social .wall .comments_reply_container::after {
     clear: both; }
 
+.app_comments_container .v2_system_social .wall .comments_record_block {
+  padding: 0; }
+  .app_comments_container .v2_system_social .wall .comments_record_block .comments_reply_extra .comments_comment {
+    background-color: #2c2d32; }
+  .app_comments_container .v2_system_social .wall .comments_record_block .comments_user {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 17px;
+    font-weight: bold; }
+  .app_comments_container .v2_system_social .wall .comments_record_block .comments_message {
+    line-height: 1.5; }
+  .app_comments_container .v2_system_social .wall .comments_record_block .comments_comment {
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+    transition: border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border-bottom: 2px solid #854feb;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-left-width: 0;
+    background-color: #1e1f21; }
+  .app_comments_container .v2_system_social .wall .comments_record_block .comments_footer {
+    margin-top: 10px;
+    font-size: 14px; }
+
 .app_comments_container .v2_system_social .wall .comments_post_container {
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  background-color: transparent;
+  padding: 0 !important; }
   .app_comments_container .v2_system_social .wall .comments_post_container .element_avatar {
     flex: 0 0 58px;
     border-radius: 0; }
@@ -6398,7 +6422,8 @@ svg.mdc-button__icon {
       border-radius: 50%; }
   .app_comments_container .v2_system_social .wall .comments_post_container .comments_post {
     flex: 1;
-    margin-left: 0; }
+    margin-left: 0;
+    border-radius: 5px; }
   .app_comments_container .v2_system_social .wall .comments_post_container .comments_reply_buttons {
     flex: 1 1 100%; }
 
@@ -6408,7 +6433,7 @@ svg.mdc-button__icon {
   border-top-width: 0;
   border-right-width: 0;
   border-left-width: 0;
-  background-color: #383a3f; }
+  background-color: #2c2d32; }
   .app_comments_container .v2_system_social .wall .comments_post_reply.comments_post_empty_emogif {
     border-bottom-color: #854feb; }
   .app_comments_container .v2_system_social .wall .comments_post_reply .comments_reply_input {
