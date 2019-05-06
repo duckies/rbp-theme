@@ -3,17 +3,16 @@ import {getRequest} from '../helpers/network';
 import config from '../config';
 import initializePage from '../global/global';
 
-const ignoredRanks = [2, 7, 8];
+const ignoredRanks = [2, 6, 7];
 const rankMap = {
   '0': 'Guild Master',
   '1': 'Officers',
   '2': 'Officer Alt',
   '3': 'Gorb 2.0',
-  '4': 'Raider Rank 2',
-  '5': 'Raider Rank 1',
-  '6': 'Recruit',
-  '7': 'Fan',
-  '8': 'Player Alts',
+  '4': 'Raider',
+  '5': 'Recruit',
+  '6': 'Fan',
+  '7': 'Player Alts',
 };
 
 const classMap = {
