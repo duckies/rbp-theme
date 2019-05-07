@@ -350,7 +350,7 @@
         "stylelint-scss": "3.5.4",
         "stylelint-selector-bem-pattern": "2.1.0",
         "webpack": "4.29.6",
-        "webpack-cli": "3.3.0"
+        "webpack-cli": "3.3.2"
     },
     "dependencies": {
         "acorn": "6.1.1",
