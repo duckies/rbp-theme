@@ -356,7 +356,7 @@
         "acorn": "6.1.1",
         "gulp-cli": "2.2.0",
         "material-components-web": "1.1.1",
-        "node-sass": "4.11.0",
+        "node-sass": "4.12.0",
         "npm": "6.9.0",
         "stylelint": "9.10.1"
     },
