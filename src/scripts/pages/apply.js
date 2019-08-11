@@ -51,21 +51,19 @@ function styleSubmission(element) {
  * @param {Node} application
  */
 function createCharacterMutationObserver(application) {
+  const target = document.getElementById('appform-6gifyv22vd');
+
   const observer = new MutationObserver((mutations) => {
-    if (application.classList.contains('m_appform')) {
-      mutations.forEach((mutation) => {
-        mutation.addedNodes.forEach((node) => {
-          if (node.classList && node.classList.value == 'character') {
-            getWoWCharacters();
-          }
-        });
-      });
-    }
+    if (!application.classList.contains('m_appform')) return;
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === 'value') {
+        getWoWCharacters();
+      }
+    });
   });
 
-  observer.observe(application, {
-    childList: true,
-    subtree: true,
+  observer.observe(target, {
+    attributes: true,
   });
 }
 

@@ -12,9 +12,5 @@ const watches = () => [
 const develop = gulp.parallel(scripts, styles, watches, browserSync);
 const build = gulp.parallel(styles, scripts);
 
-export {
-  develop,
-  build,
-};
-
-export default develop;
+gulp.task('default', develop);
+gulp.task('build', build);

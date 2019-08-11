@@ -107,6 +107,12 @@
       }
     }
 
+    &[data-raid="the-eternal-palace"] {
+      &::before {
+        background-image: url("https://s3.amazonaws.com/files.enjin.com/632721/material/images/sidebar/palace.jpg");
+      }
+    }
+
     &::before {
       position: absolute;
       width: 110%;

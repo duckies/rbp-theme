@@ -150,7 +150,7 @@ async function setupNewsModule() {
     id: Math.round(Math.random() * (999999 - 100000) + 100000),
     method: 'News.getNews',
     params: {
-      api_key: '1cda2ce03bfa7f559e6b083ca73e514325664ad1982a9bf8',
+      api_key: 'c1d9fb6beabb94fb836c3f828766a1a2159015171d17f4a2',
       preset_id: '47505231',
       page: 1,
       items: 5,

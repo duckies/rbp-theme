@@ -5,6 +5,7 @@ import {MDCDrawer} from '@material/drawer/index';
 import {MDCTopAppBar} from '@material/top-app-bar/index';
 import {MDCTabBar} from '@material/tab-bar/index';
 import {postRequest} from '../helpers/network';
+// import {MDCTabIndicator} from '@material/tab-indicator';
 
 const drawerElem = document.querySelector('.mdc-drawer');
 const topAppBarElem = document.querySelector('.mdc-top-app-bar');
@@ -18,7 +19,12 @@ function initAppBar() {
   const drawerObj = MDCDrawer.attachTo(drawerElem);
   const topBar = MDCTopAppBar.attachTo(topAppBarElem);
   const enjinTray = document.querySelector('#enjin-tray');
+
   MDCTabBar.attachTo(tabBarElem);
+
+  // const indicators = tabBarElem.querySelectorAll('.mbc-tab-indicator');
+
+  // indicators.forEach((indicator) => MDCTabIndicator.attachTo(indicator));
 
   topBar.listen('MDCTopAppBar:nav', () => {
     drawerObj.open = !drawerObj.open;
@@ -74,14 +80,14 @@ async function userMenu() {
     const menuButton = document.getElementById('user-button');
 
     if (json.result.logged_in) {
-      if (Sentry) {
-        Sentry.configureScope((scope) => {
-          scope.setUser({
-            'username': json.result.username,
-            'raw': json.result,
-          });
-        });
-      }
+      // if (Sentry) {
+      //   Sentry.configureScope((scope) => {
+      //     scope.setUser({
+      //       'username': json.result.username,
+      //       'raw': json.result,
+      //     });
+      //   });
+      // }
 
       const joinLink = document.querySelector('.join-site');
 

@@ -170,9 +170,10 @@ function appCategorySelector() {
         target.classList.add('mdc-list-item--selected');
         text.innerText = target.innerText.trim();
       }
-    } else if (Sentry) {
-      Sentry.captureMessage('Active nav. button not found in Dashboard.');
     }
+    // } else if (Sentry) {
+    //   Sentry.captureMessage('Active nav. button not found in Dashboard.');
+    // }
 
     paginationHandler();
 

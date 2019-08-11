@@ -2,6 +2,13 @@
   padding: 0 !important;
 }
 
+.broken-warning {
+  color: #000;
+  padding: 10px;
+  background-color: yellow;
+  border-radius: 10px;
+}
+
 .mdc-text-field,
 .mdc-text-field--box {
   &:not(.mdc-text-field--disabled) {

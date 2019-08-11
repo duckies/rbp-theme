@@ -41,6 +41,7 @@
   },
   "raids": {
     "Battle for Azeroth": {
+      "the-eternal-palace": "Eternal Palace",
       "battle-of-dazaralor": "Battle of Dazar'Alor",
       "uldir": "Uldir"
     },
@@ -52,5 +53,5 @@
       "the-emerald-nightmare": "The Emerald Nightmare"
     }
   },
-  "progress": ["antorus-the-burning-throne", "uldir", "battle-of-dazaralor"]
+  "progress": ["uldir", "battle-of-dazaralor", "the-eternal-palace"]
 }
