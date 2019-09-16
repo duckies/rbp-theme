@@ -346,7 +346,7 @@
         "gulp-uglify": "3.0.2",
         "stylelint-config-standard": "18.3.0",
         "stylelint-no-unsupported-browser-features": "3.0.2",
-        "stylelint-order": "2.2.1",
+        "stylelint-order": "3.1.1",
         "stylelint-scss": "3.8.0",
         "stylelint-selector-bem-pattern": "2.1.0",
         "webpack": "4.33.0",
