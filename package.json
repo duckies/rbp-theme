@@ -353,7 +353,7 @@
         "webpack-cli": "3.3.3"
     },
     "dependencies": {
-        "acorn": "6.1.1",
+        "acorn": "7.1.0",
         "gulp-cli": "2.2.0",
         "material-components-web": "2.3.0",
         "node-sass": "4.12.0",
