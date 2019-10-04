@@ -1,375 +1,379 @@
 {
-    "name": "enjin-theme",
-    "description": "Responsive Enjin theme for the Really Bad Players community.",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/Seikcud/enjin-theme.git"
-    },
-    "scripts": {
-        "develop": "gulp default --require @babel/register --gulpfile tasks",
-        "build": "gulp build --require @babel/register --gulpfile tasks"
-    },
-    "babel": {
-        "presets": [
-            "@babel/preset-env"
-        ]
-    },
-    "stylelint": {
-        "extends": "stylelint-config-standard",
-        "plugins": [
-            "stylelint-scss",
-            "stylelint-order"
-        ],
-        "rules": {
-            "font-family-name-quotes": "always-where-recommended",
-            "function-url-quotes": "always",
-            "selector-attribute-quotes": "always",
-            "string-quotes": "double",
-            "order/order": [
-                [
-                    {
-                        "type": "at-rule",
-                        "hasBlock": false
-                    },
-                    "custom-properties",
-                    "declarations"
-                ],
-                {
-                    "unspecified": "ignore",
-                    "disableFix": true
-                }
-            ],
-            "order/properties-order": [
-                "display",
-                "position",
-                "top",
-                "right",
-                "bottom",
-                "left",
-                "flex",
-                "flex-basis",
-                "flex-direction",
-                "flex-flow",
-                "flex-grow",
-                "flex-shrink",
-                "flex-wrap",
-                "align-content",
-                "align-items",
-                "align-self",
-                "justify-content",
-                "order",
-                "box-sizing",
-                "width",
-                "min-width",
-                "max-width",
-                "height",
-                "min-height",
-                "max-height",
-                "margin",
-                "margin-top",
-                "margin-right",
-                "margin-bottom",
-                "margin-left",
-                "padding",
-                "padding-top",
-                "padding-right",
-                "padding-bottom",
-                "padding-left",
-                "float",
-                "clear",
-                "resize",
-                "columns",
-                "column-count",
-                "column-gap",
-                "column-fill",
-                "column-rule",
-                "column-span",
-                "column-width",
-                "grid-gap",
-                "grid-template-columns",
-                "animation",
-                "animation-name",
-                "animation-timing-function",
-                "transform",
-                "transform-box",
-                "transform-origin",
-                "transform-style",
-                "transition",
-                "transition-delay",
-                "transition-duration",
-                "transition-property",
-                "transition-timing-function",
-                "border",
-                "border-top",
-                "border-right",
-                "border-bottom",
-                "border-left",
-                "border-width",
-                "border-top-width",
-                "border-right-width",
-                "border-bottom-width",
-                "border-left-width",
-                "border-style",
-                "border-top-style",
-                "border-right-style",
-                "border-bottom-style",
-                "border-left-style",
-                "border-radius",
-                "border-top-left-radius",
-                "border-top-right-radius",
-                "border-bottom-left-radius",
-                "border-bottom-right-radius",
-                "border-color",
-                "border-top-color",
-                "border-right-color",
-                "border-bottom-color",
-                "border-left-color",
-                "outline",
-                "outline-color",
-                "outline-offset",
-                "outline-style",
-                "outline-width",
-                "background",
-                "background-attachment",
-                "background-clip",
-                "background-color",
-                "background-image",
-                "background-repeat",
-                "background-position",
-                "background-size",
-                "fill",
-                "opacity",
-                "color",
-                "font",
-                "font-family",
-                "font-size",
-                "font-smoothing",
-                "font-style",
-                "font-variant",
-                "font-weight",
-                "letter-spacing",
-                "line-height",
-                "list-style",
-                "text-align",
-                "text-decoration",
-                "text-indent",
-                "text-overflow",
-                "text-rendering",
-                "text-shadow",
-                "text-transform",
-                "text-wrap",
-                "white-space",
-                "word-spacing",
-                "cursor",
-                "pointer-events",
-                "user-select",
-                "appearance",
-                "border-collapse",
-                "border-spacing",
-                "box-shadow",
-                "caption-side",
-                "content",
-                "empty-cells",
-                "overflow",
-                "overflow-x",
-                "overflow-y",
-                "quotes",
-                "speak",
-                "table-layout",
-                "vertical-align",
-                "visibility",
-                "will-change",
-                "z-index"
-            ],
-            "declaration-property-unit-whitelist": {
-                "font-size": [
-                    "rem",
-                    "px"
-                ]
-            },
-            "at-rule-no-vendor-prefix": true,
-            "media-feature-name-no-vendor-prefix": true,
-            "selector-no-vendor-prefix": true,
-            "value-no-vendor-prefix": true,
-            "max-nesting-depth": 3,
-            "selector-max-compound-selectors": 4,
-            "selector-max-specificity": "0,4,1",
-            "at-rule-no-unknown": [
-                true,
-                {
-                    "ignoreAtRules": [
-                        "at-root",
-                        "content",
-                        "each",
-                        "else",
-                        "error",
-                        "for",
-                        "function",
-                        "include",
-                        "if",
-                        "mixin",
-                        "return",
-                        "warn"
-                    ]
-                }
-            ],
-            "at-rule-blacklist": [
-                "extend"
-            ],
-            "property-no-unknown": [
-                true,
-                {
-                    "ignoreProperties": [
-                        "contain"
-                    ]
-                }
-            ],
-            "selector-max-id": 0,
-            "selector-no-qualifying-type": true,
-            "selector-max-type": [
-                0,
-                {
-                    "ignoreTypes": [
-                        "/fieldset/"
-                    ]
-                }
-            ],
-            "selector-max-universal": 0,
-            "font-weight-notation": "named-where-possible",
-            "function-url-no-scheme-relative": true,
-            "comment-word-blacklist": [
-                [
-                    "/^TODO:/",
-                    "/^FIXME:/"
-                ],
-                {
-                    "severity": "warning"
-                }
-            ],
-            "number-leading-zero": "never",
-            "at-rule-empty-line-before": [
-                "always",
-                {
-                    "except": [
-                        "blockless-after-blockless",
-                        "first-nested"
-                    ],
-                    "ignore": [
-                        "after-comment"
-                    ],
-                    "ignoreAtRules": [
-                        "else"
-                    ]
-                }
-            ],
-            "block-closing-brace-newline-after": [
-                "always",
-                {
-                    "ignoreAtRules": [
-                        "if",
-                        "else"
-                    ]
-                }
-            ],
-            "scss/selector-no-redundant-nesting-selector": true,
-            "scss/at-import-no-partial-leading-underscore": true,
-            "scss/at-else-closing-brace-newline-after": "always-last-in-chain",
-            "scss/at-else-closing-brace-space-after": "always-intermediate",
-            "scss/at-else-empty-line-before": "never",
-            "scss/at-if-closing-brace-newline-after": "always-last-in-chain",
-            "scss/at-if-closing-brace-space-after": "always-intermediate"
-        }
-    },
-    "eslintConfig": {
-        "extends": [
-            "google"
-        ],
-        "parserOptions": {
-            "sourceType": "module",
-            "ecmaVersion": 2017
-        },
-        "rules": {
-            "indent": [
-                "error",
-                2
-            ],
-            "max-len": [
-                "error",
-                120
-            ],
-            "no-new": "warn",
-            "quotes": [
-                "error",
-                "single",
-                {
-                    "avoidEscape": true
-                }
-            ],
-            "no-var": "error",
-            "curly": "error",
-            "no-floating-decimal": "error",
-            "no-unused-vars": [
-                "error",
-                {
-                    "varsIgnorePattern": "^(?:(?:MDC(?:(?:[A-Z][a-z0-9]+)+)Adapter)|(?:(?:(?:[A-Z][a-z0-9]+)+)Type))$"
-                }
-            ]
-        }
-    },
-    "eslintIgnore": [
-        "/dist/*"
+  "name": "enjin-theme",
+  "description": "Responsive Enjin theme for the Really Bad Players community.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Seikcud/enjin-theme.git"
+  },
+  "scripts": {
+    "develop": "gulp default --require @babel/register --gulpfile tasks",
+    "build": "gulp build --require @babel/register --gulpfile tasks",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard",
+    "plugins": [
+      "stylelint-scss",
+      "stylelint-order"
     ],
-    "devDependencies": {
-        "@babel/core": "7.4.5",
-        "@babel/preset-env": "7.4.5",
-        "@babel/register": "7.4.4",
-        "babel-loader": "8.0.6",
-        "basiclightbox": "5.0.2",
-        "browser-sync": "2.26.7",
-        "browser-sync-webpack-plugin": "2.2.2",
-        "browserslist": "4.6.2",
-        "eslint": "5.16.0",
-        "eslint-config-google": "0.13.0",
-        "flickity": "2.2.0",
-        "eslint-plugin-compat": "3.1.1",
-        "flickity-bg-lazyload": "1.0.1",
-        "gulp": "github:gulpjs/gulp",
-        "gulp-autoprefixer": "6.1.0",
-        "gulp-babel": "8.0.0",
-        "gulp-better-rollup": "4.0.1",
-        "gulp-clean-css": "4.2.0",
-        "gulp-concat": "2.6.1",
-        "gulp-if": "2.0.2",
-        "gulp-rename": "1.4.0",
-        "gulp-sass": "4.0.2",
-        "gulp-sourcemaps": "2.6.5",
-        "gulp-uglify": "3.0.2",
-        "stylelint-config-standard": "18.3.0",
-        "stylelint-no-unsupported-browser-features": "3.0.2",
-        "stylelint-order": "2.2.1",
-        "stylelint-scss": "3.8.0",
-        "stylelint-selector-bem-pattern": "2.1.0",
-        "webpack": "4.33.0",
-        "webpack-cli": "3.3.3"
-    },
-    "dependencies": {
-        "acorn": "6.1.1",
-        "gulp-cli": "2.2.0",
-        "material-components-web": "2.3.0",
-        "node-sass": "4.12.0",
-        "npm": "6.9.0",
-        "stylelint": "9.10.1"
-    },
-    "sasslintConfig": "./.stylelintrc.yaml",
-    "browserslist": "> 5% in US, not dead",
-    "renovate": {
-        "extends": [
-            "config:base",
-            "group:allNonMajor"
+    "rules": {
+      "font-family-name-quotes": "always-where-recommended",
+      "function-url-quotes": "always",
+      "selector-attribute-quotes": "always",
+      "string-quotes": "double",
+      "order/order": [
+        [
+          {
+            "type": "at-rule",
+            "hasBlock": false
+          },
+          "custom-properties",
+          "declarations"
         ],
-        "automerge": true,
-        "major": {
-            "automerge": false
+        {
+          "unspecified": "ignore",
+          "disableFix": true
         }
+      ],
+      "order/properties-order": [
+        "display",
+        "position",
+        "top",
+        "right",
+        "bottom",
+        "left",
+        "flex",
+        "flex-basis",
+        "flex-direction",
+        "flex-flow",
+        "flex-grow",
+        "flex-shrink",
+        "flex-wrap",
+        "align-content",
+        "align-items",
+        "align-self",
+        "justify-content",
+        "order",
+        "box-sizing",
+        "width",
+        "min-width",
+        "max-width",
+        "height",
+        "min-height",
+        "max-height",
+        "margin",
+        "margin-top",
+        "margin-right",
+        "margin-bottom",
+        "margin-left",
+        "padding",
+        "padding-top",
+        "padding-right",
+        "padding-bottom",
+        "padding-left",
+        "float",
+        "clear",
+        "resize",
+        "columns",
+        "column-count",
+        "column-gap",
+        "column-fill",
+        "column-rule",
+        "column-span",
+        "column-width",
+        "grid-gap",
+        "grid-template-columns",
+        "animation",
+        "animation-name",
+        "animation-timing-function",
+        "transform",
+        "transform-box",
+        "transform-origin",
+        "transform-style",
+        "transition",
+        "transition-delay",
+        "transition-duration",
+        "transition-property",
+        "transition-timing-function",
+        "border",
+        "border-top",
+        "border-right",
+        "border-bottom",
+        "border-left",
+        "border-width",
+        "border-top-width",
+        "border-right-width",
+        "border-bottom-width",
+        "border-left-width",
+        "border-style",
+        "border-top-style",
+        "border-right-style",
+        "border-bottom-style",
+        "border-left-style",
+        "border-radius",
+        "border-top-left-radius",
+        "border-top-right-radius",
+        "border-bottom-left-radius",
+        "border-bottom-right-radius",
+        "border-color",
+        "border-top-color",
+        "border-right-color",
+        "border-bottom-color",
+        "border-left-color",
+        "outline",
+        "outline-color",
+        "outline-offset",
+        "outline-style",
+        "outline-width",
+        "background",
+        "background-attachment",
+        "background-clip",
+        "background-color",
+        "background-image",
+        "background-repeat",
+        "background-position",
+        "background-size",
+        "fill",
+        "opacity",
+        "color",
+        "font",
+        "font-family",
+        "font-size",
+        "font-smoothing",
+        "font-style",
+        "font-variant",
+        "font-weight",
+        "letter-spacing",
+        "line-height",
+        "list-style",
+        "text-align",
+        "text-decoration",
+        "text-indent",
+        "text-overflow",
+        "text-rendering",
+        "text-shadow",
+        "text-transform",
+        "text-wrap",
+        "white-space",
+        "word-spacing",
+        "cursor",
+        "pointer-events",
+        "user-select",
+        "appearance",
+        "border-collapse",
+        "border-spacing",
+        "box-shadow",
+        "caption-side",
+        "content",
+        "empty-cells",
+        "overflow",
+        "overflow-x",
+        "overflow-y",
+        "quotes",
+        "speak",
+        "table-layout",
+        "vertical-align",
+        "visibility",
+        "will-change",
+        "z-index"
+      ],
+      "declaration-property-unit-whitelist": {
+        "font-size": [
+          "rem",
+          "px"
+        ]
+      },
+      "at-rule-no-vendor-prefix": true,
+      "media-feature-name-no-vendor-prefix": true,
+      "selector-no-vendor-prefix": true,
+      "value-no-vendor-prefix": true,
+      "max-nesting-depth": 3,
+      "selector-max-compound-selectors": 4,
+      "selector-max-specificity": "0,4,1",
+      "at-rule-no-unknown": [
+        true,
+        {
+          "ignoreAtRules": [
+            "at-root",
+            "content",
+            "each",
+            "else",
+            "error",
+            "for",
+            "function",
+            "include",
+            "if",
+            "mixin",
+            "return",
+            "warn"
+          ]
+        }
+      ],
+      "at-rule-blacklist": [
+        "extend"
+      ],
+      "property-no-unknown": [
+        true,
+        {
+          "ignoreProperties": [
+            "contain"
+          ]
+        }
+      ],
+      "selector-max-id": 0,
+      "selector-no-qualifying-type": true,
+      "selector-max-type": [
+        0,
+        {
+          "ignoreTypes": [
+            "/fieldset/"
+          ]
+        }
+      ],
+      "selector-max-universal": 0,
+      "font-weight-notation": "named-where-possible",
+      "function-url-no-scheme-relative": true,
+      "comment-word-blacklist": [
+        [
+          "/^TODO:/",
+          "/^FIXME:/"
+        ],
+        {
+          "severity": "warning"
+        }
+      ],
+      "number-leading-zero": "never",
+      "at-rule-empty-line-before": [
+        "always",
+        {
+          "except": [
+            "blockless-after-blockless",
+            "first-nested"
+          ],
+          "ignore": [
+            "after-comment"
+          ],
+          "ignoreAtRules": [
+            "else"
+          ]
+        }
+      ],
+      "block-closing-brace-newline-after": [
+        "always",
+        {
+          "ignoreAtRules": [
+            "if",
+            "else"
+          ]
+        }
+      ],
+      "scss/selector-no-redundant-nesting-selector": true,
+      "scss/at-import-no-partial-leading-underscore": true,
+      "scss/at-else-closing-brace-newline-after": "always-last-in-chain",
+      "scss/at-else-closing-brace-space-after": "always-intermediate",
+      "scss/at-else-empty-line-before": "never",
+      "scss/at-if-closing-brace-newline-after": "always-last-in-chain",
+      "scss/at-if-closing-brace-space-after": "always-intermediate"
     }
+  },
+  "eslintConfig": {
+    "extends": [
+      "google"
+    ],
+    "parserOptions": {
+      "sourceType": "module",
+      "ecmaVersion": 2017
+    },
+    "rules": {
+      "indent": [
+        "error",
+        2
+      ],
+      "max-len": [
+        "error",
+        120
+      ],
+      "no-new": "warn",
+      "quotes": [
+        "error",
+        "single",
+        {
+          "avoidEscape": true
+        }
+      ],
+      "no-var": "error",
+      "curly": "error",
+      "no-floating-decimal": "error",
+      "no-unused-vars": [
+        "error",
+        {
+          "varsIgnorePattern": "^(?:(?:MDC(?:(?:[A-Z][a-z0-9]+)+)Adapter)|(?:(?:(?:[A-Z][a-z0-9]+)+)Type))$"
+        }
+      ]
+    }
+  },
+  "eslintIgnore": [
+    "/dist/*"
+  ],
+  "devDependencies": {
+    "@babel/core": "7.4.5",
+    "@babel/preset-env": "7.4.5",
+    "@babel/register": "7.4.4",
+    "babel-loader": "8.0.6",
+    "basiclightbox": "5.0.2",
+    "browser-sync": "2.26.7",
+    "browser-sync-webpack-plugin": "2.2.2",
+    "browserslist": "4.6.2",
+    "eslint": "5.16.0",
+    "eslint-config-google": "0.13.0",
+    "flickity": "2.2.0",
+    "eslint-plugin-compat": "3.1.1",
+    "flickity-bg-lazyload": "1.0.1",
+    "gulp": "github:gulpjs/gulp",
+    "gulp-autoprefixer": "6.1.0",
+    "gulp-babel": "8.0.0",
+    "gulp-better-rollup": "4.0.1",
+    "gulp-clean-css": "4.2.0",
+    "gulp-concat": "2.6.1",
+    "gulp-if": "2.0.2",
+    "gulp-rename": "1.4.0",
+    "gulp-sass": "4.0.2",
+    "gulp-sourcemaps": "2.6.5",
+    "gulp-uglify": "3.0.2",
+    "stylelint-config-standard": "18.3.0",
+    "stylelint-no-unsupported-browser-features": "3.0.2",
+    "stylelint-order": "2.2.1",
+    "stylelint-scss": "3.8.0",
+    "stylelint-selector-bem-pattern": "2.1.0",
+    "webpack": "4.33.0",
+    "webpack-cli": "3.3.3"
+  },
+  "dependencies": {
+    "acorn": "6.1.1",
+    "gulp-cli": "2.2.0",
+    "material-components-web": "2.3.0",
+    "node-sass": "4.12.0",
+    "npm": "6.9.0",
+    "stylelint": "9.10.1",
+    "snyk": "^1.230.5"
+  },
+  "sasslintConfig": "./.stylelintrc.yaml",
+  "browserslist": "> 5% in US, not dead",
+  "renovate": {
+    "extends": [
+      "config:base",
+      "group:allNonMajor"
+    ],
+    "automerge": true,
+    "major": {
+      "automerge": false
+    }
+  },
+  "snyk": true
 }
